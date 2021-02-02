@@ -1,0 +1,4 @@
+language: java
+sudo: false
+install: chmod +x gradlew
+script: ./gradlew clean setupCiWorkspace build

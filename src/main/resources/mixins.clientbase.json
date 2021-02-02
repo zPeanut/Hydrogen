@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "tk.peanut.phosphor.injection.mixins",
+  "refmap": "mixins.clientbase.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinEntity",
+    "MixinEntityPlayerSP",
+    "MixinGuiChat",
+    "MixinGuiIngame",
+    "MixinGuiScreen",
+    "MixinGuiSpectator",
+    "MixinMinecraft",
+    "MixinNetworkManager",
+    "MixinRenderer"
+  ]
+}
