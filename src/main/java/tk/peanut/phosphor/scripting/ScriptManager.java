@@ -4,7 +4,7 @@ import com.google.common.io.ByteStreams;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import tk.peanut.phosphor.modules.ModuleCategory;
+import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.scripting.runtime.ScriptRuntime;
 
 import javax.script.ScriptEngine;
@@ -106,6 +106,8 @@ public class ScriptManager {
         String name;
         String desc;
         String cat;
+        int keyBind = 0;
+        int color = -1;
         String scriptFile;
 
         //<editor-fold desc="Metadata">
@@ -140,15 +142,15 @@ public class ScriptManager {
         }
         //</editor-fold>
 
-        ModuleCategory category;
+        Category category;
 
         try {
-            category = ModuleCategory.valueOf(cat.toUpperCase());
+            category = Category.valueOf(cat.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException("There's no category called '" + cat + "'. Allowed Categories: " + Arrays.toString(ModuleCategory.values()));
+            throw new RuntimeException("There's no category called '" + cat + "'. Allowed Categories: " + Arrays.toString(Category.values()));
         }
 
-        ScriptModule module = new ScriptModule(name, desc, category);
+        ScriptModule module = new ScriptModule(name, desc, keyBind, category, color);
 
         ZipEntry entry = file.getEntry(scriptFile);
 

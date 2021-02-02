@@ -5,7 +5,7 @@ import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.phosphor.events.EventMotionUpdate;
 import tk.peanut.phosphor.events.EventRender2D;
 import tk.peanut.phosphor.modules.Module;
-import tk.peanut.phosphor.modules.ModuleCategory;
+import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.scripting.runtime.events.ScriptMotionUpdateEvent;
 
 import javax.script.Invocable;
@@ -15,8 +15,8 @@ import javax.script.ScriptException;
 public class ScriptModule extends Module {
     private ScriptEngine engine;
 
-    ScriptModule(String name, String desc, ModuleCategory category) {
-        super(name, desc, category);
+    ScriptModule(String name, String desc, int keyBind, Category category, int color) {
+        super(name, desc, keyBind, category, color);
     }
 
     public void setScriptEngine(ScriptEngine scriptEngine) {

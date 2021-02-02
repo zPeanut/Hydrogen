@@ -1,6 +1,7 @@
 package tk.peanut.phosphor.injection.mixins;
 
 import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.events.Event;
 import com.darkmagician6.eventapi.types.EventType;
 import net.minecraft.client.entity.EntityPlayerSP;
 import tk.peanut.phosphor.events.EventMotionUpdate;
@@ -8,6 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import tk.peanut.phosphor.events.EventUpdate;
 
 @Mixin(EntityPlayerSP.class)
 public class MixinEntityPlayerSP extends MixinEntity {
@@ -37,6 +39,12 @@ public class MixinEntityPlayerSP extends MixinEntity {
 
         rotationYaw = event.getYaw();
         rotationPitch = event.getPitch();
+    }
+
+    @Inject(method = "onUpdate", at = @At("HEAD"))
+    private void onUpdate(CallbackInfo ci) {
+        EventUpdate event = new EventUpdate();
+        EventManager.call(event);
     }
 
     @Inject(method = "onUpdateWalkingPlayer", at = @At("RETURN"))

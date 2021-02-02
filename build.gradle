@@ -101,6 +101,9 @@ jar {
             "TweakOrder": 0,
             "FMLCorePluginContainsFMLMod": 'net.superblaubeere27.clientbase.injection.MixinLoader'
     )
+    manifest {
+        attributes 'FMLAT': 'phosphor_at.cfg'
+    }
 }
 
 configurations {

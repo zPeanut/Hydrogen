@@ -10,7 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventKey;
 import tk.peanut.phosphor.injection.interfaces.IMixinMinecraft;
-import tk.peanut.phosphor.modules.modules.fun.DemoModeModule;
 import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,6 +25,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinMinecraft implements IMixinMinecraft {
     @Shadow
     public GuiScreen currentScreen;
+
+    @Shadow
+    volatile boolean running = true;
 
     @Shadow
     @Mutable
@@ -63,16 +65,5 @@ public class MixinMinecraft implements IMixinMinecraft {
         this.session = session;
     }
 
-    @SuppressWarnings("ConstantConditions")
-    @Inject(method = "isDemo", at = @At("HEAD"), cancellable = true)
-    private void isDemo(CallbackInfoReturnable<Boolean> cir) {
-        if (Phosphor.getInstance() == null || Phosphor.getInstance().moduleManager == null) return;
 
-        DemoModeModule mod = Phosphor.getInstance().moduleManager.getModule(DemoModeModule.class);
-
-        if (mod != null && mod.getState()) {
-            cir.setReturnValue(true);
-            cir.cancel();
-        }
-    }
 }

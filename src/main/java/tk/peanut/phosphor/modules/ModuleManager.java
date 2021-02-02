@@ -3,9 +3,10 @@ package tk.peanut.phosphor.modules;
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.phosphor.events.EventKey;
-import tk.peanut.phosphor.modules.modules.fun.DemoModeModule;
-import tk.peanut.phosphor.modules.modules.movement.SetbackDetector;
 import tk.peanut.phosphor.modules.modules.render.HUD;
+import tk.peanut.phosphor.modules.modules.movement.Eagle;
+import tk.peanut.phosphor.modules.modules.render.TestModule2;
+import tk.peanut.phosphor.modules.modules.render.TestModule3;
 import tk.peanut.phosphor.scripting.ScriptModule;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,9 +24,10 @@ public class ModuleManager {
 
 
     public void addModules() {
-        addModule(new DemoModeModule());
-        addModule(new SetbackDetector());
         addModule(new HUD());
+        addModule(new Eagle());
+        addModule(new TestModule2());
+        addModule(new TestModule3());
     }
 
     private void addModule(@NotNull Module module) {
@@ -49,7 +51,32 @@ public class ModuleManager {
 
     @EventTarget
     private void onKey(@NotNull EventKey event) {
-        for (Module module : modules) if (module.getKeybind() == event.getKey()) module.setState(!module.getState());
+        for (Module module : modules) if (module.getKeybind() == event.getKey()) module.toggle();
+    }
+
+    public Module getModulebyName(String moduleName) {
+        for(Module mod : modules) {
+            if((mod.getName().trim().equalsIgnoreCase(moduleName)) || (mod.toString().trim().equalsIgnoreCase(moduleName.trim()))) {
+                return mod;
+            }
+        }
+        return null;
+    }
+
+    public List<Module> getEnabledMods() {
+        List<Module> modules = new ArrayList<>();
+
+        for (Module mod : this.getModules()) {
+            if(mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled())) {
+                modules.add(mod);
+            }
+        }
+        return modules;
+    }
+
+    public boolean get(int i) {
+        // TODO Auto-generated method stub
+        return false;
     }
 
     public void addScriptModule(ScriptModule module) {

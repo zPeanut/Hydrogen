@@ -1,7 +1,9 @@
 package tk.peanut.phosphor;
 
+import net.minecraftforge.fml.common.Mod;
 import tk.peanut.phosphor.modules.ModuleManager;
 
+@Mod(modid = "Phosphor", name = "Phosphor", version = "1.0-alpha")
 public class Phosphor {
 
     public final String name = "Phosphor";

@@ -22,12 +22,14 @@ gradle-app.setting
 
 # Log file
 *.log
+*.log.gz
 
 # BlueJ files
 *.ctxt
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+.mca
 
 # Package Files #
 *.jar
