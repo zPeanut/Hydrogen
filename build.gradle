@@ -96,14 +96,12 @@ build.dependsOn(shadowJar)
 
 jar {
     manifest.attributes(
-            "MixinConfigs": 'mixins.clientbase.json',
+            "MixinConfigs": 'mixins.phosphor.json',
             "tweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
             "TweakOrder": 0,
-            "FMLCorePluginContainsFMLMod": 'net.superblaubeere27.clientbase.injection.MixinLoader'
+            "FMLCorePluginContainsFMLMod": 'tk.peanut.phosphor.injection.MixinLoader',
+            'FMLAT': 'phosphor_at.cfg'
     )
-    manifest {
-        attributes 'FMLAT': 'phosphor_at.cfg'
-    }
 }
 
 configurations {
