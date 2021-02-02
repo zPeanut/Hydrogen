@@ -43,22 +43,9 @@ public class uiHUD {
 
                         }
                     }
-
-
             }
         }, "smooth array list").start();
-        Collections.sort(Phosphor.getInstance().moduleManager.getModules(), new Comparator<Module>() {
-            @Override
-            public int compare(Module mod1, Module mod2) {
-                if (Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod1.getName()) > Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod2.getName())) {
-                    return -1;
-                }
-                if (Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod1.getName()) < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod2.getName())) {
-                    return 1;
-                }
-                return 0;
-            }
-        });
+
     }
 
 
@@ -93,7 +80,7 @@ public class uiHUD {
 
                     //Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(String.valueOf(mod.getName()) + mod.getSuffix()) + 3, 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 8, i * 12 + 23, -2147483648);
                     //Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, 11 + i * 12, 0, i * 12 + 23, mod.getColor());
-                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(String.valueOf(mod.getName()), mwidth, mheight, mod.getColor());
+                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(String.valueOf(mod.getName()), 2, mheight, mod.getColor());
 
 
 

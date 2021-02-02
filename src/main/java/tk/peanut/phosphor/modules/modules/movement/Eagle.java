@@ -2,9 +2,15 @@ package tk.peanut.phosphor.modules.modules.movement;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockPos;
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.phosphor.events.EventRender2D;
@@ -28,29 +34,27 @@ public class Eagle extends Module {
     @EventTarget
     public void onUpdate(EventUpdate e) {
 
-       /** try {
+        try {
             if (((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock))
                     && (!this.mc.gameSettings.keyBindJump.isPressed())) {
                 BlockPos bp = new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 1.0D,
                         mc.thePlayer.posZ);
                 if (this.mc.theWorld.getBlockState(bp).getBlock() == Blocks.air) {
 
-                    this.mc.gameSettings.keyBindSneak.isPressed() = true;
+                    KeyBinding.setKeyBindState(mc.gameSettings.keyBindSneak.getKeyCode(), true);
                 } else {
-                    this.mc.gameSettings.keyBindSneak.pressed = false;
+                    KeyBinding.setKeyBindState(mc.gameSettings.keyBindSneak.getKeyCode(), false);
                 }
             }
         } catch (Exception localException) {
-        }**/
+        }
     }
     @Override
     public void onEnable() {
         EventManager.register(this);
-        /*mc.rightClickDelayTimer = 1;*/
     }
     @Override
     public void onDisable() {
         EventManager.unregister(this);
-        /**this.mc.rightClickDelayTimer = 3;**/
     }
 }
