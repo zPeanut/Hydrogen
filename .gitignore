@@ -15,6 +15,7 @@ gradle-app.setting
 
 # Default ignored files
 /Phosphor.iws
+/Phosphor.ipr
 
 # Compiled class file
 *.class
