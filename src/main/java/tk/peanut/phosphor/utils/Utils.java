@@ -4,6 +4,7 @@ import com.mojang.authlib.Agent;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
@@ -31,6 +32,11 @@ public class Utils {
         if (max <= min) return min;
 
         return RANDOM.nextInt(max - min) + min;
+    }
+
+    public static final ScaledResolution getScaledRes() {
+        final ScaledResolution scaledRes = new ScaledResolution(Minecraft.getMinecraft());
+        return scaledRes;
     }
 
     public static void drawRect(double left, double top, double right, double bottom, int color) {

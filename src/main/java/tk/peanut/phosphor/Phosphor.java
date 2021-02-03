@@ -1,5 +1,6 @@
 package tk.peanut.phosphor;
 
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import tk.peanut.phosphor.events.ForgeEventHandler;
@@ -7,6 +8,8 @@ import tk.peanut.phosphor.modules.ModuleManager;
 import tk.peanut.phosphor.ui.clickgui.clickgui.ClickGui;
 import tk.peanut.phosphor.ui.clickgui.settings.SettingsManager;
 import tk.peanut.phosphor.utils.KeybindManager;
+
+import java.io.File;
 
 @Mod(modid = "phosphor", name = "Phosphor", version = "1.0", useMetadata = true)
 public class Phosphor {
@@ -26,12 +29,18 @@ public class Phosphor {
     public SettingsManager settingsManager;
     public KeybindManager keybindManager;
     public ClickGui clickgui;
+    public File directory;
 
     public Phosphor() {
         instance = this;
     }
 
     public void startClient() {
+        directory = new File(Minecraft.getMinecraft().mcDataDir, name);
+        if (!this.directory.exists()) {
+            directory.mkdir();
+        }
+
         settingsManager = new SettingsManager();
         moduleManager = new ModuleManager();
         keybindManager = new KeybindManager();
