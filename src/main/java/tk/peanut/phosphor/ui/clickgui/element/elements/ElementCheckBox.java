@@ -1,15 +1,16 @@
-package tk.peanut.phosphor.ui.clickgui.ui.elements.menu;
+package tk.peanut.phosphor.ui.clickgui.element.elements;
 
 import java.awt.Color;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import tk.peanut.phosphor.Phosphor;
+import tk.peanut.phosphor.ui.clickgui.element.Element;
+import tk.peanut.phosphor.ui.clickgui.element.ModuleButton;
 import tk.peanut.phosphor.ui.clickgui.settings.Setting;
-import tk.peanut.phosphor.ui.clickgui.ui.elements.Element;
-import tk.peanut.phosphor.ui.clickgui.ui.elements.ModuleButton;
-import tk.peanut.phosphor.ui.clickgui.ui.util.ColorUtil;
-import tk.peanut.phosphor.ui.clickgui.ui.util.FontUtil;
+import tk.peanut.phosphor.ui.clickgui.util.ColorUtil;
+import tk.peanut.phosphor.ui.clickgui.util.FontUtil;
 import tk.peanut.phosphor.utils.Utils;
-
 
 public class ElementCheckBox extends Element {
 	/*
@@ -26,20 +27,23 @@ public class ElementCheckBox extends Element {
 	 */
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		Color temp = ColorUtil.getClickGUIColor();
-		int color = new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), 200).getRGB();
+		int color = new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), (int) Phosphor.getInstance().settingsManager.getSettingByName("Alpha").getValDouble()).getRGB();
 		
 		/*
 		 * Die Box und Umrandung rendern
 		 */
-		Utils.drawRect(x, y, x + width, y + height, 0xff1a1a1a);
+		Utils.drawRect(x, y , x + width, y + height, 0x50000000);
 
+		
+		
+		
 		/*
 		 * Titel und Checkbox rendern.
 		 */
-		FontUtil.drawString(setstrg, x + width - FontUtil.getStringWidth(setstrg), y + FontUtil.getFontHeight() / 2 - 0.5, 0xffffffff);
-		Utils.drawRect(x + 1, y + 2, x + 12, y + 13, set.getValBoolean() ? color : 0xff000000);
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(set.getValBoolean() ? "§b" + setstrg :  setstrg, (float)(x + 17), (float)(y + FontUtil.getFontHeight() / 2 - 0.5), 0xffffffff);
+		Utils.drawRect(x + 3, y + 2, x + 14, y + 13, set.getValBoolean() ? 0x99000000 : 0x44111111);
 		if (isCheckHovered(mouseX, mouseY))
-			Utils.drawRect(x + 1, y + 2, x + 12, y + 13, 0x55111111);
+			Utils.drawRect(x + 3, y + 2, x + 14, y + 13, 0x55111111);
 	}
 
 	/*
@@ -49,6 +53,7 @@ public class ElementCheckBox extends Element {
 	public boolean mouseClicked(int mouseX, int mouseY, int mouseButton) {
 		if (mouseButton == 0 && isCheckHovered(mouseX, mouseY)) {
 			set.setValBoolean(!set.getValBoolean());
+			//TODO: SettingsButtonFile.saveState();
 			return true;
 		}
 		
@@ -56,7 +61,7 @@ public class ElementCheckBox extends Element {
 	}
 
 	/*
-	 * Einfacher HoverCheck, ben�tigt damit die Value ge�ndert werden kann
+	 * Einfacher HoverCheck, ben§tigt damit die Value ge§ndert werden kann
 	 */
 	public boolean isCheckHovered(int mouseX, int mouseY) {
 		return mouseX >= x + 1 && mouseX <= x + 12 && mouseY >= y + 2 && mouseY <= y + 13;

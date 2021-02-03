@@ -1,9 +1,9 @@
-package tk.peanut.phosphor.ui.clickgui.ui.elements;
+package tk.peanut.phosphor.ui.clickgui.element;
 
 
+import tk.peanut.phosphor.ui.clickgui.ClickGUI;
 import tk.peanut.phosphor.ui.clickgui.settings.Setting;
-import tk.peanut.phosphor.ui.clickgui.ui.ClickGUI;
-import tk.peanut.phosphor.ui.clickgui.ui.util.FontUtil;
+import tk.peanut.phosphor.ui.clickgui.util.FontUtil;
 
 public class Element {
 	public ClickGUI clickgui;
@@ -32,9 +32,9 @@ public class Element {
 		y = parent.y + offset;
 		width = parent.width + 10;
 		height = 15;
-		
+
 		/*
-		 * Title der Box bestimmen und falls n�tig die Breite der CheckBox
+		 * Title der Box bestimmen und falls n§tig die Breite der CheckBox
 		 * erweitern
 		 */
 		String sname = set.getName();
@@ -80,7 +80,6 @@ public class Element {
 	
 	public boolean isHovered(int mouseX, int mouseY) 
 	{
-		
 		return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
 	}
 }

@@ -4,8 +4,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import tk.peanut.phosphor.events.ForgeEventHandler;
 import tk.peanut.phosphor.modules.ModuleManager;
+import tk.peanut.phosphor.ui.clickgui.ClickGUI;
 import tk.peanut.phosphor.ui.clickgui.settings.SettingsManager;
-import tk.peanut.phosphor.ui.clickgui.ui.ClickGUI;
 import tk.peanut.phosphor.utils.KeybindManager;
 
 @Mod(modid = "phosphor", name = "Phosphor", version = "1.0", useMetadata = true)

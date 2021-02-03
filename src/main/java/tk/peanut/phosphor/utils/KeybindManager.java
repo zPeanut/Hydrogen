@@ -35,7 +35,7 @@ public class KeybindManager
             f.createNewFile();
 
             PrintWriter output = new PrintWriter(new FileWriter(f, true));
-            for (Module m : Tephra.instance.moduleManager.getModules()) {
+            for (Module m : Phosphor.getInstance().moduleManager.getModules()) {
                 output.println(m.getClass().getName() + ":" + m.getKeybind());
             }
             output.close();

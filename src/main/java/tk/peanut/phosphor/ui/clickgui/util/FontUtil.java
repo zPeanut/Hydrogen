@@ -1,9 +1,8 @@
-package tk.peanut.phosphor.ui.clickgui.ui.util;
+package tk.peanut.phosphor.ui.clickgui.util;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.StringUtils;
-
 
 public class FontUtil {
 	private static FontRenderer fontRenderer;
@@ -26,7 +25,7 @@ public class FontUtil {
 	}
 
 	public static void drawStringWithShadow(String text, double x, double y, int color) {
-		fontRenderer.drawStringWithShadow(text, (float) x, (float) y, color);
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(text, (float) x, (float) y, color);
 	}
 
 	public static void drawCenteredString(String text, double x, double y, int color) {

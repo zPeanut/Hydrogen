@@ -1,15 +1,14 @@
-package tk.peanut.phosphor.ui.clickgui.ui;
+package tk.peanut.phosphor.ui.clickgui;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import tk.peanut.phosphor.Phosphor;
-import tk.peanut.phosphor.ui.clickgui.ui.elements.ModuleButton;
-import tk.peanut.phosphor.ui.clickgui.ui.util.ColorUtil;
-import tk.peanut.phosphor.ui.clickgui.ui.util.FontUtil;
+import tk.peanut.phosphor.ui.clickgui.element.ModuleButton;
+import tk.peanut.phosphor.ui.clickgui.util.FontUtil;
 import tk.peanut.phosphor.utils.Utils;
-
 
 public class Panel {
 	public String title;
@@ -42,7 +41,7 @@ public class Panel {
 	}
 
 	/*
-	 * Wird in ClickGUI �berschrieben, sodass auch ModuleButtons hinzugef�gt werden k�nnen :3
+	 * Wird in ClickGUI §berschrieben, sodass auch ModuleButtons hinzugef§gt werden k§nnen :3
 	 */
 	public void setup() {}
 
@@ -50,44 +49,62 @@ public class Panel {
 	 * Rendern des Elements.
 	 */
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+
 		if (!this.visible)
 			return;
 
-		if (this.dragging) {
-			x = x2 + mouseX;
-			y = y2 + mouseY;
-		}
-		
-		Color temp = ColorUtil.getClickGUIColor().darker();
-		int outlineColor = new Color(temp.getRed(), temp.getGreen(), temp.getBlue(), 170).getRGB();
+		int outlineColor = -1;
 
-		Utils.drawRect(x, y, x + width, y + height, 0xff121212);
-		if(Phosphor.getInstance().settingsManager.getSettingByName("Design").getValString().equalsIgnoreCase("New")){
-			Utils.drawRect(x - 2, y, x, y + height, outlineColor);
-			FontUtil.drawStringWithShadow(title, x + 2, y + height / 2 - FontUtil.getFontHeight()/2, 0xffefefef);
-		}else if(Phosphor.getInstance().settingsManager.getSettingByName("Design").getValString().equalsIgnoreCase("JellyLike")){
-			Utils.drawRect(x + 4,			y + 2, x + 4.3, 		y + height - 2, 0xffaaaaaa);
-			Utils.drawRect(x - 4 + width, y + 2, x - 4.3 + width, y + height - 2, 0xffaaaaaa);
-			FontUtil.drawTotalCenteredStringWithShadow(title, x + width / 2, y + height / 2, 0xffefefef);
-		}
-		
 		if (this.extended && !Elements.isEmpty()) {
 			double startY = y + height;
-			int epanelcolor = Phosphor.getInstance().settingsManager.getSettingByName("Design").getValString().equalsIgnoreCase("New") ? 0xff232323 : Phosphor.getInstance().settingsManager.getSettingByName("Design").getValString().equalsIgnoreCase("JellyLike") ? 0xbb151515 : 0;;
 			for (ModuleButton et : Elements) {
-				if(Phosphor.getInstance().settingsManager.getSettingByName("Design").getValString().equalsIgnoreCase("New")){
-					Utils.drawRect(x - 2, startY, x + width, startY + et.height + 1, outlineColor);
+
+				// ebenfalls das main panel und nicht die sidebar
+
+				Utils.drawRect(x - 2, startY, x + width + 2, startY + et.height + 1, outlineColor);
+
+				if(et == Elements.get(Elements.size() - 1)) {
+
+					Utils.drawRect(x - 2, 14 + startY, x + width + 2, startY + et.height + 1, outlineColor);
 				}
-				Utils.drawRect(x, startY, x + width, startY + et.height + 1, epanelcolor);
+
+				// main panel not the sidebar
+
+				Utils.drawRect(x, startY, x + width, startY + et.height + 1, 0x50000000);
+
 				et.x = x + 2;
 				et.y = startY;
 				et.width = width - 4;
 				et.drawScreen(mouseX, mouseY, partialTicks);
 				startY += et.height + 1;
 			}
-			Utils.drawRect(x, startY + 1, x + width, startY + 1, epanelcolor);
-		
+			Utils.drawRect(x, startY + 1, x + width, startY + 1, outlineColor);
+
 		}
+
+		if (this.dragging) {
+			x = x2 + mouseX;
+			y = y2 + mouseY;
+		}
+
+
+
+		if(!this.extended) {
+			Utils.drawRect(x - 2, y + height, x + width + 2, y + height + 2, 0x77000000);
+			Utils.drawRect(x - 2, y, x, y + height, 0x77000000);
+			Utils.drawRect(x + width, y, x + width + 2, y + height, 0x77000000);
+			Utils.drawRect(x - 2, y, x + width + 2, y - 2, 0x77000000);
+		} else {
+			Utils.drawRect(x - 2, y, x, y + height, outlineColor);
+			Utils.drawRect(x + width, y, x + width + 2, y + height, outlineColor);
+			Utils.drawRect(x - 2, y, x + width + 2, y - 2, outlineColor);
+		}
+
+		// top siderect
+		Utils.drawRect(x, y, x + width , y + height, 0x99000000);
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(title, (float)x + 2, (float)y + (float)height / 2 - FontUtil.getFontHeight() / 2, -1);;
+
+
 	}
 
 	/*
