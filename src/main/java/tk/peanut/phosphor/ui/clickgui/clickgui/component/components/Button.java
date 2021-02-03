@@ -65,13 +65,14 @@ public class Button extends Component {
 	
 	@Override
 	public void renderComponent() {
-		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, this.isHovered ? (this.mod.isToggled() ? new Color(0xFF222222).darker().getRGB() : 0xFF222222) : (this.mod.isToggled() ? new Color(14,14,14).getRGB() : 0xFF111111));
-		GL11.glPushMatrix();
-		GL11.glScalef(0.5f,0.5f, 0.5f);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.mod.getName(), (parent.getX() + 2) * 2, (parent.getY() + offset + 2) * 2 + 4, this.mod.isToggled() ? 0x999999 : -1);
+		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, this.mod.isEnabled() ? 0x90000000 : (this.isHovered ? 0x80000000 : 0x60000000));
+		if(this.mod.isEnabled() && this.isHovered) {
+			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x70000000);
+		}
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.mod.toggled ? this.mod.getName() : "§f" + this.mod.getName(), (parent.getX() + 2), (parent.getY() + offset + 2), 0xffffe9ad);
 		if(this.subcomponents.size() > 2)
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.open ? "-" : "+", (parent.getX() + parent.getWidth() - 10) * 2, (parent.getY() + offset + 2) * 2 + 4, -1);
-		GL11.glPopMatrix();
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.open ? "§a..." : "...", (parent.getX() + parent.getWidth() - 10), (parent.getY() + offset + 2), -1);
+
 		if(this.open) {
 			if(!this.subcomponents.isEmpty()) {
 				for(Component comp : this.subcomponents) {

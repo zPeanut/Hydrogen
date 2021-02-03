@@ -12,7 +12,7 @@ import tk.peanut.phosphor.ui.clickgui.clickgui.component.Frame;
 public class ClickGui extends GuiScreen {
 
 	public static ArrayList<Frame> frames;
-	public static int color = -1;
+	public static int color = 0x99cfdcff;
 	
 	public ClickGui() {
 		this.frames = new ArrayList<Frame>();
@@ -31,7 +31,7 @@ public class ClickGui extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		this.drawDefaultBackground();
+		drawRect(0, 0, this.width, this.height, 0x44101010);
 		for(Frame frame : frames) {
 			frame.renderFrame(this.fontRendererObj);
 			frame.updatePosition(mouseX, mouseY);
