@@ -42,9 +42,9 @@ repositories {
     }
 }
 
-version = "v0.1"
-group="me.superblaubeere27"
-archivesBaseName = "ClientBase"
+version = "1.0"
+group="tk.peanut.phosphor"
+archivesBaseName = "phosphor"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -67,6 +67,7 @@ dependencies {
 processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
+
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
@@ -117,3 +118,5 @@ idea {
         inheritOutputDirs = true
     }
 }
+
+

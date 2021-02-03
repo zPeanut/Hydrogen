@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventKey;
 import tk.peanut.phosphor.modules.modules.player.FastPlace;
+import tk.peanut.phosphor.modules.modules.render.ClickGUI;
 import tk.peanut.phosphor.modules.modules.render.HUD;
 import tk.peanut.phosphor.modules.modules.movement.Eagle;
 import tk.peanut.phosphor.modules.modules.render.TestModule2;
@@ -31,9 +32,7 @@ public class ModuleManager {
     public void addModules() {
         addModule(new HUD());
         addModule(new Eagle());
-        addModule(new TestModule2());
-        addModule(new TestModule3());
-        addModule(new FastPlace());
+        addModule(new ClickGUI());
 
         Collections.sort(Phosphor.getInstance().moduleManager.getModules(), new Comparator<Module>() {
             @Override
