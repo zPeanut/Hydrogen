@@ -13,6 +13,7 @@ import tk.peanut.phosphor.events.EventRender2D;
 import tk.peanut.phosphor.injection.mixins.MixinMinecraft;
 import tk.peanut.phosphor.modules.Module;
 import tk.peanut.phosphor.modules.modules.render.HUD;
+import tk.peanut.phosphor.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
@@ -63,10 +64,13 @@ public class uiHUD {
 
 
     private static void drawWatermark() {
+
+        String watermark = String.format("%s §7%s", Phosphor.getInstance().name, Phosphor.getInstance().version);
+
         if(Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Left")) {
-            mc.fontRendererObj.drawStringWithShadow(String.format("%s §7%s", Phosphor.getInstance().name, Phosphor.getInstance().version), 2, 2, -1);
+            mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
         } else if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Right")) {
-            mc.fontRendererObj.drawStringWithShadow(String.format("%s §7%s", Phosphor.getInstance().name, Phosphor.getInstance().version), 20, 2, -1);
+            mc.fontRendererObj.drawStringWithShadow(watermark, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(watermark) - 2, 2, -1);
         }
     }
 
@@ -81,15 +85,14 @@ public class uiHUD {
             int mwidth = 2 + mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 24;
             int mheight = count * 11 + i + 13;
 
+            //Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(String.valueOf(mod.getName()) + mod.getSuffix()) + 3, 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 8, i * 12 + 23, -2147483648);
+            //Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, 11 + i * 12, 0, i * 12 + 23, mod.getColor());
 
-
-                    //Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(String.valueOf(mod.getName()) + mod.getSuffix()) + 3, 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 8, i * 12 + 23, -2147483648);
-                    //Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, 11 + i * 12, 0, i * 12 + 23, mod.getColor());
-                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(String.valueOf(mod.getName()), 2, mheight, mod.getColor());
-
-
-
-
+            if(Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Left")) {
+                mc.fontRendererObj.drawStringWithShadow(mod.getName(), 2, mheight, -1);
+            } else if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Right")) {
+                mc.fontRendererObj.drawStringWithShadow(mod.getName(), Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(mod.getName()) - 2, mheight, mod.getColor());
+            }
             count++;
 
         }
