@@ -25,7 +25,6 @@ public class HUD extends Module {
         options.add("Right");
         Phosphor.getInstance().settingsManager.rSetting(new Setting("HUD Alignment", this, "Left", options));
 
-
     }
 
 }

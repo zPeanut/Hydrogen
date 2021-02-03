@@ -4,6 +4,8 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import tk.peanut.phosphor.file.files.SettingsButtonFile;
+import tk.peanut.phosphor.file.files.SettingsComboBoxFile;
 import tk.peanut.phosphor.modules.Module;
 import tk.peanut.phosphor.ui.clickgui.clickgui.component.Component;
 import tk.peanut.phosphor.ui.clickgui.clickgui.component.components.Button;
@@ -42,7 +44,7 @@ public class ModeButton extends Component {
 		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
 		GL11.glPushMatrix();
 		GL11.glScalef(0.5f,0.5f, 0.5f);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow("Mode: " + set.getValString(), (parent.parent.getX() + 7) * 2, (parent.parent.getY() + offset + 2) * 2 + 5, -1);
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(set.getName() + ": " + set.getValString(), (parent.parent.getX() + 7) * 2, (parent.parent.getY() + offset + 2) * 2 + 5, -1);
 		GL11.glPopMatrix();
 	}
 	
@@ -61,9 +63,8 @@ public class ModeButton extends Component {
 
 			if(modeIndex + 1 > maxIndex)
 				modeIndex = 0;
-
-
 			set.setValString(set.getOptions().get(modeIndex));
+			SettingsComboBoxFile.saveState();
 		}
 	}
 	

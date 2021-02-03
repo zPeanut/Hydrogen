@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import tk.peanut.phosphor.file.files.SettingsButtonFile;
 import tk.peanut.phosphor.ui.clickgui.clickgui.component.Component;
 import tk.peanut.phosphor.ui.clickgui.clickgui.component.components.Button;
 import tk.peanut.phosphor.ui.clickgui.settings.Setting;
@@ -54,6 +55,7 @@ public class Checkbox extends Component {
 	public void mouseClicked(int mouseX, int mouseY, int button) {
 		if(isMouseOnButton(mouseX, mouseY) && button == 0 && this.parent.open) {
 			this.op.setValBoolean(!op.getValBoolean());;
+			SettingsButtonFile.saveState();
 		}
 	}
 	

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiScreen;
 
+import tk.peanut.phosphor.file.files.ClickGuiFile;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.ui.clickgui.clickgui.component.Component;
 import tk.peanut.phosphor.ui.clickgui.clickgui.component.Frame;
@@ -75,6 +76,7 @@ public class ClickGui extends GuiScreen {
 		}
 		if (keyCode == 1) {
             this.mc.displayGuiScreen(null);
+			ClickGuiFile.saveClickGui();
         }
 	}
 

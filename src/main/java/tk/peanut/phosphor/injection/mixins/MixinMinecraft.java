@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventKey;
-import tk.peanut.phosphor.file.files.KeybindFile;
+import tk.peanut.phosphor.file.files.*;
 import tk.peanut.phosphor.injection.interfaces.IMixinMinecraft;
 import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Final;
@@ -44,6 +44,10 @@ public class MixinMinecraft implements IMixinMinecraft {
     private void startGame(CallbackInfo ci) {
         Phosphor.getInstance().startClient();
         KeybindFile.loadKeybinds();
+        SettingsButtonFile.loadState();
+        SettingsComboBoxFile.loadState();
+        SettingsSliderFile.loadState();
+        ClickGuiFile.loadClickGui();
     }
 
     @Inject(method = "runTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;dispatchKeypresses()V", shift = At.Shift.AFTER))
@@ -56,6 +60,10 @@ public class MixinMinecraft implements IMixinMinecraft {
     private void onShutdown(CallbackInfo ci) {
         Phosphor.getInstance().stopClient();
         KeybindFile.saveKeybinds();
+        SettingsButtonFile.saveState();
+        SettingsComboBoxFile.saveState();
+        SettingsSliderFile.saveState();
+        ClickGuiFile.saveClickGui();
     }
 
     @Override

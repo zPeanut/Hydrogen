@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import tk.peanut.phosphor.file.files.SettingsSliderFile;
 import tk.peanut.phosphor.ui.clickgui.clickgui.component.Component;
 import tk.peanut.phosphor.ui.clickgui.clickgui.component.components.Button;
 import tk.peanut.phosphor.ui.clickgui.settings.Setting;
@@ -66,10 +67,12 @@ public class Slider extends Component {
 		if (dragging) {
 			if (diff == 0) {
 				set.setValDouble(set.getMin());
+				SettingsSliderFile.saveState();
 			}
 			else {
 				double newValue = roundToPlace(((diff / 88) * (max - min) + min), 2);
 				set.setValDouble(newValue);
+				SettingsSliderFile.saveState();
 			}
 		}
 	}

@@ -13,10 +13,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
+import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventRender2D;
 import tk.peanut.phosphor.events.EventUpdate;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.ui.clickgui.settings.Setting;
 
 import java.awt.*;
 import java.time.format.DateTimeFormatter;

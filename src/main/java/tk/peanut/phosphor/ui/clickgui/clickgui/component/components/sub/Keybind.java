@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import tk.peanut.phosphor.file.files.KeybindFile;
 import tk.peanut.phosphor.ui.clickgui.clickgui.component.Component;
 import tk.peanut.phosphor.ui.clickgui.clickgui.component.components.Button;
 
@@ -57,6 +58,7 @@ public class Keybind extends Component {
 	public void keyTyped(char typedChar, int key) {
 		if(this.binding) {
 			this.parent.mod.setKeyBind(key);
+			KeybindFile.saveKeybinds();
 			this.binding = false;
 		}
 	}

@@ -15,10 +15,12 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import org.lwjgl.input.Keyboard;
 import scala.collection.parallel.ParIterableLike;
+import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventRender2D;
 import tk.peanut.phosphor.events.EventUpdate;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.ui.clickgui.settings.Setting;
 
 import java.awt.*;
 import java.lang.reflect.Field;

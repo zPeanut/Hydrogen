@@ -16,15 +16,16 @@ public class Frame {
 
 	public ArrayList<Component> components;
 	public Category category;
-	private boolean open;
+	public boolean open;
 	private int width;
-	private int y;
-	private int x;
+	public int y;
+
+	public int x;
 	private int barHeight;
 	private boolean isDragging;
 	public int dragX;
 	public int dragY;
-	
+
 	public Frame(Category cat) {
 		this.components = new ArrayList<Component>();
 		this.category = cat;
@@ -100,7 +101,7 @@ public class Frame {
 	public int getY() {
 		return y;
 	}
-	
+
 	public int getWidth() {
 		return width;
 	}
@@ -118,5 +119,5 @@ public class Frame {
 		}
 		return false;
 	}
-	
+
 }

@@ -4,6 +4,7 @@ import com.darkmagician6.eventapi.EventTarget;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventRender2D;
+import tk.peanut.phosphor.file.files.ClickGuiFile;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.modules.Module;
 import tk.peanut.phosphor.ui.clickgui.clickgui.ClickGui;
@@ -38,7 +39,7 @@ public class ClickGUI extends Module {
     {
         if(this.clickgui == null)
             this.clickgui = new ClickGui();
-
+        ClickGuiFile.loadClickGui();
         mc.displayGuiScreen(this.clickgui);
         toggle();
         super.onEnable();
