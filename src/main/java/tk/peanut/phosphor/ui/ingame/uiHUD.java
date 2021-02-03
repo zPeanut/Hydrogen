@@ -12,6 +12,7 @@ import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventRender2D;
 import tk.peanut.phosphor.injection.mixins.MixinMinecraft;
 import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.modules.modules.render.HUD;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
@@ -62,7 +63,11 @@ public class uiHUD {
 
 
     private static void drawWatermark() {
-        mc.fontRendererObj.drawStringWithShadow(String.format("%s §7%s", Phosphor.getInstance().name, Phosphor.getInstance().version), 2, 2, -1);
+        if(Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Left")) {
+            mc.fontRendererObj.drawStringWithShadow(String.format("%s §7%s", Phosphor.getInstance().name, Phosphor.getInstance().version), 2, 2, -1);
+        } else if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Right")) {
+            mc.fontRendererObj.drawStringWithShadow(String.format("%s §7%s", Phosphor.getInstance().name, Phosphor.getInstance().version), 20, 2, -1);
+        }
     }
 
     private static void drawArray() {

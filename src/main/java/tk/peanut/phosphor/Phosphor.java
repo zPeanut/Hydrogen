@@ -15,7 +15,7 @@ public class Phosphor {
     public static final String devs = "zPeanut";
 
     private static final double version_number = 1.0;
-    private static final String version_suffix = "-alpha";
+    private static final String version_suffix = "-beta_1";
     public static final String version = "v" + version_number + version_suffix;
 
     public String prefix = "[§e" + name + "§f] ";

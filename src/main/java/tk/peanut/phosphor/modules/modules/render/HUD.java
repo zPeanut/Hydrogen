@@ -1,13 +1,16 @@
 package tk.peanut.phosphor.modules.modules.render;
 
 import com.darkmagician6.eventapi.EventTarget;
+import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventRender2D;
 import tk.peanut.phosphor.modules.Module;
 import tk.peanut.phosphor.modules.Category;
 import org.lwjgl.input.Keyboard;
+import tk.peanut.phosphor.ui.clickgui.settings.Setting;
 
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class HUD extends Module {
 
@@ -16,16 +19,13 @@ public class HUD extends Module {
 
     public HUD() {
         super("HUD", "The Overlay", Keyboard.KEY_M, Category.Render, -1);
-    }
 
-    private static int rainbow(int delay) {
-        double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);
-        rainbowState %= 360;
-        return Color.getHSBColor((float) (rainbowState / 360.0f), 0.8f, 0.7f).getRGB();
-    }
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Left");
+        options.add("Right");
+        Phosphor.getInstance().settingsManager.rSetting(new Setting("HUD Alignment", this, "Left", options));
 
-    @EventTarget
-    private void render2D(EventRender2D event) {
 
     }
+
 }

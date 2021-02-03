@@ -44,4 +44,14 @@ public class SettingsManager {
 		return null;
 	}
 
+	public Setting getSettingByName(String name){
+		for(Setting set : getSettings()){
+			if(set.getName().equalsIgnoreCase(name)){
+				return set;
+			}
+		}
+		System.err.println("["+ Phosphor.getInstance().name + "] Error Setting NOT found: '" + name +"'!");
+		return null;
+	}
+
 }
