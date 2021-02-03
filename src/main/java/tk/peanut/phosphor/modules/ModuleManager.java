@@ -5,14 +5,10 @@ import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventKey;
-import tk.peanut.phosphor.modules.modules.player.FastPlace;
 import tk.peanut.phosphor.modules.modules.render.ClickGUI;
 import tk.peanut.phosphor.modules.modules.render.HUD;
 import tk.peanut.phosphor.modules.modules.movement.Eagle;
-import tk.peanut.phosphor.modules.modules.render.TestModule2;
-import tk.peanut.phosphor.modules.modules.render.TestModule3;
 import tk.peanut.phosphor.scripting.ScriptModule;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +17,6 @@ import java.util.List;
 
 public class ModuleManager {
 
-    @NotNull
     private List<Module> modules = new ArrayList<Module>();
 
     public ModuleManager() {
@@ -50,8 +45,7 @@ public class ModuleManager {
     }
 
     private void addModule(Module module) {
-        modules.add(module);
-        EventManager.register(module);
+        this.modules.add(module);
     }
 
     public List<Module> getModules() {
@@ -70,6 +64,16 @@ public class ModuleManager {
     private void onKey(EventKey event) {
         for (Module module : modules) if (module.getKeybind() == event.getKey()) module.toggle();
     }
+
+    public ArrayList<Module> getModulesInCategory(Category categoryIn){
+        ArrayList<Module> mods = new ArrayList<Module>();
+        for(Module m : this.modules){
+            if(m.getCategory() == categoryIn)
+                mods.add(m);
+        }
+        return mods;
+    }
+
 
     public Module getModulebyName(String moduleName) {
         for(Module mod : modules) {

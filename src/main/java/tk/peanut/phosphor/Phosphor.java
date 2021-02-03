@@ -4,7 +4,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import tk.peanut.phosphor.events.ForgeEventHandler;
 import tk.peanut.phosphor.modules.ModuleManager;
-import tk.peanut.phosphor.ui.clickgui.ClickGUI;
+import tk.peanut.phosphor.ui.clickgui.clickgui.ClickGui;
 import tk.peanut.phosphor.ui.clickgui.settings.SettingsManager;
 import tk.peanut.phosphor.utils.KeybindManager;
 
@@ -25,7 +25,7 @@ public class Phosphor {
     public ModuleManager moduleManager;
     public SettingsManager settingsManager;
     public KeybindManager keybindManager;
-    public ClickGUI clickgui;
+    public ClickGui clickgui;
 
     public Phosphor() {
         instance = this;
@@ -35,7 +35,7 @@ public class Phosphor {
         settingsManager = new SettingsManager();
         moduleManager = new ModuleManager();
         keybindManager = new KeybindManager();
-        clickgui = new ClickGUI();
+        clickgui = new ClickGui();
         moduleManager.addModules();
         moduleManager.getModulebyName("HUD").setEnabled();
     }
