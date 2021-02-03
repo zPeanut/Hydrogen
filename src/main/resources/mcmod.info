@@ -1,0 +1,13 @@
+[
+{
+"modid":"phosphor",
+"name":"Phosphor",
+"description":"A forge-mixin based ghost client for Minecraft 1.8.9.",
+"version":"1.0",
+"mcversion":"1.8.9",
+"authorList":[
+"zPeanut"
+],
+"credits":"superblaubeere27 for providing the initial client base."
+}
+]
