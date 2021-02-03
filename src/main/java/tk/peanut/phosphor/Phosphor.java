@@ -32,9 +32,10 @@ public class Phosphor {
     }
 
     public void startClient() {
-        moduleManager = new ModuleManager();
         settingsManager = new SettingsManager();
+        moduleManager = new ModuleManager();
         keybindManager = new KeybindManager();
+        clickgui = new ClickGUI();
         moduleManager.addModules();
         moduleManager.getModulebyName("HUD").setEnabled();
     }

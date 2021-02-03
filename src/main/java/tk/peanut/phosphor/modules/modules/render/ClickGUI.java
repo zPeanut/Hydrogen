@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ClickGUI extends Module {
     
     public ClickGUI() {
-        super("ClickGUI", "Shows the ClickGUI", Keyboard.KEY_LCONTROL, Category.Render, -1);
+        super("ClickGUI", "Shows the ClickGUI", Keyboard.KEY_J, Category.Render, -1);
     }
     
     @Override

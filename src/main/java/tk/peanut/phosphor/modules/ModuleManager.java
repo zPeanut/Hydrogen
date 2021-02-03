@@ -22,7 +22,7 @@ import java.util.List;
 public class ModuleManager {
 
     @NotNull
-    private List<Module> modules = new ArrayList<>();
+    private List<Module> modules = new ArrayList<Module>();
 
     public ModuleManager() {
         EventManager.register(this);
@@ -49,27 +49,25 @@ public class ModuleManager {
 
     }
 
-    private void addModule(@NotNull Module module) {
+    private void addModule(Module module) {
         modules.add(module);
         EventManager.register(module);
     }
 
-    @NotNull
     public List<Module> getModules() {
         return modules;
     }
 
-    @NotNull
     public <T extends Module> T getModule(Class<T> clazz) {
         return (T) modules.stream().filter(mod -> mod.getClass() == clazz).findFirst().orElse(null);
     }
 
-    public Module getModule(@NotNull String name, boolean caseSensitive) {
+    public Module getModule(String name, boolean caseSensitive) {
         return modules.stream().filter(mod -> !caseSensitive && name.equalsIgnoreCase(mod.getName()) || name.equals(mod.getName())).findFirst().orElse(null);
     }
 
     @EventTarget
-    private void onKey(@NotNull EventKey event) {
+    private void onKey(EventKey event) {
         for (Module module : modules) if (module.getKeybind() == event.getKey()) module.toggle();
     }
 
