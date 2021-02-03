@@ -4,6 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import tk.peanut.phosphor.events.ForgeEventHandler;
+import tk.peanut.phosphor.file.FileManager;
+import tk.peanut.phosphor.file.files.KeybindFile;
 import tk.peanut.phosphor.modules.ModuleManager;
 import tk.peanut.phosphor.ui.clickgui.clickgui.ClickGui;
 import tk.peanut.phosphor.ui.clickgui.settings.SettingsManager;
@@ -28,6 +30,7 @@ public class Phosphor {
     public ModuleManager moduleManager;
     public SettingsManager settingsManager;
     public KeybindManager keybindManager;
+    public FileManager fileManager;
     public ClickGui clickgui;
     public File directory;
 
@@ -40,7 +43,6 @@ public class Phosphor {
         if (!this.directory.exists()) {
             directory.mkdir();
         }
-
         settingsManager = new SettingsManager();
         moduleManager = new ModuleManager();
         keybindManager = new KeybindManager();

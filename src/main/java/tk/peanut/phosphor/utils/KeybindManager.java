@@ -4,6 +4,7 @@ package tk.peanut.phosphor.utils;
  * Created by peanut on 03/02/2021
  */
 import tk.peanut.phosphor.Phosphor;
+import tk.peanut.phosphor.file.files.KeybindFile;
 import tk.peanut.phosphor.modules.Module;
 
 import java.io.File;
@@ -15,36 +16,14 @@ public class KeybindManager
     public void bind(Module mod, int bind)
     {
         mod.setKeyBind(bind);
-        //TODO: KeybindFile.saveKeybinds();
+        KeybindFile.saveKeybinds();
     }
 
     public void unbind(Module mod)
     {
         mod.setKeyBind(0);
-        //TODO:KeybindFile.saveKeybinds();
+        KeybindFile.saveKeybinds();
     }
-
- /*   public void saveKeybinds()
-    {
-        try
-        {
-            File f = new File(Phosphor.getInstance().directory, "Binds-1.txt");
-            if (f.exists()) {
-                f.delete();
-            }
-            f.createNewFile();
-
-            PrintWriter output = new PrintWriter(new FileWriter(f, true));
-            for (Module m : Phosphor.getInstance().moduleManager.getModules()) {
-                output.println(m.getClass().getName() + ":" + m.getKeybind());
-            }
-            output.close();
-        }
-        catch (Exception localException) {}
-    }*/
-
-
-
 
     public int toInt(String keyCode)
     {
