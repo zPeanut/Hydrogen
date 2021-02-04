@@ -3,8 +3,11 @@ package tk.peanut.phosphor.modules.modules.player;
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockPos;
@@ -30,18 +33,13 @@ public class FastPlace extends Module {
 
 
     public FastPlace() {
-        super("FastPlace", "Automatic FastBridge", Keyboard.KEY_U, Category.Movement, -1);
+        super("FastPlace", "Removes right click cooldown", Keyboard.KEY_U, Category.Movement, -1);
     }
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
         if(this.isToggled()) {
-            Field delayTimer = ReflectionHelper.findField(Minecraft.class, "field_71467_ac", "rightClickDelayTimer");
-            try {
-                delayTimer.set(Minecraft.getMinecraft().thePlayer, 0);
-            } catch (IllegalAccessException illegalAccessException) {
-                illegalAccessException.printStackTrace();
-            }
+                this.mc.rightClickDelayTimer = 0;
         }
     }
 }

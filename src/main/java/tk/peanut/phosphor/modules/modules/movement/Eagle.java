@@ -41,11 +41,11 @@ public class Eagle extends Module {
                     && (!this.mc.gameSettings.keyBindJump.isPressed())) {
                 BlockPos bp = new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 1.0D,
                         mc.thePlayer.posZ);
-                if (this.mc.theWorld.getBlockState(bp).getBlock() == Blocks.air) {
+                if (mc.theWorld.getBlockState(bp).getBlock() == Blocks.air) {
 
-                    KeyBinding.setKeyBindState(mc.gameSettings.keyBindSneak.getKeyCode(), true);
+                    mc.gameSettings.keyBindSneak.pressed = true;
                 } else {
-                    KeyBinding.setKeyBindState(mc.gameSettings.keyBindSneak.getKeyCode(), false);
+                    mc.gameSettings.keyBindSneak.pressed = false;
                 }
             }
         } catch (Exception localException) {
