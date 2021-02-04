@@ -128,14 +128,7 @@ public class uiHUD {
                 Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, mod.getColor());
 
             }
-
-
-
-
-
-
             count++;
-
         }
     }
 
