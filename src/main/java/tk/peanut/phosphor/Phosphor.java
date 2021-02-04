@@ -1,14 +1,11 @@
 package tk.peanut.phosphor;
 
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
-import tk.peanut.phosphor.events.ForgeEventHandler;
 import tk.peanut.phosphor.file.FileManager;
-import tk.peanut.phosphor.file.files.KeybindFile;
 import tk.peanut.phosphor.modules.ModuleManager;
-import tk.peanut.phosphor.ui.clickgui.clickgui.ClickGui;
-import tk.peanut.phosphor.ui.clickgui.settings.SettingsManager;
+import tk.peanut.phosphor.ui.clickgui.ClickGui;
+import tk.peanut.phosphor.settings.SettingsManager;
 import tk.peanut.phosphor.utils.KeybindManager;
 
 import java.io.File;

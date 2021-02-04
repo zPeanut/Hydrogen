@@ -1,4 +1,4 @@
-package tk.peanut.phosphor.ui.clickgui.clickgui.component.components.sub;
+package tk.peanut.phosphor.ui.clickgui.component.components.sub;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -8,9 +8,9 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import tk.peanut.phosphor.file.files.SettingsSliderFile;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.Component;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.components.Button;
-import tk.peanut.phosphor.ui.clickgui.settings.Setting;
+import tk.peanut.phosphor.ui.clickgui.component.Component;
+import tk.peanut.phosphor.ui.clickgui.component.components.Button;
+import tk.peanut.phosphor.settings.Setting;
 
 public class Slider extends Component {
 

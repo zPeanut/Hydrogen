@@ -1,4 +1,4 @@
-package tk.peanut.phosphor.ui.clickgui.clickgui.component.components.sub;
+package tk.peanut.phosphor.ui.clickgui.component.components.sub;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -6,8 +6,8 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import tk.peanut.phosphor.file.files.KeybindFile;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.Component;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.components.Button;
+import tk.peanut.phosphor.ui.clickgui.component.Component;
+import tk.peanut.phosphor.ui.clickgui.component.components.Button;
 
 public class Keybind extends Component {
 

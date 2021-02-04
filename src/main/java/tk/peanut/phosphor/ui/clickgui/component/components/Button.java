@@ -1,19 +1,16 @@
-package tk.peanut.phosphor.ui.clickgui.clickgui.component.components;
+package tk.peanut.phosphor.ui.clickgui.component.components;
 
-import java.awt.Color;
 import java.util.ArrayList;
-
-import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.modules.Module;
-import tk.peanut.phosphor.ui.clickgui.clickgui.ClickGui;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.Component;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.Frame;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.components.sub.*;
-import tk.peanut.phosphor.ui.clickgui.settings.Setting;
+import tk.peanut.phosphor.ui.clickgui.ClickGui;
+import tk.peanut.phosphor.ui.clickgui.component.Component;
+import tk.peanut.phosphor.ui.clickgui.component.Frame;
+import tk.peanut.phosphor.ui.clickgui.component.components.sub.*;
+import tk.peanut.phosphor.settings.Setting;
 
 public class Button extends Component {
 

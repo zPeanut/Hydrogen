@@ -2,7 +2,7 @@ package tk.peanut.phosphor.file.files;
 
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.file.FileManager;
-import tk.peanut.phosphor.ui.clickgui.settings.Setting;
+import tk.peanut.phosphor.settings.Setting;
 
 /**
  * Created by peanut on 03/02/2021

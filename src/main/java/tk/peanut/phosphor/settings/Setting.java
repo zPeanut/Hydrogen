@@ -1,4 +1,4 @@
-package tk.peanut.phosphor.ui.clickgui.settings;
+package tk.peanut.phosphor.settings;
 
 import java.util.ArrayList;
 

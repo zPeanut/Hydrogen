@@ -1,16 +1,14 @@
-package tk.peanut.phosphor.ui.clickgui.clickgui.component;
+package tk.peanut.phosphor.ui.clickgui.component;
 
 import java.util.ArrayList;
-
-import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.modules.Module;
-import tk.peanut.phosphor.ui.clickgui.clickgui.ClickGui;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.components.Button;
+import tk.peanut.phosphor.ui.clickgui.ClickGui;
+import tk.peanut.phosphor.ui.clickgui.component.components.Button;
 
 public class Frame {
 

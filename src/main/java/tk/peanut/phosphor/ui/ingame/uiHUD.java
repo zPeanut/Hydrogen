@@ -27,27 +27,43 @@ public class uiHUD {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                while(Minecraft.getMinecraft().running) {
 
                     try {
                         Thread.sleep(3L);
                     } catch (InterruptedException e) {
                     }
                     for (Module mod : Phosphor.getInstance().moduleManager.getModules()) {
-                        if (mod.isEnabled()) {
-                            if (mod.getSlide() < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod.getName())) {
+                        if(mod.isEnabled()) {
+                            if(mod.getSlide() < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod.getName())) {
                                 mod.setSlide(mod.getSlide() + 1);
                             }
 
-                        } else if (mod.getSlide() != 0 && !mod.isEnabled()) {
-                            if (mod.getSlide() > 0) {
+                        } else if(mod.getSlide() != 0 && !mod.isEnabled()) {
+                            if(mod.getSlide() > 0) {
                                 mod.setSlide(mod.getSlide() - 1);
                             }
 
                         }
                     }
+                }
+
+
             }
         }, "smooth array list").start();
 
+        Collections.sort(Phosphor.getInstance().moduleManager.getModules(), new Comparator<Module>() {
+            @Override
+            public int compare(Module mod1, Module mod2) {
+                if (Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod1.getName() + mod1.getSuffix()) > Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod2.getName() + mod2.getSuffix())) {
+                    return -1;
+                }
+                if (Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod1.getName() + mod1.getSuffix()) < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod2.getName() + mod2.getSuffix())) {
+                    return 1;
+                }
+                return 0;
+            }
+        });
     }
 
 
@@ -89,7 +105,7 @@ public class uiHUD {
             //Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, 11 + i * 12, 0, i * 12 + 23, mod.getColor());
 
             if(Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Left")) {
-                mc.fontRendererObj.drawStringWithShadow(mod.getName(), 2, mheight, -1);
+                mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, -1);
             } else if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Right")) {
                 mc.fontRendererObj.drawStringWithShadow(mod.getName(), Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(mod.getName()) - 2, mheight, mod.getColor());
             }

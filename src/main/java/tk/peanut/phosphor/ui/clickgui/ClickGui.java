@@ -1,4 +1,4 @@
-package tk.peanut.phosphor.ui.clickgui.clickgui;
+package tk.peanut.phosphor.ui.clickgui;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import net.minecraft.client.gui.GuiScreen;
 
 import tk.peanut.phosphor.file.files.ClickGuiFile;
 import tk.peanut.phosphor.modules.Category;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.Component;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.Frame;
+import tk.peanut.phosphor.ui.clickgui.component.Component;
+import tk.peanut.phosphor.ui.clickgui.component.Frame;
 
 public class ClickGui extends GuiScreen {
 

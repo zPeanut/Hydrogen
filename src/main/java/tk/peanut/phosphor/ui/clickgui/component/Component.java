@@ -1,4 +1,4 @@
-package tk.peanut.phosphor.ui.clickgui.clickgui.component;
+package tk.peanut.phosphor.ui.clickgui.component;
 
 public class Component {
 

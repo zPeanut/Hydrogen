@@ -81,7 +81,7 @@ processResources {
 }
 
 mixin {
-    add sourceSets.main, "mixins.clientbase.refmap.json"
+    add sourceSets.main, "mixins.phosphor.refmap.json"
 }
 
 shadowJar {

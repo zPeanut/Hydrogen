@@ -1,9 +1,8 @@
 package tk.peanut.phosphor.file.files;
 
 import tk.peanut.phosphor.file.FileManager;
-import tk.peanut.phosphor.modules.modules.render.ClickGUI;
-import tk.peanut.phosphor.ui.clickgui.clickgui.ClickGui;
-import tk.peanut.phosphor.ui.clickgui.clickgui.component.Frame;
+import tk.peanut.phosphor.ui.clickgui.ClickGui;
+import tk.peanut.phosphor.ui.clickgui.component.Frame;
 
 /**
  * Created by peanut on 03/02/2021

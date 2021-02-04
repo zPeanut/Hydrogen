@@ -1,14 +1,11 @@
 package tk.peanut.phosphor.modules.modules.render;
 
-import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.phosphor.Phosphor;
-import tk.peanut.phosphor.events.EventRender2D;
 import tk.peanut.phosphor.modules.Module;
 import tk.peanut.phosphor.modules.Category;
 import org.lwjgl.input.Keyboard;
-import tk.peanut.phosphor.ui.clickgui.settings.Setting;
+import tk.peanut.phosphor.settings.Setting;
 
-import java.awt.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 

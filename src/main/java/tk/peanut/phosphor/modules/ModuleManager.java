@@ -2,20 +2,16 @@ package tk.peanut.phosphor.modules;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
-import net.minecraft.client.Minecraft;
-import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventKey;
+import tk.peanut.phosphor.modules.modules.movement.Sprint;
 import tk.peanut.phosphor.modules.modules.player.FastPlace;
+import tk.peanut.phosphor.modules.modules.render.Chams;
 import tk.peanut.phosphor.modules.modules.render.ClickGUI;
 import tk.peanut.phosphor.modules.modules.render.HUD;
 import tk.peanut.phosphor.modules.modules.movement.Eagle;
-import tk.peanut.phosphor.modules.modules.render.TestModule2;
-import tk.peanut.phosphor.modules.modules.render.TestModule3;
 import tk.peanut.phosphor.scripting.ScriptModule;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class ModuleManager {
@@ -28,29 +24,15 @@ public class ModuleManager {
 
 
     public void addModules() {
-        addModule(new HUD());
-        addModule(new Eagle());
-        addModule(new ClickGUI());
-        addModule(new FastPlace());
-        addModule(new TestModule2());
-        addModule(new TestModule3());
-
-        Collections.sort(Phosphor.getInstance().moduleManager.getModules(), new Comparator<Module>() {
-            @Override
-            public int compare(Module mod1, Module mod2) {
-                if (Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod1.getName()) > Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod2.getName())) {
-                    return -1;
-                }
-                if (Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod1.getName()) < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod2.getName())) {
-                    return 1;
-                }
-                return 0;
-            }
-        });
-
+        add(new HUD());
+        add(new Eagle());
+        add(new ClickGUI());
+        add(new FastPlace());
+        add(new Sprint());
+        add(new Chams());
     }
 
-    private void addModule(Module module) {
+    private void add(Module module) {
         this.modules.add(module);
     }
 
@@ -107,6 +89,6 @@ public class ModuleManager {
     }
 
     public void addScriptModule(ScriptModule module) {
-        addModule(module);
+        add(module);
     }
 }

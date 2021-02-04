@@ -1,4 +1,4 @@
-package tk.peanut.phosphor.ui.clickgui.settings;
+package tk.peanut.phosphor.settings;
 
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.modules.Module;

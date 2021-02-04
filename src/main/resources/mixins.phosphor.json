@@ -12,6 +12,7 @@
     "MixinGuiSpectator",
     "MixinMinecraft",
     "MixinNetworkManager",
-    "MixinRenderer"
+    "MixinRenderer",
+    "MixinRendererLivingEntity"
   ]
 }
