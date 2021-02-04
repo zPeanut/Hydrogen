@@ -11,6 +11,7 @@ import tk.peanut.phosphor.ui.clickgui.component.Component;
 import tk.peanut.phosphor.ui.clickgui.component.Frame;
 import tk.peanut.phosphor.ui.clickgui.component.components.sub.*;
 import tk.peanut.phosphor.settings.Setting;
+import tk.peanut.phosphor.utils.FontUtil;
 
 public class Button extends Component {
 
@@ -47,7 +48,7 @@ public class Button extends Component {
 			}
 		}
 		this.subcomponents.add(new Keybind(this, opY));
-		this.subcomponents.add(new VisibleButton(this, mod, opY));
+		//TODO: Implement this: this.subcomponents.add(new VisibleButton(this, mod, opY));
 	}
 	
 	@Override
@@ -66,7 +67,7 @@ public class Button extends Component {
 		if(this.mod.isEnabled() && this.isHovered) {
 			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x70000000);
 		}
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.mod.toggled ? this.mod.getName() : "§f" + this.mod.getName(), (parent.getX() + 2), (parent.getY() + offset + 2), 0xffffe9ad);
+		FontUtil.drawTotalCenteredStringWithShadow(this.mod.toggled ? this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7), 0xffffe9ad);
 		if(this.subcomponents.size() > 2)
 		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.open ? "§a..." : "...", (parent.getX() + parent.getWidth() - 10), (parent.getY() + offset + 2), -1);
 
