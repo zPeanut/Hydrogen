@@ -5,6 +5,7 @@ import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.phosphor.events.EventKey;
 import tk.peanut.phosphor.modules.modules.movement.Sprint;
 import tk.peanut.phosphor.modules.modules.player.FastPlace;
+import tk.peanut.phosphor.modules.modules.render.Chams;
 import tk.peanut.phosphor.modules.modules.render.ClickGUI;
 import tk.peanut.phosphor.modules.modules.render.HUD;
 import tk.peanut.phosphor.modules.modules.movement.Eagle;
@@ -28,6 +29,7 @@ public class ModuleManager {
         add(new ClickGUI());
         add(new FastPlace());
         add(new Sprint());
+        add(new Chams());
     }
 
     private void add(Module module) {
