@@ -33,7 +33,7 @@ public class FastPlace extends Module {
 
 
     public FastPlace() {
-        super("FastPlace", "Removes right click cooldown", Keyboard.KEY_U, Category.Movement, -1);
+        super("FastPlace", "Removes right click cooldown", Keyboard.KEY_U, Category.Player, -1);
     }
 
     @EventTarget
