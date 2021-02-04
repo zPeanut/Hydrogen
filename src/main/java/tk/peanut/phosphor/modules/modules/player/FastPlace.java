@@ -20,7 +20,6 @@ import tk.peanut.phosphor.events.EventRender2D;
 import tk.peanut.phosphor.events.EventUpdate;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.modules.Module;
-import tk.peanut.phosphor.ui.clickgui.settings.Setting;
 
 import java.awt.*;
 import java.lang.reflect.Field;
@@ -36,12 +35,7 @@ public class FastPlace extends Module {
     @EventTarget
     public void onUpdate(EventUpdate e) {
         if(this.isToggled()) {
-            Field delayTimer = ReflectionHelper.findField(Minecraft.class, "field_71467_ac", "rightClickDelayTimer");
-            try {
-                delayTimer.set(Minecraft.getMinecraft().thePlayer, 0);
-            } catch (IllegalAccessException illegalAccessException) {
-                illegalAccessException.printStackTrace();
-            }
+            Minecraft.getMinecraft().rightClickDelayTimer = 0;
         }
     }
 }

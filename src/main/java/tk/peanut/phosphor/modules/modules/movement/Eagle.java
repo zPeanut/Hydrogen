@@ -26,12 +26,9 @@ public class Eagle extends Module {
     public void onUpdate(EventUpdate e) {
 
         try {
-            if (((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock))
-                    && (!this.mc.gameSettings.keyBindJump.isPressed())) {
-                BlockPos bp = new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 1.0D,
-                        mc.thePlayer.posZ);
+            if (((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock)) && (!this.mc.gameSettings.keyBindJump.isPressed())) {
+                BlockPos bp = new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 1.0D, mc.thePlayer.posZ);
                 if (mc.theWorld.getBlockState(bp).getBlock() == Blocks.air) {
-
                     mc.gameSettings.keyBindSneak.pressed = true;
                 } else {
                     mc.gameSettings.keyBindSneak.pressed = false;
