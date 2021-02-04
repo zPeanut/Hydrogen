@@ -24,33 +24,29 @@ public class uiHUD {
     public static Minecraft mc = Minecraft.getMinecraft();
 
     public uiHUD() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(Minecraft.getMinecraft().running) {
 
-                    try {
-                        Thread.sleep(3L);
-                    } catch (InterruptedException e) {
-                    }
-                    for (Module mod : Phosphor.getInstance().moduleManager.getModules()) {
-                        if(mod.isEnabled()) {
-                            if(mod.getSlide() < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod.getName())) {
-                                mod.setSlide(mod.getSlide() + 1);
-                            }
-
-                        } else if(mod.getSlide() != 0 && !mod.isEnabled()) {
-                            if(mod.getSlide() > 0) {
-                                mod.setSlide(mod.getSlide() - 1);
-                            }
-
+        new Thread(() -> {
+            while (Minecraft.getMinecraft().running) {
+                try {
+                    Thread.sleep(3L);
+                } catch (InterruptedException e) {
+                }
+                for (Module mod : Phosphor.getInstance().moduleManager.getModules()) {
+                    if (mod.isEnabled()) {
+                        if (mod.getSlide() < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod.getName())) {
+                            mod.setSlide(mod.getSlide() + 1);
                         }
+
+                    } else if (mod.getSlide() != 0 && !mod.isEnabled()) {
+                        if (mod.getSlide() > 0) {
+                            mod.setSlide(mod.getSlide() - 1);
+                        }
+
                     }
                 }
-
-
             }
-        }, "smooth array list").start();
+        },"smooth array").start();
+
 
         Collections.sort(Phosphor.getInstance().moduleManager.getModules(), new Comparator<Module>() {
             @Override
@@ -98,21 +94,21 @@ public class uiHUD {
             Module mod = Phosphor.getInstance().moduleManager.getEnabledMods().get(i);
 
 
-            int mwidth = 2 + mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 24;
+            int mwidth = 2 + mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 4;
             int mheight = count * 11 + i + 13;
 
-            //Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(String.valueOf(mod.getName()) + mod.getSuffix()) + 3, 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 8, i * 12 + 23, -2147483648);
-            //Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, 11 + i * 12, 0, i * 12 + 23, mod.getColor());
+                    Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(String.valueOf(mod.getName()) + mod.getSuffix()) + 3, 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 8, i * 12 + 23, -2147483648);
+                    Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, 11 + i * 12, 0, i * 12 + 23, mod.getColor());
+                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(String.valueOf(mod.getName()) + mod.getSuffix(), mwidth, mheight, mod.getColor());
 
-            if(Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Left")) {
-                mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, -1);
-            } else if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Right")) {
-                mc.fontRendererObj.drawStringWithShadow(mod.getName(), Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(mod.getName()) - 2, mheight, mod.getColor());
-            }
+
+
+
             count++;
 
         }
     }
+
 
 
 
