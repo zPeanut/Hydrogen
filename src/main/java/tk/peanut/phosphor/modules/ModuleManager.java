@@ -34,20 +34,6 @@ public class ModuleManager {
         addModule(new FastPlace());
         addModule(new TestModule2());
         addModule(new TestModule3());
-
-        Collections.sort(Phosphor.getInstance().moduleManager.getModules(), new Comparator<Module>() {
-            @Override
-            public int compare(Module mod1, Module mod2) {
-                if (Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod1.getName()) > Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod2.getName())) {
-                    return -1;
-                }
-                if (Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod1.getName()) < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod2.getName())) {
-                    return 1;
-                }
-                return 0;
-            }
-        });
-
     }
 
     private void addModule(Module module) {
