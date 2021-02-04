@@ -1,5 +1,6 @@
 package tk.peanut.phosphor.ui.clickgui.component;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 import net.minecraft.client.gui.FontRenderer;
@@ -9,6 +10,7 @@ import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.modules.Module;
 import tk.peanut.phosphor.ui.clickgui.ClickGui;
 import tk.peanut.phosphor.ui.clickgui.component.components.Button;
+import tk.peanut.phosphor.utils.FontUtil;
 
 public class Frame {
 
@@ -71,7 +73,7 @@ public class Frame {
 	
 	public void renderFrame(FontRenderer fontRenderer) {
 		Gui.drawRect(this.x, this.y - 2, this.x + this.width, this.y + this.barHeight, ClickGui.color);
-		fontRenderer.drawStringWithShadow(this.category.name(), (this.x + 2), (this.y + 2.5f) - 1, -1);
+		FontUtil.drawTotalCenteredStringWithShadow(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 1, -1);
 		if(this.open) {
 			if(!this.components.isEmpty()) {
 				//Gui.drawRect(this.x, this.y + this.barHeight, this.x + 1, this.y + this.barHeight + (12 * components.size()), new Color(0, 200, 20, 150).getRGB());

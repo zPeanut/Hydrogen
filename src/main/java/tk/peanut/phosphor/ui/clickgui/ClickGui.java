@@ -1,10 +1,16 @@
 package tk.peanut.phosphor.ui.clickgui;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiScreen;
 
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.shader.ShaderLoader;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import tk.peanut.phosphor.file.files.ClickGuiFile;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.ui.clickgui.component.Component;
@@ -24,12 +30,8 @@ public class ClickGui extends GuiScreen {
 			frames.add(frame);
 			frameX += frame.getWidth() + 1;
 		}
-	}
-	
-	@Override
-	public void initGui() {
-	}
-	
+		}
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		drawRect(0, 0, this.width, this.height, 0x44101010);
@@ -41,7 +43,7 @@ public class ClickGui extends GuiScreen {
 			}
 		}
 	}
-	
+
 	@Override
     protected void mouseClicked(final int mouseX, final int mouseY, final int mouseButton) throws IOException {
 		for(Frame frame : frames) {
@@ -96,6 +98,7 @@ public class ClickGui extends GuiScreen {
 			}
 		}
 	}
+
 	
 	@Override
 	public boolean doesGuiPauseGame() {

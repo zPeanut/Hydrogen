@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.util.Util;
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.modules.Module;
 import tk.peanut.phosphor.ui.clickgui.ClickGui;
@@ -63,11 +65,11 @@ public class Button extends Component {
 	
 	@Override
 	public void renderComponent() {
-		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, this.mod.isEnabled() ? 0x90000000 : (this.isHovered ? 0x80000000 : 0x60000000));
+		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, this.mod.isEnabled() ? 0x80000000 : (this.isHovered ? 0x70000000 : 0x60000000));
 		if(this.mod.isEnabled() && this.isHovered) {
-			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x70000000);
+			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x40000000);
 		}
-		FontUtil.drawTotalCenteredStringWithShadow(this.mod.toggled ? this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7), 0xffffe9ad);
+		FontUtil.drawTotalCenteredStringWithShadow(this.mod.toggled ? this.mod.getName() : this.isHovered ? "§7" + this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7), 0xffffe9ad);
 		if(this.subcomponents.size() > 2)
 		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.open ? "§a..." : "...", (parent.getX() + parent.getWidth() - 10), (parent.getY() + offset + 2), -1);
 
