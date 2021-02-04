@@ -6,6 +6,7 @@ import tk.peanut.phosphor.file.FileManager;
 import tk.peanut.phosphor.modules.ModuleManager;
 import tk.peanut.phosphor.ui.clickgui.ClickGui;
 import tk.peanut.phosphor.settings.SettingsManager;
+import tk.peanut.phosphor.ui.ingame.uiHUD;
 import tk.peanut.phosphor.utils.KeybindManager;
 
 import java.io.File;
@@ -45,6 +46,7 @@ public class Phosphor {
         keybindManager = new KeybindManager();
         clickgui = new ClickGui();
         moduleManager.addModules();
+        new uiHUD();
         moduleManager.getModulebyName("HUD").setEnabled();
     }
 
