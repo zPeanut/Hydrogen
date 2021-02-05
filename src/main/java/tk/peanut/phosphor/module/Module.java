@@ -1,8 +1,7 @@
-package tk.peanut.phosphor.modules;
+package tk.peanut.phosphor.module;
 
 import com.darkmagician6.eventapi.EventManager;
 import net.minecraft.client.Minecraft;
-import scala.collection.parallel.ParIterableLike;
 
 public class Module {
 

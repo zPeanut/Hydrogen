@@ -1,12 +1,12 @@
-package tk.peanut.phosphor.modules.modules.combat;
+package tk.peanut.phosphor.module.modules.combat;
 
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventUpdate;
-import tk.peanut.phosphor.modules.Category;
-import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.module.Category;
+import tk.peanut.phosphor.module.Module;
 import tk.peanut.phosphor.settings.Setting;
 import tk.peanut.phosphor.utils.ReflectionUtil;
 import tk.peanut.phosphor.utils.TimeHelper;

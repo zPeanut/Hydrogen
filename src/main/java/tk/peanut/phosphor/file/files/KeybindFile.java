@@ -2,7 +2,7 @@ package tk.peanut.phosphor.file.files;
 
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.file.FileManager;
-import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.module.Module;
 
 /**
  * Created by peanut on 03/02/2021

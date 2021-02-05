@@ -4,8 +4,8 @@ package tk.peanut.phosphor.scripting;
 import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.phosphor.events.EventMotionUpdate;
 import tk.peanut.phosphor.events.EventRender2D;
-import tk.peanut.phosphor.modules.Module;
-import tk.peanut.phosphor.modules.Category;
+import tk.peanut.phosphor.module.Module;
+import tk.peanut.phosphor.module.Category;
 import tk.peanut.phosphor.scripting.runtime.events.ScriptMotionUpdateEvent;
 
 import javax.script.Invocable;

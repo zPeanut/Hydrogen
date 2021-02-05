@@ -1,14 +1,12 @@
 package tk.peanut.phosphor.ui.clickgui.component;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import tk.peanut.phosphor.Phosphor;
-import tk.peanut.phosphor.modules.Category;
-import tk.peanut.phosphor.modules.Module;
-import tk.peanut.phosphor.ui.clickgui.ClickGui;
+import tk.peanut.phosphor.module.Category;
+import tk.peanut.phosphor.module.Module;
 import tk.peanut.phosphor.ui.clickgui.component.components.Button;
 import tk.peanut.phosphor.utils.FontUtil;
 

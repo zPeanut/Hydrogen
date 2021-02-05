@@ -1,14 +1,10 @@
-package tk.peanut.phosphor.modules.modules.render;
+package tk.peanut.phosphor.module.modules.render;
 
 import org.lwjgl.input.Keyboard;
-import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.file.files.ClickGuiFile;
-import tk.peanut.phosphor.modules.Category;
-import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.module.Category;
+import tk.peanut.phosphor.module.Module;
 import tk.peanut.phosphor.ui.clickgui.ClickGui;
-import tk.peanut.phosphor.settings.Setting;
-
-import java.util.ArrayList;
 
 /**
  * Created by peanut on 03/02/2021

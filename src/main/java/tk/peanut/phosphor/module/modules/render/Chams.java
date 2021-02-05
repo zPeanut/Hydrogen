@@ -1,8 +1,8 @@
-package tk.peanut.phosphor.modules.modules.render;
+package tk.peanut.phosphor.module.modules.render;
 
 import org.lwjgl.input.Keyboard;
-import tk.peanut.phosphor.modules.Category;
-import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.module.Category;
+import tk.peanut.phosphor.module.Module;
 
 public class Chams extends Module {
     public Chams() {

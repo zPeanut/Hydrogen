@@ -3,13 +3,8 @@ package tk.peanut.phosphor.utils;
 /**
  * Created by peanut on 03/02/2021
  */
-import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.file.files.KeybindFile;
-import tk.peanut.phosphor.modules.Module;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import tk.peanut.phosphor.module.Module;
 
 public class KeybindManager
 {

@@ -1,4 +1,4 @@
-package tk.peanut.phosphor.modules.modules.movement;
+package tk.peanut.phosphor.module.modules.movement;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
@@ -7,10 +7,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockPos;
 import org.lwjgl.input.Keyboard;
-import scala.collection.parallel.ParIterableLike;
 import tk.peanut.phosphor.events.EventUpdate;
-import tk.peanut.phosphor.modules.Category;
-import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.module.Category;
+import tk.peanut.phosphor.module.Module;
 import tk.peanut.phosphor.utils.ReflectionUtil;
 
 import java.time.format.DateTimeFormatter;

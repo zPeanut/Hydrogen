@@ -1,15 +1,16 @@
-package tk.peanut.phosphor.modules;
+package tk.peanut.phosphor.module;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.phosphor.events.EventKey;
-import tk.peanut.phosphor.modules.modules.combat.AutoClicker;
-import tk.peanut.phosphor.modules.modules.movement.Sprint;
-import tk.peanut.phosphor.modules.modules.player.FastPlace;
-import tk.peanut.phosphor.modules.modules.render.Chams;
-import tk.peanut.phosphor.modules.modules.render.ClickGUI;
-import tk.peanut.phosphor.modules.modules.render.HUD;
-import tk.peanut.phosphor.modules.modules.movement.Eagle;
+import tk.peanut.phosphor.module.modules.combat.AutoClicker;
+import tk.peanut.phosphor.module.modules.movement.Sprint;
+import tk.peanut.phosphor.module.modules.player.FastPlace;
+import tk.peanut.phosphor.module.modules.render.Chams;
+import tk.peanut.phosphor.module.modules.render.ClickGUI;
+import tk.peanut.phosphor.module.modules.render.ESP;
+import tk.peanut.phosphor.module.modules.render.HUD;
+import tk.peanut.phosphor.module.modules.movement.Eagle;
 import tk.peanut.phosphor.scripting.ScriptModule;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class ModuleManager {
         add(new Sprint());
         add(new Chams());
         add(new AutoClicker());
+        add(new ESP());
     }
 
     private void add(Module module) {

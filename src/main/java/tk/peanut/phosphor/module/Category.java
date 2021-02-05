@@ -1,4 +1,4 @@
-package tk.peanut.phosphor.modules;
+package tk.peanut.phosphor.module;
 
 public enum Category {
 

@@ -4,10 +4,8 @@ import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.util.Util;
 import tk.peanut.phosphor.Phosphor;
-import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.module.Module;
 import tk.peanut.phosphor.ui.clickgui.ClickGui;
 import tk.peanut.phosphor.ui.clickgui.component.Component;
 import tk.peanut.phosphor.ui.clickgui.component.Frame;

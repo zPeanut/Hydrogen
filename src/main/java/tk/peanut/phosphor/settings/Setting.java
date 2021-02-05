@@ -2,7 +2,7 @@ package tk.peanut.phosphor.settings;
 
 import java.util.ArrayList;
 
-import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.module.Module;
 
 public class Setting {
 	

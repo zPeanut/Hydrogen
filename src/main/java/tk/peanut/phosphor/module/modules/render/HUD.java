@@ -1,8 +1,8 @@
-package tk.peanut.phosphor.modules.modules.render;
+package tk.peanut.phosphor.module.modules.render;
 
 import tk.peanut.phosphor.Phosphor;
-import tk.peanut.phosphor.modules.Module;
-import tk.peanut.phosphor.modules.Category;
+import tk.peanut.phosphor.module.Module;
+import tk.peanut.phosphor.module.Category;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.phosphor.settings.Setting;
 

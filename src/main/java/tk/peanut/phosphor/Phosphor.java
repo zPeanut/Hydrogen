@@ -3,7 +3,7 @@ package tk.peanut.phosphor;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import tk.peanut.phosphor.file.FileManager;
-import tk.peanut.phosphor.modules.ModuleManager;
+import tk.peanut.phosphor.module.ModuleManager;
 import tk.peanut.phosphor.ui.clickgui.ClickGui;
 import tk.peanut.phosphor.settings.SettingsManager;
 import tk.peanut.phosphor.ui.ingame.uiHUD;

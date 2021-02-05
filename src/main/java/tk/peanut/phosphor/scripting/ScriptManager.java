@@ -4,7 +4,7 @@ import com.google.common.io.ByteStreams;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import tk.peanut.phosphor.modules.Category;
+import tk.peanut.phosphor.module.Category;
 import tk.peanut.phosphor.scripting.runtime.ScriptRuntime;
 
 import javax.script.ScriptEngine;

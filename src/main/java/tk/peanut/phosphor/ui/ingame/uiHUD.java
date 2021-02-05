@@ -4,19 +4,12 @@ import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.event.FMLLoadEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import sun.awt.EventQueueItem;
 import tk.peanut.phosphor.Phosphor;
 import tk.peanut.phosphor.events.EventRender2D;
-import tk.peanut.phosphor.injection.mixins.MixinMinecraft;
-import tk.peanut.phosphor.modules.Module;
-import tk.peanut.phosphor.modules.modules.render.HUD;
+import tk.peanut.phosphor.module.Module;
 import tk.peanut.phosphor.utils.ReflectionUtil;
 import tk.peanut.phosphor.utils.Utils;
 
-import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Comparator;
 

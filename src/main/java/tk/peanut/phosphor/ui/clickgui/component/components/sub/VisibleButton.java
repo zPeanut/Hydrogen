@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 
-import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.module.Module;
 import tk.peanut.phosphor.ui.clickgui.component.Component;
 import tk.peanut.phosphor.ui.clickgui.component.components.Button;
 
