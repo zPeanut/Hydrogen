@@ -2,6 +2,7 @@ package tk.peanut.phosphor.modules;
 
 import com.darkmagician6.eventapi.EventManager;
 import net.minecraft.client.Minecraft;
+import scala.collection.parallel.ParIterableLike;
 
 public class Module {
 
@@ -20,7 +21,6 @@ public class Module {
     public boolean toggled;
     public String suffix;
     private int slide = 0;
-
 
     public Module(String name, String description, int keyBind, Category category, int color) {
         this.name = name;
@@ -106,6 +106,7 @@ public class Module {
         this.description = description;
     }
 
+    public void onUpdate() {}
 
     public boolean isEnabled() {
         return toggled;

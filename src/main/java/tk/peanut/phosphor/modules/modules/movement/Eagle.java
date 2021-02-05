@@ -2,13 +2,16 @@ package tk.peanut.phosphor.modules.modules.movement;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockPos;
 import org.lwjgl.input.Keyboard;
+import scala.collection.parallel.ParIterableLike;
 import tk.peanut.phosphor.events.EventUpdate;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.utils.ReflectionUtil;
 
 import java.time.format.DateTimeFormatter;
 
@@ -29,9 +32,9 @@ public class Eagle extends Module {
             if (((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock)) && (!this.mc.gameSettings.keyBindJump.isPressed())) {
                 BlockPos bp = new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 1.0D, mc.thePlayer.posZ);
                 if (mc.theWorld.getBlockState(bp).getBlock() == Blocks.air) {
-                    mc.gameSettings.keyBindSneak.pressed = true;
+                    ReflectionUtil.pressed.set(Minecraft.getMinecraft().gameSettings.keyBindSneak, true);
                 } else {
-                    mc.gameSettings.keyBindSneak.pressed = false;
+                    ReflectionUtil.pressed.set(Minecraft.getMinecraft().gameSettings.keyBindSneak, false);
                 }
             }
         } catch (Exception localException) {

@@ -20,6 +20,7 @@ import tk.peanut.phosphor.events.EventRender2D;
 import tk.peanut.phosphor.events.EventUpdate;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.utils.ReflectionUtil;
 
 import java.awt.*;
 import java.lang.reflect.Field;
@@ -27,15 +28,19 @@ import java.time.format.DateTimeFormatter;
 
 public class FastPlace extends Module {
 
-
     public FastPlace() {
         super("FastPlace", "Automatic FastBridge", Keyboard.KEY_U, Category.Movement, -1);
     }
 
+
     @EventTarget
     public void onUpdate(EventUpdate e) {
         if(this.isToggled()) {
-            Minecraft.getMinecraft().rightClickDelayTimer = 0;
+            try {
+                ReflectionUtil.delayTimer.setInt(Minecraft.getMinecraft(), 0);
+            } catch (IllegalAccessException illegalAccessException) {
+                illegalAccessException.printStackTrace();
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.modules.Module;
+import tk.peanut.phosphor.utils.ReflectionUtil;
 
 import java.nio.charset.MalformedInputException;
 
@@ -14,11 +15,19 @@ public class Sprint extends Module {
 
     @Override
     public void onEnable() {
-        Minecraft.getMinecraft().gameSettings.keyBindSprint.pressed = true;
+        try {
+            ReflectionUtil.pressed.set(Minecraft.getMinecraft().gameSettings.keyBindSprint, true);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onDisable() {
-        Minecraft.getMinecraft().gameSettings.keyBindSprint.pressed = false;
+        try {
+            ReflectionUtil.pressed.set(Minecraft.getMinecraft().gameSettings.keyBindSprint, false);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

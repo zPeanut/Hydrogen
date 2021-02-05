@@ -13,6 +13,7 @@ import tk.peanut.phosphor.events.EventRender2D;
 import tk.peanut.phosphor.injection.mixins.MixinMinecraft;
 import tk.peanut.phosphor.modules.Module;
 import tk.peanut.phosphor.modules.modules.render.HUD;
+import tk.peanut.phosphor.utils.ReflectionUtil;
 import tk.peanut.phosphor.utils.Utils;
 
 import java.lang.reflect.Field;
@@ -26,7 +27,12 @@ public class uiHUD {
     public uiHUD() {
 
         new Thread(() -> {
-            while (Minecraft.getMinecraft().running) {
+            while (true) {
+                try {
+                    if (!ReflectionUtil.running.getBoolean(Minecraft.getMinecraft())) break;
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
                 try {
                     Thread.sleep(3L);
                 } catch (InterruptedException e) {
