@@ -72,7 +72,7 @@ public class Frame {
 	}
 	
 	public void renderFrame(FontRenderer fontRenderer) {
-		Gui.drawRect(this.x, this.y - 2, this.x + this.width, this.y + this.barHeight, ClickGui.color);
+		Gui.drawRect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, 0xff33aaff);
 		FontUtil.drawTotalCenteredStringWithShadow(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 1, -1);
 		if(this.open) {
 			if(!this.components.isEmpty()) {
