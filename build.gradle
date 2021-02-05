@@ -101,7 +101,6 @@ jar {
             "tweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
             "TweakOrder": 0,
             "FMLCorePluginContainsFMLMod": 'tk.peanut.phosphor.injection.MixinLoader',
-            'FMLAT': 'phosphor_at.cfg'
     )
 }
 
