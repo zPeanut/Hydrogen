@@ -20,14 +20,14 @@ public class ClickGUI extends Module {
 
     public ClickGUI() {
         super("ClickGui", "The Overlay", Keyboard.KEY_K, Category.Render, -1);
-        ArrayList<String> options = new ArrayList<>();
+   /*     ArrayList<String> options = new ArrayList<>();
         options.add("DefaultOption");
         options.add("Option2");
         options.add("Option3");
         Phosphor.getInstance().settingsManager.rSetting(new Setting("OptionSelector", this, "DefaultOption", options));
         Phosphor.getInstance().settingsManager.rSetting(new Setting("BooleanOption", this, false));
         Phosphor.getInstance().settingsManager.rSetting(new Setting("SliderOptionInt", this, 255, 0, 255, true));
-        Phosphor.getInstance().settingsManager.rSetting(new Setting("SliderOptionDouble", this, 10, 0, 20, false));
+        Phosphor.getInstance().settingsManager.rSetting(new Setting("SliderOptionDouble", this, 10, 0, 20, false));*/
     }
 
     @Override
