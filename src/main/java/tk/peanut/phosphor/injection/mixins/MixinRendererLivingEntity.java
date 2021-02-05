@@ -63,10 +63,10 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
             ESP esp = new ESP();
 
             if (Phosphor.getInstance().moduleManager.getModule(ESP.class) != null && Phosphor.getInstance().moduleManager.getModule(ESP.class).isEnabled()) {
-                if (entitylivingbaseIn instanceof EntityPlayer && entitylivingbaseIn != Minecraft.getMinecraft().thePlayer && (Phosphor.getInstance().settingsManager.getSettingByName("Players").getValBoolean())) {
+                if (entitylivingbaseIn instanceof EntityPlayer && entitylivingbaseIn != Minecraft.getMinecraft().thePlayer) {
                     Color n = Color.WHITE;
                     OutlineUtils.setColor(n);
-                    GL11.glLineWidth((float) Phosphor.getInstance().settingsManager.getSettingByName("Width").getValDouble());
+                    GL11.glLineWidth(3);
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderOne((float) Phosphor.getInstance().settingsManager.getSettingByName("Width").getValDouble());
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
@@ -78,11 +78,11 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderFive();
                     OutlineUtils.setColor(Color.WHITE);
-                } else if (Phosphor.getInstance().settingsManager.getSettingByName("Entities").getValBoolean()) {
-                    GL11.glLineWidth((float) Phosphor.getInstance().settingsManager.getSettingByName("Width").getValDouble());
+                } else {
+                    GL11.glLineWidth(3);
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
-                    OutlineUtils.renderOne((float) Phosphor.getInstance().settingsManager.getSettingByName("Width").getValDouble());
-                    mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+                    OutlineUtils.renderOne(3);
+                    mainModel.render(entitylivingbaseIn , p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderTwo();
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderThree();

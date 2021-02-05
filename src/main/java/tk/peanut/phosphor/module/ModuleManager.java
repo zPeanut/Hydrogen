@@ -14,6 +14,8 @@ import tk.peanut.phosphor.module.modules.movement.Eagle;
 import tk.peanut.phosphor.scripting.ScriptModule;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ModuleManager {
@@ -34,6 +36,15 @@ public class ModuleManager {
         add(new Chams());
         add(new AutoClicker());
         add(new ESP());
+
+        if (modules.size() > 0) {
+            Collections.sort(modules, new Comparator<Module>() {
+                @Override
+                public int compare(final Module mod1, final Module mod2) {
+                    return mod1.getName().compareTo(mod2.getName());
+                }
+            });
+        }
     }
 
     private void add(Module module) {
