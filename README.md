@@ -20,4 +20,3 @@ Phosphor runs on Gradle. Make sure you have it is installed correctly before set
 
 **CCBlueX** for providing most of the initial ClientBase  
 **HeroCode** for providing the ClickGUI API.  
-**Hexeption** for providing the Mixin code for Chams and OutlineESP  
