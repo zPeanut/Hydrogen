@@ -1,20 +1,29 @@
 package tk.peanut.phosphor.ui.clickgui;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.client.shader.ShaderLoader;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MinecraftError;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import scala.collection.parallel.ParIterableLike;
 import tk.peanut.phosphor.file.files.ClickGuiFile;
 import tk.peanut.phosphor.modules.Category;
 import tk.peanut.phosphor.ui.clickgui.component.Component;
 import tk.peanut.phosphor.ui.clickgui.component.Frame;
+import tk.peanut.phosphor.utils.ReflectionUtil;
 
 public class ClickGui extends GuiScreen {
 
@@ -78,8 +87,33 @@ public class ClickGui extends GuiScreen {
 		}
 		if (keyCode == 1) {
             this.mc.displayGuiScreen(null);
-			ClickGuiFile.saveClickGui();
+
         }
+	}
+
+	@Override
+	public void initGui() {
+		if(OpenGlHelper.shadersSupported && this.mc.getRenderViewEntity() instanceof EntityPlayer) {
+			if(this.mc.entityRenderer.getShaderGroup() != null) {
+				this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+			}
+		}
+
+	}
+
+	@Override
+	public void onGuiClosed() {
+		if(this.mc.entityRenderer.getShaderGroup() != null) {
+			this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+			try {
+				ReflectionUtil.theShaderGroup.set(Minecraft.getMinecraft().entityRenderer, (ShaderGroup)null);
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
+		ClickGuiFile.saveClickGui();
+
+		super.onGuiClosed();
 	}
 
 	
