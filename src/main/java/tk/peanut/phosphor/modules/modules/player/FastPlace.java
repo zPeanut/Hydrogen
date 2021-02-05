@@ -29,7 +29,7 @@ import java.time.format.DateTimeFormatter;
 public class FastPlace extends Module {
 
     public FastPlace() {
-        super("FastPlace", "Automatic FastBridge", Keyboard.KEY_U, Category.Movement, -1);
+        super("FastPlace", "Automatic FastBridge", Keyboard.KEY_U, Category.Player, -1);
     }
 
 
