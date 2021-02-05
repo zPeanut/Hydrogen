@@ -6,6 +6,8 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.sql.Ref;
 
 /**
  * Created by peanut on 05/02/2021
@@ -25,6 +27,5 @@ public class ReflectionUtil {
         pressed.setAccessible(true);
         theShaderGroup.setAccessible(true);
     }
-
-
 }
+
