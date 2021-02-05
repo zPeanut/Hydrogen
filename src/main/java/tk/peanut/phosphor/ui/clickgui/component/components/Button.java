@@ -70,7 +70,7 @@ public class Button extends Component {
 			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x40000000);
 		}
 		FontUtil.drawTotalCenteredStringWithShadow(this.mod.toggled ? this.mod.getName() : this.isHovered ? "§7" + this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7), 0xffffe9ad);
-		if(this.subcomponents.size() > 2)
+		if(this.subcomponents.size() > 1)
 		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.open ? "§a..." : "...", (parent.getX() + parent.getWidth() - 10), (parent.getY() + offset + 2), -1);
 
 		if(this.open) {
