@@ -39,6 +39,10 @@ public class Utils {
         return scaledRes;
     }
 
+    public static void errorLog(String message) {
+        System.out.println("[ERROR] [Phosphor] " + message);
+    }
+
     public static void drawRect(double left, double top, double right, double bottom, int color) {
         int j;
         if (left < right) {
