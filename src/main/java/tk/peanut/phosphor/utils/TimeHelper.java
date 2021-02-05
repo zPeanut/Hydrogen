@@ -2,6 +2,7 @@ package tk.peanut.phosphor.utils;
 
 public class TimeHelper {
     private long lastMS = 0L;
+    private long resetMS = 0L;
 
     public int convertToMS(int d) {
         return 1000 / d;
@@ -9,6 +10,26 @@ public class TimeHelper {
 
     public long getCurrentMS() {
         return System.nanoTime() / 1000000L;
+    }
+
+    public static long getCurrentTime()
+    {
+        return (long) (System.nanoTime() / 1000000.0D);
+    }
+
+    public static boolean hasDelayRun(long resetMS, int delay)
+    {
+        return getCurrentTime() >= resetMS + delay;
+    }
+
+    public boolean hasDelayRun(double d)
+    {
+        return getCurrentTime() >= this.resetMS + d;
+    }
+
+    public void resetAndAdd(long reset)
+    {
+        this.resetMS = (getCurrentTime() + reset);
     }
 
     public boolean hasReached(long milliseconds) {

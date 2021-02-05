@@ -3,6 +3,7 @@ package tk.peanut.phosphor.modules;
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.phosphor.events.EventKey;
+import tk.peanut.phosphor.modules.modules.combat.AutoClicker;
 import tk.peanut.phosphor.modules.modules.movement.Sprint;
 import tk.peanut.phosphor.modules.modules.player.FastPlace;
 import tk.peanut.phosphor.modules.modules.render.Chams;
@@ -30,6 +31,7 @@ public class ModuleManager {
         add(new FastPlace());
         add(new Sprint());
         add(new Chams());
+        add(new AutoClicker());
     }
 
     private void add(Module module) {
