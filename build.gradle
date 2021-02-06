@@ -43,8 +43,8 @@ repositories {
 }
 
 version = "1.2"
-group="tk.peanut.phosphor"
-archivesBaseName = "phosphor"
+group="tk.peanut.hydrogen"
+archivesBaseName = "hydrogen"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -81,7 +81,7 @@ processResources {
 }
 
 mixin {
-    add sourceSets.main, "mixins.phosphor.refmap.json"
+    add sourceSets.main, "mixins.hydrogen.refmap.json"
 }
 
 shadowJar {
@@ -97,7 +97,7 @@ build.dependsOn(shadowJar)
 
 jar {
     manifest.attributes(
-            "MixinConfigs": 'mixins.phosphor.json',
+            "MixinConfigs": 'mixins.hydrogen.json',
             "tweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
             "TweakOrder": 0,
             "FMLCorePluginContainsFMLMod": 'tk.peanut.phosphor.injection.MixinLoader',

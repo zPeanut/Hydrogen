@@ -29,7 +29,7 @@ Phosphor runs on Gradle. Make sure you have it is installed correctly before set
     - IntelliJ: `gradlew setupDecompWorkspace idea genIntellijRuns build`
     - Eclipse: `gradlew setupDecompWorkspace eclipse build`
 4. Open the folder in your preferred IDEA, depending which you chose above.
-5. In your run configuration, type `-Dfml.coreMods.load=tk.peanut.phosphor.injection.MixinLoader` in your VM options
+5. In your run configuration, type `-Dfml.coreMods.load=tk.peanut.hydrogen.injection.MixinLoader` in your VM options
 
 ## Credits
 
