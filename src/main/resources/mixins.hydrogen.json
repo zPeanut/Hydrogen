@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "tk.peanut.phosphor.injection.mixins",
+  "package": "tk.peanut.hydrogen.injection.mixins",
   "refmap": "mixins.hydrogen.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "mixins": [

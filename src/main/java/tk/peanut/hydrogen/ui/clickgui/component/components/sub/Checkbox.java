@@ -35,7 +35,7 @@ public class Checkbox extends Component {
 		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.op.getName(), (parent.parent.getX() + 10 + 4) * 1.3333333333f + 5, (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
 		GL11.glPopMatrix();
 		Gui.drawRect(parent.parent.getX() + 3 + 4, parent.parent.getY() + offset + 3, parent.parent.getX() + 9 + 4, parent.parent.getY() + offset + 9, 0x88999999);
-		if(this.op.getValBoolean())
+		if(this.op.isEnabled())
 			Gui.drawRect(parent.parent.getX() + 4 + 4, parent.parent.getY() + offset + 4, parent.parent.getX() + 8 + 4, parent.parent.getY() + offset + 8, 0x99000000);
 	}
 	
@@ -54,7 +54,7 @@ public class Checkbox extends Component {
 	@Override
 	public void mouseClicked(int mouseX, int mouseY, int button) {
 		if(isMouseOnButton(mouseX, mouseY) && button == 0 && this.parent.open) {
-			this.op.setValBoolean(!op.getValBoolean());;
+			this.op.setValBoolean(!op.isEnabled());;
 			SettingsButtonFile.saveState();
 		}
 	}

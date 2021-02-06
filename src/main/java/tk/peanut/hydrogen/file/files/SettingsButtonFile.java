@@ -22,7 +22,7 @@ public class SettingsButtonFile {
         try {
             ButtonList.clear();
             for (Setting setting : Hydrogen.getInstance().settingsManager.getSettings()) {
-                String line = (setting.getName() + ":" + String.valueOf(setting.getValBoolean()));
+                String line = (setting.getName() + ":" + String.valueOf(setting.isEnabled()));
                 ButtonList.write(line);
             }
         } catch (Exception e) {

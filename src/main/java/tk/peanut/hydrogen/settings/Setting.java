@@ -66,7 +66,7 @@ public class Setting {
 		return this.options;
 	}
 	
-	public boolean getValBoolean(){
+	public boolean isEnabled(){
 		return this.bval;
 	}
 	

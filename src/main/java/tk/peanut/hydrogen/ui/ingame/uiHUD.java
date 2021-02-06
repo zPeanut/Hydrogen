@@ -77,17 +77,32 @@ public class uiHUD {
 
     }
 
-
     private static void drawWatermark() {
-        LocalDateTime now = LocalDateTime.now();
-        String currenttime = timeFormat.format(now);
+        if(Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").isEnabled()) {
+            if(Hydrogen.getInstance().settingsManager.getSettingByName("Theme").getValString().equalsIgnoreCase("tephra")) {
 
-        String watermark = String.format("%s %s §7(%s)", Hydrogen.getInstance().name, Hydrogen.getInstance().version, currenttime);
+                String watermark = String.format("%s %s | %s FPS", Hydrogen.name, Hydrogen.version, String.valueOf(Minecraft.getDebugFPS()));
 
-            if(Hydrogen.getInstance().settingsManager.getSettingByName("Background").getValBoolean()) {
-                Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                    Gui.drawRect(0, 0, 3, 11, 0x88ffffff);
+                    Gui.drawRect(3, 0, Minecraft.getMinecraft().fontRendererObj.getStringWidth(watermark) + 8, 11, Integer.MIN_VALUE);
+                }
+
+                mc.fontRendererObj.drawStringWithShadow(watermark, 6, 2, -1);
+
+            } else if (Hydrogen.getInstance().settingsManager.getSettingByName("Theme").getValString().equalsIgnoreCase("xave")) {
+
+                LocalDateTime now = LocalDateTime.now();
+                String currenttime = timeFormat.format(now);
+
+                String watermark = String.format("%s %s §7(%s)", Hydrogen.getInstance().name, Hydrogen.getInstance().version, currenttime);
+
+                if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                    Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                }
+                mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
             }
-            mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
+        }
     }
 
     private static void drawArray() {
@@ -100,25 +115,53 @@ public class uiHUD {
 
             int mwidth = 2 + mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName());
             int mheight = count * 11 + i + 13;
+            int mheight2 = count * 11 + i + 2;
             int mcolor = Utils.getRainbow(5, 0.4f, 1, count * 100);
+            int color = Hydrogen.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow") ? mcolor : mod.getColor();
 
 
             if (!mod.getName().equalsIgnoreCase("hud")) {
+
+
                 if (Hydrogen.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Left")) {
 
-                    if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").getValBoolean()) {
-                        Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
+
+                    if(Hydrogen.getInstance().settingsManager.getSettingByName("Theme").getValString().equalsIgnoreCase("xave")) {
+
+                        if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                            if (Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").isEnabled()) {
+                                Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
+                            } else {
+                                Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 1 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 13, Integer.MIN_VALUE);
+                            }
+                        }
+
+                        if (!Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").isEnabled()) {
+                            mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight2, color);
+                        } else {
+                            mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, color);
+                        }
+
+                    } else if (Hydrogen.getInstance().settingsManager.getSettingByName("Theme").getValString().equalsIgnoreCase("tephra")) {
+
+
+                        if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                            Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(String.valueOf(mod.getName()) + mod.getSuffix()) + 3, 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 8, i * 12 + 23, -2147483648);
+                            Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, 11 + i * 12, 0, i * 12 + 23, color);
+
+                        }
+
+                        Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(String.valueOf(mod.getName()), mwidth + 4, mheight, color);
+
                     }
 
-                    mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, Hydrogen.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow") ? mcolor : mod.getColor());
+
+
 
                 } else if (Hydrogen.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Right")) {
-
-                    if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").getValBoolean()) {
+                    if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
                         Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, Integer.MIN_VALUE);
                     }
-
-
                     mc.fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight - 10, Hydrogen.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? mcolor : mod.getColor());
 
                 }
@@ -128,7 +171,7 @@ public class uiHUD {
     }
 
     public static void drawInfo() {
-        if (Hydrogen.getInstance().settingsManager.getSettingByName("Info").getValBoolean()) {
+        if (Hydrogen.getInstance().settingsManager.getSettingByName("Info").isEnabled()) {
             String x = String.valueOf((int)mc.thePlayer.posX);
             String y = String.valueOf((int)mc.thePlayer.posY);
             String z = String.valueOf((int)mc.thePlayer.posZ);
