@@ -69,6 +69,7 @@ public class uiHUD {
         if(Phosphor.getInstance().moduleManager.getModulebyName("HUD").isEnabled()) {
             drawWatermark();
             drawArray();
+            drawCoordinates();
         }
 
     }
@@ -117,6 +118,27 @@ public class uiHUD {
 
                 }
                 count++;
+            }
+        }
+    }
+
+    public static void drawCoordinates() {
+        if(Phosphor.getInstance().settingsManager.getSettingByName("Coordinates").getValBoolean()) {
+
+            String x = "§8X §7" + String.valueOf((int)Minecraft.getMinecraft().thePlayer.posX);
+            String y = "§8Y §7" + (int)Minecraft.getMinecraft().thePlayer.posY;
+            String z = "§8Z §7" + String.valueOf((int)Minecraft.getMinecraft().thePlayer.posZ);
+            if (Boolean.toString(Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()).equals("true"))
+            {
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(x, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(x) - 2, Utils.getScaledRes().getScaledHeight() - 43, -1);
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(y, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(y) - 2, Utils.getScaledRes().getScaledHeight() - 33, -1);
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(z, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(z) - 2, Utils.getScaledRes().getScaledHeight() - 23, -1);
+            }
+            else
+            {
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(x, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(x) - 2, Utils.getScaledRes().getScaledHeight() - 30, -1);
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(y, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(y) - 2, Utils.getScaledRes().getScaledHeight() - 20, -1);
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(z, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(z) - 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
             }
         }
     }
