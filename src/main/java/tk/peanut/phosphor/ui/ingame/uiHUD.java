@@ -10,19 +10,23 @@ import tk.peanut.phosphor.module.Module;
 import tk.peanut.phosphor.utils.ReflectionUtil;
 import tk.peanut.phosphor.utils.Utils;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class uiHUD {
 
-    public static Minecraft mc = Minecraft.getMinecraft();
+    static Minecraft mc = Minecraft.getMinecraft();
+    static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("h:mm a");
 
     public uiHUD() {
 
         new Thread(() -> {
             while (true) {
                 try {
-                    if (!ReflectionUtil.running.getBoolean(Minecraft.getMinecraft())) break;
+                    if (!ReflectionUtil.running.getBoolean(mc)) break;
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
@@ -32,7 +36,7 @@ public class uiHUD {
                 }
                 for (Module mod : Phosphor.getInstance().moduleManager.getModules()) {
                     if (mod.isEnabled()) {
-                        if (mod.getSlide() < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod.getName())) {
+                        if (mod.getSlide() < mc.fontRendererObj.getStringWidth(mod.getName())) {
                             mod.setSlide(mod.getSlide() + 1);
                         }
 
@@ -50,10 +54,10 @@ public class uiHUD {
         Collections.sort(Phosphor.getInstance().moduleManager.getModules(), new Comparator<Module>() {
             @Override
             public int compare(Module mod1, Module mod2) {
-                if (Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod1.getName() + mod1.getSuffix()) > Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod2.getName() + mod2.getSuffix())) {
+                if (mc.fontRendererObj.getStringWidth(mod1.getName() + mod1.getSuffix()) > mc.fontRendererObj.getStringWidth(mod2.getName() + mod2.getSuffix())) {
                     return -1;
                 }
-                if (Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod1.getName() + mod1.getSuffix()) < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod2.getName() + mod2.getSuffix())) {
+                if (mc.fontRendererObj.getStringWidth(mod1.getName() + mod1.getSuffix()) < mc.fontRendererObj.getStringWidth(mod2.getName() + mod2.getSuffix())) {
                     return 1;
                 }
                 return 0;
@@ -69,18 +73,20 @@ public class uiHUD {
         if(Phosphor.getInstance().moduleManager.getModulebyName("HUD").isEnabled()) {
             drawWatermark();
             drawArray();
-            drawCoordinates();
+            drawInfo();
         }
 
     }
 
 
     private static void drawWatermark() {
+        LocalDateTime now = LocalDateTime.now();
+        String currenttime = timeFormat.format(now);
 
-        String watermark = String.format("%s §7%s", Phosphor.getInstance().name, Phosphor.getInstance().version);
+        String watermark = String.format("%s %s §7(%s)", Phosphor.getInstance().name, Phosphor.getInstance().version, currenttime);
 
             if(Phosphor.getInstance().settingsManager.getSettingByName("Background").getValBoolean()) {
-                Gui.drawRect(0, 0, Minecraft.getMinecraft().fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
             }
             mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
     }
@@ -88,12 +94,12 @@ public class uiHUD {
     private static void drawArray() {
         int count = 0;
         for (int i = 0; i < Phosphor.getInstance().moduleManager.getEnabledMods().size(); i++) {
-            ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+            ScaledResolution sr = new ScaledResolution(mc);
 
             Module mod = Phosphor.getInstance().moduleManager.getEnabledMods().get(i);
 
 
-            int mwidth = 2 + mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName());
+            int mwidth = 2 + mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName());
             int mheight = count * 11 + i + 13;
             int mcolor = Utils.getRainbow(5, 0.4f, 1, count * 100);
 
@@ -102,10 +108,10 @@ public class uiHUD {
                 if (Phosphor.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Left")) {
 
                     if (Phosphor.getInstance().settingsManager.getSettingByName("Background").getValBoolean()) {
-                        Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
+                        Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
                     }
 
-                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, Phosphor.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow") ? mcolor : mod.getColor());
+                    mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, Phosphor.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow") ? mcolor : mod.getColor());
 
                 } else if (Phosphor.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Right")) {
 
@@ -114,7 +120,7 @@ public class uiHUD {
                     }
 
 
-                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight - 10, Phosphor.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? mcolor : mod.getColor());
+                    mc.fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight - 10, Phosphor.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? mcolor : mod.getColor());
 
                 }
                 count++;
@@ -122,23 +128,19 @@ public class uiHUD {
         }
     }
 
-    public static void drawCoordinates() {
-        if(Phosphor.getInstance().settingsManager.getSettingByName("Coordinates").getValBoolean()) {
-
-            String x = "§8X §7" + String.valueOf((int)Minecraft.getMinecraft().thePlayer.posX);
-            String y = "§8Y §7" + (int)Minecraft.getMinecraft().thePlayer.posY;
-            String z = "§8Z §7" + String.valueOf((int)Minecraft.getMinecraft().thePlayer.posZ);
-            if (Boolean.toString(Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()).equals("true"))
-            {
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(x, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(x) - 2, Utils.getScaledRes().getScaledHeight() - 43, -1);
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(y, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(y) - 2, Utils.getScaledRes().getScaledHeight() - 33, -1);
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(z, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(z) - 2, Utils.getScaledRes().getScaledHeight() - 23, -1);
-            }
-            else
-            {
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(x, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(x) - 2, Utils.getScaledRes().getScaledHeight() - 30, -1);
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(y, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(y) - 2, Utils.getScaledRes().getScaledHeight() - 20, -1);
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(z, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(z) - 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
+    public static void drawInfo() {
+        if (Phosphor.getInstance().settingsManager.getSettingByName("Info").getValBoolean()) {
+            String x = String.valueOf((int)mc.thePlayer.posX);
+            String y = String.valueOf((int)mc.thePlayer.posY);
+            String z = String.valueOf((int)mc.thePlayer.posZ);
+            String coordinates = String.format("XYZ §7(%s, %s, %s)", x, y, z);
+            String fps = String.format("FPS §7%s", mc.getDebugFPS());
+            if (!Boolean.toString(mc.ingameGUI.getChatGUI().getChatOpen()).equals("true")) {
+                mc.fontRendererObj.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
+                mc.fontRendererObj.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(fps) - 2, Utils.getScaledRes().getScaledHeight() - 20, -1);
+            } else {
+                mc.fontRendererObj.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 24, -1);
+                mc.fontRendererObj.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(fps) - 2, Utils.getScaledRes().getScaledHeight() - 34, -1);
             }
         }
     }

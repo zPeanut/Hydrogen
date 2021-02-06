@@ -26,7 +26,7 @@ public class HUD extends Module {
         Phosphor.getInstance().settingsManager.rSetting(new Setting("List Side", this, "Left", options));
         Phosphor.getInstance().settingsManager.rSetting(new Setting("List Color",this, "White", array));
         Phosphor.getInstance().settingsManager.rSetting(new Setting("Background", this, false));
-        Phosphor.getInstance().settingsManager.rSetting(new Setting("Coordinates", this, true));
+        Phosphor.getInstance().settingsManager.rSetting(new Setting("Info", this, true));
     }
 
 }
