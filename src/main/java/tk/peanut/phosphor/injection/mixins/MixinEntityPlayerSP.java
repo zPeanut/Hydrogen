@@ -1,7 +1,6 @@
 package tk.peanut.phosphor.injection.mixins;
 
 import com.darkmagician6.eventapi.EventManager;
-import com.darkmagician6.eventapi.events.Event;
 import com.darkmagician6.eventapi.types.EventType;
 import net.minecraft.client.entity.EntityPlayerSP;
 import tk.peanut.phosphor.events.EventMotionUpdate;

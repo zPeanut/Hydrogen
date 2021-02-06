@@ -27,8 +27,6 @@ public class MixinMinecraft implements IMixinMinecraft {
     @Shadow
     public GuiScreen currentScreen;
 
-    @Shadow
-    volatile boolean running = true;
 
     @Shadow
     @Mutable
