@@ -4,6 +4,21 @@ A forge-mixin based ghost client for Minecraft 1.8.9.
 Originally designed as a MCP Client (called Tephra), it is now being ported to Forge.  
 Over time, more and more features will be added.
 
+## Features
+
+There are currently 9 out of 26 modules included in Phosphor.  
+The 26 modules are all being ported from the previously mentioned MCP client over.  
+  
+Current Modules are:
+-  AutoClicker
+-  TriggerBot
+-  Eagle
+-  Sprint
+-  FastPlace
+-  Chams
+-  ESP
+-  NoBob
+
 ## Setting up
 
 Phosphor runs on Gradle. Make sure you have it is installed correctly before setting up.
@@ -20,3 +35,4 @@ Phosphor runs on Gradle. Make sure you have it is installed correctly before set
 
 **CCBlueX** for providing most of the initial ClientBase  
 **HeroCode** for providing the ClickGUI API.  
+
