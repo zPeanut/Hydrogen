@@ -1,5 +1,4 @@
-# Phosphor
-
+# Hydrogen
 A forge-mixin based ghost client for Minecraft 1.8.9.  
 Originally designed as a MCP Client (called Tephra), it is now being ported to Forge.  
 Over time, more and more features will be added.
@@ -21,9 +20,9 @@ The current included Modules are:
 
 ## Setting up
 
-Phosphor runs on Gradle. Make sure you have it is installed correctly before setting up.
+Hydrogen runs on Gradle. Make sure you have it is installed correctly before setting up.
 
-1. Clone the Repository under `https://github.com/zPeanut/Phosphor.git`.
+1. Clone the Repository under `https://github.com/zPeanut/Hydrogen.git`.
 2. Open command prompt and CD into the directory.
 3. Depending on which IDEA you use, different commands have to be ran.
     - IntelliJ: `gradlew setupDecompWorkspace idea genIntellijRuns build`
