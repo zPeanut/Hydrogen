@@ -5,7 +5,7 @@ Over time, more and more features will be added.
 
 ## Features
 
-There are currently 9 modules included in Phosphor.  
+There are currently 9 modules included in Hydrogen.  
 More modules are all being ported over from the previously mentioned MCP client.  
   
 The current included Modules are:
@@ -22,7 +22,7 @@ The current included Modules are:
 
 Hydrogen runs on Gradle. Make sure you have it is installed correctly before setting up.
 
-1. Clone the Repository under `https://github.com/zPeanut/Hydrogen.git`.
+1. Clone the Repository under `https://github.com/zPeanut/Hydrogen.git`
 2. Open command prompt and CD into the directory.
 3. Depending on which IDEA you use, different commands have to be ran.
     - IntelliJ: `gradlew setupDecompWorkspace idea genIntellijRuns build`
