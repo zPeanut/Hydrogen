@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import tk.peanut.phosphor.events.EventPreMotion;
 import tk.peanut.phosphor.events.EventUpdate;
 
 @Mixin(EntityPlayerSP.class)
@@ -22,6 +23,9 @@ public class MixinEntityPlayerSP extends MixinEntity {
 
     @Inject(method = "onUpdateWalkingPlayer", at = @At("HEAD"))
     private void onUpdateWalkingPlayerPre(CallbackInfo ci) {
+        EventPreMotion e = new EventPreMotion();
+        EventManager.call(e);
+
         cachedX = posX;
         cachedY = posY;
         cachedZ = posZ;
@@ -30,8 +34,8 @@ public class MixinEntityPlayerSP extends MixinEntity {
         cachedRotationPitch = rotationPitch;
 
         EventMotionUpdate event = new EventMotionUpdate(EventType.PRE, posX, posY, posZ, rotationYaw, rotationPitch, onGround);
-
         EventManager.call(event);
+
 
         posX = event.getX();
         posY = event.getY();
