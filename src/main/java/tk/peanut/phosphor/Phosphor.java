@@ -11,13 +11,14 @@ import tk.peanut.phosphor.utils.KeybindManager;
 
 import java.io.File;
 
-@Mod(modid = "phosphor", name = "Phosphor", version = "1.2", useMetadata = true)
+@Mod(modid = Phosphor.modid, name = Phosphor.name, version = Phosphor.version_number, useMetadata = true)
 public class Phosphor {
 
+    public static final String modid = "phosphor";
     public static final String name = "Phosphor";
     public static final String devs = "zPeanut";
 
-    private static final double version_number = 1.2;
+    public static final String version_number = "1.2";
     private static final String version_suffix = "";
     public static final String version = "v" + version_number + version_suffix;
 

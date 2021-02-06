@@ -78,23 +78,10 @@ public class uiHUD {
 
         String watermark = String.format("%s §7%s", Phosphor.getInstance().name, Phosphor.getInstance().version);
 
-        if(Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Left")) {
-
-            if(Phosphor.getInstance().settingsManager.getSettingByName("Background Rect").getValBoolean()) {
+            if(Phosphor.getInstance().settingsManager.getSettingByName("Background").getValBoolean()) {
                 Gui.drawRect(0, 0, Minecraft.getMinecraft().fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
             }
-
             mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
-
-        } else if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Right")) {
-
-            if(Phosphor.getInstance().settingsManager.getSettingByName("Background Rect").getValBoolean()) {
-                Gui.drawRect(Utils.getScaledRes().getScaledWidth(), 0, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(watermark) - 5, 11, Integer.MIN_VALUE);
-            }
-
-            mc.fontRendererObj.drawStringWithShadow(watermark, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(watermark) - 2, 2, -1);
-
-        }
     }
 
     private static void drawArray() {
@@ -107,25 +94,26 @@ public class uiHUD {
 
             int mwidth = 2 + mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName());
             int mheight = count * 11 + i + 13;
+            int mcolor = Utils.getRainbow(5, 0.4f, 1, count * 100);
 
 
             if (!mod.getName().equalsIgnoreCase("hud")) {
-                if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Left")) {
+                if (Phosphor.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Left")) {
 
-                    if (Phosphor.getInstance().settingsManager.getSettingByName("Background Rect").getValBoolean()) {
+                    if (Phosphor.getInstance().settingsManager.getSettingByName("Background").getValBoolean()) {
                         Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
                     }
 
-                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, mod.getColor());
+                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, Phosphor.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow") ? mcolor : mod.getColor());
 
-                } else if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Right")) {
+                } else if (Phosphor.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Right")) {
 
-                    if (Phosphor.getInstance().settingsManager.getSettingByName("Background Rect").getValBoolean()) {
-                        Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 11 + i * 12, sr.getScaledWidth(), i * 12 + 23, Integer.MIN_VALUE);
+                    if (Phosphor.getInstance().settingsManager.getSettingByName("Background").getValBoolean()) {
+                        Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, Integer.MIN_VALUE);
                     }
 
 
-                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, mod.getColor());
+                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight - 10, Phosphor.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? mcolor : mod.getColor());
 
                 }
                 count++;

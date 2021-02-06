@@ -20,8 +20,12 @@ public class HUD extends Module {
         ArrayList<String> options = new ArrayList<>();
         options.add("Left");
         options.add("Right");
-        Phosphor.getInstance().settingsManager.rSetting(new Setting("HUD Alignment", this, "Left", options));
-        Phosphor.getInstance().settingsManager.rSetting(new Setting("Background Rect", this, false));
+        ArrayList<String> array = new ArrayList<>();
+        array.add("Rainbow");
+        array.add("White");
+        Phosphor.getInstance().settingsManager.rSetting(new Setting("List Side", this, "Left", options));
+        Phosphor.getInstance().settingsManager.rSetting(new Setting("List Color",this, "White", array));
+        Phosphor.getInstance().settingsManager.rSetting(new Setting("Background", this, false));
     }
 
 }
