@@ -4,12 +4,10 @@ import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.phosphor.events.EventKey;
 import tk.peanut.phosphor.module.modules.combat.AutoClicker;
+import tk.peanut.phosphor.module.modules.combat.TriggerBot;
 import tk.peanut.phosphor.module.modules.movement.Sprint;
 import tk.peanut.phosphor.module.modules.player.FastPlace;
-import tk.peanut.phosphor.module.modules.render.Chams;
-import tk.peanut.phosphor.module.modules.render.ClickGUI;
-import tk.peanut.phosphor.module.modules.render.ESP;
-import tk.peanut.phosphor.module.modules.render.HUD;
+import tk.peanut.phosphor.module.modules.render.*;
 import tk.peanut.phosphor.module.modules.movement.Eagle;
 import tk.peanut.phosphor.scripting.ScriptModule;
 
@@ -36,6 +34,8 @@ public class ModuleManager {
         add(new Chams());
         add(new AutoClicker());
         add(new ESP());
+        add(new TriggerBot());
+        add(new NoBob());
 
         if (modules.size() > 0) {
             Collections.sort(modules, new Comparator<Module>() {
