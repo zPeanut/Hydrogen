@@ -27,7 +27,7 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
 
     @Inject(method = "doRender", at = @At("HEAD"))
     private <T extends EntityLivingBase> void injectChamsPre(final T a, final double b, final double c, final double d, final float e, final float f, final CallbackInfo g) {
-        if(Phosphor.getInstance().moduleManager.getModulebyName("Chams").isEnabled()) {
+        if (Phosphor.getInstance().moduleManager.getModulebyName("Chams").isEnabled()) {
             GL11.glEnable(32823);
             GL11.glPolygonOffset(1.0f, -1000000.0f);
         }
@@ -35,7 +35,7 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
 
     @Inject(method = "doRender", at = @At("RETURN"))
     private <T extends EntityLivingBase> void injectChamsPost(final T a, final double b, final double c, final double d, final float e, final float f, final CallbackInfo g) {
-        if(Phosphor.getInstance().moduleManager.getModulebyName("Chams").isEnabled()) {
+        if (Phosphor.getInstance().moduleManager.getModulebyName("Chams").isEnabled()) {
             GL11.glPolygonOffset(1.0f, 1000000.0f);
             GL11.glDisable(32823);
         }
@@ -60,15 +60,13 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                 GlStateManager.alphaFunc(516, 0.003921569F);
             }
 
-            ESP esp = new ESP();
-
-            if (Phosphor.getInstance().moduleManager.getModule(ESP.class) != null && Phosphor.getInstance().moduleManager.getModule(ESP.class).isEnabled()) {
+            if (Phosphor.getInstance().moduleManager.getModulebyName("OutlineESP").isEnabled()) {
                 if (entitylivingbaseIn instanceof EntityPlayer && entitylivingbaseIn != Minecraft.getMinecraft().thePlayer) {
                     Color n = Color.WHITE;
                     OutlineUtils.setColor(n);
                     GL11.glLineWidth(3);
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
-                    OutlineUtils.renderOne((float) Phosphor.getInstance().settingsManager.getSettingByName("Width").getValDouble());
+                    OutlineUtils.renderOne(3);
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderTwo();
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
@@ -82,7 +80,7 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                     GL11.glLineWidth(3);
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderOne(3);
-                    mainModel.render(entitylivingbaseIn , p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+                    mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderTwo();
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderThree();
@@ -91,15 +89,16 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                     OutlineUtils.renderFive();
                 }
             }
+        }
 
-            this.mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+        this.mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
 
-            if (flag1) {
-                GlStateManager.disableBlend();
-                GlStateManager.alphaFunc(516, 0.1F);
-                GlStateManager.popMatrix();
-                GlStateManager.depthMask(true);
-            }
+        if (flag1) {
+            GlStateManager.disableBlend();
+            GlStateManager.alphaFunc(516, 0.1F);
+            GlStateManager.popMatrix();
+            GlStateManager.depthMask(true);
         }
     }
 }
+
