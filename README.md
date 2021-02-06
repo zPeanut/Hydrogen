@@ -6,10 +6,10 @@ Over time, more and more features will be added.
 
 ## Features
 
-There are currently 9 out of 26 modules included in Phosphor.  
-The 26 modules are all being ported from the previously mentioned MCP client over.  
+There are currently 9 modules included in Phosphor.  
+More modules are all being ported over from the previously mentioned MCP client.  
   
-Current Modules are:
+The current included Modules are:
 -  AutoClicker
 -  TriggerBot
 -  Eagle
