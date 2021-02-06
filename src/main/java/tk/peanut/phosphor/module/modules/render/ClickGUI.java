@@ -15,7 +15,7 @@ public class ClickGUI extends Module {
     public ClickGui clickgui;
 
     public ClickGUI() {
-        super("ClickGui", "The Overlay", Keyboard.KEY_K, Category.Render, -1);
+        super("ClickGui", "The Overlay", Keyboard.KEY_LSHIFT, Category.Render, -1);
    /*     ArrayList<String> options = new ArrayList<>();
         options.add("DefaultOption");
         options.add("Option2");
