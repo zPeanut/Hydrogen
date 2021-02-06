@@ -5,7 +5,6 @@ import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.phosphor.events.EventKey;
 import tk.peanut.phosphor.module.modules.combat.AutoClicker;
 import tk.peanut.phosphor.module.modules.combat.TriggerBot;
-import tk.peanut.phosphor.module.modules.movement.SafeWalk;
 import tk.peanut.phosphor.module.modules.movement.Sprint;
 import tk.peanut.phosphor.module.modules.player.FastPlace;
 import tk.peanut.phosphor.module.modules.render.*;
@@ -37,7 +36,6 @@ public class ModuleManager {
         add(new ESP());
         add(new TriggerBot());
         add(new NoBob());
-        add(new SafeWalk());
 
         if (modules.size() > 0) {
             Collections.sort(modules, new Comparator<Module>() {
@@ -93,7 +91,7 @@ public class ModuleManager {
         List<Module> modules = new ArrayList<>();
 
         for (Module mod : this.getModules()) {
-            if(mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled())) {
+            if(mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled()) && !(mod.getName().equalsIgnoreCase("hud"))) {
                 modules.add(mod);
             }
         }

@@ -109,25 +109,27 @@ public class uiHUD {
             int mheight = count * 11 + i + 13;
 
 
+            if (!mod.getName().equalsIgnoreCase("hud")) {
+                if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Left")) {
 
-            if(Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Left")) {
+                    if (Phosphor.getInstance().settingsManager.getSettingByName("Background Rect").getValBoolean()) {
+                        Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
+                    }
 
-                if(Phosphor.getInstance().settingsManager.getSettingByName("Background Rect").getValBoolean()) {
-                    Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
+                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, mod.getColor());
+
+                } else if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Right")) {
+
+                    if (Phosphor.getInstance().settingsManager.getSettingByName("Background Rect").getValBoolean()) {
+                        Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 11 + i * 12, sr.getScaledWidth(), i * 12 + 23, Integer.MIN_VALUE);
+                    }
+
+
+                    Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, mod.getColor());
+
                 }
-
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, mod.getColor());
-
-            } else if (Phosphor.getInstance().settingsManager.getSettingByName("HUD Alignment").getValString().equalsIgnoreCase("Right")) {
-
-                if(Phosphor.getInstance().settingsManager.getSettingByName("Background Rect").getValBoolean()) {
-                    Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 11 + i * 12, sr.getScaledWidth(), i * 12 + 23, Integer.MIN_VALUE);
-                }
-
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, mod.getColor());
-
+                count++;
             }
-            count++;
         }
     }
 
