@@ -100,6 +100,7 @@ jar {
             "MixinConfigs": 'mixins.hydrogen.json',
             "tweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
             "TweakOrder": 0,
+            'FMLAT': 'hydrogen_at.cfg',
             "FMLCorePluginContainsFMLMod": 'tk.peanut.phosphor.injection.MixinLoader',
     )
 }

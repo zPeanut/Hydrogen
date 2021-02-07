@@ -19,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
+import net.minecraft.util.ResourceLocation;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.file.files.ClickGuiFile;
 import tk.peanut.hydrogen.module.Category;
@@ -69,7 +70,6 @@ public class ClickGui extends GuiMainMenu {
 			mc.fontRendererObj.drawStringWithShadow("§7Outdated! Newest version is: §e" + Hydrogen.getInstance().newversion + "§7!", 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
 			TODO: Implement update function
 		}*/
-
 		for(Frame frame : frames) {
 			frame.renderFrame(this.fontRendererObj);
 			frame.updatePosition(mouseX, mouseY);
@@ -114,6 +114,22 @@ public class ClickGui extends GuiMainMenu {
 		if (keyCode == 1) {
             this.mc.displayGuiScreen(null);
         }
+	}
+
+	@Override
+	public void initGui() {
+		/*
+		 * Start blur
+		 */
+
+		if (OpenGlHelper.shadersSupported) {
+			if (mc.entityRenderer.getShaderGroup() != null) {
+				mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+			}
+			mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+		}
+
+
 	}
 
 	@Override
