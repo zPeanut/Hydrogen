@@ -7,6 +7,7 @@ import tk.peanut.hydrogen.module.modules.combat.AutoClicker;
 import tk.peanut.hydrogen.module.modules.combat.TriggerBot;
 import tk.peanut.hydrogen.module.modules.movement.Sprint;
 import tk.peanut.hydrogen.module.modules.player.FastPlace;
+import tk.peanut.hydrogen.module.modules.player.SafeWalk;
 import tk.peanut.hydrogen.module.modules.render.*;
 import tk.peanut.hydrogen.module.modules.movement.Eagle;
 import tk.peanut.hydrogen.scripting.ScriptModule;
@@ -36,6 +37,7 @@ public class ModuleManager {
         add(new ESP());
         add(new TriggerBot());
         add(new NoBob());
+        add(new SafeWalk());
 
         if (modules.size() > 0) {
             Collections.sort(modules, new Comparator<Module>() {
