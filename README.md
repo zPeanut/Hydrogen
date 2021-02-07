@@ -17,6 +17,7 @@ The current included Modules are:
 -  Chams
 -  ESP
 -  NoBob
+-  Fullbright
 
 ## Setting up
 
