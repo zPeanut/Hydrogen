@@ -32,9 +32,9 @@ public class SafeWalk extends Module {
         if(this.isToggled()) {
             try {
                 if(ReflectionUtil.pressed.getBoolean(Minecraft.getMinecraft().gameSettings.keyBindJump) || !mc.thePlayer.onGround) {
-                    e.setCancelled(true);
-                } else {
                     e.setCancelled(false);
+                } else {
+                    e.setCancelled(true);
                 }
             } catch (IllegalAccessException illegalAccessException) {
                 illegalAccessException.printStackTrace();

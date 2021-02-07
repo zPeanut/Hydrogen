@@ -39,7 +39,7 @@ public class ModuleManager {
         add(new NoBob());
         add(new Fullbright());
 
-        // TODO: add(new SafeWalk());
+        add(new SafeWalk());
 
         // alphabetically sort modules in clickgui
 
