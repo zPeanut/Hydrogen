@@ -23,7 +23,7 @@ public class Hydrogen {
     public static final String name = "Hydrogen";
     public static final String devs = "zPeanut";
 
-    public static final String version_number = "1.0";
+    public static final String version_number = "1.2";
     private static final String version_suffix = "";
     public static final String version = "v" + version_number + version_suffix;
 
