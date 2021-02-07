@@ -1,10 +1,12 @@
 package tk.peanut.hydrogen.module.modules.render;
 
 import org.lwjgl.input.Keyboard;
+import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.file.files.ClickGuiFile;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 
 /**
@@ -18,6 +20,7 @@ public class ClickGUI extends Module {
 
     public ClickGUI() {
         super(Keyboard.KEY_LSHIFT);
+        Hydrogen.getInstance().settingsManager.rSetting(new Setting("Blur", this, true));
    /*     ArrayList<String> options = new ArrayList<>();
         options.add("DefaultOption");
         options.add("Option2");

@@ -66,6 +66,7 @@ public class ClickGui extends GuiMainMenu {
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+
 		drawRect(0, 0, this.width, this.height, 0x44101010);
 		/*if(Hydrogen.getInstance().outdated) {
 			mc.fontRendererObj.drawStringWithShadow("§7Outdated! Newest version is: §e" + Hydrogen.getInstance().newversion + "§7!", 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
@@ -76,6 +77,14 @@ public class ClickGui extends GuiMainMenu {
 			frame.updatePosition(mouseX, mouseY);
 			for(Component comp : frame.getComponents()) {
 				comp.updateComponent(mouseX, mouseY);
+			}
+		}
+		if (OpenGlHelper.shadersSupported) {
+			if (mc.entityRenderer.getShaderGroup() != null) {
+				mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+			}
+			if(Hydrogen.getInstance().settingsManager.getSettingByName("Blur").isEnabled()) {
+				mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
 			}
 		}
 	}
@@ -123,12 +132,7 @@ public class ClickGui extends GuiMainMenu {
 		 * Start blur
 		 */
 
-		if (OpenGlHelper.shadersSupported) {
-			if (mc.entityRenderer.getShaderGroup() != null) {
-				mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-			}
-			mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
-		}
+
 
 
 	}
