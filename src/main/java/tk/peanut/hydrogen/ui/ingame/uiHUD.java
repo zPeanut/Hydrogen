@@ -79,19 +79,6 @@ public class uiHUD {
 
     private static void drawWatermark() {
         if(Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").isEnabled()) {
-            if(Hydrogen.getInstance().settingsManager.getSettingByName("Theme").getValString().equalsIgnoreCase("tephra")) {
-
-                String watermark = String.format("%s %s | %s FPS", Hydrogen.name, Hydrogen.version, String.valueOf(Minecraft.getDebugFPS()));
-
-                if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
-                    Gui.drawRect(0, 0, 3, 11, 0x88ffffff);
-                    Gui.drawRect(3, 0, Minecraft.getMinecraft().fontRendererObj.getStringWidth(watermark) + 8, 11, Integer.MIN_VALUE);
-                }
-
-                mc.fontRendererObj.drawStringWithShadow(watermark, 6, 2, -1);
-
-            } else if (Hydrogen.getInstance().settingsManager.getSettingByName("Theme").getValString().equalsIgnoreCase("xave")) {
-
                 LocalDateTime now = LocalDateTime.now();
                 String currenttime = timeFormat.format(now);
 
@@ -103,7 +90,6 @@ public class uiHUD {
                 mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
             }
         }
-    }
 
     private static void drawArray() {
         int count = 0;
@@ -125,9 +111,6 @@ public class uiHUD {
 
                 if (Hydrogen.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Left")) {
 
-
-                    if(Hydrogen.getInstance().settingsManager.getSettingByName("Theme").getValString().equalsIgnoreCase("xave")) {
-
                         if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
                             if (Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").isEnabled()) {
                                 Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
@@ -141,19 +124,6 @@ public class uiHUD {
                         } else {
                             mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, color);
                         }
-
-                    } else if (Hydrogen.getInstance().settingsManager.getSettingByName("Theme").getValString().equalsIgnoreCase("tephra")) {
-
-
-                        if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
-                            Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(String.valueOf(mod.getName()) + mod.getSuffix()) + 3, 11 + i * 12, mod.getSlide() + (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getSuffix()) + 8, i * 12 + 23, -2147483648);
-                            Gui.drawRect(mod.getSlide() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, 11 + i * 12, 0, i * 12 + 23, color);
-
-                        }
-
-                        Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(String.valueOf(mod.getName()), mwidth + 4, mheight, color);
-
-                    }
 
 
 
