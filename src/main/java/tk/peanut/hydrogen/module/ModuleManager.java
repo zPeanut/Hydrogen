@@ -37,8 +37,11 @@ public class ModuleManager {
         add(new ESP());
         add(new TriggerBot());
         add(new NoBob());
-        // TODO: add(new SafeWalk());
         add(new Fullbright());
+
+        // TODO: add(new SafeWalk());
+
+        // alphabetically sort modules in clickgui
 
         if (modules.size() > 0) {
             Collections.sort(modules, new Comparator<Module>() {

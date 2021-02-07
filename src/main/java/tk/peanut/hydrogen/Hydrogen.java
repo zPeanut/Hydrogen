@@ -9,7 +9,12 @@ import tk.peanut.hydrogen.settings.SettingsManager;
 import tk.peanut.hydrogen.ui.ingame.uiHUD;
 import tk.peanut.hydrogen.utils.KeybindManager;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 @Mod(modid = Hydrogen.modid, name = Hydrogen.name, version = Hydrogen.version_number, useMetadata = true)
 public class Hydrogen {
@@ -18,7 +23,7 @@ public class Hydrogen {
     public static final String name = "Hydrogen";
     public static final String devs = "zPeanut";
 
-    public static final String version_number = "1.2";
+    public static final String version_number = "1.0";
     private static final String version_suffix = "";
     public static final String version = "v" + version_number + version_suffix;
 
@@ -32,6 +37,9 @@ public class Hydrogen {
     public FileManager fileManager;
     public ClickGui clickgui;
     public File directory;
+
+    public boolean outdated = false;
+    public String newversion;
 
     public Hydrogen() {
         instance = this;
@@ -48,6 +56,7 @@ public class Hydrogen {
         clickgui = new ClickGui();
         moduleManager.addModules();
         new uiHUD();
+        isOutdated();
         moduleManager.getModulebyName("HUD").setEnabled();
     }
 
@@ -58,4 +67,24 @@ public class Hydrogen {
     public void stopClient() {
     }
 
+    public void isOutdated() {
+        try {
+            URL url = new URL("https://raw.githubusercontent.com/zPeanut/Resources/master/version-hydrogen");
+            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (Float.parseFloat(line) > Float.parseFloat(version_number)) {
+                    outdated = true;
+                    newversion = line;
+                }
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+
