@@ -4,6 +4,7 @@ import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
+import org.lwjgl.opengl.GL11;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventRender2D;
 import tk.peanut.hydrogen.module.Module;
@@ -78,18 +79,34 @@ public class uiHUD {
     }
 
     private static void drawWatermark() {
-        if(Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").isEnabled()) {
-                LocalDateTime now = LocalDateTime.now();
-                String currenttime = timeFormat.format(now);
+            LocalDateTime now = LocalDateTime.now();
+            String currenttime = timeFormat.format(now);
 
-                String watermark = String.format("%s %s §7(%s)", Hydrogen.getInstance().name, Hydrogen.getInstance().version, currenttime);
+            String watermark = String.format("%s %s §7(%s)", Hydrogen.getInstance().name, Hydrogen.getInstance().version, currenttime);
+
+
+            if(Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
+
+                if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                    Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) - 22, 21, Integer.MIN_VALUE);
+                }
+
+                GL11.glPushMatrix();
+                GL11.glScalef(2f, 2f, 2f);
+                mc.fontRendererObj.drawStringWithShadow("H", 2, 1, -1);
+                GL11.glPopMatrix();
+
+                mc.fontRendererObj.drawStringWithShadow("2", 17, 12, -1);
+                mc.fontRendererObj.drawStringWithShadow(Hydrogen.getInstance().version + " §7(" + currenttime + ")", 27, 6, -1);
+            } else {
 
                 if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
                     Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
                 }
                 mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
             }
-        }
+
+            }
 
     private static void drawArray() {
         int count = 0;
@@ -100,7 +117,7 @@ public class uiHUD {
 
 
             int mwidth = 2 + mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName());
-            int mheight = count * 11 + i + 13;
+            int mheight = count * 11 + i + 23;
             int mheight2 = count * 11 + i + 2;
             int mcolor = Utils.getRainbow(5, 0.4f, 1, count * 100);
             int color = Hydrogen.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow") ? mcolor : mod.getColor();
@@ -111,28 +128,27 @@ public class uiHUD {
 
                 if (Hydrogen.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Left")) {
 
+                    if(Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
+
                         if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
-                            if (Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").isEnabled()) {
-                                Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
-                            } else {
-                                Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 1 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 13, Integer.MIN_VALUE);
-                            }
+                            Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 21 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 33, Integer.MIN_VALUE);
                         }
+                        mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, color);
 
-                        if (!Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").isEnabled()) {
-                            mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight2, color);
-                        } else {
-                            mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, color);
+                    } else {
+
+                        if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                            Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
                         }
+                        mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight2 + 11, color);
 
-
-
+                    }
 
                 } else if (Hydrogen.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Right")) {
                     if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
                         Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, Integer.MIN_VALUE);
                     }
-                    mc.fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight - 10, Hydrogen.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? mcolor : mod.getColor());
+                    mc.fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight - 20, Hydrogen.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? mcolor : mod.getColor());
 
                 }
                 count++;
