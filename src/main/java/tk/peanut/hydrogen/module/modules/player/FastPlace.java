@@ -5,19 +5,21 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.Category;
+import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 
+@Info(name = "FastPlace", description = "", category = Category.Player, color = -1)
 public class FastPlace extends Module {
 
     public FastPlace() {
-        super("FastPlace", "Automatic FastBridge", Keyboard.KEY_U, Category.Player, -1);
+        super(Keyboard.KEY_U);
     }
 
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
-        if(this.isToggled()) {
+        if(this.isEnabled()) {
             try {
                 ReflectionUtil.delayTimer.setInt(Minecraft.getMinecraft(), 0);
             } catch (IllegalAccessException illegalAccessException) {

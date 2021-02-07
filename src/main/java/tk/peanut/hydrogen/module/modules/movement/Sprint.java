@@ -3,12 +3,14 @@ package tk.peanut.hydrogen.module.modules.movement;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.hydrogen.module.Category;
+import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 
+@Info(name = "Sprint", description = "", category = Category.Movement, color = -1)
 public class Sprint extends Module {
     public Sprint() {
-        super("Sprint", "Automatically sprints", Keyboard.KEY_NONE, Category.Movement, -1);
+        super(Keyboard.KEY_NONE);
     }
 
     @Override

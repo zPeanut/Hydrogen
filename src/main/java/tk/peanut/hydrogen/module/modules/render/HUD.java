@@ -1,6 +1,7 @@
 package tk.peanut.hydrogen.module.modules.render;
 
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.module.Category;
 import org.lwjgl.input.Keyboard;
@@ -9,10 +10,11 @@ import tk.peanut.hydrogen.settings.Setting;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+@Info(name = "HUD", description = "The overlay", category = Category.Render, color = -1)
 public class HUD extends Module {
 
     public HUD() {
-        super("HUD", "The Overlay", Keyboard.KEY_M, Category.Render, -1);
+        super(Keyboard.KEY_NONE);
 
         ArrayList<String> options = new ArrayList<>();
         options.add("Left");
@@ -32,5 +34,4 @@ public class HUD extends Module {
         Hydrogen.getInstance().settingsManager.rSetting(new Setting("Background", this, false));
         Hydrogen.getInstance().settingsManager.rSetting(new Setting("Info", this, true));
     }
-
 }

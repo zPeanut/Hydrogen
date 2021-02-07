@@ -2,33 +2,50 @@ package tk.peanut.hydrogen.module;
 
 import com.darkmagician6.eventapi.EventManager;
 import net.minecraft.client.Minecraft;
+import org.lwjgl.input.Keyboard;
 
 public class Module {
 
-    public String name;
-    public String description;
-    public int keyBind;
-    public int color;
-
-
     public boolean visible;
-
-
-    private Module module;
-    public Category category;
     public static Minecraft mc = Minecraft.getMinecraft();
     public boolean toggled;
     public String suffix;
     private int slide = 0;
+    private int keyBind;
 
-    public Module(String name, String description, int keyBind, Category category, int color) {
-        this.name = name;
-        this.description = description;
+    public Module(int keyBind) {
         this.keyBind = keyBind;
-        this.category = category;
-        this.color = color;
-        this.suffix = "";
-        setup();
+    }
+
+    public Info getModuleInfo() {
+        if(this.getClass().isAnnotationPresent(Info.class)) {
+            return this.getClass().getAnnotation(Info.class);
+        }
+        return null;
+    }
+
+    public String getName() {
+        return this.getModuleInfo().name();
+    }
+
+    public String getDescription() {
+        return this.getModuleInfo().description();
+    }
+
+    public Category getCategory() {
+        return this.getModuleInfo().category();
+    }
+
+    public int getColor() {
+        return this.getModuleInfo().color();
+    }
+
+    public int getKeybind() {
+        return this.keyBind;
+    }
+
+    public void setKeyBind(int keyBind) {
+        this.keyBind = keyBind;
     }
 
     public int getSlide() {
@@ -39,50 +56,9 @@ public class Module {
         this.slide = slide;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public boolean getState() {
-        return this.isEnabled();
-    }
-
     public static String capitalize(String line)
     {
         return Character.toUpperCase(line.charAt(0)) + line.substring(1);
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName(String name) {
-        return name;
-    }
-
-
-    public Module getModule() {
-        return this.module;
-    }
-    public boolean isToggled() {
-        return toggled;
-    }
-
-    public int getKeybind() {
-        return keyBind;
-    }
-
-    public int getKeyBind() {
-        return keyBind;
     }
 
     public boolean setDisabled() {
@@ -93,17 +69,8 @@ public class Module {
         return toggled = true;
     }
 
-    public void setKeyBind(int keyBind) {
-        this.keyBind = keyBind;
-    }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public void onUpdate() {}
 
@@ -144,10 +111,6 @@ public class Module {
 
     public void setSuffix(String suffix) {
         this.suffix = suffix;
-    }
-
-    public Object getCategory() {
-        return category;
     }
 
     public void onRender() {

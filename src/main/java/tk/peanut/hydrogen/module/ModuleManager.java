@@ -10,7 +10,6 @@ import tk.peanut.hydrogen.module.modules.player.FastPlace;
 import tk.peanut.hydrogen.module.modules.player.SafeWalk;
 import tk.peanut.hydrogen.module.modules.render.*;
 import tk.peanut.hydrogen.module.modules.movement.Eagle;
-import tk.peanut.hydrogen.scripting.ScriptModule;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +37,6 @@ public class ModuleManager {
         add(new TriggerBot());
         add(new NoBob());
         add(new Fullbright());
-
         add(new SafeWalk());
 
         // alphabetically sort modules in clickgui
@@ -107,9 +105,5 @@ public class ModuleManager {
     public boolean get(int i) {
         // TODO Auto-generated method stub
         return false;
-    }
-
-    public void addScriptModule(ScriptModule module) {
-        add(module);
     }
 }

@@ -6,6 +6,7 @@ import org.lwjgl.input.Keyboard;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.Category;
+import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
@@ -16,6 +17,8 @@ import java.util.Random;
 /**
  * Created by peanut on 05/02/2021
  */
+
+@Info(name = "AutoClicker", description = "", category = Category.Combat, color = -1)
 public class AutoClicker extends Module {
 
     Random random = new Random();
@@ -25,7 +28,7 @@ public class AutoClicker extends Module {
     int delay;
 
     public AutoClicker() {
-        super("AutoClicker", "Automatically clicks for you", Keyboard.KEY_NONE, Category.Combat, -1);
+        super(Keyboard.KEY_NONE);
 
         Hydrogen.getInstance().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
     }

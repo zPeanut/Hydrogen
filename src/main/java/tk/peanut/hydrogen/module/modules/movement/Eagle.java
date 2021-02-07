@@ -9,11 +9,13 @@ import net.minecraft.util.BlockPos;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.Category;
+import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 
 import java.time.format.DateTimeFormatter;
 
+@Info(name = "Eagle", description = "", category = Category.Movement, color = -1)
 public class Eagle extends Module {
 
     private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -21,7 +23,7 @@ public class Eagle extends Module {
 
 
     public Eagle() {
-        super("Eagle", "Automatic FastBridge", Keyboard.KEY_Y, Category.Movement, -1);
+        super(Keyboard.KEY_Y);
     }
 
     @EventTarget

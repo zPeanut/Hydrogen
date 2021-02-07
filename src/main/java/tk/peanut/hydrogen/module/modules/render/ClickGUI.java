@@ -3,6 +3,7 @@ package tk.peanut.hydrogen.module.modules.render;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.hydrogen.file.files.ClickGuiFile;
 import tk.peanut.hydrogen.module.Category;
+import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 
@@ -10,12 +11,13 @@ import tk.peanut.hydrogen.ui.clickgui.ClickGui;
  * Created by peanut on 03/02/2021
  */
 
+@Info(name = "ClickGUI", description = "", category = Category.Render, color = -1)
 public class ClickGUI extends Module {
 
     public ClickGui clickgui;
 
     public ClickGUI() {
-        super("ClickGui", "The Overlay", Keyboard.KEY_LSHIFT, Category.Render, -1);
+        super(Keyboard.KEY_LSHIFT);
    /*     ArrayList<String> options = new ArrayList<>();
         options.add("DefaultOption");
         options.add("Option2");

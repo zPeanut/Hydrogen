@@ -12,12 +12,14 @@ import org.lwjgl.input.Keyboard;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.Category;
+import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.TimeHelper;
 
 import java.util.Random;
 
+@Info(name = "TriggerBot", description = "", category = Category.Combat, color = -1)
 public class TriggerBot extends Module {
 
     public static double delay;
@@ -27,7 +29,7 @@ public class TriggerBot extends Module {
     TimeHelper time = new TimeHelper();
 
     public TriggerBot() {
-        super("TriggerBot", "Hits the entity you're currently aiming on", Keyboard.KEY_NONE, Category.Combat, -1);
+        super(Keyboard.KEY_NONE);
 
         Hydrogen.getInstance().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
     }

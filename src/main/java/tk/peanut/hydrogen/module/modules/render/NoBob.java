@@ -5,12 +5,14 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.hydrogen.events.EventPreMotion;
 import tk.peanut.hydrogen.module.Category;
+import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 
+@Info(name = "NoBob", description = "", category = Category.Render, color = -1)
 public class NoBob extends Module {
 
     public NoBob() {
-        super("NoBob", "Removes the bobbing animation", Keyboard.KEY_NONE, Category.Render, -1);
+        super(Keyboard.KEY_NONE);
     }
 
     @EventTarget

@@ -22,7 +22,7 @@ public class KeybindFile {
         try {
             bindList.clear();
             for (Module module : Hydrogen.getInstance().moduleManager.getModules()) {
-                String line = (module.getName() + ":" + String.valueOf(module.getKeyBind()));
+                String line = (module.getName() + ":" + String.valueOf(module.getKeybind()));
                 bindList.write(line);
             }
         } catch (Exception e) {

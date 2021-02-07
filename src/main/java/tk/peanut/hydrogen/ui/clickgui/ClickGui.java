@@ -23,6 +23,7 @@ import net.minecraft.util.ResourceLocation;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.file.files.ClickGuiFile;
 import tk.peanut.hydrogen.module.Category;
+import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.ui.clickgui.component.Component;
 import tk.peanut.hydrogen.ui.clickgui.component.Frame;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
