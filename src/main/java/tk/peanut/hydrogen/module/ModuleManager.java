@@ -37,7 +37,8 @@ public class ModuleManager {
         add(new ESP());
         add(new TriggerBot());
         add(new NoBob());
-        add(new SafeWalk());
+        // TODO: add(new SafeWalk());
+        add(new Fullbright());
 
         if (modules.size() > 0) {
             Collections.sort(modules, new Comparator<Module>() {
