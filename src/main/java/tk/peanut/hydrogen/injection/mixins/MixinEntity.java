@@ -135,5 +135,7 @@ public abstract class MixinEntity {
         return fire;
     }
 
-
+    @Shadow
+    public void moveEntity(double x, double y, double z) {
+    }
 }

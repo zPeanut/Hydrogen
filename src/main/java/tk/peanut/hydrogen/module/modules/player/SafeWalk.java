@@ -30,8 +30,14 @@ public class SafeWalk extends Module {
     @EventTarget
     public void onUpdate(EventSafeWalk e) {
         if(this.isToggled()) {
-            if(ReflectionUtil.pressed.getBoolean(Minecraft.getMinecraft().gameSettings.keyBindJump)) {
-
+            try {
+                if(ReflectionUtil.pressed.getBoolean(Minecraft.getMinecraft().gameSettings.keyBindJump) || !mc.thePlayer.onGround) {
+                    e.setCancelled(true);
+                } else {
+                    e.setCancelled(false);
+                }
+            } catch (IllegalAccessException illegalAccessException) {
+                illegalAccessException.printStackTrace();
             }
         }
     }

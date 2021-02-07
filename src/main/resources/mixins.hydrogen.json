@@ -6,6 +6,7 @@
   "mixins": [
     "MixinEntity",
     "MixinEntityPlayerSP",
+    "MixinGui",
     "MixinGuiChat",
     "MixinGuiIngame",
     "MixinGuiScreen",
@@ -13,6 +14,9 @@
     "MixinMinecraft",
     "MixinNetworkManager",
     "MixinRenderer",
-    "MixinRendererLivingEntity"
+    "MixinRendererLivingEntity",
+    "MixinAbstractClientPlayer",
+    "MixinEntityLivingBase",
+    "MixinEntityPlayer"
   ]
 }

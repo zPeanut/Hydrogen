@@ -13,6 +13,7 @@ import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.Side;
@@ -160,8 +161,9 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
         EventManager.call(new EventMotionUpdate(EventType.POST, posX, posY, posZ, rotationYaw, rotationPitch, onGround));
     }
 
-    @Override
+    /*@Override
     public void moveEntity(double x, double y, double z) {
+
         if (this.noClip) {
             this.setEntityBoundingBox(this.getEntityBoundingBox().offset(x, y, z));
             this.posX = (this.getEntityBoundingBox().minX + this.getEntityBoundingBox().maxX) / 2.0D;
@@ -187,12 +189,6 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
             double d4 = y;
             double d5 = z;
             boolean flag = this.onGround && this.isSneaking();
-
-            EventSafeWalk e = new EventSafeWalk();
-            EventManager.call(e);
-            if (e.isCancelled()) {
-                flag = true;
-            }
 
             if (flag) {
                 double d6;
@@ -452,5 +448,5 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
                 this.worldObj.theProfiler.endSection();
             }
         }
-    }
+    }*/
 }
