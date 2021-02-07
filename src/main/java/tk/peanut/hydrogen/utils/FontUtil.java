@@ -2,6 +2,7 @@ package tk.peanut.hydrogen.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.StringUtils;
 
 /**
