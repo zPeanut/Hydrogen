@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.module.modules.render.ESP;
 import tk.peanut.hydrogen.utils.OutlineUtils;
 
 import java.awt.*;
@@ -42,6 +43,7 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
 
     @Overwrite
     protected void renderModel(T entitylivingbaseIn, float p_77036_2_, float p_77036_3_, float p_77036_4_, float p_77036_5_, float p_77036_6_, float p_77036_7_) {
+
         boolean flag = !entitylivingbaseIn.isInvisible();
         boolean flag1 = !flag && !entitylivingbaseIn.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer);
 
@@ -59,13 +61,13 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                 GlStateManager.alphaFunc(516, 0.003921569F);
             }
 
-            if (Hydrogen.getInstance().moduleManager.getModulebyName("OutlineESP").isEnabled()) {
+            if (Hydrogen.getInstance().moduleManager.getModule(ESP.class) != null && Hydrogen.getInstance().moduleManager.getModule(ESP.class).isEnabled()) {
                 if (entitylivingbaseIn instanceof EntityPlayer && entitylivingbaseIn != Minecraft.getMinecraft().thePlayer) {
                     Color n = Color.WHITE;
                     OutlineUtils.setColor(n);
-                    GL11.glLineWidth(3);
+                    GL11.glLineWidth((float) Hydrogen.getInstance().settingsManager.getSettingByName("LineWidth").getValDouble());
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
-                    OutlineUtils.renderOne(3);
+                    OutlineUtils.renderOne((float) Hydrogen.getInstance().settingsManager.getSettingByName("LineWidth").getValDouble());
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderTwo();
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
@@ -75,10 +77,10 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderFive();
                     OutlineUtils.setColor(Color.WHITE);
-                } else {
-                    GL11.glLineWidth(3);
+                } else if (Hydrogen.getInstance().settingsManager.getSettingByName("Entities").isEnabled()) {
+                    GL11.glLineWidth((float) Hydrogen.getInstance().settingsManager.getSettingByName("LineWidth").getValDouble());
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
-                    OutlineUtils.renderOne(3);
+                    OutlineUtils.renderOne((float) Hydrogen.getInstance().settingsManager.getSettingByName("LineWidth").getValDouble());
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderTwo();
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
@@ -88,15 +90,15 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                     OutlineUtils.renderFive();
                 }
             }
-        }
 
-        this.mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+            this.mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
 
-        if (flag1) {
-            GlStateManager.disableBlend();
-            GlStateManager.alphaFunc(516, 0.1F);
-            GlStateManager.popMatrix();
-            GlStateManager.depthMask(true);
+            if (flag1) {
+                GlStateManager.disableBlend();
+                GlStateManager.alphaFunc(516, 0.1F);
+                GlStateManager.popMatrix();
+                GlStateManager.depthMask(true);
+            }
         }
     }
 }
