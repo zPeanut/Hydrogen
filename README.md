@@ -36,6 +36,7 @@ Hydrogen runs on Gradle. Make sure you have it is installed correctly before set
 
 ## Credits
 
-**CCBlueX** for providing most of the initial ClientBase  
-**HeroCode** for providing the ClickGUI API.  
+**superblaubeere27** for providing most of the initial ClientBase  
+**HeroCode** for providing the ClickGUI API.
+**Hexeption** for providing the OutlineESP code.
 
