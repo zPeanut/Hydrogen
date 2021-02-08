@@ -22,6 +22,14 @@ public class TimeHelper {
         return getCurrentTime() >= resetMS + delay;
     }
 
+    public boolean isDelayComplete(long delay)
+    {
+        if (System.currentTimeMillis() - this.lastMS >= delay) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean hasDelayRun(double d)
     {
         return getCurrentTime() >= this.resetMS + d;
