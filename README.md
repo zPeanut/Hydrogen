@@ -43,5 +43,5 @@ Hydrogen runs on Gradle. Make sure you have it is installed correctly before set
 **Hexeption** for providing the OutlineESP code.
 
 [me]: https://github.com/zPeanut
-[UltramoxX]: https://github.com/Morten-R
+[UltramoxX]: https://github.com/Morten-Renner
 
