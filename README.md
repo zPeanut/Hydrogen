@@ -5,19 +5,22 @@ Over time, more and more features will be added.
 
 ## Features
 
-There are currently 9 modules included in Hydrogen.  
+There are currently 12 modules included in Hydrogen.  
 More modules are all being ported over from the previously mentioned MCP client.  
   
 The current included Modules are:
 -  AutoClicker
 -  TriggerBot
--  Eagle
--  Sprint
+-  OutlineESP
 -  FastPlace
--  Chams
--  ESP
--  NoBob
 -  Fullbright
+-  SafeWalk
+-  ClickGUI
+-  Chams
+-  NoBob
+-  Sprint
+-  Eagle
+-  HUD
 
 ## Setting up
 
@@ -33,6 +36,7 @@ Hydrogen runs on Gradle. Make sure you have it is installed correctly before set
 
 ## Credits
 
-**CCBlueX** for providing most of the initial ClientBase  
+**superblaubeere27** for providing most of the initial ClientBase  
 **HeroCode** for providing the ClickGUI API.  
+**Hexeption** for providing the OutlineESP code.
 
