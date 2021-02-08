@@ -13,6 +13,8 @@ import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.settings.Setting;
+import tk.peanut.hydrogen.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,9 @@ public class NameTags extends Module {
     public NameTags() {
         super(Keyboard.KEY_NONE);
         instance = this;
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Health", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("State", this, false));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Items", this, true));
     }
 
 
@@ -103,7 +108,7 @@ public class NameTags extends Module {
     }
 
     public void renderItem(ItemStack stack, int x, int y) {
-        if (Hydrogen.getClient().settingsManager.getSettingByName("Armor").isEnabled()) {
+        if (Hydrogen.getClient().settingsManager.getSettingByName("Items").isEnabled()) {
             GlStateManager.pushMatrix();
             GlStateManager.scale(0.5f, 0.5f, 0.5f);
             List<String> eList = getEnchantList(stack);
@@ -129,7 +134,7 @@ public class NameTags extends Module {
             if (e instanceof EntityLivingBase) {
                 if (mc.getRenderManager().getEntityRenderObject(e) instanceof RendererLivingEntity) {
                     double[] p = entityRenderPos(e);
-                    //(MixinRenderer.passSpecialRenderNameTags((EntityLivingBase)e, p[0], p[1], p[2]);
+                    Utils.passSpecialRenderNameTags((EntityLivingBase)e, p[0], p[1], p[2]);
                 }
             }
         }

@@ -38,7 +38,7 @@ abstract class MixinRenderer<T extends Entity> {
     @Overwrite
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
         if (Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled() && entity instanceof EntityPlayer) {
-            this.passSpecialRenderNameTags((EntityLivingBase) entity, x, y, z);
+            Utils.passSpecialRenderNameTags((EntityLivingBase) entity, x, y, z);
         } else {
             this.renderName(entity, x, y, z);
         }
@@ -127,6 +127,8 @@ abstract class MixinRenderer<T extends Entity> {
                     var12.drawString(p_147906_2_, -var12.getStringWidth(p_147906_2_) / 2, 0, co);
 
                     if (Hydrogen.getClient().settingsManager.getSettingByName("Items").isEnabled())
+                        GL11.glEnable(32823);
+                        GL11.glPolygonOffset(1.0f, -1000000.0f);
                         NameTags.instance.renderArmorESP(p_77033_1_);
                 }
 
