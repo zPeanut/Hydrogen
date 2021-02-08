@@ -11,7 +11,7 @@ import tk.peanut.hydrogen.Hydrogen;
 public class ChatUtils {
     public static final String PRIMARY_COLOR = "§7";
     public static final String SECONDARY_COLOR = "§1";
-    private static final String PREFIX = PRIMARY_COLOR + "[" + SECONDARY_COLOR + Hydrogen.getInstance().name + PRIMARY_COLOR + "] ";
+    private static final String PREFIX = PRIMARY_COLOR + "[" + SECONDARY_COLOR + Hydrogen.getClient().name + PRIMARY_COLOR + "] ";
 
     public static void send(final String s) {
         JsonObject object = new JsonObject();

@@ -7,8 +7,6 @@ import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 
-import java.util.ArrayList;
-
 /**
  * Created by peanut on 05/02/2021
  */
@@ -18,8 +16,8 @@ public class ESP extends Module {
     public ESP() {
         super(Keyboard.KEY_NONE);
 
-        Hydrogen.getInstance().settingsManager.rSetting(new Setting("LineWidth", this, 3, 1, 10, false));
-        Hydrogen.getInstance().settingsManager.rSetting(new Setting("Entities", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("LineWidth", this, 3, 1, 10, false));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Entities", this, true));
     }
 
 }

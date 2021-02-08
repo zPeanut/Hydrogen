@@ -39,7 +39,7 @@ public class MixinMinecraft implements IMixinMinecraft {
 
     @Inject(method = "startGame", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;ingameGUI:Lnet/minecraft/client/gui/GuiIngame;", shift = At.Shift.AFTER))
     private void startGame(CallbackInfo ci) {
-        Hydrogen.getInstance().startClient();
+        Hydrogen.getClient().startClient();
         KeybindFile.loadKeybinds();
         SettingsButtonFile.loadState();
         SettingsComboBoxFile.loadState();
@@ -56,7 +56,7 @@ public class MixinMinecraft implements IMixinMinecraft {
 
     @Inject(method = "shutdown", at = @At("HEAD"))
     private void onShutdown(CallbackInfo ci) {
-        Hydrogen.getInstance().stopClient();
+        Hydrogen.getClient().stopClient();
         KeybindFile.saveKeybinds();
         SettingsButtonFile.saveState();
         SettingsComboBoxFile.saveState();

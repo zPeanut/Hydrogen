@@ -59,7 +59,7 @@ public class Hydrogen {
         this.isOutdated();
     }
 
-    public static Hydrogen getInstance() {
+    public static Hydrogen getClient() {
         return instance;
     }
 

@@ -40,7 +40,7 @@ public class SettingsManager {
 				return set;
 			}
 		}
-		System.err.println("["+ Hydrogen.getInstance().name + "] Error Setting NOT found: '" + name +"'!");
+		System.err.println("["+ Hydrogen.getClient().name + "] Error Setting NOT found: '" + name +"'!");
 		return null;
 	}
 
@@ -50,7 +50,7 @@ public class SettingsManager {
 				return set;
 			}
 		}
-		System.err.println("["+ Hydrogen.getInstance().name + "] Error Setting NOT found: '" + name +"'!");
+		System.err.println("["+ Hydrogen.getClient().name + "] Error Setting NOT found: '" + name +"'!");
 		return null;
 	}
 

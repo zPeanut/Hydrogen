@@ -4,14 +4,22 @@ import com.mojang.authlib.Agent;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Session;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.module.modules.render.NameTags;
 
 import java.awt.*;
 import java.net.Proxy;
@@ -43,6 +51,42 @@ public class Utils {
         float hue = ((System.currentTimeMillis() + index) % (int)(seconds * 1000)) / (float)(seconds * 1000);
         int color = Color.HSBtoRGB(hue, saturation, brightness);
         return color;
+    }
+
+    public static void rect(float x1, float y1, float x2, float y2, int fill) {
+        GlStateManager.color(0, 0, 0);
+        GL11.glColor4f(0, 0, 0, 0);
+
+        float f = (fill >> 24 & 0xFF) / 255.0F;
+        float f1 = (fill >> 16 & 0xFF) / 255.0F;
+        float f2 = (fill >> 8 & 0xFF) / 255.0F;
+        float f3 = (fill & 0xFF) / 255.0F;
+
+        GL11.glEnable(3042);
+        GL11.glDisable(3553);
+        GL11.glBlendFunc(770, 771);
+        GL11.glEnable(2848);
+
+        GL11.glPushMatrix();
+        GL11.glColor4f(f1, f2, f3, f);
+        GL11.glBegin(7);
+        GL11.glVertex2d(x2, y1);
+        GL11.glVertex2d(x1, y1);
+        GL11.glVertex2d(x1, y2);
+        GL11.glVertex2d(x2, y2);
+        GL11.glEnd();
+        GL11.glPopMatrix();
+
+        GL11.glEnable(3553);
+        GL11.glDisable(3042);
+        GL11.glDisable(2848);
+    }
+
+    public static void rectBorder(float x1, float y1, float x2, float y2, int outline) {
+        rect(x1, y2-1, x2, y2, outline);
+        rect(x1, y1, x2, y1+1, outline);
+        rect(x1, y1, x1+1, y2, outline);
+        rect(x2-1, y1, x2, y2, outline);
     }
 
 
@@ -83,6 +127,18 @@ public class Utils {
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();
     }
+
+    public static double[] entityWorldPos(Entity e) {
+        float p_147936_2_ = Minecraft.getMinecraft().timer.renderPartialTicks;
+
+        double x = (e.lastTickPosX + (e.posX - e.lastTickPosX) * (double)p_147936_2_);
+        double y = (e.lastTickPosY + (e.posY - e.lastTickPosY) * (double)p_147936_2_);
+        double z = (e.lastTickPosZ + (e.posZ - e.lastTickPosZ) * (double)p_147936_2_);
+
+        return new double[] {x, y, z};
+    }
+
+
 
     public static Session createSession(String username, String password, @NotNull Proxy proxy) throws Exception {
         YggdrasilAuthenticationService service = new YggdrasilAuthenticationService(proxy, "");

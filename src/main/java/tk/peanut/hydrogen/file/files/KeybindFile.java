@@ -21,7 +21,7 @@ public class KeybindFile {
     public static void saveKeybinds() {
         try {
             bindList.clear();
-            for (Module module : Hydrogen.getInstance().moduleManager.getModules()) {
+            for (Module module : Hydrogen.getClient().moduleManager.getModules()) {
                 String line = (module.getName() + ":" + String.valueOf(module.getKeybind()));
                 bindList.write(line);
             }
@@ -32,7 +32,7 @@ public class KeybindFile {
     public static void loadKeybinds() {
         try {
             for (String s : bindList.read()) {
-                for (Module module : Hydrogen.getInstance().moduleManager.getModules()) {
+                for (Module module : Hydrogen.getClient().moduleManager.getModules()) {
                     String name = s.split(":")[0];
                     int key = Integer.parseInt(s.split(":")[1]);
                     if (module.getName().equalsIgnoreCase(name)) {

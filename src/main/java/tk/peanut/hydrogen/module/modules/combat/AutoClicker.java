@@ -30,7 +30,7 @@ public class AutoClicker extends Module {
     public AutoClicker() {
         super(Keyboard.KEY_NONE);
 
-        Hydrogen.getInstance().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
     }
 
 
@@ -38,7 +38,7 @@ public class AutoClicker extends Module {
     public void onUpdate(EventUpdate e) {
         try
         {
-            switch((int) Hydrogen.getInstance().settingsManager.getSettingByName(this, "CPS").getValDouble()) {
+            switch((int) Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble()) {
                 case 1:
                     delay = 500;
                     break;

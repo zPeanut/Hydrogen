@@ -21,7 +21,7 @@ public class SettingsSliderFile {
     public static void saveState() {
         try {
             SliderValue.clear();
-            for (Setting setting : Hydrogen.getInstance().settingsManager.getSettings()) {
+            for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
                 String line = (setting.getName() + ":" + String.valueOf(setting.getValDouble()));
                 SliderValue.write(line);
             }
@@ -32,7 +32,7 @@ public class SettingsSliderFile {
     public static void loadState() {
         try {
             for (String s : SliderValue.read()) {
-                for (Setting setting : Hydrogen.getInstance().settingsManager.getSettings()) {
+                for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
                     String name = s.split(":")[0];
                     double value = Double.parseDouble(s.split(":")[1]);
                     if (setting.getName().equalsIgnoreCase(name)) {

@@ -11,26 +11,16 @@ import java.util.ArrayList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.gui.GuiScreen;
 
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.shader.ShaderGroup;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.event.ClickEvent;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatStyle;
 import net.minecraft.util.ResourceLocation;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.file.files.ClickGuiFile;
 import tk.peanut.hydrogen.module.Category;
-import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.ui.clickgui.component.Component;
 import tk.peanut.hydrogen.ui.clickgui.component.Frame;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
-import tk.peanut.hydrogen.utils.Utils;
-import tv.twitch.chat.Chat;
-
-import javax.swing.text.Style;
 
 public class ClickGui extends GuiMainMenu {
 
@@ -83,7 +73,7 @@ public class ClickGui extends GuiMainMenu {
 			if (mc.entityRenderer.getShaderGroup() != null) {
 				mc.entityRenderer.getShaderGroup().deleteShaderGroup();
 			}
-			if(Hydrogen.getInstance().settingsManager.getSettingByName("Blur").isEnabled()) {
+			if(Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
 				mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
 			}
 		}

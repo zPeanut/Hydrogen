@@ -20,7 +20,7 @@ public class ClickGUI extends Module {
 
     public ClickGUI() {
         super(Keyboard.KEY_LSHIFT);
-        Hydrogen.getInstance().settingsManager.rSetting(new Setting("Blur", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Blur", this, true));
    /*     ArrayList<String> options = new ArrayList<>();
         options.add("DefaultOption");
         options.add("Option2");

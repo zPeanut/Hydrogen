@@ -21,7 +21,7 @@ public class SettingsButtonFile {
     public static void saveState() {
         try {
             ButtonList.clear();
-            for (Setting setting : Hydrogen.getInstance().settingsManager.getSettings()) {
+            for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
                 String line = (setting.getName() + ":" + String.valueOf(setting.isEnabled()));
                 ButtonList.write(line);
             }
@@ -32,7 +32,7 @@ public class SettingsButtonFile {
     public static void loadState() {
         try {
             for (String s : ButtonList.read()) {
-                for (Setting setting : Hydrogen.getInstance().settingsManager.getSettings()) {
+                for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
                     String name = s.split(":")[0];
                     boolean toggled = Boolean.parseBoolean(s.split(":")[1]);
                     if (setting.getName().equalsIgnoreCase(name)) {

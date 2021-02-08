@@ -21,7 +21,7 @@ public class ModuleFile {
     public static void saveModules() {
         try {
             ModuleList.clear();
-            for (Module module : Hydrogen.getInstance().moduleManager.getModules()) {
+            for (Module module : Hydrogen.getClient().moduleManager.getModules()) {
                 String line = (module.getName() + ":" + String.valueOf(module.isEnabled()));
                 ModuleList.write(line);
             }
@@ -32,7 +32,7 @@ public class ModuleFile {
     public static void loadModules() {
         try {
             for (String s : ModuleList.read()) {
-                for (Module module : Hydrogen.getInstance().moduleManager.getModules()) {
+                for (Module module : Hydrogen.getClient().moduleManager.getModules()) {
                     String name = s.split(":")[0];
                     boolean toggled = Boolean.parseBoolean(s.split(":")[1]);
                     if (module.getName().equalsIgnoreCase(name) && toggled) {

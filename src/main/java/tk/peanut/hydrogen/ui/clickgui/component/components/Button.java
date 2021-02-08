@@ -31,8 +31,8 @@ public class Button extends Component {
 		this.open = false;
 		height = 12;
 		int opY = offset + 12;
-		if(Hydrogen.getInstance().settingsManager.getSettingsByMod(mod) != null) {
-			for(Setting s : Hydrogen.getInstance().settingsManager.getSettingsByMod(mod)){
+		if(Hydrogen.getClient().settingsManager.getSettingsByMod(mod) != null) {
+			for(Setting s : Hydrogen.getClient().settingsManager.getSettingsByMod(mod)){
 				if(s.isCombo()){
 					this.subcomponents.add(new ModeButton(s, this, mod, opY));
 					opY += 12;

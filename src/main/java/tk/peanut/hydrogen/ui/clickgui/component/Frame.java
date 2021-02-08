@@ -38,7 +38,7 @@ public class Frame {
 		
 
 		
-		for(Module mod : Hydrogen.getInstance().moduleManager.getModulesInCategory(category)) {
+		for(Module mod : Hydrogen.getClient().moduleManager.getModulesInCategory(category)) {
 			Button modButton = new Button(mod, this, tY);
 			this.components.add(modButton);
 			tY += 12;

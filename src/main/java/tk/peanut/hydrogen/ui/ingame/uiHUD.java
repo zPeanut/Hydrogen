@@ -1,6 +1,5 @@
 package tk.peanut.hydrogen.ui.ingame;
 
-import akka.actor.SupervisorStrategyLowPriorityImplicits;
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -11,10 +10,7 @@ import tk.peanut.hydrogen.events.EventRender2D;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 import tk.peanut.hydrogen.utils.Utils;
-import tk.peanut.hydrogen.utils.fontRenderer.GlyphPage;
-import tk.peanut.hydrogen.utils.fontRenderer.GlyphPageFontRenderer;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -38,7 +34,7 @@ public class uiHUD {
                     Thread.sleep(3L);
                 } catch (InterruptedException e) {
                 }
-                for (Module mod : Hydrogen.getInstance().moduleManager.getModules()) {
+                for (Module mod : Hydrogen.getClient().moduleManager.getModules()) {
                     if (mod.isEnabled()) {
                         if (mod.getSlide() < mc.fontRendererObj.getStringWidth(mod.getName())) {
                             mod.setSlide(mod.getSlide() + 1);
@@ -55,7 +51,7 @@ public class uiHUD {
         },"smooth array").start();
 
 
-        Collections.sort(Hydrogen.getInstance().moduleManager.getModules(), new Comparator<Module>() {
+        Collections.sort(Hydrogen.getClient().moduleManager.getModules(), new Comparator<Module>() {
             @Override
             public int compare(Module mod1, Module mod2) {
                 if (mc.fontRendererObj.getStringWidth(mod1.getName() + mod1.getSuffix()) > mc.fontRendererObj.getStringWidth(mod2.getName() + mod2.getSuffix())) {
@@ -75,7 +71,7 @@ public class uiHUD {
     public static void render(EventRender2D e) {
         if(mc.gameSettings.showDebugInfo)
             return;
-        if(Hydrogen.getInstance().moduleManager.getModulebyName("HUD").isEnabled()) {
+        if(Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
             drawWatermark();
             drawArray();
             drawInfo();
@@ -87,12 +83,12 @@ public class uiHUD {
             LocalDateTime now = LocalDateTime.now();
             String currenttime = timeFormat.format(now);
 
-            String watermark = String.format("%s %s §7(%s)", Hydrogen.getInstance().name, Hydrogen.getInstance().version, currenttime);
+            String watermark = String.format("%s %s §7(%s)", Hydrogen.getClient().name, Hydrogen.getClient().version, currenttime);
 
 
-            if(Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
+            if(Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
 
-                if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                     Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) - 22, 21, Integer.MIN_VALUE);
                 }
 
@@ -102,10 +98,10 @@ public class uiHUD {
                 GL11.glPopMatrix();
 
                 mc.fontRendererObj.drawStringWithShadow("2", 17, 12, -1);
-                mc.fontRendererObj.drawStringWithShadow(Hydrogen.getInstance().version + " §7(" + currenttime + ")", 27, 6, -1);
+                mc.fontRendererObj.drawStringWithShadow(Hydrogen.getClient().version + " §7(" + currenttime + ")", 27, 6, -1);
             } else {
 
-                if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                     Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
                 }
                 mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
@@ -115,45 +111,45 @@ public class uiHUD {
 
     private static void drawArray() {
         int count = 0;
-        for (int i = 0; i < Hydrogen.getInstance().moduleManager.getEnabledMods().size(); i++) {
+        for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
             ScaledResolution sr = new ScaledResolution(mc);
 
-            Module mod = Hydrogen.getInstance().moduleManager.getEnabledMods().get(i);
+            Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
 
 
             int mwidth = 2 + mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName());
             int mheight = count * 11 + i + 23;
             int mheight2 = count * 11 + i + 2;
             int mcolor = Utils.getRainbow(5, 0.4f, 1, count * 100);
-            int color = Hydrogen.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow") ? mcolor : mod.getColor();
+            int color = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow") ? mcolor : mod.getColor();
 
 
             if (!mod.getName().equalsIgnoreCase("hud")) {
 
 
-                if (Hydrogen.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Left")) {
+                if (Hydrogen.getClient().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Left")) {
 
-                    if(Hydrogen.getInstance().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
+                    if(Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
 
-                        if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                        if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                             Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 21 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 33, Integer.MIN_VALUE);
                         }
                         mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight, color);
 
                     } else {
 
-                        if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                        if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                             Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 11 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 23, Integer.MIN_VALUE);
                         }
                         mc.fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight2 + 11, color);
 
                     }
 
-                } else if (Hydrogen.getInstance().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Right")) {
-                    if (Hydrogen.getInstance().settingsManager.getSettingByName("Background").isEnabled()) {
+                } else if (Hydrogen.getClient().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Right")) {
+                    if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                         Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, Integer.MIN_VALUE);
                     }
-                    mc.fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight - 20, Hydrogen.getInstance().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? mcolor : mod.getColor());
+                    mc.fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight - 20, Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? mcolor : mod.getColor());
 
                 }
                 count++;
@@ -162,7 +158,7 @@ public class uiHUD {
     }
 
     public static void drawInfo() {
-        if (Hydrogen.getInstance().settingsManager.getSettingByName("Info").isEnabled()) {
+        if (Hydrogen.getClient().settingsManager.getSettingByName("Info").isEnabled()) {
             String x = String.valueOf((int)mc.thePlayer.posX);
             String y = String.valueOf((int)mc.thePlayer.posY);
             String z = String.valueOf((int)mc.thePlayer.posZ);

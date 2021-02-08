@@ -19,7 +19,7 @@ public class FileManager {
             mc = Minecraft.getMinecraft();
             fileName = fileName + ".txt";
             this.fileName = fileName;
-            this.path = new File(Hydrogen.getInstance().directory.toString());
+            this.path = new File(Hydrogen.getClient().directory.toString());
             if (path.exists() == false) {
                 try {
                     path.mkdir();
