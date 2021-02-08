@@ -3,6 +3,7 @@ package tk.peanut.hydrogen.module;
 import com.darkmagician6.eventapi.EventManager;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
+import tk.peanut.hydrogen.file.files.ModuleFile;
 
 public class Module {
 
@@ -90,7 +91,7 @@ public class Module {
         }else{
             onDisable();
         }
-
+        ModuleFile.saveModules();
     }
     public void onEnable() {
         EventManager.register(this);

@@ -45,6 +45,7 @@ public class MixinMinecraft implements IMixinMinecraft {
         SettingsComboBoxFile.loadState();
         SettingsSliderFile.loadState();
         ClickGuiFile.loadClickGui();
+        ModuleFile.loadModules();
     }
 
     @Inject(method = "runTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;dispatchKeypresses()V", shift = At.Shift.AFTER))
@@ -61,6 +62,7 @@ public class MixinMinecraft implements IMixinMinecraft {
         SettingsComboBoxFile.saveState();
         SettingsSliderFile.saveState();
         ClickGuiFile.saveClickGui();
+        ModuleFile.saveModules();
     }
 
     @Override

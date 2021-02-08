@@ -56,8 +56,7 @@ public class Hydrogen {
         clickgui = new ClickGui();
         moduleManager.addModules();
         new uiHUD();
-        isOutdated();
-        moduleManager.getModulebyName("HUD").setEnabled();
+        this.isOutdated();
     }
 
     public static Hydrogen getInstance() {
