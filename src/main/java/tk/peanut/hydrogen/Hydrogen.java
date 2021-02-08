@@ -8,6 +8,7 @@ import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 import tk.peanut.hydrogen.settings.SettingsManager;
 import tk.peanut.hydrogen.ui.ingame.uiHUD;
 import tk.peanut.hydrogen.utils.KeybindManager;
+import tk.peanut.hydrogen.utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.File;

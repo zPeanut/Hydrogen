@@ -6,12 +6,14 @@ import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Session;
@@ -27,6 +29,7 @@ import java.util.Random;
 
 public class Utils {
     private static final Random RANDOM = new Random();
+    public static Utils instance;
 
     /**
      * This function returns a random value between min and max
@@ -36,6 +39,10 @@ public class Utils {
      * @param max Maximal
      * @return The value
      */
+
+    public Utils() {
+        instance = this;
+    }
     public static int random(int min, int max) {
         if (max <= min) return min;
 
@@ -89,61 +96,13 @@ public class Utils {
         rect(x2-1, y1, x2, y2, outline);
     }
 
-
-    public static void errorLog(String message) {
-        System.out.println("[ERROR] [Phosphor] " + message);
-    }
-
-    public static void drawRect(double left, double top, double right, double bottom, int color) {
-        int j;
-        if (left < right) {
-            j = (int) left;
-            left = right;
-            right = j;
-        }
-
-        if (top < bottom) {
-            j = (int) top;
-            top = bottom;
-            bottom = j;
-        }
-
-        float f3 = (float)(color >> 24 & 255) / 255.0F;
-        float f = (float)(color >> 16 & 255) / 255.0F;
-        float f1 = (float)(color >> 8 & 255) / 255.0F;
-        float f2 = (float)(color & 255) / 255.0F;
-        Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        GlStateManager.enableBlend();
-        GlStateManager.disableTexture2D();
-        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-        GlStateManager.color(f, f1, f2, f3);
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION);
-        worldrenderer.pos((double)left, (double)bottom, 0.0D).endVertex();
-        worldrenderer.pos((double)right, (double)bottom, 0.0D).endVertex();
-        worldrenderer.pos((double)right, (double)top, 0.0D).endVertex();
-        worldrenderer.pos((double)left, (double)top, 0.0D).endVertex();
-        tessellator.draw();
-        GlStateManager.enableTexture2D();
-        GlStateManager.disableBlend();
-    }
-
-    public static double[] entityWorldPos(Entity e) {
-        float p_147936_2_ = Minecraft.getMinecraft().timer.renderPartialTicks;
-
-        double x = (e.lastTickPosX + (e.posX - e.lastTickPosX) * (double)p_147936_2_);
-        double y = (e.lastTickPosY + (e.posY - e.lastTickPosY) * (double)p_147936_2_);
-        double z = (e.lastTickPosZ + (e.posZ - e.lastTickPosZ) * (double)p_147936_2_);
-
-        return new double[] {x, y, z};
-    }
-
     public static void passSpecialRenderNameTags(EntityLivingBase p_77033_1_, double x, double y, double z) {
         if(Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
-            if (p_77033_1_.getEntityId() != -3)
+            if((p_77033_1_.getEntityId() != -3 && p_77033_1_ != Minecraft.getMinecraft().thePlayer) && !(p_77033_1_.isInvisible()))
             {
                 if (Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
                     String p_147906_2_ = p_77033_1_.getDisplayName().getFormattedText();
+
 
                     double[] pos = Utils.entityWorldPos(p_77033_1_);
                     double[] pos2 = Utils.entityWorldPos(Minecraft.getMinecraft().thePlayer);
@@ -217,8 +176,8 @@ public class Utils {
 
                     GlStateManager.enableTexture2D();
                     int co = -1;
-
                     var12.drawString(p_147906_2_, -var12.getStringWidth(p_147906_2_) / 2, 0, co);
+
 
                     if (Hydrogen.getClient().settingsManager.getSettingByName("Items").isEnabled())
                         NameTags.instance.renderArmorESP(p_77033_1_);
@@ -234,6 +193,57 @@ public class Utils {
             }
         }
     }
+
+
+    public static void errorLog(String message) {
+        System.out.println("[ERROR] [Phosphor] " + message);
+    }
+
+    public static void drawRect(double left, double top, double right, double bottom, int color) {
+        int j;
+        if (left < right) {
+            j = (int) left;
+            left = right;
+            right = j;
+        }
+
+        if (top < bottom) {
+            j = (int) top;
+            top = bottom;
+            bottom = j;
+        }
+
+        float f3 = (float)(color >> 24 & 255) / 255.0F;
+        float f = (float)(color >> 16 & 255) / 255.0F;
+        float f1 = (float)(color >> 8 & 255) / 255.0F;
+        float f2 = (float)(color & 255) / 255.0F;
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.color(f, f1, f2, f3);
+        worldrenderer.begin(7, DefaultVertexFormats.POSITION);
+        worldrenderer.pos((double)left, (double)bottom, 0.0D).endVertex();
+        worldrenderer.pos((double)right, (double)bottom, 0.0D).endVertex();
+        worldrenderer.pos((double)right, (double)top, 0.0D).endVertex();
+        worldrenderer.pos((double)left, (double)top, 0.0D).endVertex();
+        tessellator.draw();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+    }
+
+    public static double[] entityWorldPos(Entity e) {
+        float p_147936_2_ = Minecraft.getMinecraft().timer.renderPartialTicks;
+
+        double x = (e.lastTickPosX + (e.posX - e.lastTickPosX) * (double)p_147936_2_);
+        double y = (e.lastTickPosY + (e.posY - e.lastTickPosY) * (double)p_147936_2_);
+        double z = (e.lastTickPosZ + (e.posZ - e.lastTickPosZ) * (double)p_147936_2_);
+
+        return new double[] {x, y, z};
+    }
+
+
 
 
 
