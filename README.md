@@ -1,7 +1,9 @@
 # Hydrogen
 A mixin based ghost client for Minecraft 1.8.9 built on Minecraft Forge.  
 Originally designed as a MCP Client (called Tephra), it is now being ported to Forge.  
-Over time, more and more features will be added.
+Over time, more and more features will be added.  
+
+Developed by [Me] and [UltramoxX]
 
 ## Features
 
@@ -39,4 +41,7 @@ Hydrogen runs on Gradle. Make sure you have it is installed correctly before set
 **superblaubeere27** for providing most of the initial ClientBase  
 **HeroCode** for providing the ClickGUI API.  
 **Hexeption** for providing the OutlineESP code.
+
+[me]: https://github.com/zPeanut
+[UltramoxX]: https://github.com/Morten-R
 
