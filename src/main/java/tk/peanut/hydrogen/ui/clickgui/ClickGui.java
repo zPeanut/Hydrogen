@@ -67,7 +67,7 @@ public class ClickGui extends GuiMainMenu {
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
-		drawRect(0, 0, this.width, this.height, 0x44101010);
+		drawRect(0, 0, this.width, this.height, 0x66101010);
 		/*if(Hydrogen.getInstance().outdated) {
 			mc.fontRendererObj.drawStringWithShadow("§7Outdated! Newest version is: §e" + Hydrogen.getInstance().newversion + "§7!", 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
 			TODO: Implement update function

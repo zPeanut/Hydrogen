@@ -37,11 +37,14 @@ public class Slider extends Component {
 	public void renderComponent() {
 		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth(), parent.parent.getY() + offset + 12, this.hovered ? 0x88222222 : 0x88111111);
 		 final int drag = (int)(this.set.getValDouble() / this.set.getMax() * this.parent.parent.getWidth());
-		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12,hovered ? 0x99222222 : 0x88000000);
+		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12,0x77000000);
+		if(this.hovered) {
+			Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12,0x77000000);
+		}
 		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x99111111);
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.set.getName() + ": " + this.set.getValDouble() , (parent.parent.getX()* 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f + 2, -1);
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + ": " + this.set.getValDouble() : this.set.getName() + ": " + this.set.getValDouble(), (parent.parent.getX()* 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f + 2, -1);
 		
 		GL11.glPopMatrix();
 	}
