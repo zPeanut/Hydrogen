@@ -17,7 +17,6 @@ public class ParticleGenerator {
     private int height;
     private ArrayList<Particle> particles = new ArrayList();
     private Random random = new Random();
-    private TimeHelper timer = new TimeHelper();
     int state = 0;
     int a = 255;
     int r = 255;
@@ -56,7 +55,6 @@ public class ParticleGenerator {
         private float size;
         private boolean reset;
         private Random random = new Random();
-        private TimeHelper timer = new TimeHelper();
 
         public Particle(int x, int y)
         {
@@ -97,8 +95,6 @@ public class ParticleGenerator {
                 GL11.glEnd();
             }
         }
-
-
 
         public void resetPosSize()
         {
