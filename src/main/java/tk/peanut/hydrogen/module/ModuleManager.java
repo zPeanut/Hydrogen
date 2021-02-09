@@ -6,6 +6,7 @@ import tk.peanut.hydrogen.events.EventKey;
 import tk.peanut.hydrogen.module.modules.combat.AutoClicker;
 import tk.peanut.hydrogen.module.modules.combat.TriggerBot;
 import tk.peanut.hydrogen.module.modules.movement.Sprint;
+import tk.peanut.hydrogen.module.modules.player.ChestStealer;
 import tk.peanut.hydrogen.module.modules.player.FastPlace;
 import tk.peanut.hydrogen.module.modules.player.SafeWalk;
 import tk.peanut.hydrogen.module.modules.render.*;
@@ -39,6 +40,7 @@ public class ModuleManager {
         add(new Fullbright());
         add(new SafeWalk());
         add(new NameTags());
+        add(new ChestStealer());
 
         // alphabetically sort modules in clickgui
 

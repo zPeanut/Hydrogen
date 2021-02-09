@@ -122,9 +122,6 @@ public class ClickGui extends GuiMainMenu {
 		 * Start blur
 		 */
 
-
-
-
 	}
 
 	@Override
