@@ -19,6 +19,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Session;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.module.modules.render.NameTags;
@@ -47,6 +48,21 @@ public class Utils {
         if (max <= min) return min;
 
         return RANDOM.nextInt(max - min) + min;
+    }
+
+    public static void startClip(float x1, float y1, float x2, float y2) {
+        float temp;
+        if (y1 > y2) {
+            temp = y2;
+            y2 = y1;
+            y1 = temp;
+        }
+
+        GL11.glScissor((int)x1, (int)(Display.getHeight()-y2), (int)(x2-x1), (int)(y2-y1));
+        GL11.glEnable(GL11.GL_SCISSOR_TEST);
+    }
+    public static void endClip() {
+        GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
     public static final ScaledResolution getScaledRes() {
@@ -334,6 +350,18 @@ public class Utils {
         if (mc.thePlayer.moveStrafing < 0.0F) yaw += 90.0F * forward;
 
         return Math.toRadians(yaw);
+    }
+
+    public static void drawBorderedCorneredRect(final float x, final float y, final float x2, final float y2, final float lineWidth, final int lineColor, final int bgColor) {
+        drawRect(x, y, x2, y2, bgColor);
+        final float f = (lineColor >> 24 & 0xFF) / 255.0f;
+        final float f2 = (lineColor >> 16 & 0xFF) / 255.0f;
+        final float f3 = (lineColor >> 8 & 0xFF) / 255.0f;
+        final float f4 = (lineColor & 0xFF) / 255.0f;
+        drawRect(x - 1.0f, y - 1.0f, x2 + 1.0f, y, lineColor);
+        drawRect(x - 1.0f, y, x, y2, lineColor);
+        drawRect(x - 1.0f, y2, x2 + 1.0f, y2 + 1.0f, lineColor);
+        drawRect(x2, y, x2 + 1.0f, y2, lineColor);
     }
 
     /*

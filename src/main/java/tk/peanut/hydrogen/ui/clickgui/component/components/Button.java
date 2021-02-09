@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 import tk.peanut.hydrogen.ui.clickgui.component.Component;
@@ -22,8 +23,10 @@ public class Button extends Component {
 	private ArrayList<Component> subcomponents;
 	public boolean open;
 	private int height;
+	public Frame.Tooltip tooltip;
 	
 	public Button(Module mod, Frame parent, int offset) {
+		this.tooltip = new Frame.Tooltip();
 		this.mod = mod;
 		this.parent = parent;
 		this.offset = offset;
@@ -86,6 +89,10 @@ public class Button extends Component {
 				Gui.drawRect(parent.getX() + 2, parent.getY() + this.offset + 12, parent.getX() + 3, parent.getY() + this.offset + ((this.subcomponents.size() + 1) * 12), ClickGui.color);
 			}
 		}
+
+		if(this.isHovered) {
+			tooltip.render(this.mod.getDescription());
+		}
 	}
 	
 	@Override
@@ -140,4 +147,6 @@ public class Button extends Component {
 		}
 		return false;
 	}
+
+
 }
