@@ -20,15 +20,19 @@ import tk.peanut.hydrogen.file.files.ClickGuiFile;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.ui.clickgui.component.Component;
 import tk.peanut.hydrogen.ui.clickgui.component.Frame;
+import tk.peanut.hydrogen.utils.ParticleGenerator;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
+import tk.peanut.hydrogen.utils.Utils;
 
 public class ClickGui extends GuiMainMenu {
 
 	public static ArrayList<Frame> frames;
 	public static int color = 0x99cfdcff;
+	private ParticleGenerator particleGen;
 	
 	public ClickGui() {
 		this.frames = new ArrayList<Frame>();
+		this.particleGen = new ParticleGenerator(60, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight());
 		int frameX = 5;
 		for(Category category : Category.values()) {
 			Frame frame = new Frame(category);
@@ -77,6 +81,7 @@ public class ClickGui extends GuiMainMenu {
 				mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
 			}
 		}
+
 	}
 
 	@Override
@@ -121,7 +126,7 @@ public class ClickGui extends GuiMainMenu {
 		/*
 		 * Start blur
 		 */
-
+		this.buttonList.add(new GuiButton(5, 4, 2, 98, 20, "Menu"));
 	}
 
 	@Override
