@@ -13,7 +13,7 @@ import tk.peanut.hydrogen.ui.clickgui.ClickGui;
  * Created by peanut on 03/02/2021
  */
 
-@Info(name = "ClickGUI", description = "", category = Category.Render, color = -1)
+@Info(name = "ClickGUI", description = "The click gui", category = Category.Render, color = -1)
 public class ClickGUI extends Module {
 
     public ClickGui clickgui;

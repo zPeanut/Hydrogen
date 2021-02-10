@@ -7,7 +7,7 @@ import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 
-@Info(name = "Sprint", description = "", category = Category.Movement, color = -1)
+@Info(name = "Sprint", description = "Automatically sprints when W is pressed", category = Category.Movement, color = -1)
 public class Sprint extends Module {
     public Sprint() {
         super(Keyboard.KEY_NONE);

@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by peanut on 08/02/2021
  */
-@Info(name = "NameTags", description = "", category = Category.Render, color = -1)
+@Info(name = "NameTags", description = "Enhanced Nametags", category = Category.Render, color = -1)
 public class NameTags extends Module {
 
     public static NameTags instance;

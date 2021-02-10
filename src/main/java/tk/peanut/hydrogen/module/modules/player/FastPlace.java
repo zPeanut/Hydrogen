@@ -9,7 +9,7 @@ import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 
-@Info(name = "FastPlace", description = "", category = Category.Player, color = -1)
+@Info(name = "FastPlace", description = "Removes the right-click delay", category = Category.Player, color = -1)
 public class FastPlace extends Module {
 
     public FastPlace() {

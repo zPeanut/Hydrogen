@@ -8,7 +8,7 @@ import tk.peanut.hydrogen.module.Module;
 
 import java.awt.image.Kernel;
 
-@Info(name = "Fullbright", description = "", category = Category.Render, color = -1)
+@Info(name = "Fullbright", description = "Brightens up the world", category = Category.Render, color = -1)
 public class Fullbright extends Module {
     public Fullbright() {
         super(Keyboard.KEY_NONE);

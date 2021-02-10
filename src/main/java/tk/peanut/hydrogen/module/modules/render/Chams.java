@@ -5,7 +5,7 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 
-@Info(name = "Chams", description = "", category = Category.Render, color = -1)
+@Info(name = "Chams", description = "Draws models through walls", category = Category.Render, color = -1)
 public class Chams extends Module {
     public Chams() {
         super(Keyboard.KEY_NONE);

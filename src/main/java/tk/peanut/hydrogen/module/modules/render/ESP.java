@@ -11,7 +11,7 @@ import tk.peanut.hydrogen.settings.Setting;
  * Created by peanut on 05/02/2021
  */
 
-@Info(name = "OutlineESP", description = "", category = Category.Render, color = -1)
+@Info(name = "OutlineESP", description = "Draws an outline through walls", category = Category.Render, color = -1)
 public class ESP extends Module {
     public ESP() {
         super(Keyboard.KEY_NONE);

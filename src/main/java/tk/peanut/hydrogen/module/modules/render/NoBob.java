@@ -8,7 +8,7 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 
-@Info(name = "NoBob", description = "", category = Category.Render, color = -1)
+@Info(name = "NoBob", description = "Removes the bobbing animation", category = Category.Render, color = -1)
 public class NoBob extends Module {
 
     public NoBob() {

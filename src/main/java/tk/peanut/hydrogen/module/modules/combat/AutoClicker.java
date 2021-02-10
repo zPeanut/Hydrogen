@@ -18,7 +18,7 @@ import java.util.Random;
  * Created by peanut on 05/02/2021
  */
 
-@Info(name = "AutoClicker", description = "", category = Category.Combat, color = -1)
+@Info(name = "AutoClicker", description = "Automatically left clicks", category = Category.Combat, color = -1)
 public class AutoClicker extends Module {
 
     Random random = new Random();

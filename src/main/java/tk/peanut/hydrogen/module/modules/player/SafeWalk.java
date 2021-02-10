@@ -16,7 +16,7 @@ import tk.peanut.hydrogen.utils.ReflectionUtil;
  * Created by peanut on 07/02/2021
  */
 
-@Info(name = "SafeWalk", description = "", category = Category.Player, color = -1)
+@Info(name = "SafeWalk", description = "Doesn't let you fall of blocks", category = Category.Player, color = -1)
 public class SafeWalk extends Module {
 
     public boolean safewalk;
