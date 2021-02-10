@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
+import org.lwjgl.opengl.GL11;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Module;
@@ -13,6 +15,7 @@ import tk.peanut.hydrogen.ui.clickgui.component.Frame;
 import tk.peanut.hydrogen.ui.clickgui.component.components.sub.*;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.FontUtil;
+import tk.peanut.hydrogen.utils.Utils;
 
 public class Button extends Component {
 
@@ -23,10 +26,8 @@ public class Button extends Component {
 	private ArrayList<Component> subcomponents;
 	public boolean open;
 	private int height;
-	public Frame.Tooltip tooltip;
 	
 	public Button(Module mod, Frame parent, int offset) {
-		this.tooltip = new Frame.Tooltip();
 		this.mod = mod;
 		this.parent = parent;
 		this.offset = offset;
@@ -63,6 +64,11 @@ public class Button extends Component {
 			opY += 12;
 		}
 	}
+
+	public void update(int mouseX, int mouseY) {
+		this.parent.x = mouseX + 12;
+		this.parent.y = mouseY - 12;
+	}
 	
 	@Override
 	public void renderComponent() {
@@ -82,8 +88,8 @@ public class Button extends Component {
 		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.open ? "..." : "§f...", (parent.getX() + parent.getWidth() - 10), (parent.getY() + offset + 2), 0xffffe9ad);
 
 		if(this.open) {
-			if(!this.subcomponents.isEmpty()) {
-				for(Component comp : this.subcomponents) {
+			if (!this.subcomponents.isEmpty()) {
+				for (Component comp : this.subcomponents) {
 					comp.renderComponent();
 				}
 				Gui.drawRect(parent.getX() + 2, parent.getY() + this.offset + 12, parent.getX() + 3, parent.getY() + this.offset + ((this.subcomponents.size() + 1) * 12), ClickGui.color);
@@ -91,7 +97,21 @@ public class Button extends Component {
 		}
 
 		if(this.isHovered) {
-			tooltip.render(this.mod.getDescription());
+
+			this.height = (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2);
+			int padding = 6;
+
+			GlStateManager.color(0, 0, 0, 0);
+			GL11.glColor4f(0, 0, 0, 0);
+
+
+			Utils.drawBorderedCorneredRect((int) (this.parent.getX() - padding) + 100, (int) (this.parent.getY() - padding) + 2 + this.offset, (int) (this.parent.getX() + padding) + Minecraft.getMinecraft().fontRendererObj.getStringWidth(this.mod.getDescription()) + 100, (int) (this.parent.getY() + height + padding) + this.offset, 2, 0x90000000, 0x80000000);
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.mod.getDescription(), (float) this.parent.getX() + 100, (float)this.parent.getY() + (float)height - 4 + this.offset, -1);
+
+
+			Utils.startClip((int)(this.parent.getX() - padding), (int)(this.parent.getY()), (int)(this.parent.getX() + this.parent.getWidth() + padding), (int)(this.parent.getY() + height + padding));
+
+			Utils.endClip();
 		}
 	}
 	
