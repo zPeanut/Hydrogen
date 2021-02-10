@@ -1,5 +1,7 @@
 package tk.peanut.hydrogen.injection.mixins;
 
+import com.darkmagician6.eventapi.EventManager;
+import jdk.nashorn.internal.codegen.CompilerConstants;
 import net.minecraft.client.renderer.EntityRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -7,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.events.EventRender3D;
 import tk.peanut.hydrogen.module.modules.render.NameTags;
 
 /**
@@ -26,6 +29,13 @@ public abstract class MixinEntityRenderer {
             NameTags.instance.render3DPost();
         }
     }
+
+    @Inject(method = "renderWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/EntityRenderer;dispatchRenderLast(Lnet/minecraft/client/renderer/RenderGlobal;F)V", shift = At.Shift.AFTER))
+    public void callEvent3D(float partialTicks, long finishTimeNano, CallbackInfo ci) {
+        EventRender3D eventRender3D = new EventRender3D(partialTicks);
+        EventManager.call(eventRender3D);
+    }
+
 
 
 }

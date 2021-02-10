@@ -41,6 +41,7 @@ public class ModuleManager {
         add(new ChestStealer());
         add(new InventoryWalk());
         add(new NoSpeedFOV());
+        //TODO: add(new Trajectories());
 
         // alphabetically sort modules in clickgui
 
