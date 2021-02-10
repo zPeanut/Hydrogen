@@ -96,7 +96,7 @@ public class Button extends Component {
 			}
 		}
 
-		if(this.isHovered) {
+		if(this.isHovered && Hydrogen.getClient().settingsManager.getSettingByName("Tooltip").isEnabled()) {
 
 			this.height = (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2);
 			int padding = 6;
