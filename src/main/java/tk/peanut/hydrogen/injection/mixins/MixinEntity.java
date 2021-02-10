@@ -100,6 +100,9 @@ public abstract class MixinEntity {
     private int fire;
 
     @Shadow
+    public abstract boolean isSprinting();
+
+    @Shadow
     public abstract void setFire(int seconds);
 
     @Shadow
