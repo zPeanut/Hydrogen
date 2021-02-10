@@ -28,9 +28,7 @@ public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
     @Shadow
     private NetworkPlayerInfo playerInfo;
 
-    @Shadow
-    public PlayerCapabilities capabilities = new PlayerCapabilities();
-
+    @Overwrite
     public float getFovModifier() {
         float f = 1.0F;
         if (this.capabilities.isFlying) {
@@ -38,7 +36,6 @@ public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
         }
 
         IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
-        f = (float)((double)f * ((iattributeinstance.getAttributeValue() / (double)this.capabilities.getWalkSpeed() + 1.0D) / 2.0D));
 
         if(!Hydrogen.getClient().moduleManager.getModule(NoSpeedFOV.class).isEnabled()) {
             f = (float)((double)f * ((iattributeinstance.getAttributeValue() / (double)this.capabilities.getWalkSpeed() + 1.0D) / 2.0D));
@@ -49,9 +46,6 @@ public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
             }
             f = (float)((double)f * ((d0 / (double)this.capabilities.getWalkSpeed() + 1.0D) / 2.0D));
         }
-
-
-
         if (this.capabilities.getWalkSpeed() == 0.0F || Float.isNaN(f) || Float.isInfinite(f)) {
             f = 1.0F;
         }
@@ -70,4 +64,7 @@ public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
 
         return ForgeHooksClient.getOffsetFOV((EntityPlayer) (Object) this, f);
     }
+
+
+
 }
