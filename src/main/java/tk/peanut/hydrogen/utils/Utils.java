@@ -168,7 +168,7 @@ public class Utils {
 
     public static void passSpecialRenderNameTags(EntityLivingBase p_77033_1_, double x, double y, double z) {
         if(Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
-            if((p_77033_1_.getEntityId() != -3 && p_77033_1_ != Minecraft.getMinecraft().thePlayer) && !(p_77033_1_.isInvisible()) && p_77033_1_ instanceof EntityPlayer)
+            if((p_77033_1_.getEntityId() != -3 ) && !(p_77033_1_.isInvisible()) && p_77033_1_ instanceof EntityPlayer)
             {
                 if (Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
                     String p_147906_2_ = p_77033_1_.getDisplayName().getFormattedText();
