@@ -66,7 +66,12 @@ public abstract class MixinItemRenderer {
     @Shadow
     public abstract void renderPlayerArm(AbstractClientPlayer clientPlayer, float equipProgress, float swingProgress);
 
-    @Overwrite
+
+    // this overwrite breaks mods like oldanimations which use this to display the old blockhit or old bow animation
+    // so ill just leave it out for now
+
+
+    /*@Overwrite
     public void renderItemInFirstPerson(float partialTicks) {
         float f = 1.0F - (this.prevEquippedProgress + (this.equippedProgress - this.prevEquippedProgress) * partialTicks);
         AbstractClientPlayer abstractclientplayer = Minecraft.getMinecraft().thePlayer;
@@ -115,66 +120,6 @@ public abstract class MixinItemRenderer {
         GlStateManager.popMatrix();
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();
-    }
-
-    /*
-if (this.itemToRender != null)
-        {
-            if (this.itemToRender.getItem() instanceof ItemMap)
-            {
-                this.renderItemMap(entityplayersp, f2, f, f1);
-            }
-            else if (entityplayersp.getItemInUseCount() > 0)
-            {
-                EnumAction enumaction = this.itemToRender.getItemUseAction();
-
-                float abc = 0f;
-                    abc = f1;
-
-
-                switch (ItemRenderer.ItemRenderer$1.field_178094_a[enumaction.ordinal()])
-                {
-                    case 1:
-                        this.transformFirstPersonItem(f, 0.0F);
-                        break;
-
-                    case 2:
-                    case 3:
-                        this.func_178104_a(entityplayersp, partialTicks);
-                        this.transformFirstPersonItem(f, 0.0F);
-                        if(Tephra.instance.settingsManager.getSettingByName("Old Blockhit").getValBoolean() && Tephra.instance.moduleManager.getModulebyName("OldAnimations").isEnabled()) {
-                            GlStateManager.scale(0.83F, 0.88F, 0.85F);
-                            GlStateManager.rotate(-0.3F, 0.1F, 0.0F, 0.0F);
-                        }
-                        break;
-
-                    case 4:
-                        // blockhit tephra
-                       transformFirstPersonItem(f, Tephra.instance.settingsManager.getSettingByName("Old Blockhit").getValBoolean() && Tephra.instance.moduleManager.getModulebyName("OldAnimations").isEnabled() ? f1 : 0.0F);
-                        this.func_178103_d();
-                        break;
-
-                    case 5:
-                        this.transformFirstPersonItem(f, 0.0F);
-                        this.func_178098_a(partialTicks, entityplayersp);
-                }
-            }
-            else
-            {
-                // HITANIMATION INS.
-
-                if(Tephra.instance.moduleManager.getModule(HitAnimation.class).isEnabled()) {
-                    this.transformFirstPersonItem(f, f1);
-                }else {
-
-                    this.func_178105_d(f1);
-                    this.transformFirstPersonItem(f, f1);
-                }
-
-            }
-
-            this.renderItem(entityplayersp, this.itemToRender, ItemCameraTransforms.TransformType.FIRST_PERSON);
-        }
-     */
+    }*/
 
 }
