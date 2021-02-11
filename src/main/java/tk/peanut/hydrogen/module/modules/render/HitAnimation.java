@@ -10,7 +10,7 @@ import tk.peanut.hydrogen.module.Module;
 
 @Info(name = "HitAnimation", description = "Changes the hitting Animation", category = Category.Render, color = -1)
 public class HitAnimation extends Module {
-    public HitAnimation(int keyBind) {
+    public HitAnimation() {
         super(0x00);
     }
 

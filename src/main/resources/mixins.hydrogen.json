@@ -18,6 +18,7 @@
     "MixinAbstractClientPlayer",
     "MixinEntityLivingBase",
     "MixinEntityPlayer",
-    "MixinEntityRenderer"
+    "MixinEntityRenderer",
+    "MixinItemRenderer"
   ]
 }
