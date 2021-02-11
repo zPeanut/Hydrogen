@@ -26,10 +26,10 @@ public class ClickGUI extends Module {
         options.add("DefaultOption");
         options.add("Option2");
         options.add("Option3");
-        Phosphor.getInstance().settingsManager.rSetting(new Setting("OptionSelector", this, "DefaultOption", options));
-        Phosphor.getInstance().settingsManager.rSetting(new Setting("BooleanOption", this, false));
-        Phosphor.getInstance().settingsManager.rSetting(new Setting("SliderOptionInt", this, 255, 0, 255, true));
-        Phosphor.getInstance().settingsManager.rSetting(new Setting("SliderOptionDouble", this, 10, 0, 20, false));*/
+        Hydrogen.getInstance().settingsManager.rSetting(new Setting("OptionSelector", this, "DefaultOption", options));
+        Hydrogen.getInstance().settingsManager.rSetting(new Setting("BooleanOption", this, false));
+        Hydrogen.getInstance().settingsManager.rSetting(new Setting("SliderOptionInt", this, 255, 0, 255, true));
+        Hydrogen.getInstance().settingsManager.rSetting(new Setting("SliderOptionDouble", this, 10, 0, 20, false));*/
     }
 
     @Override
