@@ -30,10 +30,10 @@ public abstract class MixinEntityRenderer {
         }
     }
 
-    @Inject(method = "renderWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/EntityRenderer;dispatchRenderLast(Lnet/minecraft/client/renderer/RenderGlobal;F)V", shift = At.Shift.AFTER))
-    public void callEvent3D(float partialTicks, long finishTimeNano, CallbackInfo ci) {
-        EventRender3D eventRender3D = new EventRender3D(partialTicks);
-        EventManager.call(eventRender3D);
+    @Inject(method = "renderWorldPass", at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/EntityRenderer;renderHand:Z", shift = At.Shift.BEFORE))
+    private void renderWorldPass(int pass, float partialTicks, long finishTimeNano, CallbackInfo callbackInfo) {
+        EventRender3D e = new EventRender3D(partialTicks);
+        EventManager.call(e);
     }
 
 
