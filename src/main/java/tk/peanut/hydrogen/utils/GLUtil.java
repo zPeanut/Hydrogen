@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.util.AxisAlignedBB;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -13,6 +14,52 @@ public class GLUtil {
     public static void setColor(Color color) {
         GL11.glColor4f(color.getRed() / 255.0f, color.getGreen() / 255.0f, color.getBlue() / 255.0f,
                 color.getAlpha() / 255.0f);
+    }
+
+    public static void renderCrosses(AxisAlignedBB box) {
+        GL11.glBegin(1);
+        GL11.glVertex3d(box.maxX, box.maxY, box.maxZ);
+        GL11.glVertex3d(box.maxX, box.minY, box.minZ);
+        GL11.glVertex3d(box.maxX, box.maxY, box.minZ);
+        GL11.glVertex3d(box.minX, box.maxY, box.maxZ);
+        GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+        GL11.glVertex3d(box.maxX, box.minY, box.minZ);
+        GL11.glVertex3d(box.minX, box.minY, box.maxZ);
+        GL11.glVertex3d(box.maxX, box.maxY, box.maxZ);
+        GL11.glVertex3d(box.minX, box.minY, box.maxZ);
+        GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+        GL11.glVertex3d(box.minX, box.minY, box.minZ);
+        GL11.glVertex3d(box.maxX, box.minY, box.maxZ);
+        GL11.glEnd();
+    }
+
+    public static void drawOutlinedBox(AxisAlignedBB box) {
+        if(box != null) {
+            GL11.glBegin(3);
+            GL11.glVertex3d(box.minX, box.minY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.minY, box.minZ);
+            GL11.glEnd();
+            GL11.glBegin(3);
+            GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+            GL11.glEnd();
+            GL11.glBegin(1);
+            GL11.glVertex3d(box.minX, box.minY, box.minZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.maxZ);
+            GL11.glEnd();
+        }
     }
 
 
@@ -27,6 +74,129 @@ public class GLUtil {
     public static int toRGBA(Color c) {
         return c.getRed() | c.getGreen() << 8 | c.getBlue() << 16 | c.getAlpha() << 24;
     }
+
+    public static void enableGL2D() {
+        GL11.glDisable(2929);
+        GL11.glEnable(3042);
+        GL11.glDisable(3553);
+        GL11.glBlendFunc(770, 771);
+        GL11.glDepthMask(true);
+        GL11.glEnable(2848);
+        GL11.glHint(3154, 4354);
+        GL11.glHint(3155, 4354);
+    }
+
+    public static void drawBox(AxisAlignedBB box) {
+        if(box != null) {
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.minX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.maxZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.maxX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.maxZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.maxZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.minX, box.minY, box.minZ);
+            GL11.glVertex3d(box.minX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.minX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.minY, box.minZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.maxZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.maxX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.maxZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.maxX, box.minY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.maxZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.minZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.minX, box.minY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.maxX, box.minY, box.minZ);
+            GL11.glVertex3d(box.minX, box.minY, box.minZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.minZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.maxZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.maxX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.minZ);
+            GL11.glVertex3d(box.minX, box.maxY, box.maxZ);
+            GL11.glVertex3d(box.maxX, box.maxY, box.maxZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.minX, box.minY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.minZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.minX, box.minY, box.maxZ);
+            GL11.glEnd();
+            GL11.glBegin(7);
+            GL11.glVertex3d(box.maxX, box.minY, box.minZ);
+            GL11.glVertex3d(box.minX, box.minY, box.minZ);
+            GL11.glVertex3d(box.minX, box.minY, box.maxZ);
+            GL11.glVertex3d(box.maxX, box.minY, box.maxZ);
+            GL11.glEnd();
+        }
+    }
+
+    public static void enableGL3D() {
+        GL11.glDisable(3008);
+        GL11.glEnable(3042);
+        GL11.glBlendFunc(770, 771);
+        GL11.glDisable(3553);
+        GL11.glDisable(2929);
+        GL11.glDepthMask(false);
+        GL11.glEnable(2884);
+        GL11.glEnable(2848);
+        GL11.glHint(3154, 4353);
+        GL11.glDisable(2896);
+    }
+
+    public static void disableGL3D() {
+        GL11.glEnable(2896);
+        GL11.glDisable(2848);
+        GL11.glEnable(3553);
+        GL11.glEnable(2929);
+        GL11.glDisable(3042);
+        GL11.glEnable(3008);
+        GL11.glDepthMask(true);
+        GL11.glCullFace(1029);
+    }
+
+    public static void disableGL2D() {
+        GL11.glEnable(3553);
+        GL11.glDisable(3042);
+        GL11.glEnable(2929);
+        GL11.glDisable(2848);
+        GL11.glHint(3154, 4352);
+        GL11.glHint(3155, 4352);
+    }
+
+
 
     public static void drawRect(int mode, int left, int top, int right, int bottom, int color) {
         if (left < right) {
