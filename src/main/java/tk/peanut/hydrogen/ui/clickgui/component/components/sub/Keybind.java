@@ -34,9 +34,14 @@ public class Keybind extends Component {
 	public void renderComponent() {
 		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, this.hovered ? 0x88222222 : 0x88111111);
 		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
+
+		if(this.parent.subcomponents.size() > 1) {
+			Gui.drawRect(parent.parent.getX() + 3, parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth(), parent.parent.getY() + offset + 1, 0x88111111);
+		}
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + (binding ? "Press a key..." : ("Key: " + Keyboard.getKeyName(this.parent.mod.getKeybind()))) : binding ? "Press a key..." : ("Key: " + Keyboard.getKeyName(this.parent.mod.getKeybind())), (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + (binding ? "Press a key..." : ("Keybind: ")) : binding ? "Press a key..." : ("Keybind: "), (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow((binding ? "" : (Keyboard.getKeyName(this.parent.mod.getKeybind()))), (parent.parent.getX() + 86) * 1.3333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(Keyboard.getKeyName(this.parent.mod.getKeybind())), (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
 		GL11.glPopMatrix();
 	}
 	
