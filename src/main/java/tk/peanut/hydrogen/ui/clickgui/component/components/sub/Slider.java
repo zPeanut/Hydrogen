@@ -41,7 +41,7 @@ public class Slider extends Component {
 		if(this.hovered) {
 			Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12,0x77000000);
 		}
-		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x99111111);
+		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + ": " + this.set.getValDouble() : this.set.getName() + ": " + this.set.getValDouble(), (parent.parent.getX()* 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f + 2, -1);
