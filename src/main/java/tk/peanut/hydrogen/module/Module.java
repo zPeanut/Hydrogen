@@ -3,7 +3,9 @@ package tk.peanut.hydrogen.module;
 import com.darkmagician6.eventapi.EventManager;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
+import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.file.files.ModuleFile;
+import tk.peanut.hydrogen.settings.Setting;
 
 public class Module {
 
@@ -31,6 +33,10 @@ public class Module {
 
     public String getDescription() {
         return this.getModuleInfo().description();
+    }
+
+    public void addSetting(Setting settingIn) {
+        Hydrogen.getClient().settingsManager.rSetting(settingIn);
     }
 
     public Category getCategory() {
