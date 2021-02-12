@@ -15,6 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Session;
 import org.jetbrains.annotations.NotNull;
@@ -105,6 +106,35 @@ public class Utils {
         GL11.glDisable(2848);
     }
 
+    public static void draw2DPlayerESP(final EntityPlayer ep, final double d, final double d1, final double d2) {
+        final float distance = Minecraft.getMinecraft().thePlayer.getDistanceToEntity(ep);
+        final float scale = (float)(0.09 + Minecraft.getMinecraft().thePlayer.getDistance(ep.posX, ep.posY, ep.posZ) / 10000.0);
+        GL11.glPushMatrix();
+        GL11.glTranslatef((float)d, (float)d1, (float)d2);
+        GL11.glNormal3f(0.0f, 1.0f, 0.0f);
+        GL11.glRotatef(-Minecraft.getMinecraft().getRenderManager().playerViewY, 0.0f, 1.0f, 0.0f);
+        GL11.glScalef(-scale, -scale, scale);
+        GL11.glDisable(2896);
+        GL11.glDisable(2929);
+        GL11.glEnable(3042);
+        GL11.glBlendFunc(770, 771);
+        GL11.glScaled(0.5, 0.5, 0.5);
+        drawOutlineRect(-13.0f, -45.0f, 13.0f, 5.0f, -65536);
+        GL11.glScaled(2.0, 2.0, 2.0);
+        GL11.glDisable(3042);
+        GL11.glEnable(2929);
+        GL11.glEnable(2896);
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        GL11.glPopMatrix();
+    }
+
+    public static void drawOutlineRect(final float drawX, final float drawY, final float drawWidth, final float drawHeight, final int color) {
+        drawRect(drawX, drawY, drawWidth, drawY + 0.5f, color);
+        drawRect(drawX, drawY + 0.5f, drawX + 0.5f, drawHeight, color);
+        drawRect(drawWidth - 0.5f, drawY + 0.5f, drawWidth, drawHeight - 0.5f, color);
+        drawRect(drawX + 0.5f, drawHeight - 0.5f, drawWidth, drawHeight, color);
+    }
+
     public static void rectBorder(float x1, float y1, float x2, float y2, int outline) {
         rect(x1, y2-1, x2, y2, outline);
         rect(x1, y1, x2, y1+1, outline);
@@ -163,6 +193,158 @@ public class Utils {
         for (int i = 0; i <= 360; i++) {
             GL11.glVertex2d(x + Math.sin(i * 3.141526D / 180.0D) * radius, y + Math.cos(i * 3.141526D / 180.0D) * radius);
         }
+        GL11.glEnd();
+    }
+
+    public static void drawFilledBBESP(final AxisAlignedBB axisalignedbb, final int color) {
+        GL11.glPushMatrix();
+        final float red = (color >> 24 & 0xFF) / 255.0f;
+        final float green = (color >> 16 & 0xFF) / 255.0f;
+        final float blue = (color >> 8 & 0xFF) / 255.0f;
+        final float alpha = (color & 0xFF) / 255.0f;
+        GL11.glEnable(3042);
+        GL11.glBlendFunc(770, 771);
+        GL11.glDisable(2896);
+        GL11.glDisable(3553);
+        GL11.glEnable(2848);
+        GL11.glDisable(2929);
+        GL11.glDepthMask(false);
+        GL11.glColor4f(red, green, blue, alpha);
+        drawFilledBox(axisalignedbb);
+        GL11.glDisable(2848);
+        GL11.glEnable(3553);
+        GL11.glEnable(2896);
+        GL11.glEnable(2929);
+        GL11.glDepthMask(true);
+        GL11.glDisable(3042);
+        GL11.glPopMatrix();
+    }
+
+    public static void drawFilledBox(final AxisAlignedBB boundingBox) {
+        if (boundingBox == null) {
+            return;
+        }
+        GL11.glBegin(7);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glEnd();
+        GL11.glBegin(7);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glEnd();
+        GL11.glBegin(7);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glEnd();
+        GL11.glBegin(7);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glEnd();
+        GL11.glBegin(7);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.minZ);
+        GL11.glEnd();
+        GL11.glBegin(7);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glEnd();
+        GL11.glBegin(7);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glEnd();
+    }
+
+    public static void drawBoundingBoxESP(final AxisAlignedBB axisalignedbb, final float width, final int color) {
+        GL11.glPushMatrix();
+        final float red = (color >> 24 & 0xFF) / 255.0f;
+        final float green = (color >> 16 & 0xFF) / 255.0f;
+        final float blue = (color >> 8 & 0xFF) / 255.0f;
+        final float alpha = (color & 0xFF) / 255.0f;
+        GL11.glEnable(3042);
+        GL11.glBlendFunc(770, 771);
+        GL11.glDisable(2896);
+        GL11.glDisable(3553);
+        GL11.glEnable(2848);
+        GL11.glDisable(2929);
+        GL11.glDepthMask(false);
+        GL11.glLineWidth(width);
+        GL11.glColor4f(red, green, blue, alpha);
+        drawOutlinedBox(axisalignedbb);
+        GL11.glLineWidth(1.0f);
+        GL11.glDisable(2848);
+        GL11.glEnable(3553);
+        GL11.glEnable(2896);
+        GL11.glEnable(2929);
+        GL11.glDepthMask(true);
+        GL11.glDisable(3042);
+        GL11.glPopMatrix();
+    }
+
+    public static void drawOutlinedBox(final AxisAlignedBB boundingBox) {
+        if (boundingBox == null) {
+            return;
+        }
+        GL11.glBegin(3);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glEnd();
+        GL11.glBegin(3);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glEnd();
+        GL11.glBegin(1);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.minY, boundingBox.maxZ);
+        GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ);
         GL11.glEnd();
     }
 
