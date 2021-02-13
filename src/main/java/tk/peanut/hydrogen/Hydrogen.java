@@ -24,8 +24,8 @@ public class Hydrogen {
     public static final String name = "Hydrogen";
     public static final String devs = "zPeanut & UltramoxX";
 
-    public static final String version_number = "1.3";
-    private static final String version_suffix = "";
+    public static final String version_number = "1.4";
+    private static final String version_suffix = "-dev";
     public static final String version = "v" + version_number + version_suffix;
 
     public String prefix = "[§e" + name + "§f] ";
