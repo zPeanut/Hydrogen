@@ -153,7 +153,8 @@ public class Trajectories extends Module {
                 }
                 GL11.glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
                 GL11.glScalef(0.05f, 0.05f, 0.05f);
-
+                Utils.rectBorder(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
+                Utils.rect(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
             }
             GL11.glPopMatrix();
             if (landingPosition != null && landingPosition.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
@@ -164,11 +165,6 @@ public class Trajectories extends Module {
                 final double renderPosX = Minecraft.getMinecraft().getRenderManager().renderPosX;
                 final double renderPosY = Minecraft.getMinecraft().getRenderManager().renderPosY;
                 GL11.glTranslated(renderPosX, renderPosY, Minecraft.getMinecraft().getRenderManager().renderPosZ);
-                Utils.rectBorder(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
-                Utils.rect(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
-            } else {
-                Utils.rectBorder(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
-                Utils.rect(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
             }
             GL11.glDisable(3042);
             GL11.glDepthMask(true);
