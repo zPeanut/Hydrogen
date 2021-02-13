@@ -139,6 +139,105 @@ public class Utils {
         return Math.sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1));
     }
 
+    public static void passSpecialRenderNameTags(EntityLivingBase p_77033_1_, double x, double y, double z) {
+        if(Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
+            if((p_77033_1_.getEntityId() != -3 ) && !(p_77033_1_.isInvisible()) && p_77033_1_ instanceof EntityPlayer)
+            {
+                if (Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
+                    String p_147906_2_ = p_77033_1_.getDisplayName().getFormattedText();
+
+
+                    double[] pos = Utils.entityWorldPos(p_77033_1_);
+                    double[] pos2 = Utils.entityWorldPos(Minecraft.getMinecraft().thePlayer);
+                    float xd = (float)(pos2[0]-pos[0]);
+                    float yd = (float)(pos2[1]-pos[1]);
+                    float zd = (float)(pos2[2]-pos[2]);
+                    double dist = MathHelper.sqrt_float(xd*xd+yd*yd+zd*zd);
+
+                    float distance = (float)dist;
+                    float scaleFactor = distance < 10.0F ? 0.9F : distance / 11.11F;
+
+                    int color = 16777215;
+                    float height = 0.0F;
+                    if ((p_77033_1_ instanceof EntityPlayer)) {
+                        EntityPlayer player = (EntityPlayer) p_77033_1_;
+
+
+                        if (distance >= 10.0F) {
+                            height = (float) (height + (distance / 40.0F - 0.25D));
+                        }
+                    }
+                    FontRenderer var12 = Minecraft.getMinecraft().fontRendererObj;
+                    if (var12 == null) {
+                        return;
+                    }
+
+                    p_147906_2_+= "";
+
+                    float var13 = 1.6F;
+                    float var14 = 0.016666668F * var13;
+                    GlStateManager.pushMatrix();
+                    GlStateManager.translate((float)x + 0.0F, (float)y + p_77033_1_.height + 0.5F, (float)z);
+                    GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+                    GlStateManager.rotate(-Minecraft.getMinecraft().getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
+                    GlStateManager.rotate(Minecraft.getMinecraft().getRenderManager().playerViewX, 1.0F, 0.0F, 0.0F);
+                    GlStateManager.scale(-var14*scaleFactor, -var14*scaleFactor, var14*scaleFactor);
+                    GlStateManager.disableLighting();
+                    GlStateManager.depthMask(false);
+                    GlStateManager.disableDepth();
+                    GlStateManager.enableBlend();
+                    GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+                    Tessellator var15 = Tessellator.getInstance();
+                    WorldRenderer var16 = var15.getWorldRenderer();
+
+                    GlStateManager.disableTexture2D();
+
+                    int var18 = var12.getStringWidth(p_147906_2_) / 2;
+                    float w = var18;
+                    float h = var12.FONT_HEIGHT;
+                    float offY = 0;
+
+
+                    GlStateManager.enableTexture2D();
+                    int co = -1;
+
+
+                    if (Hydrogen.getClient().settingsManager.getSettingByName("Items").isEnabled())
+                        NameTags.instance.renderArmorESP(p_77033_1_);
+                }
+
+                GlStateManager.enableDepth();
+                GlStateManager.depthMask(true);
+                GlStateManager.enableLighting();
+                GlStateManager.disableBlend();
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                GlStateManager.popMatrix();
+                return;
+            }
+        }
+    }
+
+    public static void drawOutlineForEntity(final Entity e, final AxisAlignedBB axisalignedbb, final float width, final float red, final float green, final float blue, final float alpha) {
+        GL11.glEnable(3042);
+        GL11.glBlendFunc(770, 771);
+        GL11.glDisable(2896);
+        GL11.glDisable(3553);
+        GL11.glEnable(2848);
+        GL11.glDisable(2929);
+        GL11.glDepthMask(false);
+        GL11.glLineWidth(width);
+        GL11.glColor4f(red, green, blue, alpha);
+        drawOutlinedBox(axisalignedbb);
+        GL11.glLineWidth(1.0f);
+        GL11.glDisable(2848);
+        GL11.glEnable(3553);
+        GL11.glEnable(2896);
+        GL11.glEnable(2929);
+        GL11.glDepthMask(true);
+        GL11.glDisable(3042);
+    }
+
+
     public static void drawBorderedCircle(int x, int y, float radius, int outsideC, int insideC) {
         GL11.glEnable(3042);
         GL11.glDisable(3553);

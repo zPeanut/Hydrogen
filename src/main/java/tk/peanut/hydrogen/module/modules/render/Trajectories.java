@@ -5,10 +5,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemBow;
-import net.minecraft.item.ItemEgg;
-import net.minecraft.item.ItemEnderPearl;
-import net.minecraft.item.ItemSnowball;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.*;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -19,6 +17,8 @@ import tk.peanut.hydrogen.events.EventRender3D;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.settings.Setting;
+import tk.peanut.hydrogen.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,162 +31,178 @@ public class Trajectories extends Module {
 
     public Trajectories() {
         super(0x00);
+
+        addSetting(new Setting("Alpha", this, 150, 0, 255, false));
     }
-
     @EventTarget
-    private void onRender(EventRender3D event) {
-        boolean bow = false;
-        if (this.mc.thePlayer.getHeldItem() == null) {
-            return;
-        }
-        if ((!(this.mc.thePlayer.getHeldItem().getItem() instanceof ItemBow))
-                && (!(mc.thePlayer.getHeldItem().getItem() instanceof ItemSnowball))
-                && (!(mc.thePlayer.getHeldItem().getItem() instanceof ItemEnderPearl))
-                && (!(mc.thePlayer.getHeldItem().getItem() instanceof ItemEgg))) {
-            return;
-        }
-        bow = mc.thePlayer.getHeldItem().getItem() instanceof ItemBow;
-        double posX = Minecraft.getMinecraft().getRenderManager().renderPosX - MathHelper.cos(mc.thePlayer.rotationYaw / 180.0F * 3.141593F) * 0.16F;
-        double posY = Minecraft.getMinecraft().getRenderManager().renderPosY + mc.thePlayer.getEyeHeight() - 0.1000000014901161D;
-        double posZ = Minecraft.getMinecraft().getRenderManager().renderPosZ - MathHelper.sin(mc.thePlayer.rotationYaw / 180.0F * 3.141593F) * 0.16F;
-        double motionX = -MathHelper.sin(mc.thePlayer.rotationYaw / 180.0F * 3.141593F) * MathHelper.cos(mc.thePlayer.rotationPitch / 180.0F * 3.141593F) * (bow ? 1.0D : 0.4D);
-        double motionY = -MathHelper.sin(mc.thePlayer.rotationPitch / 180.0F * 3.141593F) * (bow ? 1.0D : 0.4D);
-        double motionZ = MathHelper.cos(mc.thePlayer.rotationYaw / 180.0F * 3.141593F) * MathHelper.cos(mc.thePlayer.rotationPitch / 180.0F * 3.141593F) * (bow ? 1.0D : 0.4D);
-        int var6 = 72000 - this.mc.thePlayer.getItemInUseCount();
-        float power = var6 / 20.0F;
-        power = (power * power + power * 2.0F) / 3.0F;
-        if (power < 0.1D) {
-            return;
-        }
-
-        if (power > 1.0F) {
-            power = 1.0F;
-        }
-
-        GL11.glColor3f(1.0F - power, power, 0);
-
-        float distance = MathHelper.sqrt_double(motionX * motionX + motionY * motionY + motionZ * motionZ);
-        motionX /= distance;
-        motionY /= distance;
-        motionZ /= distance;
-        motionX *= (bow ? power * 2.0F : 1.0F) * 1.5D;
-        motionY *= (bow ? power * 2.0F : 1.0F) * 1.5D;
-        motionZ *= (bow ? power * 2.0F : 1.0F) * 1.5D;
-        OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GL11.glEnable(3553);
-        OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 200.0F, 0.0F);
-        GL11.glDisable(2896);
-        GL11.glEnable(2848);
-        GL11.glDisable(2929);
-        GL11.glPushMatrix();
-        GL11.glDisable(3553);
-        GL11.glDepthMask(false);
-        GL11.glBlendFunc(770, 771);
-        GL11.glEnable(3042);
-        GL11.glLineWidth((float) Hydrogen.getClient().settingsManager.getSettingByName("Width").getValDouble());
-        GL11.glBegin(3);
-        boolean hasLanded = false;
-        boolean isEntity = false;
-        Entity hitEntity = null;
-        MovingObjectPosition landingPosition = null;
-        for (; (!hasLanded) && (posY > 0.0D); GL11.glVertex3d(posX - Minecraft.getMinecraft().getRenderManager().renderPosX,
-                posY - Minecraft.getMinecraft().getRenderManager().renderPosY, posZ - Minecraft.getMinecraft().getRenderManager().renderPosZ)) {
-            Vec3 present = new Vec3(posX, posY, posZ);
-            Vec3 future = new Vec3(posX + motionX, posY + motionY, posZ + motionZ);
-            MovingObjectPosition possibleLandingStrip = this.mc.theWorld.rayTraceBlocks(present, future, false, true,
-                    false);
-            if ((possibleLandingStrip != null)
-                    && (possibleLandingStrip.typeOfHit != MovingObjectPosition.MovingObjectType.MISS)) {
-                landingPosition = possibleLandingStrip;
-                hasLanded = true;
+    public void onRender(EventRender3D e) {
+        if (this.isEnabled()) {
+            boolean bow = false;
+            boolean potion = false;
+            if (Trajectories.mc.thePlayer.getHeldItem() == null) {
+                return;
             }
-
-            float size = (float)(bow ? 0.3D : 0.25D);
-            AxisAlignedBB arrowBox = AxisAlignedBB.fromBounds(posX - size, posY - size, posZ - size, posX + size, posY + size, posZ + size);
-            List entities = getEntitiesWithinAABB(arrowBox.addCoord(motionX, motionY, motionZ).expand(1.0D, 1.0D, 1.0D));
-
-            for (int index = 0; index < entities.size(); index++) {
-                Entity entity = (Entity)entities.get(index);
-
-                if ((entity.canBeCollidedWith()) && (entity != mc.thePlayer)) {
-                    float var11 = 0.3F;
-                    AxisAlignedBB var12 = entity.getEntityBoundingBox().expand(var11, var11, var11);
-                    MovingObjectPosition possibleEntityLanding = var12.calculateIntercept(present, future);
-                    if (possibleEntityLanding != null) {
+            if ((!(Trajectories.mc.thePlayer.getHeldItem().getItem() instanceof ItemBow) || !Trajectories.mc.thePlayer.isUsingItem()) && !(Trajectories.mc.thePlayer.getHeldItem().getItem() instanceof ItemSnowball) && !(Trajectories.mc.thePlayer.getHeldItem().getItem() instanceof ItemEnderPearl) && !(Trajectories.mc.thePlayer.getHeldItem().getItem() instanceof ItemEgg) && (!(Trajectories.mc.thePlayer.getHeldItem().getItem() instanceof ItemPotion) || !ItemPotion.isSplash(Trajectories.mc.thePlayer.getHeldItem().getItemDamage()))) {
+                return;
+            }
+            bow = (Trajectories.mc.thePlayer.getHeldItem().getItem() instanceof ItemBow);
+            potion = (Trajectories.mc.thePlayer.getHeldItem().getItem() instanceof ItemPotion);
+            final float throwingYaw = Trajectories.mc.thePlayer.rotationYaw;
+            final float throwingPitch = Trajectories.mc.thePlayer.rotationPitch;
+            Trajectories.mc.getRenderManager();
+            double posX = Minecraft.getMinecraft().getRenderManager().renderPosX - MathHelper.cos(throwingYaw / 180.0f * 3.141593f) * 0.16f;
+            Trajectories.mc.getRenderManager();
+            double posY = Minecraft.getMinecraft().getRenderManager().renderPosY + Trajectories.mc.thePlayer.getEyeHeight() - 0.1000000014901161;
+            Trajectories.mc.getRenderManager();
+            double posZ = Minecraft.getMinecraft().getRenderManager().renderPosZ - MathHelper.sin(throwingYaw / 180.0f * 3.141593f) * 0.16f;
+            double motionX = -MathHelper.sin(throwingYaw / 180.0f * 3.141593f) * MathHelper.cos(throwingPitch / 180.0f * 3.141593f) * (bow ? 1.0 : 0.4);
+            double motionY = -MathHelper.sin((throwingPitch - (potion ? 20 : 0)) / 180.0f * 3.141593f) * (bow ? 1.0 : 0.4);
+            double motionZ = MathHelper.cos(throwingYaw / 180.0f * 3.141593f) * MathHelper.cos(throwingPitch / 180.0f * 3.141593f) * (bow ? 1.0 : 0.4);
+            final int var6 = 72000 - Trajectories.mc.thePlayer.getItemInUseCount();
+            float power = var6 / 20.0f;
+            power = (power * power + power * 2.0f) / 3.0f;
+            if (power < 0.1) {
+                return;
+            }
+            if (power > 1.0f) {
+                power = 1.0f;
+            }
+            final float distance = MathHelper.sqrt_double(motionX * motionX + motionY * motionY + motionZ * motionZ);
+            motionX /= distance;
+            motionY /= distance;
+            motionZ /= distance;
+            motionX *= (bow ? (power * 2.0f) : 1.0f) * (potion ? 0.5 : 1.5);
+            motionY *= (bow ? (power * 2.0f) : 1.0f) * (potion ? 0.5 : 1.5);
+            motionZ *= (bow ? (power * 2.0f) : 1.0f) * (potion ? 0.5 : 1.5);
+            OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+            GL11.glEnable(3553);
+            OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 200.0f, 0.0f);
+            GL11.glDisable(2896);
+            GL11.glEnable(2848);
+            GL11.glDisable(2929);
+            GL11.glPushMatrix();
+            GL11.glColor4f(1f, 1f, 1f, 1);
+            GL11.glDisable(3553);
+            GL11.glDepthMask(false);
+            GL11.glBlendFunc(770, 771);
+            GL11.glEnable(3042);
+            GL11.glLineWidth(2.0f);
+            GL11.glBegin(3);
+            boolean hasLanded = false;
+            final Entity hitEntity = null;
+            MovingObjectPosition landingPosition = null;
+            while (!hasLanded && posY > 0.0) {
+                final Vec3 present = new Vec3(posX, posY, posZ);
+                final Vec3 future = new Vec3(posX + motionX, posY + motionY, posZ + motionZ);
+                final MovingObjectPosition possibleLandingStrip = Trajectories.mc.theWorld.rayTraceBlocks(present, future, false, true, false);
+                if (possibleLandingStrip != null) {
+                    if (possibleLandingStrip.typeOfHit != MovingObjectPosition.MovingObjectType.MISS) {
+                        landingPosition = possibleLandingStrip;
                         hasLanded = true;
-                        isEntity = true;
-                        landingPosition = possibleEntityLanding;
                     }
                 }
+                else {
+                    final Entity entityHit = this.getEntityHit(bow, present, future);
+                    if (entityHit != null) {
+                        GL11.glColor4f(200f, 145f, 1f, 1);
+                        landingPosition = new MovingObjectPosition(entityHit);
+                        hasLanded = true;
+                    }
+                }
+                posX += motionX;
+                posY += motionY;
+                posZ += motionZ;
+                final float motionAdjustment = 0.99f;
+                motionX *= motionAdjustment;
+                motionY *= motionAdjustment;
+                motionZ *= motionAdjustment;
+                motionY -= (potion ? 0.05 : (bow ? 0.05 : 0.03));
+                final double n = posX;
+                final double n2 = n - Minecraft.getMinecraft().getRenderManager().renderPosX;
+                final double n3 = posY;
+                final double n4 = n3 - Minecraft.getMinecraft().getRenderManager().renderPosY;
+                final double n5 = posZ;
+                GL11.glVertex3d(n2, n4, n5 - Minecraft.getMinecraft().getRenderManager().renderPosZ);
             }
-            if (isEntity) {
-                GL11.glColor3f(0.0F, 1.0F, 0.0F);
-            } else {
-                GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            }
-
-
-
-            posX += motionX;
-            posY += motionY;
-            posZ += motionZ;
-            float motionAdjustment = 0.99F;
-            motionX *= 0.9900000095367432D;
-            motionY *= 0.9900000095367432D;
-            motionZ *= 0.9900000095367432D;
-            motionY -= (bow ? 0.05D : 0.03D);
-        }
-        GL11.glEnd();
-        GL11.glPushMatrix();
-        GL11.glTranslated(posX - Minecraft.getMinecraft().getRenderManager().renderPosX, posY - Minecraft.getMinecraft().getRenderManager().renderPosY,posZ - Minecraft.getMinecraft().getRenderManager().renderPosZ);
-        if ((landingPosition != null) && (landingPosition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)) {
-            int landingPositionIndex = landingPosition.sideHit.getIndex();
-            if (landingPositionIndex == 2) {
-                GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
-            } else if (landingPositionIndex == 3) {
-                GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
-            } else if (landingPositionIndex == 4) {
-                GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-            } else if (landingPositionIndex == 5) {
-                GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-            }
-            GL11.glBegin(1);
-            GL11.glVertex3d(-0.4D, 0.0D, 0.0D);
-            GL11.glVertex3d(0.0D, 0.0D, 0.0D);
-            GL11.glVertex3d(0.0D, 0.0D, -0.4D);
-            GL11.glVertex3d(0.0D, 0.0D, 0.0D);
-            GL11.glVertex3d(0.4D, 0.0D, 0.0D);
-            GL11.glVertex3d(0.0D, 0.0D, 0.0D);
-            GL11.glVertex3d(0.0D, 0.0D, 0.4D);
-            GL11.glVertex3d(0.0D, 0.0D, 0.0D);
             GL11.glEnd();
-            GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
+            GL11.glPushMatrix();
+            final double n6 = posX;
+            final double n7 = n6 - Minecraft.getMinecraft().getRenderManager().renderPosX;
+            final double n8 = posY;
+            final double n9 = n8 - Minecraft.getMinecraft().getRenderManager().renderPosY;
+            final double n10 = posZ;
+            GL11.glTranslated(n7, n9, n10 - Minecraft.getMinecraft().getRenderManager().renderPosZ);
+
+            if (landingPosition != null && landingPosition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+                final int land = landingPosition.sideHit.getIndex();
+                if (land == 1) {
+                    GL11.glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
+                }
+                else if (land == 2) {
+                    GL11.glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+                }
+                else if (land == 3) {
+                    GL11.glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+                }
+                else if (land == 4) {
+                    GL11.glRotatef(-90.0f, 0.0f, 0.0f, 1.0f);
+                }
+                else if (land == 5) {
+                    GL11.glRotatef(90.0f, 0.0f, 0.0f, 1.0f);
+                }
+                GL11.glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+                GL11.glScalef(0.05f, 0.05f, 0.05f);
+
+            }
+            GL11.glPopMatrix();
+            if (landingPosition != null && landingPosition.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
+                final double n11 = -Minecraft.getMinecraft().getRenderManager().renderPosX;
+                final double n12 = -Minecraft.getMinecraft().getRenderManager().renderPosY;
+                GL11.glTranslated(n11, n12, -Minecraft.getMinecraft().getRenderManager().renderPosZ);
+                Utils.drawOutlineForEntity(null, landingPosition.entityHit.getEntityBoundingBox().expand(0.035, 0.0, 0.035).offset(0.0, 0.1, 0.0), 1.0f, 1f, 1.0f, 1.0f, 255);
+                final double renderPosX = Minecraft.getMinecraft().getRenderManager().renderPosX;
+                final double renderPosY = Minecraft.getMinecraft().getRenderManager().renderPosY;
+                GL11.glTranslated(renderPosX, renderPosY, Minecraft.getMinecraft().getRenderManager().renderPosZ);
+                Utils.rectBorder(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
+                Utils.rect(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
+            } else {
+                Utils.rectBorder(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
+                Utils.rect(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
+            }
+            GL11.glDisable(3042);
+            GL11.glDepthMask(true);
+            GL11.glEnable(3553);
+            GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+            GL11.glEnable(2929);
+            GL11.glDisable(2848);
+            GL11.glPopMatrix();
         }
-        GL11.glPopMatrix();
-        GL11.glDisable(3042);
-        GL11.glDepthMask(true);
-        GL11.glEnable(3553);
-        GL11.glEnable(2929);
-        GL11.glDisable(2848);
-        GL11.glPopMatrix();
     }
 
-
-    private List getEntitiesWithinAABB(AxisAlignedBB axisalignedBB) {
-        List list = new ArrayList();
-        int chunkMinX = (int) Math.floor((axisalignedBB.minX - 2.0D) / 16.0D);
-        int chunkMaxX = (int) Math.floor((axisalignedBB.maxX + 2.0D) / 16.0D);
-        int chunkMinZ = (int) Math.floor((axisalignedBB.minZ - 2.0D) / 16.0D);
-        int chunkMaxZ = (int) Math.floor((axisalignedBB.maxZ + 2.0D) / 16.0D);
-
-        for (int x = chunkMinX; x <= chunkMaxX; x++) {
-            for (int z = chunkMinZ; z <= chunkMaxZ; z++) {
-                if (Minecraft.getMinecraft().theWorld.getChunkProvider().chunkExists(x, z)) {
-                    Minecraft.getMinecraft().theWorld.getChunkFromChunkCoords(x, z).getEntitiesWithinAABBForEntity(Minecraft.getMinecraft().thePlayer, axisalignedBB, list, null);
-                }
+    public ArrayList getEntities() {
+        final ArrayList ret = new ArrayList();
+        for (final Object e : Trajectories.mc.theWorld.loadedEntityList) {
+            if (e != Trajectories.mc.thePlayer && e instanceof EntityLivingBase) {
+                ret.add(e);
             }
         }
-        return list;
+        return ret;
+    }
+
+    public Entity getEntityHit(final boolean bow, final Vec3 vecOrig, final Vec3 vecNew) {
+        for (final Object o : this.getEntities()) {
+            final EntityLivingBase entity = (EntityLivingBase)o;
+            if (entity != Trajectories.mc.thePlayer) {
+                final float expander = 0.2f;
+                final AxisAlignedBB bounding2 = entity.getEntityBoundingBox().expand(expander, expander, expander);
+                final MovingObjectPosition possibleEntityLanding = bounding2.calculateIntercept(vecOrig, vecNew);
+                if (possibleEntityLanding != null) {
+                    return entity;
+                }
+                continue;
+            }
+        }
+        return null;
     }
 }

@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import org.apache.commons.codec.language.bm.Rule;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
@@ -135,7 +136,7 @@ public class NameTags extends Module {
             if (e instanceof EntityLivingBase) {
                 if (mc.getRenderManager().getEntityRenderObject(e) instanceof RendererLivingEntity) {
                     double[] p = entityRenderPos(e);
-                    //Utils.passSpecialRenderNameTags((EntityLivingBase)e, p[0], p[1], p[2]);
+                    Utils.passSpecialRenderNameTags((EntityLivingBase)e, p[0], p[1], p[2]);
                 }
             }
         }

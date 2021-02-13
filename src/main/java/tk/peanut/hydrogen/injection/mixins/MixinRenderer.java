@@ -117,16 +117,15 @@ abstract class MixinRenderer<T extends Entity> {
                     float h = var12.FONT_HEIGHT;
                     float offY = 0;
 
-                    Utils.rectBorder(-w-4, -4+offY, w+4, h+3+offY, 0x77111111);
-                    Utils.rect(-w-3, -3+offY, w+3, h+2+offY, 0x33111111);
+                    Utils.rectBorder(-w-4, -4+offY, w+4, h+3+offY, 0x99111111);
+                    Utils.rect(-w-3, -3+offY, w+3, h+2+offY, 0x44111111);
 
                     GlStateManager.enableTexture2D();
                     int co = -1;
 
                     var12.drawString(p_147906_2_, -var12.getStringWidth(p_147906_2_) / 2, 0, co);
 
-                    if (Hydrogen.getClient().settingsManager.getSettingByName("Items").isEnabled())
-                        NameTags.instance.renderArmorESP((EntityLivingBase) entity);
+
                 }
 
                 GlStateManager.enableDepth();
