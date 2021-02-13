@@ -54,7 +54,7 @@ Hydrogen runs on Gradle. Make sure you have it is installed correctly before set
     - IntelliJ: `gradlew setupDecompWorkspace idea genIntellijRuns build`
     - Eclipse: `gradlew setupDecompWorkspace eclipse build`
 4. Open the folder in your preferred IDEA, depending which you chose above.
-5. In your run configuration, type `-Dfml.coreMods.load=tk.peanut.hydrogen.injection.MixinLoader` in your VM options
+5. Open your run configuration and type `-Dfml.coreMods.load=tk.peanut.hydrogen.injection.MixinLoader` into your VM options
 
 ## Credits
 
