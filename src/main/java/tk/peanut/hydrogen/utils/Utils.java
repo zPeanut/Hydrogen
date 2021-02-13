@@ -487,10 +487,6 @@ public class Utils {
         return new double[] {x, y, z};
     }
 
-
-
-
-
     public static Session createSession(String username, String password, @NotNull Proxy proxy) throws Exception {
         YggdrasilAuthenticationService service = new YggdrasilAuthenticationService(proxy, "");
         YggdrasilUserAuthentication auth = (YggdrasilUserAuthentication) service
