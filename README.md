@@ -7,22 +7,42 @@ Developed by [Me] and [UltramoxX].
 
 ## Features
 
-There are currently 12 modules included in Hydrogen.  
+There are currently 20 modules included in Hydrogen.  
 More modules are all being ported over from the previously mentioned MCP client.  
   
 The current included Modules are:
+
+### Combat
+
 -  AutoClicker
 -  TriggerBot
--  OutlineESP
--  FastPlace
--  Fullbright
--  SafeWalk
--  ClickGUI
--  Chams
--  NoBob
--  Sprint
+
+### Movement
+
 -  Eagle
+-  Sprint
+
+### Player
+
+-  AutoRespawn
+-  ChestStealer
+-  FastPlace
+-  InventoryWalk
+-  NoSpeedFOV
+-  SafeWalk
+
+### Render
+
+-  Chams
+-  ClickGUI
+-  ESP
+-  Fullbright
 -  HUD
+-  NameTags
+-  NoBob
+-  NoChatRect
+-  StorageESP
+-  Trajectories
 
 ## Setting up
 
