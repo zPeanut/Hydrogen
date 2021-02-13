@@ -22,14 +22,6 @@ public abstract class MixinEntityRenderer {
     @Shadow
     public abstract void setupCameraTransform(float partialTicks, int pass);
 
-    @Inject(method = "updateCameraAndRender", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/EntityRenderer;renderWorld(FJ)V", shift = At.Shift.AFTER))
-    public void nameTagsIns(float partialTicks, long nanoTime, CallbackInfo ci) {
-        if(Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
-            this.setupCameraTransform(partialTicks, 2);
-            NameTags.instance.render3DPost();
-        }
-    }
-
     @Inject(method = "renderWorldPass", at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/EntityRenderer;renderHand:Z", shift = At.Shift.BEFORE))
     private void renderWorldPass(int pass, float partialTicks, long finishTimeNano, CallbackInfo callbackInfo) {
         EventRender3D e = new EventRender3D(partialTicks);

@@ -135,7 +135,7 @@ public class NameTags extends Module {
             if (e instanceof EntityLivingBase) {
                 if (mc.getRenderManager().getEntityRenderObject(e) instanceof RendererLivingEntity) {
                     double[] p = entityRenderPos(e);
-                    Utils.passSpecialRenderNameTags((EntityLivingBase)e, p[0], p[1], p[2]);
+                    //Utils.passSpecialRenderNameTags((EntityLivingBase)e, p[0], p[1], p[2]);
                 }
             }
         }

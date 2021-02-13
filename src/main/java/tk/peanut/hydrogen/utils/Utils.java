@@ -33,18 +33,10 @@ public class Utils {
     private static final Random RANDOM = new Random();
     public static Utils instance;
 
-    /**
-     * This function returns a random value between min and max
-     * If <code>min >= max</code> the function will return min
-     *
-     * @param min Minimal
-     * @param max Maximal
-     * @return The value
-     */
-
     public Utils() {
         instance = this;
     }
+
     public static int random(int min, int max) {
         if (max <= min) return min;
 
@@ -59,9 +51,10 @@ public class Utils {
             y1 = temp;
         }
 
-        GL11.glScissor((int)x1, (int)(Display.getHeight()-y2), (int)(x2-x1), (int)(y2-y1));
+        GL11.glScissor((int) x1, (int) (Display.getHeight() - y2), (int) (x2 - x1), (int) (y2 - y1));
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
     }
+
     public static void endClip() {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
@@ -72,7 +65,7 @@ public class Utils {
     }
 
     public static int getRainbow(float seconds, float saturation, float brightness, long index) {
-        float hue = ((System.currentTimeMillis() + index) % (int)(seconds * 1000)) / (float)(seconds * 1000);
+        float hue = ((System.currentTimeMillis() + index) % (int) (seconds * 1000)) / (float) (seconds * 1000);
         int color = Color.HSBtoRGB(hue, saturation, brightness);
         return color;
     }
@@ -108,9 +101,9 @@ public class Utils {
 
     public static void draw2DPlayerESP(final EntityPlayer ep, final double d, final double d1, final double d2) {
         final float distance = Minecraft.getMinecraft().thePlayer.getDistanceToEntity(ep);
-        final float scale = (float)(0.09 + Minecraft.getMinecraft().thePlayer.getDistance(ep.posX, ep.posY, ep.posZ) / 10000.0);
+        final float scale = (float) (0.09 + Minecraft.getMinecraft().thePlayer.getDistance(ep.posX, ep.posY, ep.posZ) / 10000.0);
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)d, (float)d1, (float)d2);
+        GL11.glTranslatef((float) d, (float) d1, (float) d2);
         GL11.glNormal3f(0.0f, 1.0f, 0.0f);
         GL11.glRotatef(-Minecraft.getMinecraft().getRenderManager().playerViewY, 0.0f, 1.0f, 0.0f);
         GL11.glScalef(-scale, -scale, scale);
@@ -136,10 +129,10 @@ public class Utils {
     }
 
     public static void rectBorder(float x1, float y1, float x2, float y2, int outline) {
-        rect(x1, y2-1, x2, y2, outline);
-        rect(x1, y1, x2, y1+1, outline);
-        rect(x1, y1, x1+1, y2, outline);
-        rect(x2-1, y1, x2, y2, outline);
+        rect(x1 + 1, y2 - 1, x2, y2, outline);
+        rect(x1 + 1, y1, x2, y1 + 1, outline);
+        rect(x1, y1, x1 + 1, y2, outline);
+        rect(x2 - 1, y1 + 1, x2, y2 - 1, outline);
     }
 
     public static double distance(float x, float y, float x1, float y1) {
@@ -154,8 +147,8 @@ public class Utils {
         GL11.glPushMatrix();
         float scale = 0.1F;
         GL11.glScalef(scale, scale, scale);
-        x = (int)(x * (1.0F / scale));
-        y = (int)(y * (1.0F / scale));
+        x = (int) (x * (1.0F / scale));
+        y = (int) (y * (1.0F / scale));
         radius *= 1.0F / scale;
         drawCircle(x, y, radius, insideC);
         drawUnfilledCircle(x, y, radius, 1.0F, outsideC);
@@ -182,8 +175,7 @@ public class Utils {
         GL11.glDisable(2848);
     }
 
-    public static void drawCircle(int x, int y, float radius, int color)
-    {
+    public static void drawCircle(int x, int y, float radius, int color) {
         float alpha = (color >> 24 & 0xFF) / 255.0F;
         float red = (color >> 16 & 0xFF) / 255.0F;
         float green = (color >> 8 & 0xFF) / 255.0F;
@@ -347,105 +339,6 @@ public class Utils {
         GL11.glVertex3d(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ);
         GL11.glEnd();
     }
-
-    public static void passSpecialRenderNameTags(EntityLivingBase p_77033_1_, double x, double y, double z) {
-        if(Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
-            if((p_77033_1_.getEntityId() != -3 ) && !(p_77033_1_.isInvisible()) && p_77033_1_ instanceof EntityPlayer)
-            {
-                if (Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
-                    String p_147906_2_ = p_77033_1_.getDisplayName().getFormattedText();
-
-
-                    double[] pos = Utils.entityWorldPos(p_77033_1_);
-                    double[] pos2 = Utils.entityWorldPos(Minecraft.getMinecraft().thePlayer);
-                    float xd = (float)(pos2[0]-pos[0]);
-                    float yd = (float)(pos2[1]-pos[1]);
-                    float zd = (float)(pos2[2]-pos[2]);
-                    double dist = MathHelper.sqrt_float(xd*xd+yd*yd+zd*zd);
-
-                    float distance = (float)dist;
-                    float scaleFactor = distance < 10.0F ? 0.9F : distance / 11.11F;
-
-                    int color = 16777215;
-                    float height = 0.0F;
-                    if ((p_77033_1_ instanceof EntityPlayer)) {
-                        EntityPlayer player = (EntityPlayer) p_77033_1_;
-                        if (Hydrogen.getClient().settingsManager.getSettingByName("Health").isEnabled()) {
-                            if (player.getHealth() > 16.0F) {
-                                p_147906_2_ = p_147906_2_ + " \u00a7a" + (int)player.getHealth();
-                            } else if (player.getHealth() > 8.0F) {
-                                p_147906_2_ = p_147906_2_ + " \u00a7e" + (int)player.getHealth();
-                            } else {
-                                p_147906_2_ = p_147906_2_ + " \u00a7c" + (int)player.getHealth();
-                            }
-                        }
-
-
-                        if (Hydrogen.getClient().settingsManager.getSettingByName("State").isEnabled()) {
-                            if (player.isSneaking()) {
-                                p_147906_2_ += " \u00a74[S]";
-                            } else if (player.isInvisible()) {
-                                p_147906_2_ += " \u00a7f[I]";
-                            }
-                        }
-
-                        if (distance >= 10.0F) {
-                            height = (float) (height + (distance / 40.0F - 0.25D));
-                        }
-                    }
-                    FontRenderer var12 = Minecraft.getMinecraft().fontRendererObj;
-                    if (var12 == null) {
-                        return;
-                    }
-
-                    p_147906_2_+= "";
-
-                    float var13 = 1.6F;
-                    float var14 = 0.016666668F * var13;
-                    GlStateManager.pushMatrix();
-                    GlStateManager.translate((float)x + 0.0F, (float)y + p_77033_1_.height + 0.5F, (float)z);
-                    GL11.glNormal3f(0.0F, 1.0F, 0.0F);
-                    GlStateManager.rotate(-Minecraft.getMinecraft().getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
-                    GlStateManager.rotate(Minecraft.getMinecraft().getRenderManager().playerViewX, 1.0F, 0.0F, 0.0F);
-                    GlStateManager.scale(-var14*scaleFactor, -var14*scaleFactor, var14*scaleFactor);
-                    GlStateManager.disableLighting();
-                    GlStateManager.depthMask(false);
-                    GlStateManager.disableDepth();
-                    GlStateManager.enableBlend();
-                    GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-                    Tessellator var15 = Tessellator.getInstance();
-                    WorldRenderer var16 = var15.getWorldRenderer();
-
-                    GlStateManager.disableTexture2D();
-
-                    int var18 = var12.getStringWidth(p_147906_2_) / 2;
-                    float w = var18;
-                    float h = var12.FONT_HEIGHT;
-                    float offY = 0;
-
-                    Utils.rectBorder(-w-4, -4+offY, w+4, h+3+offY, 0x77111111);
-                    Utils.rect(-w-3, -3+offY, w+3, h+2+offY, 0x33111111);
-
-                    GlStateManager.enableTexture2D();
-                    int co = -1;
-                    var12.drawString(p_147906_2_, -var12.getStringWidth(p_147906_2_) / 2, 0, co);
-
-
-                    if (Hydrogen.getClient().settingsManager.getSettingByName("Items").isEnabled())
-                        NameTags.instance.renderArmorESP(p_77033_1_);
-                }
-
-                GlStateManager.enableDepth();
-                GlStateManager.depthMask(true);
-                GlStateManager.enableLighting();
-                GlStateManager.disableBlend();
-                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-                GlStateManager.popMatrix();
-                return;
-            }
-        }
-    }
-
 
     public static void errorLog(String message) {
         System.out.println("[ERROR] [Phosphor] " + message);

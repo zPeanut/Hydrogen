@@ -1,11 +1,17 @@
 package tk.peanut.hydrogen.injection.mixins;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MathHelper;
+import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -15,7 +21,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.module.modules.render.ESP;
+import tk.peanut.hydrogen.module.modules.render.NameTags;
 import tk.peanut.hydrogen.utils.OutlineUtils;
+import tk.peanut.hydrogen.utils.Utils;
 
 import java.awt.*;
 
@@ -24,6 +32,12 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
 
     @Shadow
     protected ModelBase mainModel;
+    
+    @Shadow
+    public static float NAME_TAG_RANGE = 64.0F;
+    
+    @Shadow
+    public static float NAME_TAG_RANGE_SNEAK = 32.0F;
 
     @Inject(method = "doRender", at = @At("HEAD"))
     private <T extends EntityLivingBase> void injectChamsPre(final T a, final double b, final double c, final double d, final float e, final float f, final CallbackInfo g) {
