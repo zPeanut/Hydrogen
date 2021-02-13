@@ -7,22 +7,42 @@ Developed by [Me] and [UltramoxX].
 
 ## Features
 
-There are currently 12 modules included in Hydrogen.  
+There are currently 20 modules included in Hydrogen.  
 More modules are all being ported over from the previously mentioned MCP client.  
   
 The current included Modules are:
+
+### Combat
+
 -  AutoClicker
 -  TriggerBot
--  OutlineESP
--  FastPlace
--  Fullbright
--  SafeWalk
--  ClickGUI
--  Chams
--  NoBob
--  Sprint
+
+### Movement
+
 -  Eagle
+-  Sprint
+
+### Player
+
+-  AutoRespawn
+-  ChestStealer
+-  FastPlace
+-  InventoryWalk
+-  NoSpeedFOV
+-  SafeWalk
+
+### Render
+
+-  Chams
+-  ClickGUI
+-  ESP
+-  Fullbright
 -  HUD
+-  NameTags
+-  NoBob
+-  NoChatRect
+-  StorageESP
+-  Trajectories
 
 ## Setting up
 
@@ -34,7 +54,7 @@ Hydrogen runs on Gradle. Make sure you have it is installed correctly before set
     - IntelliJ: `gradlew setupDecompWorkspace idea genIntellijRuns build`
     - Eclipse: `gradlew setupDecompWorkspace eclipse build`
 4. Open the folder in your preferred IDEA, depending which you chose above.
-5. In your run configuration, type `-Dfml.coreMods.load=tk.peanut.hydrogen.injection.MixinLoader` in your VM options
+5. Open your run configuration and type `-Dfml.coreMods.load=tk.peanut.hydrogen.injection.MixinLoader` into your VM options
 
 ## Credits
 
