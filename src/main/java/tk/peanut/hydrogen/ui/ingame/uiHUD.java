@@ -186,7 +186,7 @@ public class uiHUD {
         Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 26, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 24, 0x99000000);
         Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 26, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 24, 0x44000000);
 
-       // Utils.drawRect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 26, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+        Utils.drawRect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 26, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
         Utils.drawRect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 24, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
 
         LocalDateTime now = LocalDateTime.now();
@@ -207,8 +207,8 @@ public class uiHUD {
 
         String coordinates = String.format("X: §7%s §fY: §7%s §fZ: §7%s", x, y, z);
 
-        mc.fontRendererObj.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(date) - 7, Utils.getScaledRes().getScaledHeight() - 10, -1);
-        mc.fontRendererObj.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(time) - 7, Utils.getScaledRes().getScaledHeight() - 21, -1);
+        mc.fontRendererObj.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 10, -1);
+        mc.fontRendererObj.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(time) - 9, Utils.getScaledRes().getScaledHeight() - 21, -1);
 
         mc.fontRendererObj.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
         mc.fontRendererObj.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 21, -1);
