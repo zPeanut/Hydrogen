@@ -31,7 +31,7 @@ public class uiHUD {
                     e.printStackTrace();
                 }
                 try {
-                    Thread.sleep(3L);
+                    Thread.sleep((long) Hydrogen.getClient().settingsManager.getSettingByName("List Speed").getValDouble());
                 } catch (InterruptedException e) {
                 }
                 for (Module mod : Hydrogen.getClient().moduleManager.getModules()) {

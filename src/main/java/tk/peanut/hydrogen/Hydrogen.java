@@ -98,6 +98,8 @@ public class Hydrogen {
       TODO: Maybe improve ClickGUI a bit? - better visuals
       TODO: Add more Player modules
       TODO: Finish Tephra modules import
+      TODO: ArrayList outline
+      TODO: ItemESP
      */
 
 }
