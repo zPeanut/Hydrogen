@@ -43,7 +43,6 @@ public class ModuleManager {
         add(new NoSpeedFOV());
         add(new Trajectories());
         add(new AutoRespawn());
-        add(new NoChatRect());
         add(new StorageESP());
 
         // alphabetically sort modules in clickgui

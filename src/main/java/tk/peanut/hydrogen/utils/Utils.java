@@ -6,14 +6,12 @@ import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
@@ -53,6 +51,24 @@ public class Utils {
 
         GL11.glScissor((int) x1, (int) (Display.getHeight() - y2), (int) (x2 - x1), (int) (y2 - y1));
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
+    }
+
+    public static double slide = 100D;
+    public static void addUntil(double needX, double steps) {
+        if (slide != needX) {
+            if (slide < needX)
+                if (slide <= needX - steps) {
+                    slide += steps;
+                } else if (slide > needX - steps) {
+                    slide = needX;
+                }
+            if (slide > needX)
+                if (slide >= needX + steps) {
+                    slide -= steps;
+                } else if (slide < needX + steps) {
+                    slide = needX;
+                }
+        }
     }
 
     public static void endClip() {

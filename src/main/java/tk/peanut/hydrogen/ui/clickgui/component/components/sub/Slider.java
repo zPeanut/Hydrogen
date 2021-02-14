@@ -3,6 +3,7 @@ package tk.peanut.hydrogen.ui.clickgui.component.components.sub;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -44,7 +45,8 @@ public class Slider extends Component {
 		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + ": " + this.set.getValDouble() : this.set.getName() + ": " + this.set.getValDouble(), (parent.parent.getX()* 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f + 2, -1);
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + " " : this.set.getName() + " ", (parent.parent.getX()* 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f + 2, -1);
+		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble()), (parent.parent.getX() + 86) * 1.3333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble())), (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
 		
 		GL11.glPopMatrix();
 	}

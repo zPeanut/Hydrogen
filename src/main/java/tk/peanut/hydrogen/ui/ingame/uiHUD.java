@@ -19,7 +19,9 @@ import java.util.Comparator;
 public class uiHUD {
 
     static Minecraft mc = Minecraft.getMinecraft();
-    static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("h:mm a");
+    static final DateTimeFormatter timeFormat12 = DateTimeFormatter.ofPattern("h:mm a");
+    static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
+    static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     public uiHUD() {
 
@@ -48,7 +50,7 @@ public class uiHUD {
                     }
                 }
             }
-        },"smooth array").start();
+        }, "smooth array").start();
 
 
         Collections.sort(Hydrogen.getClient().moduleManager.getModules(), new Comparator<Module>() {
@@ -69,45 +71,50 @@ public class uiHUD {
 
     @EventTarget
     public static void render(EventRender2D e) {
-        if(mc.gameSettings.showDebugInfo)
+        if (mc.gameSettings.showDebugInfo)
             return;
-        if(Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
+        if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
             drawWatermark();
             drawArray();
             drawInfo();
+
+            if(Hydrogen.getClient().settingsManager.getSettingByName("Hotbar").isEnabled()) {
+                drawHotbar();
+            }
+
         }
 
     }
 
     private static void drawWatermark() {
-            LocalDateTime now = LocalDateTime.now();
-            String currenttime = timeFormat.format(now);
+        LocalDateTime now = LocalDateTime.now();
+        String currenttime = timeFormat12.format(now);
 
-            String watermark = String.format("%s %s §7(%s)", Hydrogen.getClient().name, Hydrogen.getClient().version, currenttime);
+        String watermark = String.format("%s %s §7(%s)", Hydrogen.getClient().name, Hydrogen.getClient().version, currenttime);
 
 
-            if(Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
+        if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
 
-                if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
-                    Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) - 22, 21, Integer.MIN_VALUE);
-                }
-
-                GL11.glPushMatrix();
-                GL11.glScalef(2f, 2f, 2f);
-                mc.fontRendererObj.drawStringWithShadow("H", 2, 1, -1);
-                GL11.glPopMatrix();
-
-                mc.fontRendererObj.drawStringWithShadow("2", 17, 12, -1);
-                mc.fontRendererObj.drawStringWithShadow(Hydrogen.getClient().version + " §7(" + currenttime + ")", 27, 6, -1);
-            } else {
-
-                if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
-                    Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
-                }
-                mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
+            if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
+                Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) - 22, 21, Integer.MIN_VALUE);
             }
 
+            GL11.glPushMatrix();
+            GL11.glScalef(2f, 2f, 2f);
+            mc.fontRendererObj.drawStringWithShadow("H", 2, 1, -1);
+            GL11.glPopMatrix();
+
+            mc.fontRendererObj.drawStringWithShadow("2", 17, 12, -1);
+            mc.fontRendererObj.drawStringWithShadow(Hydrogen.getClient().version + " §7(" + currenttime + ")", 27, 6, -1);
+        } else {
+
+            if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
+                Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
             }
+            mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
+        }
+
+    }
 
     private static void drawArray() {
         int count = 0;
@@ -129,7 +136,7 @@ public class uiHUD {
 
                 if (Hydrogen.getClient().settingsManager.getSettingByName("List Side").getValString().equalsIgnoreCase("Left")) {
 
-                    if(Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
+                    if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
 
                         if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                             Gui.drawRect(mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName()), 21 + i * 12, mod.getSlide() + (mc).fontRendererObj.getStringWidth(mod.getSuffix()) + 4, i * 12 + 33, Integer.MIN_VALUE);
@@ -158,10 +165,10 @@ public class uiHUD {
     }
 
     public static void drawInfo() {
-        if (Hydrogen.getClient().settingsManager.getSettingByName("Info").isEnabled()) {
-            String x = String.valueOf((int)mc.thePlayer.posX);
-            String y = String.valueOf((int)mc.thePlayer.posY);
-            String z = String.valueOf((int)mc.thePlayer.posZ);
+        if (Hydrogen.getClient().settingsManager.getSettingByName("Info").isEnabled() && !Hydrogen.getClient().settingsManager.getSettingByName("Hotbar").isEnabled()) {
+            String x = String.valueOf((int) mc.thePlayer.posX);
+            String y = String.valueOf((int) mc.thePlayer.posY);
+            String z = String.valueOf((int) mc.thePlayer.posZ);
             String coordinates = String.format("XYZ §7(%s, %s, %s)", x, y, z);
             String fps = String.format("FPS §7%s", mc.getDebugFPS());
             if (!Boolean.toString(mc.ingameGUI.getChatGUI().getChatOpen()).equals("true")) {
@@ -175,7 +182,55 @@ public class uiHUD {
     }
 
 
+    public static void drawHotbar() {
+        Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 26, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 24, 0x99000000);
+        Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 26, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 24, 0x44000000);
 
+       // Utils.drawRect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 26, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+        Utils.drawRect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 24, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
 
+        LocalDateTime now = LocalDateTime.now();
+        String date = dateFormat.format(now);
+        String time = timeFormat24.format(now);
+        String fps = String.format("FPS §7140", mc.getDebugFPS());
 
+        if(mc.getCurrentServerData() != null) {
+            String ping = String.format("Ping §7%s", String.valueOf(mc.getCurrentServerData().pingToServer));
+            mc.fontRendererObj.drawStringWithShadow(ping, 47, Utils.getScaledRes().getScaledHeight() - 21, -1);
+        } else {
+            String ping = String.format("Ping §70");
+            mc.fontRendererObj.drawStringWithShadow(ping, 47, Utils.getScaledRes().getScaledHeight() - 21, -1);
+        }
+        String x = String.valueOf((int) mc.thePlayer.posX);
+        String y = String.valueOf((int) mc.thePlayer.posY);
+        String z = String.valueOf((int) mc.thePlayer.posZ);
+
+        String coordinates = String.format("X: §7%s §fY: §7%s §fZ: §7%s", x, y, z);
+
+        mc.fontRendererObj.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(date) - 7, Utils.getScaledRes().getScaledHeight() - 10, -1);
+        mc.fontRendererObj.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(time) - 7, Utils.getScaledRes().getScaledHeight() - 21, -1);
+
+        mc.fontRendererObj.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
+        mc.fontRendererObj.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 21, -1);
+
+    }
+
+    public static double x = 400.0D;
+
+    public static void addUntil(double needX, double steps) {
+        if (x != needX) {
+            if (x < needX)
+                if (x <= needX - steps) {
+                    x += steps;
+                } else if (x > needX - steps) {
+                    x = needX;
+                }
+            if (x > needX)
+                if (x >= needX + steps) {
+                    x -= steps;
+                } else if (x < needX + steps) {
+                    x = needX;
+                }
+        }
+    }
 }
