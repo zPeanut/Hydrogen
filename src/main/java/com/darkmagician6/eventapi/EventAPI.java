@@ -10,7 +10,7 @@
  * For information on how to use the API take a look at the wiki:
  * https://bitbucket.org/DarkMagician6/eventapi/wiki/Home
  *
- * @Todo Improve/update the wiki.
+ *
  */
 package com.darkmagician6.eventapi;
 

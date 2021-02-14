@@ -52,7 +52,6 @@ public class Button extends Component {
 			}
 		}
 		this.subcomponents.add(new Keybind(this, opY));
-		//TODO: Implement this: this.subcomponents.add(new VisibleButton(this, mod, opY));
 	}
 	
 	@Override

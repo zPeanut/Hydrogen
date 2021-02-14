@@ -255,7 +255,7 @@ public final class EventManager {
      * @param data     The data of which the targeted Method should be invoked.
      * @param argument The called Event which should be used as an argument for the targeted Method.
      *                 <p>
-     *                 TODO: Error messages.
+     *
      */
     private static void invoke(MethodData data, Event argument) {
         try {
