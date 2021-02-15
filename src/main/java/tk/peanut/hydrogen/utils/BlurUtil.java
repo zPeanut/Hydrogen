@@ -185,16 +185,14 @@ public class BlurUtil {
         int factor = scale.getScaleFactor();
         int factor2 = scale.getScaledWidth();
         int factor3 = scale.getScaledHeight();
-        if (lastScale != factor || lastScaleWidth != factor2 || lastScaleHeight != factor3 || buffer == null
-                || blurShader == null) {
+        if (lastScale != factor || lastScaleWidth != factor2 || lastScaleHeight != factor3 || buffer == null || blurShader == null) {
             initFboAndShader();
         }
         lastScale = factor;
         lastScaleWidth = factor2;
         lastScaleHeight = factor3;
 
-        GL11.glScissor(x * factor, (mc.displayHeight - (y * factor) - height * factor), width * factor,
-                (height) * factor);
+        GL11.glScissor(x * factor, (mc.displayHeight - (y * factor) - height * factor), width * factor, (height) * factor);
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
 
         setShaderConfigs(intensity, 1, 0, 1);

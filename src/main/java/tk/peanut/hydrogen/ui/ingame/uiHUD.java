@@ -102,6 +102,8 @@ public class uiHUD {
 
             if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                 Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) - 22, 21, Integer.MIN_VALUE);
+                Gui.drawRect(0, 23, mc.fontRendererObj.getStringWidth(watermark) - 20, 21, 0x99000000);
+                Gui.drawRect(mc.fontRendererObj.getStringWidth(watermark) - 22, 0, mc.fontRendererObj.getStringWidth(watermark) - 20, 21, 0x99000000);
             }
 
             GL11.glPushMatrix();
@@ -115,6 +117,8 @@ public class uiHUD {
 
             if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                 Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                Gui.drawRect(0, 11, mc.fontRendererObj.getStringWidth(watermark) + 4, 12, 0x99000000);
+                Gui.drawRect(mc.fontRendererObj.getStringWidth(watermark) + 4, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, 0x99000000);
             }
             mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
         }
