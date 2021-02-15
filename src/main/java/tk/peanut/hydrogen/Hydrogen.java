@@ -90,19 +90,27 @@ public class Hydrogen {
 
     /*
       TODO LIST
+
+      1.4:
+
+      TODO: ArrayList outline
+
       TODO: Update Function
-      TODO: Custom Menu
-      Custom Hotbar with Time, Date etc.
-      TODO: Visibility Option on Module in ClickGUI
-      TODO: Blur on ClickGUI Buttons (i.e. see Impact)
-      TODO: Maybe improve ClickGUI a bit? - better visuals
+      TODO: Maybe improve ClickGUI a bit? - better visuals -> see screenshot
       TODO: Add more Player modules
       TODO: Finish Tephra modules import
-      TODO: ArrayList outline
+
       TODO: ItemESP
+      TODO: W-Tap Module
+
+      1.5:
+
+      TODO: Blur hotbar (maybe 1.5)
+      TODO: Blur on ClickGUI Buttons (i.e. see Impact)
+      TODO: Visibility Option on Module in ClickGUI
       TODO: Freecam Module
       TODO: Tracers Module
-      TODO: W-Tap Module
+      TODO: Custom Menu
      */
 
 }

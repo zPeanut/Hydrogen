@@ -1,5 +1,6 @@
 package tk.peanut.hydrogen.module.modules.render;
 
+import net.minecraft.client.renderer.RenderGlobal;
 import org.lwjgl.input.Keyboard;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
