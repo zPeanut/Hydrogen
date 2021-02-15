@@ -12,20 +12,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import scala.Int;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventRender2D;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.ui.ingame.uiHUD;
-import tk.peanut.hydrogen.utils.Utils;
 
-import java.awt.*;
-
-import static tk.peanut.hydrogen.utils.Utils.addUntil;
+import static tk.peanut.hydrogen.utils.Utils.addSlide;
 
 @SideOnly(Side.CLIENT)
 @Mixin(GuiIngame.class)
@@ -90,13 +85,6 @@ public abstract class MixinGuiIngame extends MixinGui {
                 float f = this.zLevel;
 
                 this.zLevel = -90.0F;
-
-                float needX = (sr.getScaledWidth() / 2 - 91 + entityplayer.inventory.currentItem * 20);
-                float steps = 5.0F;
-
-                addUntil(needX, steps);
-
-                Utils.drawRect(0, sr.getScaledHeight() - 24, sr.getScaledWidth() - 7, sr.getScaledHeight(), Integer.MIN_VALUE);
 
                 this.zLevel = f;
                 GlStateManager.enableRescaleNormal();

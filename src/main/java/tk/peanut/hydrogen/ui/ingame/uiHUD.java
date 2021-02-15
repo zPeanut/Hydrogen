@@ -4,10 +4,13 @@ import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.shader.ShaderGroup;
+import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.opengl.GL11;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventRender2D;
 import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.utils.BlurUtil;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 import tk.peanut.hydrogen.utils.Utils;
 
@@ -15,6 +18,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
+
+import static tk.peanut.hydrogen.utils.Utils.addSlide;
 
 public class uiHUD {
 
@@ -183,24 +188,26 @@ public class uiHUD {
 
 
     public static void drawHotbar() {
-        Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 26, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 24, 0x99000000);
-        Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 26, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 24, 0x44000000);
 
-        Utils.drawRect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 26, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
-        Utils.drawRect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 24, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+        EntityPlayer entityplayer = (EntityPlayer)Minecraft.getMinecraft().getRenderViewEntity();
+
+        float needX = (Utils.getScaledRes().getScaledWidth() / 2 - 91 + entityplayer.inventory.currentItem * 20);
+        float steps = 10f;
+
+        addSlide(needX, steps);
+
+        BlurUtil.blurAll(1);
+
+        Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), Integer.MIN_VALUE);
+
+        Utils.drawRect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+        Utils.drawRect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 23, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
 
         LocalDateTime now = LocalDateTime.now();
         String date = dateFormat.format(now);
         String time = timeFormat24.format(now);
-        String fps = String.format("FPS §7140", mc.getDebugFPS());
+        String fps = String.format("FPS §7%s", mc.getDebugFPS());
 
-        if(mc.getCurrentServerData() != null) {
-            String ping = String.format("Ping §7%s", String.valueOf(mc.getCurrentServerData().pingToServer));
-            mc.fontRendererObj.drawStringWithShadow(ping, 47, Utils.getScaledRes().getScaledHeight() - 21, -1);
-        } else {
-            String ping = String.format("Ping §70");
-            mc.fontRendererObj.drawStringWithShadow(ping, 47, Utils.getScaledRes().getScaledHeight() - 21, -1);
-        }
         String x = String.valueOf((int) mc.thePlayer.posX);
         String y = String.valueOf((int) mc.thePlayer.posY);
         String z = String.valueOf((int) mc.thePlayer.posZ);
@@ -208,7 +215,7 @@ public class uiHUD {
         String coordinates = String.format("X: §7%s §fY: §7%s §fZ: §7%s", x, y, z);
 
         mc.fontRendererObj.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 10, -1);
-        mc.fontRendererObj.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(time) - 9, Utils.getScaledRes().getScaledHeight() - 21, -1);
+        mc.fontRendererObj.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(time) - 22, Utils.getScaledRes().getScaledHeight() - 21, -1);
 
         mc.fontRendererObj.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
         mc.fontRendererObj.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 21, -1);

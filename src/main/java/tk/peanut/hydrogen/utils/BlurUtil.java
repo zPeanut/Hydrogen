@@ -23,16 +23,22 @@ public class BlurUtil {
     private static int lastScaleHeight;
     private static ResourceLocation shader = new ResourceLocation("shaders/post/blur.json");
 
-   /* public static void initFboAndShader() {
+   public static void initFboAndShader() {
         try {
 
             blurShader = new ShaderGroup(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), shader);
             blurShader.createBindFramebuffers(mc.displayWidth, mc.displayHeight);
-            //buffer = blurShader.mainFramebuffer;
+            buffer = blurShader.mainFramebuffer;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static void setShaderConfigs(float intensity, float blurWidth, float blurHeight, float opacity) {
+
+        blurShader.listShaders.get(0).getShaderManager().getShaderUniform("BlurDir").set(blurWidth, blurHeight);
+        blurShader.listShaders.get(1).getShaderManager().getShaderUniform("BlurDir").set(blurHeight, blurWidth);
     }
 
 
@@ -132,6 +138,7 @@ public class BlurUtil {
 			/*Stencil.write(false);
 			Gui.drawFloatRect(x, f, x+width, f+height, -1);
 			Stencil.erase(true);
+			 */
 
         setShaderConfigs(intensity, blurWidth, blurHeight, 1);
         buffer.bindFramebuffer(true);
@@ -219,6 +226,6 @@ public class BlurUtil {
 
         mc.getFramebuffer().bindFramebuffer(true);
 
-    }*/
+    }
 
 }

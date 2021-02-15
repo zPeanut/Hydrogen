@@ -92,7 +92,7 @@ public class Hydrogen {
       TODO LIST
       TODO: Update Function
       TODO: Custom Menu
-      TODO: Custom Hotbar with Time, Date etc.
+      Custom Hotbar with Time, Date etc.
       TODO: Visibility Option on Module in ClickGUI
       TODO: Blur on ClickGUI Buttons (i.e. see Impact)
       TODO: Maybe improve ClickGUI a bit? - better visuals

@@ -7,14 +7,19 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.shader.Framebuffer;
+import net.minecraft.client.shader.Shader;
+import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Session;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.input.Mouse;
@@ -25,11 +30,20 @@ import tk.peanut.hydrogen.module.modules.render.NameTags;
 
 import java.awt.*;
 import java.net.Proxy;
+import java.sql.Ref;
 import java.util.Random;
 
 public class Utils {
     private static final Random RANDOM = new Random();
     public static Utils instance;
+
+    private static ShaderGroup blurShader;
+    private static Minecraft mc = Minecraft.getMinecraft();
+    private static Framebuffer buffer;
+    private static int lastScale;
+    private static int lastScaleWidth;
+    private static int lastScaleHeight;
+    private static ResourceLocation shader = new ResourceLocation("shaders/post/blur.json");
 
     public Utils() {
         instance = this;
@@ -53,8 +67,8 @@ public class Utils {
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
     }
 
-    public static double slide = 100D;
-    public static void addUntil(double needX, double steps) {
+    public static double slide = 1D;
+    public static void addSlide(double needX, double steps) {
         if (slide != needX) {
             if (slide < needX)
                 if (slide <= needX - steps) {
@@ -230,6 +244,18 @@ public class Utils {
                 GlStateManager.popMatrix();
                 return;
             }
+        }
+    }
+
+    public static void initFboAndShader() {
+        try {
+
+            blurShader = new ShaderGroup(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), shader);
+            blurShader.createBindFramebuffers(mc.displayWidth, mc.displayHeight);
+            buffer = blurShader.mainFramebuffer;
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
