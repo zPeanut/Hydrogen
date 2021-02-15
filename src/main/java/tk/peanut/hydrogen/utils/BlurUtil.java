@@ -74,7 +74,7 @@ public class BlurUtil {
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ZERO,
                     GL11.GL_ONE);
-            //buffer.func_178038_a(mc.displayWidth, mc.displayHeight, false);
+            //buffer.framebufferRenderExt(mc.displayWidth, mc.displayHeight, false);
             GlStateManager.disableBlend();
             GL11.glScalef(factor, factor, 0);
 
@@ -220,8 +220,8 @@ public class BlurUtil {
         lastScaleWidth = factor2;
         lastScaleHeight = factor3;
 
-        setShaderConfigs(intensity, 0, 1, 1);
-        buffer.bindFramebuffer(true);
+        setShaderConfigs(intensity, 1, 0, 1);
+        //buffer.bindFramebuffer(true);
         blurShader.loadShaderGroup(mc.timer.renderPartialTicks);
 
         mc.getFramebuffer().bindFramebuffer(true);

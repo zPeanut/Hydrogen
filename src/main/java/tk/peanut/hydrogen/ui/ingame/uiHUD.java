@@ -196,7 +196,7 @@ public class uiHUD {
 
         addSlide(needX, steps);
 
-        BlurUtil.blurAll(1);
+        // TODO: Blur hotbar
 
         Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), Integer.MIN_VALUE);
 

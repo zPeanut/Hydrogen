@@ -20,6 +20,7 @@ import tk.peanut.hydrogen.file.files.ClickGuiFile;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.ui.clickgui.component.Component;
 import tk.peanut.hydrogen.ui.clickgui.component.Frame;
+import tk.peanut.hydrogen.utils.BlurUtil;
 import tk.peanut.hydrogen.utils.ParticleGenerator;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 import tk.peanut.hydrogen.utils.Utils;
@@ -60,7 +61,10 @@ public class ClickGui extends GuiMainMenu {
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
+		//TODO:
+		if(Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
+			BlurUtil.blurAll(0.4f);
+		}
 		drawRect(0, 0, this.width, this.height, 0x66101010);
 		/*if(Hydrogen.getInstance().outdated) {
 			mc.fontRendererObj.drawStringWithShadow("§7Outdated! Newest version is: §e" + Hydrogen.getInstance().newversion + "§7!", 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
@@ -77,9 +81,8 @@ public class ClickGui extends GuiMainMenu {
 			if (mc.entityRenderer.getShaderGroup() != null) {
 				mc.entityRenderer.getShaderGroup().deleteShaderGroup();
 			}
-			if(Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
-				mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
-			}
+
+
 		}
 
 	}
