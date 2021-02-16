@@ -93,13 +93,10 @@ public class Hydrogen {
 
       1.4:
 
-      TODO: ArrayList outline
-
       TODO: Update Function
       TODO: Maybe improve ClickGUI a bit? - better visuals -> see screenshot
       TODO: Add more Player modules
       TODO: Finish Tephra modules import
-
       TODO: ItemESP
       TODO: W-Tap Module
 
