@@ -18,7 +18,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import tk.peanut.hydrogen.module.modules.render.HUD;
 import tk.peanut.hydrogen.ui.ingame.uiHUD;
+import tk.peanut.hydrogen.utils.Utils;
 
 import static tk.peanut.hydrogen.utils.Utils.addSlide;
 
@@ -45,7 +47,7 @@ public abstract class MixinGuiIngame extends MixinGui {
     @Overwrite
     protected void renderTooltip(ScaledResolution sr, float partialTicks) {
 
-        if(!(Hydrogen.getClient().settingsManager.getSettingByName("Hotbar").isEnabled())) {
+        if(!(Hydrogen.getClient().settingsManager.getSettingByName("Hotbar").isEnabled() && Hydrogen.getClient().moduleManager.getModule(HUD.class).isEnabled())) {
             if (Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 Minecraft.getMinecraft().getTextureManager().bindTexture(widgetsTexPath);
@@ -85,6 +87,11 @@ public abstract class MixinGuiIngame extends MixinGui {
                 float f = this.zLevel;
 
                 this.zLevel = -90.0F;
+
+                Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), Integer.MIN_VALUE);
+
+                Utils.drawRect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+                Utils.drawRect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 23, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
 
                 this.zLevel = f;
                 GlStateManager.enableRescaleNormal();
