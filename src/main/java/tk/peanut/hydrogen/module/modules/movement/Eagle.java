@@ -15,7 +15,7 @@ import tk.peanut.hydrogen.utils.ReflectionUtil;
 
 import java.time.format.DateTimeFormatter;
 
-@Info(name = "Eagle", description = "Automatically fastbridges for you", category = Category.Movement, color = -1)
+@Info(name = "FastBridge", description = "Automatically fastbridges for you", category = Category.Movement, color = -1)
 public class Eagle extends Module {
 
     private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
