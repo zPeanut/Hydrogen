@@ -108,7 +108,7 @@ public class AutoClicker extends Module {
                 if (this.time.hasDelayRun(delay - randomD + randomInc))
                 {
                     this.time.resetAndAdd(random.nextInt(delay));
-                    mc.thePlayer.swingItem();
+                    this.mc.clickMouse();
                     this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
                     this.time.reset();
                 }

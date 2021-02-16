@@ -5,6 +5,7 @@ import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.hydrogen.events.EventKey;
 import tk.peanut.hydrogen.module.modules.combat.AutoClicker;
 import tk.peanut.hydrogen.module.modules.combat.TriggerBot;
+import tk.peanut.hydrogen.module.modules.movement.AirStrafe;
 import tk.peanut.hydrogen.module.modules.movement.Sprint;
 import tk.peanut.hydrogen.module.modules.player.*;
 import tk.peanut.hydrogen.module.modules.render.*;
@@ -44,6 +45,7 @@ public class ModuleManager {
         add(new Trajectories());
         add(new AutoRespawn());
         add(new StorageESP());
+        add(new AirStrafe());
 
         // alphabetically sort modules in clickgui
 
@@ -101,7 +103,7 @@ public class ModuleManager {
         List<Module> modules = new ArrayList<>();
 
         for (Module mod : this.getModules()) {
-            if(mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled()) && !(mod.getName().equalsIgnoreCase("hud"))) {
+            if(mod.isEnabled() || (mod.getSlide() != 0 && mod.yCoord != 0 && mod.yCoord > 0 && !mod.isEnabled()) && !(mod.getName().equalsIgnoreCase("hud"))) {
                 modules.add(mod);
             }
         }
