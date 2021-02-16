@@ -31,6 +31,7 @@ public class HUD extends Module {
         Hydrogen.getClient().settingsManager.rSetting(new Setting("List Side", this, "Left", options));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("List Color",this, "White", array));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("List Speed", this, 3, 0, 20, false));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("List Outline", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Background", this, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Hotbar", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Info", this, true));

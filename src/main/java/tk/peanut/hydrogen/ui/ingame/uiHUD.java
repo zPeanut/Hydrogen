@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import static tk.peanut.hydrogen.utils.Utils.addSlide;
 
@@ -100,10 +101,12 @@ public class uiHUD {
 
         if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
 
+            String watermarknew = Hydrogen.getClient().version + " §7(" + currenttime + ")";
+
             if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
-                Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) - 22, 21, Integer.MIN_VALUE);
-                Gui.drawRect(0, 23, mc.fontRendererObj.getStringWidth(watermark) - 20, 21, 0x99000000);
-                Gui.drawRect(mc.fontRendererObj.getStringWidth(watermark) - 22, 0, mc.fontRendererObj.getStringWidth(watermark) - 20, 21, 0x99000000);
+                Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
+                Gui.drawRect(0, 23, mc.fontRendererObj.getStringWidth(watermarknew) + 29, 24, 0x99000000);
+                Gui.drawRect(mc.fontRendererObj.getStringWidth(watermarknew) + 28, 0, mc.fontRendererObj.getStringWidth(watermarknew) + 29, 23, 0x99000000);
             }
 
             GL11.glPushMatrix();
@@ -112,7 +115,7 @@ public class uiHUD {
             GL11.glPopMatrix();
 
             mc.fontRendererObj.drawStringWithShadow("2", 17, 12, -1);
-            mc.fontRendererObj.drawStringWithShadow(Hydrogen.getClient().version + " §7(" + currenttime + ")", 27, 6, -1);
+            mc.fontRendererObj.drawStringWithShadow(watermarknew, 27, 7, -1);
         } else {
 
             if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
@@ -134,6 +137,7 @@ public class uiHUD {
 
             boolean modcolor = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow");
             boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
+            boolean outline = Hydrogen.getClient().settingsManager.getSettingByName("List Outline").isEnabled();
 
             int mwidth = 2 + mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName());
             int mheight = count * 11 + i + 23;
@@ -148,7 +152,7 @@ public class uiHUD {
 
             int outlinecolor = modcolor ? mcolor : 0x88000000;
 
-            if (background) {
+            if (outline && background) {
 
                 if (i == 0) {
                     Utils.drawRect(rectX - 1.0D, rectY - 1.0D, rectX2 + 2, rectY, outlinecolor);
@@ -174,8 +178,11 @@ public class uiHUD {
                     }
                     Utils.drawRect(rectX - 2, rectY2, rectX + 1.0D + difference - 2, rectY2 + 1, outlinecolor);
                 }
+            }
+            if(background) {
                 Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
             }
+
             mc.fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight - 20, modcolor ? mcolor : mod.getColor());
             count++;
         }
@@ -209,12 +216,7 @@ public class uiHUD {
 
         addSlide(needX, steps);
 
-        // TODO: Blur hotbar
 
-        Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), Integer.MIN_VALUE);
-
-        Utils.drawRect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
-        Utils.drawRect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 23, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
 
         LocalDateTime now = LocalDateTime.now();
         String date = dateFormat.format(now);
