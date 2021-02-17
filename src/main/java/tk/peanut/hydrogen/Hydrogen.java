@@ -48,7 +48,6 @@ public class Hydrogen {
     }
 
     public void startClient() {
-        FontHelper.loadFonts();
         directory = new File(Minecraft.getMinecraft().mcDataDir, name);
         if (!this.directory.exists()) {
             directory.mkdir();
@@ -57,6 +56,7 @@ public class Hydrogen {
         moduleManager = new ModuleManager();
         keybindManager = new KeybindManager();
         clickgui = new ClickGui();
+        FontHelper.loadFonts();
         moduleManager.addModules();
         new uiHUD();
         this.isOutdated();
