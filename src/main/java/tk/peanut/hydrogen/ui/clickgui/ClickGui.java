@@ -61,7 +61,6 @@ public class ClickGui extends GuiMainMenu {
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		//TODO:
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
 			BlurUtil.blurAll(0.4f);
 		}
