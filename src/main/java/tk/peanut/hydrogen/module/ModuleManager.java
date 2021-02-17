@@ -103,7 +103,7 @@ public class ModuleManager {
         List<Module> modules = new ArrayList<>();
 
         for (Module mod : this.getModules()) {
-            if(mod.isEnabled() || (mod.getSlide() != 0 && mod.yCoord != 0 && mod.yCoord > 0 && !mod.isEnabled()) && !(mod.getName().equalsIgnoreCase("hud"))) {
+            if(mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled()) && !(mod.getName().equalsIgnoreCase("hud"))) {
                 modules.add(mod);
             }
         }

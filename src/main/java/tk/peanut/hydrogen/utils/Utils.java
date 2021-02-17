@@ -100,10 +100,6 @@ public class Utils {
         return color;
     }
 
-    public static double translateToFrames(double paramDouble) {
-        return paramDouble * FrameTimeUtil.getFrameTime();
-    }
-
     public static void rect(float x1, float y1, float x2, float y2, int fill) {
         GlStateManager.color(0, 0, 0);
         GL11.glColor4f(0, 0, 0, 0);

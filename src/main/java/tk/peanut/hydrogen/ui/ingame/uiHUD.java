@@ -11,6 +11,7 @@ import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventRender2D;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.utils.BlurUtil;
+import tk.peanut.hydrogen.utils.FontHelper;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 import tk.peanut.hydrogen.utils.Utils;
 
@@ -124,6 +125,9 @@ public class uiHUD {
                 Gui.drawRect(mc.fontRendererObj.getStringWidth(watermark) + 4, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, 0x99000000);
             }
             mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
+
+            //TODO: FontHelper.cfArrayList.drawString(watermark, 2, 12, -1);
+
         }
 
     }
@@ -182,6 +186,8 @@ public class uiHUD {
             if(background) {
                 Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
             }
+
+
 
             mc.fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight - 20, modcolor ? mcolor : mod.getColor());
             count++;
