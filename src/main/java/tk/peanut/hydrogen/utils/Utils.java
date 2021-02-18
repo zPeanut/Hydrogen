@@ -100,6 +100,12 @@ public class Utils {
         return color;
     }
 
+    public static Color getRainbow2(float seconds, float saturation, float brightness, long index) {
+        float hue = ((System.currentTimeMillis() + index) % (int) (seconds * 1000)) / (float) (seconds * 1000);
+        Color color = Color.getHSBColor(hue, saturation, brightness);
+        return color;
+    }
+
     public static void rect(float x1, float y1, float x2, float y2, int fill) {
         GlStateManager.color(0, 0, 0);
         GL11.glColor4f(0, 0, 0, 0);

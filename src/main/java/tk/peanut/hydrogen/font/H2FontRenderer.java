@@ -44,8 +44,12 @@ public class H2FontRenderer extends FontRenderer {
         return this.drawString(s, x, y, color.getRGB(), false);
     }
 
-    public int drawStringWithShadow(String s, double d, double e, int color) {
-        return this.drawString(s, d, e, color, false);
+    public int drawStringWithShadow(String s, double x, double y, int color) {
+        return this.drawString(s, x, y, color, false);
+    }
+
+    public int drawStringWithShadow(String s, double x, double y, Color color) {
+        return this.drawString(s, x, y, color.getRGB(), true);
     }
 
     public void drawCenteredString(String s, double d, double e, int color, boolean shadow) {
@@ -56,34 +60,22 @@ public class H2FontRenderer extends FontRenderer {
         }
     }
 
-    public void drawCenteredString2(String s, double d, double e, int color, boolean shadow) {
-        if (shadow) {
-            this.drawStringWithShadow(s, d - (double)(this.getStringWidth(s) / 2), e, color);
-        } else {
-            this.drawString(s, d, e, color);
-        }
-    }
-
-    public void drawStringWithBGShadowColor(String s, double x, double y, Color color, Color rectcolor) {
-        //Gui.drawRectWithShadow(x - 3.0, y - 1.0, this.getStringWidth(s) + 4, this.getStringHeight(s) + 4, "right", "bottom", rectcolor);
-        this.drawCenteredString2(s, x, y, color.getRGB(), false);
-    }
-
-    public void drawCenteredStringXY(String s, int x, int y, int color, boolean shadow) {
-        this.drawCenteredString(s, x, y - this.getHeight() / 2, color, shadow);
-    }
-
     public void drawCenteredString(String s, int x, int y, int color) {
         this.drawStringWithShadow(s, x - this.getStringWidth(s) / 2, y, color);
     }
 
-    public int drawString(String text, double d, double e, int color, boolean shadow) {
+    public int drawString(String text, double x, double y, int color, boolean shadow) {
         int result = 0;
         try {
             if (text != null && text != "") {
                 String[] lines = text.split("\n");
                 for (int i = 0; i < lines.length; ++i) {
-                    result = this.drawLine(lines[i], d, e + (double)(i * this.getHeight()), color, shadow);
+                    if (shadow) {
+                        i = this.drawLine(text, x + 0.5F, y + 0.5F, color, true);
+                        i = Math.max(i, this.drawLine(text, x, y, color, false));
+                    } else {
+                        result = this.drawLine(lines[i], x, y + (double) (i * this.getHeight()), color, shadow);
+                    }
                 }
             }
         }
