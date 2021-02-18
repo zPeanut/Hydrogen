@@ -41,13 +41,12 @@ public abstract class MixinGuiIngame extends MixinGui {
     private void renderTooltip(ScaledResolution sr, float partialTicks, CallbackInfo ci) {
         EventRender2D e = new EventRender2D();
         EventManager.call(e);
-        uiHUD.render(e);
     }
     
     @Overwrite
     protected void renderTooltip(ScaledResolution sr, float partialTicks) {
 
-        if(!(Hydrogen.getClient().settingsManager.getSettingByName("Hotbar").isEnabled() && Hydrogen.getClient().moduleManager.getModule(HUD.class).isEnabled())) {
+        if(!(Hydrogen.getClient().moduleManager.getModulebyName("Hotbar").isEnabled() && Hydrogen.getClient().moduleManager.getModule(HUD.class).isEnabled())) {
             if (Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 Minecraft.getMinecraft().getTextureManager().bindTexture(widgetsTexPath);

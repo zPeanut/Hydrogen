@@ -5,10 +5,14 @@ import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.hydrogen.events.EventKey;
 import tk.peanut.hydrogen.module.modules.combat.AutoClicker;
 import tk.peanut.hydrogen.module.modules.combat.TriggerBot;
+import tk.peanut.hydrogen.module.modules.hud.Hotbar;
+import tk.peanut.hydrogen.module.modules.hud.Info;
+import tk.peanut.hydrogen.module.modules.hud.Watermark;
 import tk.peanut.hydrogen.module.modules.movement.AirStrafe;
 import tk.peanut.hydrogen.module.modules.movement.Sprint;
 import tk.peanut.hydrogen.module.modules.player.*;
 import tk.peanut.hydrogen.module.modules.render.*;
+import tk.peanut.hydrogen.module.modules.hud.*;
 import tk.peanut.hydrogen.module.modules.movement.Eagle;
 
 import java.util.ArrayList;
@@ -46,6 +50,10 @@ public class ModuleManager {
         add(new AutoRespawn());
         add(new StorageESP());
         add(new AirStrafe());
+        add(new tk.peanut.hydrogen.module.modules.hud.ArrayList());
+        add(new Hotbar());
+        add(new Info());
+        add(new Watermark());
 
         // alphabetically sort modules in clickgui
 
