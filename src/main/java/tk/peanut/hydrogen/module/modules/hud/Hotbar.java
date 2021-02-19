@@ -68,7 +68,7 @@ public class Hotbar extends Module {
 
         if (tdate) {
             FontHelper.hfontbold.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-            FontHelper.hfontbold.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 22, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+            FontHelper.hfontbold.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 22 : Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 16, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
         }
 
         if (coord) {
