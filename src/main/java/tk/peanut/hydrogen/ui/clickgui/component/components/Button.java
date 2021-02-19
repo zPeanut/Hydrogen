@@ -1,5 +1,6 @@
 package tk.peanut.hydrogen.ui.clickgui.component.components;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
@@ -14,6 +15,7 @@ import tk.peanut.hydrogen.ui.clickgui.component.Component;
 import tk.peanut.hydrogen.ui.clickgui.component.Frame;
 import tk.peanut.hydrogen.ui.clickgui.component.components.sub.*;
 import tk.peanut.hydrogen.settings.Setting;
+import tk.peanut.hydrogen.ui.clickgui.component.components.sub.Checkbox;
 import tk.peanut.hydrogen.utils.FontUtil;
 import tk.peanut.hydrogen.utils.Utils;
 
@@ -73,16 +75,20 @@ public class Button extends Component {
 	public void renderComponent() {
 		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x99000000);
 		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
+
 		if(this.mod.isEnabled() && this.isHovered) {
 			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x20000000);
 		}
+
 		if(this.mod.isEnabled()) {
 			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x40000000);
 		}
+
 		if(this.isHovered) {
 			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x30000000);
 		}
-		FontUtil.drawTotalCenteredStringWithShadow(this.mod.toggled ? this.mod.getName() : this.isHovered ? "§7" + this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7), 0xffffe9ad);
+
+		FontUtil.drawTotalCenteredStringWithShadow2(this.mod.toggled ? this.mod.getName() : this.isHovered ? "§7" + this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7) - 2, Color.ORANGE);
 		if(this.subcomponents.size() > 1)
 		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.open ? "..." : "§f...", (parent.getX() + parent.getWidth() - 10), (parent.getY() + offset + 2), 0xffffe9ad);
 
