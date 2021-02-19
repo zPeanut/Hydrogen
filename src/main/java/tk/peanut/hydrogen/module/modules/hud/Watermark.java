@@ -41,8 +41,10 @@ public class Watermark extends Module {
     public static void drawWatermark(EventRender2D e) {
         if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
+
+        boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getValString().equals("24H");
         LocalDateTime now = LocalDateTime.now();
-        String currenttime = timeFormat12.format(now);
+        String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
 
         if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
 
@@ -62,6 +64,7 @@ public class Watermark extends Module {
 
                 FontHelper.hfontbold.drawStringWithShadow("2", 17, 12, Color.white);
                 FontHelper.hfontbold.drawStringWithShadow(watermarknew, 27, 5, Color.white);
+
             } else {
                 String watermarknew = Hydrogen.getClient().version;
                 FontHelper.hfontbold.drawStringWithShadow("2", 17, 12, Color.white);

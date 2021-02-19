@@ -54,9 +54,10 @@ public class Hotbar extends Module {
 
         addSlide(needX, steps);
 
+        boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getValString().equals("24H");
         LocalDateTime now = LocalDateTime.now();
         String date = dateFormat.format(now);
-        String time = timeFormat24.format(now);
+        String time = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
         String fps1 = String.format("FPS §7%s", mc.getDebugFPS());
 
         String x = String.valueOf((int) mc.thePlayer.posX);
@@ -75,7 +76,7 @@ public class Hotbar extends Module {
         }
 
         if (fps) {
-            FontHelper.hfontbold.drawStringWithShadow(fps1, 2, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+            FontHelper.hfontbold.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 23 : Utils.getScaledRes().getScaledHeight() - 12, Color.white);
         }
 
     }
