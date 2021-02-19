@@ -9,11 +9,13 @@ import tk.peanut.hydrogen.events.EventRender2D;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.FontHelper;
 
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Created by peanut on 18/02/2021
@@ -26,6 +28,12 @@ public class Watermark extends Module {
 
     public Watermark() {
         super(0x00);
+
+        java.util.ArrayList<String> watermark = new ArrayList<>();
+        watermark.add("Old");
+        watermark.add("New");
+
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Watermark", this, "New", watermark));
     }
 
     @EventTarget
@@ -63,8 +71,8 @@ public class Watermark extends Module {
                 Gui.drawRect(FontHelper.hfontbold.getStringWidth(watermark) + 4, 0, FontHelper.hfontbold.getStringWidth(watermark) + 3, 11, 0x99000000);
             }
             //FontHelper.hfontbold.drawStringWithShadow(watermark, 2, 2, -1);
-            FontHelper.hfontbold.drawStringWithShadow(watermark, 2, 2, Color.white);
-            FontHelper.hfontbold.drawStringWithShadow(watermark, 2, 12, -1);
+            FontHelper.hfontbold.drawStringWithShadow(watermark, 2, 1, Color.white);
+            FontHelper.hfontbold.drawStringWithShadow(watermark, 2, 11, -1);
 
 
             //TODO: FontHelper.cfArrayList.drawString(watermark, 2, 12, -1);

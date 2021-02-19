@@ -76,9 +76,6 @@ public class Module {
         return toggled = true;
     }
 
-
-
-
     public void onUpdate() {}
 
     public boolean isEnabled() {

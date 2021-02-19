@@ -1,13 +1,17 @@
 package tk.peanut.hydrogen.module.modules.hud;
 
 import com.darkmagician6.eventapi.EventTarget;
+import com.darkmagician6.eventapi.types.Priority;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
+import scala.Int;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventRender2D;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.FontHelper;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 import tk.peanut.hydrogen.utils.Utils;
@@ -21,6 +25,7 @@ import java.util.Comparator;
  */
 @Info(name = "ArrayList", description = "Shows enabled modules", color = -1, category = Category.Gui)
 public class ArrayList extends Module {
+
     public ArrayList() {
         super(0x00);
 
@@ -51,23 +56,33 @@ public class ArrayList extends Module {
             }
         }, "smooth array").start();
 
+        java.util.ArrayList<String> array = new java.util.ArrayList<>();
+        array.add("Rainbow");
+        array.add("White");
 
-        Collections.sort(Hydrogen.getClient().moduleManager.getModules(), new Comparator<Module>() {
-            @Override
-            public int compare(Module mod1, Module mod2) {
-                if (FontHelper.hfontbold.getStringWidth(mod1.getName() + mod1.getSuffix()) > FontHelper.hfontbold.getStringWidth(mod2.getName() + mod2.getSuffix())) {
-                    return -1;
-                }
-                if (FontHelper.hfontbold.getStringWidth(mod1.getName() + mod1.getSuffix()) < FontHelper.hfontbold.getStringWidth(mod2.getName() + mod2.getSuffix())) {
-                    return 1;
-                }
-                return 0;
-            }
-        });
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("List Color",this, "White", array));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("List Speed", this, 3, 0, 20, false));
 
     }
 
     @EventTarget
+    public static void drawBackgrounds(EventRender2D e) {
+        if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
+            return;
+        int count = 0;
+        for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
+            ScaledResolution sr = new ScaledResolution(mc);
+            Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
+            boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
+
+            if(background) {
+                Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
+            }
+            count++;
+        }
+    }
+
+    @EventTarget(Priority.HIGHEST)
     public static void drawArray(EventRender2D e) {
         if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
@@ -76,15 +91,17 @@ public class ArrayList extends Module {
 
             ScaledResolution sr = new ScaledResolution(mc);
             Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
-
             boolean modcolor = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow");
-            int mwidth = 2 + mod.getSlide() - (mc).fontRendererObj.getStringWidth(mod.getName());
             int mheight = (count * 11 + i) + 1;
             Color mcolor = Utils.getRainbow2(5, 0.4f, 1, count * 100);
             Color color = modcolor ? mcolor : Color.white;
 
             FontHelper.hfontbold.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
             count++;
+
         }
     }
+
+
+
 }

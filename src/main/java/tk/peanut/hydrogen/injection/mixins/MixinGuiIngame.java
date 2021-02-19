@@ -18,11 +18,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import tk.peanut.hydrogen.module.modules.render.HUD;
-import tk.peanut.hydrogen.ui.ingame.uiHUD;
+import tk.peanut.hydrogen.module.modules.hud.HUD;
 import tk.peanut.hydrogen.utils.Utils;
-
-import static tk.peanut.hydrogen.utils.Utils.addSlide;
 
 @SideOnly(Side.CLIENT)
 @Mixin(GuiIngame.class)

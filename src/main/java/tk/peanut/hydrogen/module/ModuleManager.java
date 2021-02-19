@@ -14,6 +14,7 @@ import tk.peanut.hydrogen.module.modules.player.*;
 import tk.peanut.hydrogen.module.modules.render.*;
 import tk.peanut.hydrogen.module.modules.hud.*;
 import tk.peanut.hydrogen.module.modules.movement.Eagle;
+import tk.peanut.hydrogen.utils.FontHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -111,9 +112,22 @@ public class ModuleManager {
         List<Module> modules = new ArrayList<>();
 
         for (Module mod : this.getModules()) {
-            if(mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled()) && !(mod.getName().equalsIgnoreCase("hud"))) {
-                modules.add(mod);
+            if (mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled())) {
+                if (mod.getCategory() != Category.Gui) {
+                    if (!modules.contains(mod)) {
+                        modules.add(mod);
+                    }
+                }
             }
+            Collections.sort(modules, new Comparator<Module>() {
+                public int compare(Module m1, Module m2) {
+                    if (FontHelper.hfontbold.getStringWidth(m1.getName()) > FontHelper.hfontbold.getStringWidth(m2.getName()))
+                        return -1;
+                    if (FontHelper.hfontbold.getStringWidth(m1.getName()) < FontHelper.hfontbold.getStringWidth(m2.getName()))
+                        return 1;
+                    return 0;
+                }
+            });
         }
         return modules;
     }
