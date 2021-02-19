@@ -39,46 +39,48 @@ public class Hotbar extends Module {
 
     @EventTarget
     public static void drawHotbar(EventRender2D e) {
-        if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
-            return;
+        if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
+            if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
+                return;
 
-        EntityPlayer entityplayer = (EntityPlayer) Minecraft.getMinecraft().getRenderViewEntity();
+            EntityPlayer entityplayer = (EntityPlayer) Minecraft.getMinecraft().getRenderViewEntity();
 
-        float needX = (Utils.getScaledRes().getScaledWidth() / 2 - 91 + entityplayer.inventory.currentItem * 20);
-        float steps = 10f;
+            float needX = (Utils.getScaledRes().getScaledWidth() / 2 - 91 + entityplayer.inventory.currentItem * 20);
+            float steps = 10f;
 
-        Module mod = Hydrogen.getClient().moduleManager.getModulebyName("Hotbar");
-        boolean fps = Hydrogen.getClient().settingsManager.getSettingByName(mod, "FPS").isEnabled();
-        boolean coord = Hydrogen.getClient().settingsManager.getSettingByName(mod, "Coordinates").isEnabled();
-        boolean tdate = Hydrogen.getClient().settingsManager.getSettingByName(mod, "Time / Date").isEnabled();
+            Module mod = Hydrogen.getClient().moduleManager.getModulebyName("Hotbar");
+            boolean fps = Hydrogen.getClient().settingsManager.getSettingByName(mod, "FPS").isEnabled();
+            boolean coord = Hydrogen.getClient().settingsManager.getSettingByName(mod, "Coordinates").isEnabled();
+            boolean tdate = Hydrogen.getClient().settingsManager.getSettingByName(mod, "Time / Date").isEnabled();
 
-        addSlide(needX, steps);
+            addSlide(needX, steps);
 
-        boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getValString().equals("24H");
-        LocalDateTime now = LocalDateTime.now();
-        String date = dateFormat.format(now);
-        String time = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
-        String fps1 = String.format("FPS §7%s", mc.getDebugFPS());
+            boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getValString().equals("24H");
+            LocalDateTime now = LocalDateTime.now();
+            String date = dateFormat.format(now);
+            String time = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
+            String fps1 = String.format("FPS §7%s", mc.getDebugFPS());
 
-        String x = String.valueOf((int) mc.thePlayer.posX);
-        String y = String.valueOf((int) mc.thePlayer.posY);
-        String z = String.valueOf((int) mc.thePlayer.posZ);
+            String x = String.valueOf((int) mc.thePlayer.posX);
+            String y = String.valueOf((int) mc.thePlayer.posY);
+            String z = String.valueOf((int) mc.thePlayer.posZ);
 
-        String coordinates = String.format("X: §7%s §fY: §7%s §fZ: §7%s", x, y, z);
+            String coordinates = String.format("X: §7%s §fY: §7%s §fZ: §7%s", x, y, z);
 
-        if (tdate) {
-            FontHelper.hfontbold.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-            FontHelper.hfontbold.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 22 : Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 16, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+            if (tdate) {
+                FontHelper.hfontbold.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                FontHelper.hfontbold.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 22 : Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 16, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+            }
+
+            if (coord) {
+                FontHelper.hfontbold.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+            }
+
+            if (fps) {
+                FontHelper.hfontbold.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 23 : Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+            }
+
         }
-
-        if (coord) {
-            FontHelper.hfontbold.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-        }
-
-        if (fps) {
-            FontHelper.hfontbold.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 23 : Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-        }
-
     }
 
     public static double x = 400.0D;

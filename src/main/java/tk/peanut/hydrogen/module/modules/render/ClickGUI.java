@@ -9,6 +9,8 @@ import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 
+import java.util.ArrayList;
+
 /**
  * Created by peanut on 03/02/2021
  */
@@ -20,6 +22,13 @@ public class ClickGUI extends Module {
 
     public ClickGUI() {
         super(Keyboard.KEY_LSHIFT);
+
+        ArrayList<String> font = new ArrayList<>();
+        font.add("TTF");
+        font.add("Minecraft");
+
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Font Type", this, "TTF", font));
+
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Blur", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Tooltip", this, true));
    /*     ArrayList<String> options = new ArrayList<>();

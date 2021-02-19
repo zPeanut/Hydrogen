@@ -1,5 +1,6 @@
 package tk.peanut.hydrogen.ui.clickgui.component.components.sub;
 
+import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -8,10 +9,14 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import org.lwjgl.opengl.Util;
+import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.file.files.SettingsSliderFile;
 import tk.peanut.hydrogen.ui.clickgui.component.Component;
 import tk.peanut.hydrogen.ui.clickgui.component.components.Button;
 import tk.peanut.hydrogen.settings.Setting;
+import tk.peanut.hydrogen.utils.FontHelper;
+import tk.peanut.hydrogen.utils.Utils;
 
 public class Slider extends Component {
 
@@ -36,19 +41,33 @@ public class Slider extends Component {
 	
 	@Override
 	public void renderComponent() {
-		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth(), parent.parent.getY() + offset + 12, this.hovered ? 0x88222222 : 0x88111111);
-		 final int drag = (int)(this.set.getValDouble() / this.set.getMax() * this.parent.parent.getWidth());
-		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12,0x77000000);
+		Utils.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth(), parent.parent.getY() + offset + 12, this.hovered ? 0x88222222 : 0x88111111);
+		final int drag = (int)(this.set.getValDouble() / this.set.getMax() * this.parent.parent.getWidth());
+		Utils.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12,0x77000000);
 		if(this.hovered) {
-			Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12,0x77000000);
+			Utils.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12,0x77000000);
 		}
-		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
+		Utils.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
+
+
+		Color color = new Color (255, 255, 255);
+
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + " " : this.set.getName() + " ", (parent.parent.getX()* 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f + 2, -1);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble()), (parent.parent.getX() + 86) * 1.3333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble())), (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
-		
+		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+			FontHelper.hfontbold.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + " " : this.set.getName() + " ", (parent.parent.getX() * 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f, Color.white);
+			FontHelper.hfontbold.drawStringWithShadow(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble()), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.hfontbold.getStringWidth(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble())), (parent.parent.getY() + offset + 2) * 1.3333333333f, Color.white);
+
+		} else {
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + " " : this.set.getName() + " ", (parent.parent.getX() * 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f + 2, -1);
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble()), (parent.parent.getX() + 86) * 1.3333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble())), (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
+		}
+
 		GL11.glPopMatrix();
+	}
+
+	public void drawTest() {
+
 	}
 	
 	@Override

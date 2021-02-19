@@ -4,11 +4,15 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.file.files.SettingsComboBoxFile;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.ui.clickgui.component.Component;
 import tk.peanut.hydrogen.ui.clickgui.component.components.Button;
 import tk.peanut.hydrogen.settings.Setting;
+import tk.peanut.hydrogen.utils.FontHelper;
+
+import java.awt.*;
 
 public class ModeButton extends Component {
 
@@ -43,8 +47,15 @@ public class ModeButton extends Component {
 		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
+
+		if(!Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
+		} else {
+			FontHelper.hfontbold.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
+			FontHelper.hfontbold.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - FontHelper.hfontbold.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
+		}
+
 		GL11.glPopMatrix();
 	}
 	

@@ -24,20 +24,22 @@ public class Info extends Module {
 
     @EventTarget
     public static void drawInfo(EventRender2D e) {
-        if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
-            return;
-        if (Hydrogen.getClient().moduleManager.getModulebyName("Info").isEnabled() && !Hydrogen.getClient().moduleManager.getModulebyName("Hotbar").isEnabled()) {
-            String x = String.valueOf((int) mc.thePlayer.posX);
-            String y = String.valueOf((int) mc.thePlayer.posY);
-            String z = String.valueOf((int) mc.thePlayer.posZ);
-            String coordinates = String.format("XYZ §7(%s, %s, %s)", x, y, z);
-            String fps = String.format("FPS §7%s", mc.getDebugFPS());
-            if (!Boolean.toString(mc.ingameGUI.getChatGUI().getChatOpen()).equals("true")) {
-                FontHelper.hfontbold.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-                FontHelper.hfontbold.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(fps) - 2, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
-            } else {
-                FontHelper.hfontbold.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
-                FontHelper.hfontbold.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(fps) - 2, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
+        if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
+            if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
+                return;
+            if (Hydrogen.getClient().moduleManager.getModulebyName("Info").isEnabled() && !Hydrogen.getClient().moduleManager.getModulebyName("Hotbar").isEnabled()) {
+                String x = String.valueOf((int) mc.thePlayer.posX);
+                String y = String.valueOf((int) mc.thePlayer.posY);
+                String z = String.valueOf((int) mc.thePlayer.posZ);
+                String coordinates = String.format("XYZ §7(%s, %s, %s)", x, y, z);
+                String fps = String.format("FPS §7%s", mc.getDebugFPS());
+                if (!Boolean.toString(mc.ingameGUI.getChatGUI().getChatOpen()).equals("true")) {
+                    FontHelper.hfontbold.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                    FontHelper.hfontbold.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(fps) - 2, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
+                } else {
+                    FontHelper.hfontbold.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
+                    FontHelper.hfontbold.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(fps) - 2, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
+                }
             }
         }
     }

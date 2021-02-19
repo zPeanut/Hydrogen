@@ -67,38 +67,42 @@ public class ArrayList extends Module {
 
     @EventTarget
     public static void drawBackgrounds(EventRender2D e) {
-        if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
-            return;
-        int count = 0;
-        for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
-            ScaledResolution sr = new ScaledResolution(mc);
-            Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
-            boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
+        if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
+            if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
+                return;
+            int count = 0;
+            for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
+                ScaledResolution sr = new ScaledResolution(mc);
+                Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
+                boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
 
-            if(background) {
-                Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
+                if (background) {
+                    Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
+                }
+                count++;
             }
-            count++;
         }
     }
 
     @EventTarget(Priority.HIGHEST)
     public static void drawArray(EventRender2D e) {
-        if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
-            return;
-        int count = 0;
-        for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
+        if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
+            if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
+                return;
+            int count = 0;
+            for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
 
-            ScaledResolution sr = new ScaledResolution(mc);
-            Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
-            boolean modcolor = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow");
-            int mheight = (count * 11 + i) + 1;
-            Color mcolor = Utils.getRainbow2(5, 0.4f, 1, count * 100);
-            Color color = modcolor ? mcolor : Color.white;
+                ScaledResolution sr = new ScaledResolution(mc);
+                Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
+                boolean modcolor = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow");
+                int mheight = (count * 11 + i) + 1;
+                Color mcolor = Utils.getRainbow2(5, 0.4f, 1, count * 100);
+                Color color = modcolor ? mcolor : Color.white;
 
-            FontHelper.hfontbold.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
-            count++;
+                FontHelper.hfontbold.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
+                count++;
 
+            }
         }
     }
 

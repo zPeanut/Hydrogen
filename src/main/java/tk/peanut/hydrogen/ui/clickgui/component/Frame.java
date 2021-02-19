@@ -1,5 +1,6 @@
 package tk.peanut.hydrogen.ui.clickgui.component;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
@@ -76,7 +77,12 @@ public class Frame {
 
 	public void renderFrame(FontRenderer fontRenderer) {
 		Gui.drawRect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, 0xff33aaff);
-		FontUtil.drawTotalCenteredStringWithShadow(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 1, -1);
+
+		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+			FontUtil.drawTotalCenteredStringWithShadow2(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 3, Color.white);
+		} else {
+			FontUtil.drawTotalCenteredStringWithShadow(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 1, -1);
+		}
 		if (this.open) {
 			if (!this.components.isEmpty()) {
 				//Gui.drawRect(this.x, this.y + this.barHeight, this.x + 1, this.y + this.barHeight + (12 * components.size()), new Color(0, 200, 20, 150).getRGB());
