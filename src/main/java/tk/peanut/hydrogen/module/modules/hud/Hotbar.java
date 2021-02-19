@@ -3,10 +3,12 @@ package tk.peanut.hydrogen.module.modules.hud;
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventRender2D;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.FontHelper;
 import tk.peanut.hydrogen.utils.Utils;
 
@@ -28,6 +30,11 @@ public class Hotbar extends Module {
 
     public Hotbar() {
         super(0x00);
+
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("FPS", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Coordinates", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Time / Date", this, true));
+
     }
 
     @EventTarget
@@ -40,12 +47,17 @@ public class Hotbar extends Module {
         float needX = (Utils.getScaledRes().getScaledWidth() / 2 - 91 + entityplayer.inventory.currentItem * 20);
         float steps = 10f;
 
+        Module mod = Hydrogen.getClient().moduleManager.getModulebyName("Hotbar");
+        boolean fps = Hydrogen.getClient().settingsManager.getSettingByName(mod, "FPS").isEnabled();
+        boolean coord = Hydrogen.getClient().settingsManager.getSettingByName(mod, "Coordinates").isEnabled();
+        boolean tdate = Hydrogen.getClient().settingsManager.getSettingByName(mod, "Time / Date").isEnabled();
+
         addSlide(needX, steps);
 
         LocalDateTime now = LocalDateTime.now();
         String date = dateFormat.format(now);
         String time = timeFormat24.format(now);
-        String fps = String.format("FPS §7%s", mc.getDebugFPS());
+        String fps1 = String.format("FPS §7%s", mc.getDebugFPS());
 
         String x = String.valueOf((int) mc.thePlayer.posX);
         String y = String.valueOf((int) mc.thePlayer.posY);
@@ -53,11 +65,18 @@ public class Hotbar extends Module {
 
         String coordinates = String.format("X: §7%s §fY: §7%s §fZ: §7%s", x, y, z);
 
-        FontHelper.hfontbold.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-        FontHelper.hfontbold.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 22, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+        if (tdate) {
+            FontHelper.hfontbold.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+            FontHelper.hfontbold.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 22, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+        }
 
-        FontHelper.hfontbold.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-        FontHelper.hfontbold.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+        if (coord) {
+            FontHelper.hfontbold.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+        }
+
+        if (fps) {
+            FontHelper.hfontbold.drawStringWithShadow(fps1, 2, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+        }
 
     }
 
