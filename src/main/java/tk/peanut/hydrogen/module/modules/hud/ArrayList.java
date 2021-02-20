@@ -59,27 +59,10 @@ public class ArrayList extends Module {
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("List Color",this, "White", array));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("List Speed", this, 3, 0, 20, false));
-
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Rb. Saturation", this, 0.4, 0, 1, false));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Rb. Delay", this, 4, 1, 10, true));
     }
 
-    @EventTarget
-    public void drawBackgrounds(EventRender2D e) {
-        if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
-            if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
-                return;
-            int count = 0;
-            for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
-                ScaledResolution sr = new ScaledResolution(mc);
-                Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
-                boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
-
-                if (background) {
-                    Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
-                }
-                count++;
-            }
-        }
-    }
 
     @EventTarget(Priority.HIGHEST)
     public void drawArray(EventRender2D e) {
@@ -87,13 +70,26 @@ public class ArrayList extends Module {
             if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
                 return;
             int count = 0;
-            for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
 
+            float rbdelay = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Delay").getValDouble();
+            float rbsaturation = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Saturation").getValDouble();
+
+            // dont ask why its seperated, if id put it together the drawrects wouldnt draw correctly and i have no idea why
+
+            for (int j = 0; j < Hydrogen.getClient().moduleManager.getEnabledMods().size(); j++) {
+                ScaledResolution sr = new ScaledResolution(mc);
+                Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(j);
+                boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
+                if (background) {
+                    Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + j * 12, sr.getScaledWidth(), j * 12 + 13, 0x66000000);
+                }
+            }
+            for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
                 ScaledResolution sr = new ScaledResolution(mc);
                 Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
                 boolean modcolor = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow");
                 int mheight = (count * 11 + i) + 1;
-                Color mcolor = Utils.getRainbow2(5, 0.4f, 1, count * 100);
+                Color mcolor = Utils.getRainbowColor(rbdelay, rbsaturation, 1, count * 100);
                 Color color = modcolor ? mcolor : Color.white;
 
                 FontHelper.hfontnormal.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
@@ -101,6 +97,14 @@ public class ArrayList extends Module {
 
             }
         }
+
+
+    }
+
+
+    @EventTarget(Priority.LOWEST)
+    public void drawBackgrounds(EventRender2D e) {
+
     }
 
 
