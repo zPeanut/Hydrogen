@@ -11,16 +11,17 @@ import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 
+import java.awt.*;
 import java.util.Objects;
 
 /**
  * Created by peanut on 09/02/2021
  */
-@Info(name = "InventoryWalk", description = "Lets you walk while in Inventory", category = Category.Player, color = -1)
+@Info(name = "InventoryWalk", description = "Lets you walk while in Inventory", category = Category.Player)
 public class InventoryWalk extends Module {
 
     public InventoryWalk() {
-        super(Keyboard.KEY_NONE);
+        super(Keyboard.KEY_NONE, new Color(252, 255, 199));
     }
     @EventTarget
     public void onUpdate(EventUpdate e)

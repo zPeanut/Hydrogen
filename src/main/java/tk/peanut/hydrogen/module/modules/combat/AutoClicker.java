@@ -12,13 +12,14 @@ import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 import tk.peanut.hydrogen.utils.TimeHelper;
 
+import java.awt.*;
 import java.util.Random;
 
 /**
  * Created by peanut on 05/02/2021
  */
 
-@Info(name = "AutoClicker", description = "Automatically left clicks", category = Category.Combat, color = -1)
+@Info(name = "AutoClicker", description = "Automatically left clicks", category = Category.Combat)
 public class AutoClicker extends Module {
 
     Random random = new Random();
@@ -28,7 +29,7 @@ public class AutoClicker extends Module {
     int delay;
 
     public AutoClicker() {
-        super(Keyboard.KEY_NONE);
+        super(Keyboard.KEY_NONE, new Color(255, 219, 171));
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
     }

@@ -20,14 +20,14 @@ import java.util.ArrayList;
 /**
  * Created by peanut on 18/02/2021
  */
-@Info(name = "Watermark", description = "Shows the client name", color = -1, category = Category.Gui)
+@Info(name = "Watermark", description = "Shows the client name", category = Category.Gui)
 public class Watermark extends Module {
 
     static final DateTimeFormatter timeFormat12 = DateTimeFormatter.ofPattern("h:mm a");
     static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
 
     public Watermark() {
-        super(0x00);
+        super(0x00, Color.white);
 
         java.util.ArrayList<String> watermark = new ArrayList<>();
         watermark.add("Old");

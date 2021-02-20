@@ -6,12 +6,13 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 
+import java.awt.*;
 import java.awt.image.Kernel;
 
-@Info(name = "Fullbright", description = "Brightens up the world", category = Category.Render, color = -1)
+@Info(name = "Fullbright", description = "Brightens up the world", category = Category.Render)
 public class Fullbright extends Module {
     public Fullbright() {
-        super(Keyboard.KEY_NONE);
+        super(Keyboard.KEY_NONE, new Color(199, 255, 201));
     }
 
     @Override

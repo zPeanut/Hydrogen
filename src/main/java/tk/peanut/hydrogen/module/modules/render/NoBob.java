@@ -8,11 +8,13 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 
-@Info(name = "NoBob", description = "Removes the bobbing animation", category = Category.Render, color = -1)
+import java.awt.*;
+
+@Info(name = "NoBob", description = "Removes the bobbing animation", category = Category.Render)
 public class NoBob extends Module {
 
     public NoBob() {
-        super(Keyboard.KEY_NONE);
+        super(Keyboard.KEY_NONE, new Color(199, 255, 201));
     }
 
     @EventTarget

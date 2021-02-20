@@ -20,11 +20,11 @@ import java.awt.*;
 /**
  * Created by peanut on 18/02/2021
  */
-@Info(name = "ArrayList", description = "Shows enabled modules", color = -1, category = Category.Gui)
+@Info(name = "ArrayList", description = "Shows enabled modules", category = Category.Gui)
 public class ArrayList extends Module {
 
     public ArrayList() {
-        super(0x00);
+        super(0x00, Color.white);
 
         new Thread(() -> {
             while (true) {
@@ -56,8 +56,9 @@ public class ArrayList extends Module {
         java.util.ArrayList<String> array = new java.util.ArrayList<>();
         array.add("Rainbow");
         array.add("White");
+        array.add("Category");
 
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("List Color",this, "White", array));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("List Color",this, "Rainbow", array));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("List Speed", this, 3, 0, 20, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Rb. Saturation", this, 0.4, 0, 1, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Rb. Delay", this, 4, 1, 10, true));
@@ -87,10 +88,9 @@ public class ArrayList extends Module {
             for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
                 ScaledResolution sr = new ScaledResolution(mc);
                 Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
-                boolean modcolor = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("rainbow");
+                Color rainbow = Utils.getRainbowColor(rbdelay, rbsaturation, 1, count * 100);
+                Color color = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("White") ? Color.white : (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? rainbow : mod.getColor());
                 int mheight = (count * 11 + i) + 1;
-                Color mcolor = Utils.getRainbowColor(rbdelay, rbsaturation, 1, count * 100);
-                Color color = modcolor ? mcolor : Color.white;
 
                 FontHelper.hfontnormal.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
                 count++;

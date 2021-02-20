@@ -21,7 +21,7 @@ import static tk.peanut.hydrogen.utils.Utils.addSlide;
 /**
  * Created by peanut on 18/02/2021
  */
-@Info(name = "Hotbar", color = -1, category = Category.Gui, description = "Shows an advanced hotbar with information")
+@Info(name = "Hotbar", category = Category.Gui, description = "Shows an advanced hotbar with information")
 public class Hotbar extends Module {
 
     static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -29,7 +29,7 @@ public class Hotbar extends Module {
     static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
 
     public Hotbar() {
-        super(0x00);
+        super(0x00, Color.white);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("FPS", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Coordinates", this, true));

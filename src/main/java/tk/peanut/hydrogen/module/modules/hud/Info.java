@@ -16,10 +16,10 @@ import java.util.ArrayList;
 /**
  * Created by peanut on 18/02/2021
  */
-@tk.peanut.hydrogen.module.Info(name = "Info", description = "Shows FPS and Coordinates", color = -1, category = Category.Gui)
+@tk.peanut.hydrogen.module.Info(name = "Info", description = "Shows FPS and Coordinates", category = Category.Gui)
 public class Info extends Module {
     public Info() {
-        super(0x00);
+        super(0x00, Color.white);
 
         java.util.ArrayList<String> alignment = new ArrayList<>();
         alignment.add("Left");

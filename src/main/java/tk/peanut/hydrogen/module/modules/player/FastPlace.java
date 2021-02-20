@@ -9,11 +9,13 @@ import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 
-@Info(name = "FastPlace", description = "Removes the right-click delay", category = Category.Player, color = -1)
+import java.awt.*;
+
+@Info(name = "FastPlace", description = "Removes the right-click delay", category = Category.Player)
 public class FastPlace extends Module {
 
     public FastPlace() {
-        super(Keyboard.KEY_U);
+        super(Keyboard.KEY_U, new Color(252, 255, 199));
     }
 
 

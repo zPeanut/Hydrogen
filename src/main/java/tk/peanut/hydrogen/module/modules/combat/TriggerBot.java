@@ -17,9 +17,10 @@ import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.TimeHelper;
 
+import java.awt.*;
 import java.util.Random;
 
-@Info(name = "TriggerBot", description = "Attacks when hovered over enemy", category = Category.Combat, color = -1)
+@Info(name = "TriggerBot", description = "Attacks when hovered over enemy", category = Category.Combat)
 public class TriggerBot extends Module {
 
     public static double delay;
@@ -29,7 +30,7 @@ public class TriggerBot extends Module {
     TimeHelper time = new TimeHelper();
 
     public TriggerBot() {
-        super(Keyboard.KEY_NONE);
+        super(Keyboard.KEY_NONE, new Color(255, 219, 171));
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
     }

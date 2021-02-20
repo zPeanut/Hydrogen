@@ -7,6 +7,8 @@ import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.file.files.ModuleFile;
 import tk.peanut.hydrogen.settings.Setting;
 
+import java.awt.*;
+
 public class Module {
 
     public boolean visible;
@@ -15,9 +17,11 @@ public class Module {
     public String suffix;
     private int slide = 0;
     private int keyBind;
+    private Color color;
 
-    public Module(int keyBind) {
+    public Module(int keyBind, Color color) {
         this.keyBind = keyBind;
+        this.color = color;
     }
 
     public Info getModuleInfo() {
@@ -43,9 +47,10 @@ public class Module {
         return this.getModuleInfo().category();
     }
 
-    public int getColor() {
-        return this.getModuleInfo().color();
+    public Color getColor() {
+        return color;
     }
+
 
     public int getKeybind() {
         return this.keyBind;

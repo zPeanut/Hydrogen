@@ -13,9 +13,10 @@ import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 
+import java.awt.*;
 import java.time.format.DateTimeFormatter;
 
-@Info(name = "FastBridge", description = "Automatically fastbridges for you", category = Category.Movement, color = -1)
+@Info(name = "FastBridge", description = "Automatically fastbridges for you", category = Category.Movement)
 public class Eagle extends Module {
 
     private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -23,7 +24,7 @@ public class Eagle extends Module {
 
 
     public Eagle() {
-        super(Keyboard.KEY_Y);
+        super(Keyboard.KEY_Y, new Color(173, 234, 255));
     }
 
     @EventTarget

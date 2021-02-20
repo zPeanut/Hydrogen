@@ -12,17 +12,19 @@ import tk.peanut.hydrogen.ui.clickgui.component.components.sub.Keybind;
 import tk.peanut.hydrogen.ui.clickgui.component.components.sub.ModeButton;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 
+import java.awt.*;
+
 /**
  * Created by peanut on 07/02/2021
  */
 
-@Info(name = "SafeWalk", description = "Doesn't let you fall of blocks", category = Category.Player, color = -1)
+@Info(name = "SafeWalk", description = "Doesn't let you fall of blocks", category = Category.Player)
 public class SafeWalk extends Module {
 
     public boolean safewalk;
 
     public SafeWalk() {
-        super(Keyboard.KEY_NONE);
+        super(Keyboard.KEY_NONE, new Color(252, 255, 199));
     }
 
     @Override

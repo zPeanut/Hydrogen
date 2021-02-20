@@ -7,13 +7,15 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 
+import java.awt.*;
+
 /**
  * Created by peanut on 16/02/2021
  */
-@Info(name = "AirStrafe", description = "Lets you move in directions while in air", color = -1, category = Category.Movement)
+@Info(name = "AirStrafe", description = "Lets you move in directions while in air", category = Category.Movement)
 public class AirStrafe extends Module {
     public AirStrafe() {
-        super(0x00);
+        super(0x00, new Color(173, 234, 255));
     }
 
     @EventTarget

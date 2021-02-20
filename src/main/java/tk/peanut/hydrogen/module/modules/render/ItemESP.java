@@ -6,13 +6,15 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 
+import java.awt.*;
+
 /**
  * Created by peanut on 16/02/2021
  */
-@Info(name = "ItemESP", description = "Draws a box around dropped items", color = -1, category = Category.Render)
+@Info(name = "ItemESP", description = "Draws a box around dropped items", category = Category.Render)
 public class ItemESP extends Module {
     public ItemESP() {
-        super(0x00);
+        super(0x00, new Color(199, 255, 201));
     }
 
     @EventTarget

@@ -20,17 +20,18 @@ import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.Utils;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by peanut on 10/02/2021
  */
-@Info(name = "Trajectories", description = "Shows the trajectory a projectile will have", category = Category.Render, color = -1)
+@Info(name = "Trajectories", description = "Shows the trajectory a projectile will have", category = Category.Render)
 public class Trajectories extends Module {
 
     public Trajectories() {
-        super(0x00);
+        super(0x00, new Color(199, 255, 201));
 
         addSetting(new Setting("Alpha", this, 150, 0, 255, false));
     }

@@ -7,13 +7,15 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 
+import java.awt.*;
+
 /**
  * Created by peanut on 11/02/2021
  */
-@Info(name = "AutoRespawn", description = "Automatically respawn when dead", category = Category.Player, color = -1)
+@Info(name = "AutoRespawn", description = "Automatically respawn when dead", category = Category.Player)
 public class AutoRespawn extends Module {
     public AutoRespawn() {
-        super(0x00);
+        super(0x00, new Color(252, 255, 199));
     }
 
     @EventTarget

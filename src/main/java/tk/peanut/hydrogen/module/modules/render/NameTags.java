@@ -18,19 +18,20 @@ import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.Utils;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by peanut on 08/02/2021
  */
-@Info(name = "NameTags", description = "Enhanced Nametags", category = Category.Render, color = -1)
+@Info(name = "NameTags", description = "Enhanced Nametags", category = Category.Render)
 public class NameTags extends Module {
 
     public static NameTags instance;
 
     public NameTags() {
-        super(Keyboard.KEY_NONE);
+        super(Keyboard.KEY_NONE, new Color(199, 255, 201));
         instance = this;
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Health", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("State", this, false));

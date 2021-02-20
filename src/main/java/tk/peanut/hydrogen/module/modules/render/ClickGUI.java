@@ -9,19 +9,20 @@ import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
  * Created by peanut on 03/02/2021
  */
 
-@Info(name = "ClickGUI", description = "The click gui", category = Category.Render, color = -1)
+@Info(name = "ClickGUI", description = "The click gui", category = Category.Render)
 public class ClickGUI extends Module {
 
     public ClickGui clickgui;
 
     public ClickGUI() {
-        super(Keyboard.KEY_LSHIFT);
+        super(Keyboard.KEY_LSHIFT, new Color(199, 255, 201));
 
         ArrayList<String> font = new ArrayList<>();
         font.add("TTF");

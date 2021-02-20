@@ -18,6 +18,4 @@ public @interface Info {
 
     public Category category();
 
-    public int color();
-
 }

@@ -17,13 +17,15 @@ import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.Utils;
 
+import java.awt.*;
+
 /**
  * Created by peanut on 11/02/2021
  */
-@Info(name = "StorageESP", description = "Draws an outline on storage containers", category = Category.Player, color = -1)
+@Info(name = "StorageESP", description = "Draws an outline on storage containers", category = Category.Player)
 public class StorageESP extends Module {
     public StorageESP() {
-        super(0x00);
+        super(0x00, new Color(199, 255, 201));
 
         addSetting(new Setting("Filling", this, true));
 
