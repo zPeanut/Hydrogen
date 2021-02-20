@@ -45,10 +45,18 @@ public class Info extends Module {
                 if(Hydrogen.getClient().settingsManager.getSettingByName(this, "Alignment").getValString().equalsIgnoreCase("right")) {
                     if (!Boolean.toString(mc.ingameGUI.getChatGUI().getChatOpen()).equals("true")) {
                         FontHelper.hfontbold.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-                        FontHelper.hfontbold.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(fps) - 2, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
+                        FontHelper.hfontbold.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(fps) - 3, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
                     } else {
                         FontHelper.hfontbold.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
-                        FontHelper.hfontbold.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(fps) - 2, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
+                        FontHelper.hfontbold.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(fps) - 3, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
+                    }
+                } else {
+                    if (!Boolean.toString(mc.ingameGUI.getChatGUI().getChatOpen()).equals("true")) {
+                        FontHelper.hfontbold.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                        FontHelper.hfontbold.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
+                    } else {
+                        FontHelper.hfontbold.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
+                        FontHelper.hfontbold.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
                     }
                 }
             }
