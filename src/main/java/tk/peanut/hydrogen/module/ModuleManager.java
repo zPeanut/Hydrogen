@@ -55,6 +55,7 @@ public class ModuleManager {
         add(new Hotbar());
         add(new Info());
         add(new Watermark());
+        add(new AntiAFK());
 
         // alphabetically sort modules in clickgui
 

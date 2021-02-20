@@ -96,9 +96,6 @@ public class Hydrogen {
 
       1.4:
 
-      TODO: Update Function
-      TODO: Maybe improve ClickGUI a bit? - better visuals -> see screenshot
-      TODO: Add more Player modules
       TODO: Finish Tephra modules import
       TODO: ItemESP
       TODO: W-Tap Module
@@ -111,6 +108,7 @@ public class Hydrogen {
       TODO: Freecam Module
       TODO: Tracers Module
       TODO: Custom Menu
+      TODO: Add more Player modules
      */
 
 }
