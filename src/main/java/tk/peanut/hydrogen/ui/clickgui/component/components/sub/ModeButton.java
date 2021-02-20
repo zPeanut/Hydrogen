@@ -43,8 +43,12 @@ public class ModeButton extends Component {
 	
 	@Override
 	public void renderComponent() {
-		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, this.hovered ? 0x88222222 : 0x88111111);
-		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
+
+		int c1 = new Color(17, 17, 17, 140).getRGB(); // 0x88111111
+		int c3 = new Color(34, 34, 34, 140).getRGB(); // 0x88222222
+
+		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, hovered ? 0x99000000 : 0x88000000);
+		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, c1);
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 
@@ -52,12 +56,14 @@ public class ModeButton extends Component {
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
 		} else {
-			FontHelper.hfontbold.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
-			FontHelper.hfontbold.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - FontHelper.hfontbold.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
+			FontHelper.hfontnormal.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
+			FontHelper.hfontnormal.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - FontHelper.hfontnormal.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
 		}
 
 		GL11.glPopMatrix();
 	}
+
+
 	
 	@Override
 	public void updateComponent(int mouseX, int mouseY) {

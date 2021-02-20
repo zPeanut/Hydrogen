@@ -36,8 +36,12 @@ public class Keybind extends Component {
 	
 	@Override
 	public void renderComponent() {
-		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, this.hovered ? 0x88222222 : 0x88111111);
-		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
+
+		int c1 = new Color(17, 17, 17, 140).getRGB(); // 0x88111111
+		int c3 = new Color(34, 34, 34, 140).getRGB(); // 0x88222222
+
+		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, hovered ? 0x99000000 : 0x88000000);
+		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, c1);
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 
@@ -45,8 +49,9 @@ public class Keybind extends Component {
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + (binding ? "Press a key..." : ("Keybind ")) : binding ? "Press a key..." : ("Keybind "), (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow((binding ? "" : "§l" + (Keyboard.getKeyName(this.parent.mod.getKeybind()))), (parent.parent.getX() + 86) * 1.3333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth("§l" + Keyboard.getKeyName(this.parent.mod.getKeybind())), (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
 		} else {
-			FontHelper.hfontbold.drawStringWithShadow(this.hovered ? "§7" + (binding ? "Press a key..." : ("Keybind ")) : binding ? "Press a key..." : ("Keybind "), (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f, Color.white);
-			FontHelper.hfontbold.drawStringWithShadow((binding ? "" : "§l" + (Keyboard.getKeyName(this.parent.mod.getKeybind()))), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.hfontbold.getStringWidth("§l" + Keyboard.getKeyName(this.parent.mod.getKeybind())), (parent.parent.getY() + offset + 2) * 1.3333333333f, Color.white);
+			Color c = new Color(255, 255, 255);
+			FontHelper.hfontnormal.drawStringWithShadow(this.hovered ? "§7" + (binding ? "Press a key..." : ("Keybind ")) : binding ? "Press a key..." : ("Keybind "), (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
+			FontHelper.hfontnormal.drawStringWithShadow((binding ? "" : "§l" + (Keyboard.getKeyName(this.parent.mod.getKeybind()))), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.hfontnormal.getStringWidth("§l" + Keyboard.getKeyName(this.parent.mod.getKeybind())), (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
 
 		}
 

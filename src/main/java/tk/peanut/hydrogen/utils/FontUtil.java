@@ -2,7 +2,6 @@ package tk.peanut.hydrogen.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.StringUtils;
 
 import java.awt.*;
@@ -35,7 +34,7 @@ public class FontUtil {
         }
 
     public static void TTFdrawStringWithShadow(String text, double x, double y, Color color) {
-        FontHelper.hfontbold.drawStringWithShadow(text, (float) x, (float) y, color);
+        FontHelper.hfontnormal.drawStringWithShadow(text, (float) x, (float) y, color);
     }
 
         public static void drawCenteredString(String text, double x, double y, int color) {
@@ -55,6 +54,6 @@ public class FontUtil {
         }
 
     public static void drawTotalCenteredStringWithShadow2(String text, double x, double y, Color color) {
-        TTFdrawStringWithShadow(text, x - FontHelper.hfontbold.getStringWidth(text) / 2, y - FontHelper.hfontbold.FONT_HEIGHT / 2F, color);
+        TTFdrawStringWithShadow(text, x - FontHelper.hfontnormal.getStringWidth(text) / 2, y - FontHelper.hfontnormal.FONT_HEIGHT / 2F, color);
     }
     }

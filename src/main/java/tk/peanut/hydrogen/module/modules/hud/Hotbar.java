@@ -68,16 +68,16 @@ public class Hotbar extends Module {
             String coordinates = String.format("X: §7%s §fY: §7%s §fZ: §7%s", x, y, z);
 
             if (tdate) {
-                FontHelper.hfontbold.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-                FontHelper.hfontbold.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 22 : Utils.getScaledRes().getScaledWidth() - FontHelper.hfontbold.getStringWidth(time) - 16, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+                FontHelper.hfontnormal.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontnormal.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                FontHelper.hfontnormal.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.hfontnormal.getStringWidth(time) - 22 : Utils.getScaledRes().getScaledWidth() - FontHelper.hfontnormal.getStringWidth(time) - 16, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
             }
 
             if (coord) {
-                FontHelper.hfontbold.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                FontHelper.hfontnormal.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
             }
 
             if (fps) {
-                FontHelper.hfontbold.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 23 : Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                FontHelper.hfontnormal.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 23 : Utils.getScaledRes().getScaledHeight() - 12, Color.white);
             }
 
         }

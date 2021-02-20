@@ -65,16 +65,17 @@ public class H2FontRenderer extends FontRenderer {
     }
 
     public int drawString(String text, double x, double y, int color, boolean shadow) {
+        GlStateManager.enableAlpha();
         int result = 0;
         try {
             if (text != null && text != "") {
                 String[] lines = text.split("\n");
                 for (int i = 0; i < lines.length; ++i) {
                     if (shadow) {
-                        i = this.drawLine(text, x + 0.5F, y + 0.5F, color, true);
-                        i = Math.max(i, this.drawLine(text, x, y, color, false));
+                        i = this.renderString(text, x + 0.5F, y + 0.5F, color, true);
+                        i = Math.max(i, this.renderString(text, x, y, color, false));
                     } else {
-                        result = this.drawLine(lines[i], x, y + (double) (i * this.getHeight()), color, shadow);
+                        result = this.renderString(lines[i], x, y + (double) (i * this.getHeight()), color, false);
                     }
                 }
             }
@@ -85,7 +86,7 @@ public class H2FontRenderer extends FontRenderer {
         return result;
     }
 
-    private int drawLine(String text, double d, double e, int color, boolean shadow) {
+    private int renderString(String text, double d, double e, int color, boolean shadow) {
         if (text == null) {
             return 0;
         }
@@ -174,10 +175,10 @@ public class H2FontRenderer extends FontRenderer {
                 float u = (float)this.font.getHeight() / 16.0f;
                 int h = currentFont.getStringHeight(words);
                 if (strikethrough) {
-                    this.drawLine((double)width / 2.0 + 1.0, (double)(h / 3), (double)(width + currentFont.getStringWidth(words)) / 2.0 + 1.0, (double)(h / 3), u);
+                    this.renderString((double)width / 2.0 + 1.0, (double)(h / 3), (double)(width + currentFont.getStringWidth(words)) / 2.0 + 1.0, (double)(h / 3), u);
                 }
                 if (underline) {
-                    this.drawLine((double)width / 2.0 + 1.0, (double)(h / 2), (double)(width + currentFont.getStringWidth(words)) / 2.0 + 1.0, (double)(h / 2), u);
+                    this.renderString((double)width / 2.0 + 1.0, (double)(h / 2), (double)(width + currentFont.getStringWidth(words)) / 2.0 + 1.0, (double)(h / 2), u);
                 }
                 width += currentFont.getStringWidth(words);
             }
@@ -435,7 +436,7 @@ public class H2FontRenderer extends FontRenderer {
         return finalWords;
     }
 
-    private void drawLine(double x, double y, double x1, double y1, float width) {
+    private void renderString(double x, double y, double x1, double y1, float width) {
         GL11.glDisable((int)3553);
         GL11.glLineWidth((float)width);
         GL11.glBegin((int)1);

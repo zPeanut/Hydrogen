@@ -32,22 +32,27 @@ public class Checkbox extends Component {
 
 	@Override
 	public void renderComponent() {
-		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, this.hovered ? 0x88222222 : 0x88111111);
-		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
+
+		int c1 = new Color(17, 17, 17, 140).getRGB(); // 0x88111111
+		int c3 = new Color(34, 34, 34, 140).getRGB(); // 0x88222222
+
+		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, hovered ? 0x99000000 : 0x88000000);
+		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, c1);
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 
 
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
-			FontHelper.hfontbold.drawStringWithShadow(this.hovered ? "§7" + this.op.getName() : this.op.getName(), (parent.parent.getX() + 3) * 1.3333333333f + 5, (parent.parent.getY() + offset + 2) * 1.3333333333f, Color.white);
+			FontHelper.hfontnormal.drawStringWithShadow(this.hovered ? "§7" + this.op.getName() : this.op.getName(), (parent.parent.getX() + 3) * 1.3333333333f + 5, (parent.parent.getY() + offset + 2) * 1.3333333333f, new Color(255, 255, 255));
 		} else {
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.op.getName() : this.op.getName(), (parent.parent.getX() + 3) * 1.3333333333f + 5, (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
 		}
 
 		GL11.glPopMatrix();
 		Gui.drawRect(parent.parent.getX() + parent.parent.getWidth() - 2, parent.parent.getY() + offset + 3, parent.parent.getX() + parent.parent.getWidth() - 8, parent.parent.getY() + offset + 9, 0x88999999);
-		if(this.op.isEnabled())
+		if(this.op.isEnabled()) {
 			Gui.drawRect(parent.parent.getX() + parent.parent.getWidth() - 3, parent.parent.getY() + offset + 4, parent.parent.getX() + parent.parent.getWidth() - 7, parent.parent.getY() + offset + 8, 0x99000000);
+		}
 	}
 	
 	@Override

@@ -5,7 +5,6 @@ import com.darkmagician6.eventapi.types.Priority;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
-import scala.Int;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventRender2D;
 import tk.peanut.hydrogen.module.Category;
@@ -17,8 +16,6 @@ import tk.peanut.hydrogen.utils.ReflectionUtil;
 import tk.peanut.hydrogen.utils.Utils;
 
 import java.awt.*;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Created by peanut on 18/02/2021
@@ -42,7 +39,7 @@ public class ArrayList extends Module {
                 }
                 for (Module mod : Hydrogen.getClient().moduleManager.getModules()) {
                     if (mod.isEnabled()) {
-                        if (mod.getSlide() < FontHelper.hfontbold.getStringWidth(mod.getName())) {
+                        if (mod.getSlide() < FontHelper.hfontnormal.getStringWidth(mod.getName())) {
                             mod.setSlide(mod.getSlide() + 1);
                         }
 
@@ -99,7 +96,7 @@ public class ArrayList extends Module {
                 Color mcolor = Utils.getRainbow2(5, 0.4f, 1, count * 100);
                 Color color = modcolor ? mcolor : Color.white;
 
-                FontHelper.hfontbold.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
+                FontHelper.hfontnormal.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
                 count++;
 
             }

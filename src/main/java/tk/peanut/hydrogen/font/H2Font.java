@@ -174,6 +174,8 @@ public class H2Font {
         GL11.glPopMatrix();
     }
 
+
+
     public void glColor(Color color) {
         float red = (float)color.getRed() / 255.0f;
         float green = (float)color.getGreen() / 255.0f;
