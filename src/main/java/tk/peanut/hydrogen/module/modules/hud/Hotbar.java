@@ -38,7 +38,7 @@ public class Hotbar extends Module {
     }
 
     @EventTarget
-    public static void drawHotbar(EventRender2D e) {
+    public void drawHotbar(EventRender2D e) {
         if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
             if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
                 return;
