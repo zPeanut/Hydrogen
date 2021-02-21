@@ -75,22 +75,17 @@ public class ArrayList extends Module {
             float rbdelay = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Delay").getValDouble();
             float rbsaturation = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Saturation").getValDouble();
 
-            // dont ask why its seperated, if id put it together the drawrects wouldnt draw correctly and i have no idea why
-
-            for (int j = 0; j < Hydrogen.getClient().moduleManager.getEnabledMods().size(); j++) {
-                ScaledResolution sr = new ScaledResolution(mc);
-                Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(j);
-                boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
-                if (background) {
-                    Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + j * 12, sr.getScaledWidth(), j * 12 + 13, 0x66000000);
-                }
-            }
             for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
                 ScaledResolution sr = new ScaledResolution(mc);
                 Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
                 Color rainbow = Utils.getRainbowColor(rbdelay, rbsaturation, 1, count * 100);
                 Color color = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("White") ? Color.white : (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? rainbow : mod.getColor());
+                boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
                 int mheight = (count * 11 + i) + 1;
+
+                if (background) {
+                    Utils.rect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
+                }
 
                 FontHelper.hfontnormal.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
                 count++;
