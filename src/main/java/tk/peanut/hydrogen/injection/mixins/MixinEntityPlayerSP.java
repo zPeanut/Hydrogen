@@ -30,7 +30,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.events.EventPreMotion;
 import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.events.EventSafeWalk;
-import tk.peanut.hydrogen.module.modules.player.Freecam;
 
 import java.util.List;
 
@@ -147,7 +146,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
 
     @Overwrite
     protected boolean pushOutOfBlocks(double x, double y, double z) {
-        if (this.noClip && Hydrogen.getClient().moduleManager.getModule(Freecam.class).isEnabled()) {
+        if (this.noClip) {
             return false;
         } else {
             BlockPos blockpos = new BlockPos(x, y, z);
