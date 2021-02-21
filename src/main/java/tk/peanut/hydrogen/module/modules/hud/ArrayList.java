@@ -58,20 +58,22 @@ public class ArrayList extends Module {
         array.add("White");
         array.add("Category");
 
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("List Color",this, "Rainbow", array));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("List Speed", this, 3, 0, 20, false));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Rb. Saturation", this, 0.4, 0, 1, false));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Rb. Delay", this, 4, 1, 10, true));
+        addSetting(new Setting("Outline", this, true));
+        addSetting(new Setting("List Color",this, "Rainbow", array));
+        addSetting(new Setting("List Speed", this, 3, 0, 20, false));
+        addSetting(new Setting("Rb. Saturation", this, 0.4, 0, 1, false));
+        addSetting(new Setting("Rb. Delay", this, 4, 1, 10, true));
     }
 
 
     @EventTarget(Priority.HIGHEST)
     public void drawArray(EventRender2D e) {
         if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
-            if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
+            if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
                 return;
-            int count = 0;
+            }
 
+            int count = 0;
             float rbdelay = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Delay").getValDouble();
             float rbsaturation = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Saturation").getValDouble();
 
@@ -81,7 +83,55 @@ public class ArrayList extends Module {
                 Color rainbow = Utils.getRainbowColor(rbdelay, rbsaturation, 1, count * 100);
                 Color color = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("White") ? Color.white : (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? rainbow : mod.getColor());
                 boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
+                boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
                 int mheight = (count * 11 + i) + 1;
+                double rectX = (sr.getScaledWidth() - mod.getSlide() - 5);
+                double rectX2 = rectX + FontHelper.hfontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) + 3.0D;
+                double rectY = (1 + i * 12);
+                double rectY2 = rectY + FontHelper.hfontnormal.getHeight() + 3;
+                int outlinecolor = 0x80000000;
+
+                if (outline && background) {
+                    if (i == 0) {
+
+                        // if first module, then draw side line 1px higher, so it connects with the top line
+
+                        Utils.rect(rectX - 1.0D, rectY - 1.0D, rectX2 + 2, rectY, outlinecolor);
+
+                        // top line
+
+                        Utils.rect(rectX - 2.0D, rectY - 2, rectX - 1, rectY2, outlinecolor);
+                    } else {
+
+                        // side line
+
+                        Utils.rect(rectX - 2.0D, rectY - 1, rectX - 1, rectY2 - 2, outlinecolor);
+                    }
+
+                    if (i == Hydrogen.getClient().moduleManager.getEnabledMods().size() - 1) {
+
+                        // bottom arraylist line
+
+                        Utils.rect(rectX - 2.0D, rectY2, rectX2 + 20, rectY2 - 1, outlinecolor);
+                    }
+
+                    if (i != Hydrogen.getClient().moduleManager.getEnabledMods().size() - 1) {
+                        double modwidth = (FontHelper.hfontnormal.getStringWidth(((Module) Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()));
+                        double mwidthNext = (FontHelper.hfontnormal.getStringWidth(((Module) Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()));
+                        double difference = modwidth - mwidthNext;
+                        if (modwidth < mwidthNext) {
+                            if ((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getSlide() < FontHelper.hfontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()) + 3) {
+                                if ((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getSlide() >= FontHelper.hfontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) + 3) {
+                                    rectX = rectX - (Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getSlide() + FontHelper.hfontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) - difference + 2.0D;
+                                }
+                            }
+                        }
+
+                        // bottom line
+
+                        Utils.rect(rectX - 2, rectY2, rectX + difference - 1, rectY2 - 1, outlinecolor);
+                    }
+                }
 
                 if (background) {
                     Utils.rect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);

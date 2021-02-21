@@ -164,6 +164,35 @@ public class Utils {
         GL11.glDisable(2848);
     }
 
+    public static void rect(double x1, double y1, double x2, double y2, int fill) {
+        GlStateManager.color(0, 0, 0);
+        GL11.glColor4f(0, 0, 0, 0);
+
+        float f = (fill >> 24 & 0xFF) / 255.0F;
+        float f1 = (fill >> 16 & 0xFF) / 255.0F;
+        float f2 = (fill >> 8 & 0xFF) / 255.0F;
+        float f3 = (fill & 0xFF) / 255.0F;
+
+        GL11.glEnable(3042);
+        GL11.glDisable(3553);
+        GL11.glBlendFunc(770, 771);
+        GL11.glEnable(2848);
+
+        GL11.glPushMatrix();
+        GL11.glColor4f(f1, f2, f3, f);
+        GL11.glBegin(7);
+        GL11.glVertex2d(x2, y1);
+        GL11.glVertex2d(x1, y1);
+        GL11.glVertex2d(x1, y2);
+        GL11.glVertex2d(x2, y2);
+        GL11.glEnd();
+        GL11.glPopMatrix();
+
+        GL11.glEnable(3553);
+        GL11.glDisable(3042);
+        GL11.glDisable(2848);
+    }
+
     public static void draw2DPlayerESP(final EntityPlayer ep, final double d, final double d1, final double d2) {
         final float distance = Minecraft.getMinecraft().thePlayer.getDistanceToEntity(ep);
         final float scale = (float) (0.09 + Minecraft.getMinecraft().thePlayer.getDistance(ep.posX, ep.posY, ep.posZ) / 10000.0);

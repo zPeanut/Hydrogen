@@ -49,10 +49,7 @@ public class Watermark extends Module {
 
             if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
 
-                GL11.glPushMatrix();
-                GL11.glScalef(2f, 2f, 2f);
-                FontHelper.hfontnormal.drawStringWithShadow("H", 2, -1, Color.white);
-                GL11.glPopMatrix();
+
 
                 if (Hydrogen.getClient().settingsManager.getSettingByName("Time").isEnabled()) {
                     String watermarknew = Hydrogen.getClient().version + " §7(" + currenttime + ")";
@@ -63,11 +60,28 @@ public class Watermark extends Module {
                         Gui.drawRect(FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 29, 23, 0x99000000);
                     }
 
+                    GL11.glPushMatrix();
+                    GL11.glScalef(2f, 2f, 2f);
+                    FontHelper.hfontnormal.drawStringWithShadow("H", 2, -1, Color.white);
+                    GL11.glPopMatrix();
+
                     FontHelper.hfontnormal.drawStringWithShadow("2", 17, 12, Color.white);
                     FontHelper.hfontnormal.drawStringWithShadow(watermarknew, 27, 5, Color.white);
 
                 } else {
                     String watermarknew = Hydrogen.getClient().version;
+
+                    if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
+                        Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
+                        Gui.drawRect(0, 23, FontHelper.hfontnormal.getStringWidth(watermarknew) + 29, 24, 0x99000000);
+                        Gui.drawRect(FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 29, 23, 0x99000000);
+                    }
+
+                    GL11.glPushMatrix();
+                    GL11.glScalef(2f, 2f, 2f);
+                    FontHelper.hfontnormal.drawStringWithShadow("H", 2, -1, Color.white);
+                    GL11.glPopMatrix();
+
                     FontHelper.hfontnormal.drawStringWithShadow("2", 17, 12, Color.white);
                     FontHelper.hfontnormal.drawStringWithShadow(watermarknew, 27, 5, Color.white);
                 }
