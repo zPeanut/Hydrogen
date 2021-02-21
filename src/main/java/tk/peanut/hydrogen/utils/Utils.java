@@ -106,6 +106,35 @@ public class Utils {
         return color;
     }
 
+    public static float[] getAngles(Entity entity) {
+        double y, x = entity.posX - mc.thePlayer.posX;
+        double z = entity.posZ - mc.thePlayer.posZ;
+
+        if (entity instanceof net.minecraft.entity.monster.EntityEnderman) {
+            y = entity.posY - mc.thePlayer.posY;
+        } else {
+            y = entity.posY + entity.getEyeHeight() - 1.9D - mc.thePlayer.posY + mc.thePlayer.getEyeHeight() - 1.9D;
+        }
+        double helper = MathHelper.sqrt_double(x * x + z * z);
+
+        float newYaw = (float) Math.toDegrees(-Math.atan(x / z));
+        float newPitch = (float) -Math.toDegrees(Math.atan(y / helper));
+        if (z < 0.0D && x < 0.0D) {
+            newYaw = (float) (90.0D + Math.toDegrees(Math.atan(z / x)));
+        } else if (z < 0.0D && x > 0.0D) {
+            newYaw = (float) (-90.0D + Math.toDegrees(Math.atan(z / x)));
+        }
+        return new float[]{newPitch, newYaw};
+    }
+
+    public static double getDistanceBetweenAngles(float angle1, float angle2) {
+        float distance = Math.abs(angle1 - angle2) % 360.0F;
+        if (distance > 180.0F) {
+            distance = 360.0F - distance;
+        }
+        return distance;
+    }
+
     public static void rect(float x1, float y1, float x2, float y2, int fill) {
         GlStateManager.color(0, 0, 0);
         GL11.glColor4f(0, 0, 0, 0);

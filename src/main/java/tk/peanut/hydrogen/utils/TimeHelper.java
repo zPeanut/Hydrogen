@@ -1,14 +1,14 @@
 package tk.peanut.hydrogen.utils;
 
 public class TimeHelper {
-    private long lastMS = 0L;
+    private static long lastMS = 0L;
     private long resetMS = 0L;
 
     public int convertToMS(int d) {
         return 1000 / d;
     }
 
-    public long getCurrentMS() {
+    public static long getCurrentMS() {
         return System.nanoTime() / 1000000L;
     }
 
@@ -34,6 +34,13 @@ public class TimeHelper {
     {
         return getCurrentTime() >= this.resetMS + d;
     }
+    public static boolean hasTimePassedMS(long LastMS, long MS) {
+        return (getCurrentMS() >= LastMS + MS);
+    }
+
+    public static boolean hasTimePassedMS(long MS) {
+        return (getCurrentMS() >= lastMS + MS);
+    }
 
     public void resetAndAdd(long reset)
     {
@@ -52,7 +59,7 @@ public class TimeHelper {
         return System.currentTimeMillis() - lastMS;
     }
 
-    public void reset() {
+    public static void reset() {
         lastMS = getCurrentMS();
     }
 
@@ -63,4 +70,5 @@ public class TimeHelper {
     public void setLastMS(long lastMS) {
         this.lastMS = lastMS;
     }
+
 }

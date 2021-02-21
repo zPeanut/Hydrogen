@@ -5,10 +5,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.main.GameConfiguration;
 import net.minecraft.util.Session;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventKey;
+import tk.peanut.hydrogen.events.EventTick;
 import tk.peanut.hydrogen.file.files.*;
 import tk.peanut.hydrogen.injection.interfaces.IMixinMinecraft;
 import org.lwjgl.input.Keyboard;
@@ -63,6 +65,12 @@ public class MixinMinecraft implements IMixinMinecraft {
         SettingsSliderFile.saveState();
         ClickGuiFile.saveClickGui();
         ModuleFile.saveModules();
+    }
+
+    @Inject(method = "runTick", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;joinPlayerCounter:I", shift = At.Shift.BEFORE))
+    private void onTick(final CallbackInfo callbackInfo) {
+        EventTick e = new EventTick();
+        EventManager.call(e);
     }
 
     @Override
