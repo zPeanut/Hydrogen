@@ -54,6 +54,7 @@ public class ModuleManager {
         add(new WTap());
         add(new Velocity());
         add(new Flight());
+        add(new ItemESP());
 
         // alphabetically sort modules in clickgui
 

@@ -229,6 +229,80 @@ public class Utils {
         rect(x2 - 1, y1 + 1, x2, y2 - 1, outline);
     }
 
+    public static void renderBox(double x, double y, double z, float width, float height, Color c) {
+        float halfwidth = width / 2.0F;
+        float halfheight = height / 2.0F;
+        GlStateManager.pushMatrix();
+        GlStateManager.depthMask(false);
+        GlStateManager.disableTexture2D();
+        GlStateManager.disableLighting();
+        GlStateManager.disableCull();
+        GlStateManager.disableBlend();
+        GlStateManager.disableDepth();
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldRenderer = tessellator.getWorldRenderer();
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        worldRenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        y++;
+        worldRenderer.pos(x - halfwidth, y - halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y + halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y + halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y - halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y - halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y + halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y + halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y - halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y - halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y + halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y + halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y - halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y - halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y + halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y + halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y - halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y + halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y + halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y + halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y + halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y - halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x + halfwidth, y - halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y - halfheight, z + halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        worldRenderer.pos(x - halfwidth, y - halfheight, z - halfwidth)
+                .color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        tessellator.draw();
+        GlStateManager.enableDepth();
+        GlStateManager.depthMask(true);
+        GlStateManager.enableTexture2D();
+        GlStateManager.enableLighting();
+        GlStateManager.enableCull();
+        GlStateManager.enableBlend();
+        GlStateManager.popMatrix();
+    }
+
     public static double distance(float x, float y, float x1, float y1) {
         return Math.sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1));
     }
