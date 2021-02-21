@@ -76,7 +76,7 @@ public class Frame {
 	}
 
 	public void renderFrame(FontRenderer fontRenderer) {
-		Gui.drawRect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, 0xff33aaff);
+		Utils.rect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, 0xff33aaff);
 
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
 			FontUtil.drawTotalCenteredStringWithShadow2(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 3, Color.white);
