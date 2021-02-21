@@ -3,16 +3,12 @@ package tk.peanut.hydrogen.module;
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.hydrogen.events.EventKey;
-import tk.peanut.hydrogen.module.modules.combat.AutoClicker;
-import tk.peanut.hydrogen.module.modules.combat.TriggerBot;
-import tk.peanut.hydrogen.module.modules.combat.Velocity;
-import tk.peanut.hydrogen.module.modules.hud.Hotbar;
+import tk.peanut.hydrogen.module.modules.combat.*;
+import tk.peanut.hydrogen.module.modules.hud.*;
 import tk.peanut.hydrogen.module.modules.hud.Info;
-import tk.peanut.hydrogen.module.modules.hud.Watermark;
 import tk.peanut.hydrogen.module.modules.movement.*;
 import tk.peanut.hydrogen.module.modules.player.*;
 import tk.peanut.hydrogen.module.modules.render.*;
-import tk.peanut.hydrogen.module.modules.hud.*;
 import tk.peanut.hydrogen.utils.FontHelper;
 
 import java.util.ArrayList;
