@@ -27,7 +27,7 @@ public class Hydrogen {
     public static final String devs = "zPeanut & UltramoxX";
 
     public static final String version_number = "1.4";
-    private static final String version_suffix = "-beta_2";
+    private static final String version_suffix = "";
     public static final String version = "v" + version_number + version_suffix;
 
     public String prefix = "[§e" + name + "§f] ";
