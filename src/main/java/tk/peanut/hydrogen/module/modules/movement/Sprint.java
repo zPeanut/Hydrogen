@@ -1,7 +1,10 @@
 package tk.peanut.hydrogen.module.modules.movement;
 
+import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Keyboard;
+import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
@@ -15,21 +18,10 @@ public class Sprint extends Module {
         super(Keyboard.KEY_NONE, new Color(173, 234, 255));
     }
 
-    @Override
-    public void onEnable() {
-        try {
-            ReflectionUtil.pressed.set(Minecraft.getMinecraft().gameSettings.keyBindSprint, true);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onDisable() {
-        try {
-            ReflectionUtil.pressed.set(Minecraft.getMinecraft().gameSettings.keyBindSprint, false);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+    @EventTarget
+    public void onUpdate(EventUpdate e) {
+        int sprintKeyBind = this.mc.gameSettings.keyBindSprint.getKeyCode();
+        KeyBinding.setKeyBindState(sprintKeyBind, true);
+        KeyBinding.onTick(sprintKeyBind);
     }
 }
