@@ -9,13 +9,10 @@ import tk.peanut.hydrogen.module.modules.combat.Velocity;
 import tk.peanut.hydrogen.module.modules.hud.Hotbar;
 import tk.peanut.hydrogen.module.modules.hud.Info;
 import tk.peanut.hydrogen.module.modules.hud.Watermark;
-import tk.peanut.hydrogen.module.modules.movement.AirStrafe;
-import tk.peanut.hydrogen.module.modules.movement.Sprint;
-import tk.peanut.hydrogen.module.modules.movement.WTap;
+import tk.peanut.hydrogen.module.modules.movement.*;
 import tk.peanut.hydrogen.module.modules.player.*;
 import tk.peanut.hydrogen.module.modules.render.*;
 import tk.peanut.hydrogen.module.modules.hud.*;
-import tk.peanut.hydrogen.module.modules.movement.Eagle;
 import tk.peanut.hydrogen.utils.FontHelper;
 
 import java.util.ArrayList;
@@ -60,6 +57,7 @@ public class ModuleManager {
         add(new AntiAFK());
         add(new WTap());
         add(new Velocity());
+        add(new Flight());
 
         // alphabetically sort modules in clickgui
 
