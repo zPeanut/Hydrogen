@@ -35,6 +35,9 @@ public abstract class MixinEntity {
     public double posZ;
 
     @Shadow
+    public float height;
+
+    @Shadow
     public float rotationPitch;
 
     @Shadow
