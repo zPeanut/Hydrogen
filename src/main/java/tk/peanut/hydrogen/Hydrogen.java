@@ -94,10 +94,6 @@ public class Hydrogen {
     /*
       TODO LIST
 
-      1.4:
-
-      TODO: ItemESP
-
       1.5+:
 
         TODO: Finish Tephra modules import
