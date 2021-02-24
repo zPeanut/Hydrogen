@@ -1,7 +1,9 @@
 package tk.peanut.hydrogen;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import tk.peanut.hydrogen.events.ForgeEventHandler;
 import tk.peanut.hydrogen.file.FileManager;
 import tk.peanut.hydrogen.module.ModuleManager;
 import tk.peanut.hydrogen.module.modules.hud.ArrayList;
@@ -26,7 +28,7 @@ public class Hydrogen {
     public static final String name = "Hydrogen";
     public static final String devs = "zPeanut & UltramoxX";
 
-    public static final String version_number = "1.4";
+    public static final String version_number = "1.4.1";
     private static final String version_suffix = "";
     public static final String version = "v" + version_number + version_suffix;
 
