@@ -74,7 +74,7 @@ public class WTap extends Module {
 
                 double yawdistance = Utils.getDistanceBetweenAngles(yaw, this.mc.thePlayer.rotationYaw);
 
-                if (yawdistance < 50.0D) {
+                if (mc.thePlayer.isSwingInProgress) {
                     ens = e1;
                 }
             }
