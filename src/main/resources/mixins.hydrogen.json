@@ -20,7 +20,6 @@
     "MixinEntityPlayer",
     "MixinEntityRenderer",
     "MixinItemRenderer",
-    "MixinGuiNewChat",
-    "MixinGuiMainMenu"
+    "MixinGuiNewChat"
   ]
 }
