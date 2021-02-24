@@ -10,7 +10,7 @@ import tk.peanut.hydrogen.module.Module;
 
 import java.awt.*;
 
-@Info(name = "NoBob", description = "Removes the bobbing animation", category = Category.Render)
+@Info(name = "No-Bob", description = "Removes the bobbing animation", category = Category.Render)
 public class NoBob extends Module {
 
     public NoBob() {
