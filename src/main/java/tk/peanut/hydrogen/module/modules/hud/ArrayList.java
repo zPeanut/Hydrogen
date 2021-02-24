@@ -88,7 +88,7 @@ public class ArrayList extends Module {
                 double rectX = (sr.getScaledWidth() - mod.getSlide() - 5);
                 double rectX2 = rectX + FontHelper.hfontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) + 3.0D;
                 double rectY = (1 + i * 12);
-                double rectY2 = rectY + FontHelper.hfontnormal.getHeight() + 3;
+                double rectY2 = rectY + FontHelper.hfontnormal.getFont().getHeight();
                 int outlinecolor = 0x80000000;
 
                 if (outline && background) {
@@ -96,28 +96,28 @@ public class ArrayList extends Module {
 
                         // if first module, then draw side line 1px higher, so it connects with the top line
 
-                        Utils.rect(rectX - 1.0D, rectY - 1.0D, rectX2 + 2, rectY, outlinecolor);
+                        Utils.rect(rectX - 1.0D, rectY - 1.0D, rectX2 + 10, rectY, outlinecolor);
 
                         // top line
 
-                        Utils.rect(rectX - 2.0D, rectY - 2, rectX - 1, rectY2, outlinecolor);
+                        Utils.rect(rectX - 2.0D, rectY - 2, rectX - 1, rectY2 - 5, outlinecolor);
                     } else {
 
                         // side line
 
-                        Utils.rect(rectX - 2.0D, rectY - 1, rectX - 1, rectY2 - 2, outlinecolor);
+                        Utils.rect(rectX - 2.0D, rectY, rectX - 1, rectY2 - 5, outlinecolor);
                     }
 
                     if (i == Hydrogen.getClient().moduleManager.getEnabledMods().size() - 1) {
 
                         // bottom arraylist line
 
-                        Utils.rect(rectX - 2.0D, rectY2, rectX2 + 20, rectY2 - 1, outlinecolor);
+                        Utils.rect(rectX - 2.0D, rectY2 - 5, rectX2 + 10, rectY2 - 4, outlinecolor);
                     }
 
                     if (i != Hydrogen.getClient().moduleManager.getEnabledMods().size() - 1) {
-                        double modwidth = (FontHelper.hfontnormal.getStringWidth(((Module) Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()));
-                        double mwidthNext = (FontHelper.hfontnormal.getStringWidth(((Module) Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()));
+                        double modwidth = (FontHelper.hfontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()));
+                        double mwidthNext = (FontHelper.hfontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()));
                         double difference = modwidth - mwidthNext;
                         if (modwidth < mwidthNext) {
                             if ((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getSlide() < FontHelper.hfontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()) + 3) {
@@ -126,10 +126,7 @@ public class ArrayList extends Module {
                                 }
                             }
                         }
-
-                        // bottom line
-
-                        Utils.rect(rectX - 2, rectY2, rectX + difference - 1, rectY2 - 1, outlinecolor);
+                        Utils.rect(rectX - 2, rectY2 - 5, rectX + 3.0D + difference - 5, rectY2 - 4, outlinecolor);
                     }
                 }
 
