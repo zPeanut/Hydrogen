@@ -14,11 +14,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
+import net.minecraftforge.common.ForgeVersion;
+import net.minecraftforge.fml.common.Loader;
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.utils.ExpandButton;
 import tk.peanut.hydrogen.utils.FontHelper;
 import tk.peanut.hydrogen.utils.Utils;
@@ -100,11 +103,11 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         }
 
         int j = this.height / 4 + 48;
-        this.buttonList.add(new ExpandButton(5, 45, Utils.getScaledRes().getScaledHeight() / 2 - 40, 90, 20, "Singleplayer"));
-        this.buttonList.add(new ExpandButton(5, 45, Utils.getScaledRes().getScaledHeight() / 2 - 18, 90, 20, "Multiplayer"));
-        this.buttonList.add(new ExpandButton(5, 45, Utils.getScaledRes().getScaledHeight() / 2 + 4, 90, 20, "Settings"));
-        this.buttonList.add(new ExpandButton(5, 45, Utils.getScaledRes().getScaledHeight() / 2 + 26, 90, 20, "Mods"));
-        this.buttonList.add(new ExpandButton(5, 45, Utils.getScaledRes().getScaledHeight() / 2 + 70, 90, 20, "Quit"));
+        this.buttonList.add(new ExpandButton(1, 45, Utils.getScaledRes().getScaledHeight() / 2 - 40, 90, 20, "Singleplayer"));
+        this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 18, 90, 20, "Multiplayer"));
+        this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 + 4, 90, 20, "Settings"));
+        this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 26, 90, 20, "Mods"));
+        this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 70, 90, 20, "Quit"));
 
          synchronized(this.threadLock) {
             this.field_92023_s = this.fontRendererObj.getStringWidth(this.openGLWarning1);
@@ -145,35 +148,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         GL11.glScalef(var8, var8, var8);
         GL11.glPopMatrix();
 
-
-        drawRect(40, 0, 140, Utils.getScaledRes().getScaledHeight(), 0x60000000);
-
-
-        mc.fontRendererObj.drawStringWithShadow("6 mods loaded, 6 mods active", this.width - mc.fontRendererObj.getStringWidth("6 mods loaded, 6 mods active") - 4, Utils.getScaledRes().getScaledHeight() - 14, -1);
-        mc.fontRendererObj.drawStringWithShadow("Powered by Forge 11.5.1.1722", this.width - mc.fontRendererObj.getStringWidth("Powered by Forge 11.5.1.1722") - 4, Utils.getScaledRes().getScaledHeight() - 26, -1);
-        mc.fontRendererObj.drawStringWithShadow("MCP 9.19", this.width - mc.fontRendererObj.getStringWidth("MCP 9.19") - 4, Utils.getScaledRes().getScaledHeight() - 38, -1);
-        mc.fontRendererObj.drawStringWithShadow("Minecraft 1.8.9", this.width - mc.fontRendererObj.getStringWidth("Minecraft 1.8.9") - 4, Utils.getScaledRes().getScaledHeight() - 52, -1);
-
-        mc.fontRendererObj.drawStringWithShadow("Hydrogen v1.5-dev", this.width - mc.fontRendererObj.getStringWidth("Hydrogen v1.5-dev") - 4, 4, -1);
-        mc.fontRendererObj.drawStringWithShadow("Developed by §7zPeanut §fand §7UltramoxX", this.width - mc.fontRendererObj.getStringWidth("Developed by §7zPeanut §fand §7UltramoxX") - 4, 16, -1);
-        mc.fontRendererObj.drawStringWithShadow("Logged in as §7zPeanut", this.width - mc.fontRendererObj.getStringWidth("Logged in as §7zPeanut") - 4, 28, -1);
-
-
-        float scale = 5F;
-
-        // MAIN MENU
-
-        GL11.glScalef(scale, scale, scale);
-        mc.fontRendererObj.drawStringWithShadow("Hydrogen", Utils.getScaledRes().getScaledWidth() / 2 / scale - 14, this.height / 2 / scale - 5F, -4198401);
-        GL11.glScalef(1.0F / scale, 1.0F / scale, 1.0F / scale);
-
-
-        float scalever = 2.0F;
-
-        GL11.glScalef(scalever, scalever, scalever);
-        mc.fontRendererObj.drawStringWithShadow("§7v1.5-dev", Utils.getScaledRes().getScaledWidth() / 2 / scalever + 82, Utils.getScaledRes().getScaledHeight() / 2 / scalever - 17F, -1);
-        GL11.glScalef(1.0F / scalever, 1.0F / scalever, 1.0F / scalever);
-        
+        Utils.drawMenu();
         
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
