@@ -16,11 +16,14 @@ The current included Modules are:
 
 -  AutoClicker
 -  TriggerBot
+-  Velocity
 
 ### Movement
 
 -  Eagle
 -  Sprint
+-  AirStrafe
+-  W-Tap
 
 ### Player
 
