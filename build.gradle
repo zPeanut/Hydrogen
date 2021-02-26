@@ -42,7 +42,7 @@ repositories {
     }
 }
 
-version = "1.4.2"
+version = "1.5"
 group="tk.peanut.hydrogen"
 archivesBaseName = "hydrogen"
 
