@@ -73,6 +73,19 @@ public class Button extends Component {
 	
 	@Override
 	public void renderComponent() {
+		if(this.isHovered && Hydrogen.getClient().settingsManager.getSettingByName("Tooltip").isEnabled()) {
+
+			this.height = (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2);
+			int padding = 6;
+
+			GlStateManager.color(0, 0, 0, 0);
+			GL11.glColor4f(0, 0, 0, 0);
+
+
+			Utils.drawBorderedCorneredRect((int) (this.parent.getX() - padding) + 100, (int) (this.parent.getY() - padding) + 2 + this.offset, (int) (this.parent.getX() + padding) + Minecraft.getMinecraft().fontRendererObj.getStringWidth(this.mod.getDescription()) + 100, (int) (this.parent.getY() + height + padding) + this.offset, 2, 0x90000000, 0x80000000);
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.mod.getDescription(), (float) this.parent.getX() + 100, (float)this.parent.getY() + (float)height - 4 + this.offset, -1);
+
+		}
 		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x99000000);
 		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
 
@@ -104,24 +117,6 @@ public class Button extends Component {
 				}
 				Gui.drawRect(parent.getX() + 2, parent.getY() + this.offset + 12, parent.getX() + 3, parent.getY() + this.offset + ((this.subcomponents.size() + 1) * 12), ClickGui.color);
 			}
-		}
-
-		if(this.isHovered && Hydrogen.getClient().settingsManager.getSettingByName("Tooltip").isEnabled()) {
-
-			this.height = (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2);
-			int padding = 6;
-
-			GlStateManager.color(0, 0, 0, 0);
-			GL11.glColor4f(0, 0, 0, 0);
-
-
-			Utils.drawBorderedCorneredRect((int) (this.parent.getX() - padding) + 100, (int) (this.parent.getY() - padding) + 2 + this.offset, (int) (this.parent.getX() + padding) + Minecraft.getMinecraft().fontRendererObj.getStringWidth(this.mod.getDescription()) + 100, (int) (this.parent.getY() + height + padding) + this.offset, 2, 0x90000000, 0x80000000);
-			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.mod.getDescription(), (float) this.parent.getX() + 100, (float)this.parent.getY() + (float)height - 4 + this.offset, -1);
-
-
-			Utils.startClip((int)(this.parent.getX() - padding), (int)(this.parent.getY()), (int)(this.parent.getX() + this.parent.getWidth() + padding), (int)(this.parent.getY() + height + padding));
-
-			Utils.endClip();
 		}
 	}
 	
