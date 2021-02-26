@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import tk.peanut.hydrogen.ui.mainmenu.MainMenu;
 import tk.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
 import tk.peanut.hydrogen.utils.Utils;
 
@@ -142,7 +143,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         GL11.glScalef(var8, var8, var8);
         GL11.glPopMatrix();
 
-        Utils.drawMenu(mouseX, mouseY);
+        MainMenu.drawMenu(mouseX, mouseY);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
