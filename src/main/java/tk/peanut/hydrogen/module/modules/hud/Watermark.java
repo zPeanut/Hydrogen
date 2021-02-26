@@ -52,7 +52,7 @@ public class Watermark extends Module {
 
 
                 if (Hydrogen.getClient().settingsManager.getSettingByName("Time").isEnabled()) {
-                    String watermarknew = Hydrogen.getClient().version + " §7(" + currenttime + ")";
+                    String watermarknew = Hydrogen.getClient().version + " §7(" + currenttime + ")" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
 
                     if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                         Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
@@ -69,7 +69,7 @@ public class Watermark extends Module {
                     FontHelper.hfontnormal.drawStringWithShadow(watermarknew, 27, 5, Color.white);
 
                 } else {
-                    String watermarknew = Hydrogen.getClient().version;
+                    String watermarknew = Hydrogen.getClient().version + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
 
                     if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                         Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
@@ -89,7 +89,7 @@ public class Watermark extends Module {
             } else {
 
                 if (Hydrogen.getClient().settingsManager.getSettingByName("Time").isEnabled()) {
-                    String watermark = String.format("%s %s §7(%s)", Hydrogen.getClient().name, Hydrogen.getClient().version, currenttime);
+                    String watermark = String.format("%s %s §7(%s)" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.getClient().name, Hydrogen.getClient().version, currenttime);
 
                     if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                         Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
@@ -99,7 +99,7 @@ public class Watermark extends Module {
 
                     FontHelper.hfontnormal.drawStringWithShadow(watermark, 2, 1, Color.white);
                 } else {
-                    String watermark = String.format("%s %s", Hydrogen.getClient().name, Hydrogen.getClient().version);
+                    String watermark = String.format("%s %s" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.getClient().name, Hydrogen.getClient().version);
 
                     if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
                         Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
