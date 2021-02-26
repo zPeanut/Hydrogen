@@ -20,11 +20,24 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+ import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 import tk.peanut.hydrogen.ui.mainmenu.MainMenu;
 import tk.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
+import tk.peanut.hydrogen.ui.uiSettings;
 import tk.peanut.hydrogen.utils.Utils;
 
+import java.awt.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -49,6 +62,8 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
     @Shadow
     private String splashText;
+
+    public ClickGui clickgui;
 
     @Shadow
     @Final
@@ -118,7 +133,10 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 26, 90, 20, "Mods"));
             this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 70, 90, 20, "Quit"));
 
-            this.buttonList.add(new ExpandButton(99, 45, 37, 90, 20, "Update!"));
+            if(Hydrogen.getClient().outdated) {
+                this.buttonList.add(new ExpandButton(99, 45, 37, 90, 20, "Update!"));
+            }
+
         } else {
             if (this.mc.isDemo()) {
                 this.addDemoButtons(j, 24);
@@ -157,13 +175,35 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
     }
 
+    @Inject(method = "actionPerformed", at = @At("HEAD"))
+    public void actionPerformedNewButtons(GuiButton button, CallbackInfo ci) throws IOException {
+        if(button.id == 99) {
+            try {
+                // TODO: ADD GITHUB CHANGELOG
+                URL url = new URL("https://github.com/zPeanut/Hydrogen/releases");
+                String link = url.toString();
+                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                Desktop.getDesktop().browse((new URL(link)).toURI());
+            }
+
+            catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Overwrite
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         if (Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
+            Module m = Hydrogen.getClient().moduleManager.getModulebyName("MainMenu");
             renderSkybox(mouseX, mouseY, partialTicks);
             GlStateManager.disableAlpha();
             GlStateManager.enableAlpha();
-            drawGradientRect(0, 0, this.width, this.height, 0, -1610612736);
+            drawGradientRect(0, 0, this.width, this.height, 0, Hydrogen.getClient().settingsManager.getSettingByName(m, "Rainbow").isEnabled() ? Utils.getRainbowInt(10, 0.5f, 1, 1) : -1610612736);
             drawGradientRect(0, 0, this.width, this.height, 0x804DB3FF, 0x80000000);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glPushMatrix();
