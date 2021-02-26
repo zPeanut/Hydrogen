@@ -64,7 +64,8 @@ public class ClickGui extends GuiMainMenu {
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
 			BlurUtil.blurAll(0.4f);
 		}
-		drawRect(0, 0, this.width, this.height, 0x66101010);
+			drawRect(0, 0, this.width, this.height, 0x66101010);
+
 		/*if(Hydrogen.getInstance().outdated) {
 			mc.fontRendererObj.drawStringWithShadow("§7Outdated! Newest version is: §e" + Hydrogen.getInstance().newversion + "§7!", 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
 
@@ -76,14 +77,6 @@ public class ClickGui extends GuiMainMenu {
 				comp.updateComponent(mouseX, mouseY);
 			}
 		}
-		if (OpenGlHelper.shadersSupported) {
-			if (mc.entityRenderer.getShaderGroup() != null) {
-				mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-			}
-
-
-		}
-
 	}
 
 	@Override
@@ -124,14 +117,6 @@ public class ClickGui extends GuiMainMenu {
 	}
 
 	@Override
-	public void initGui() {
-		/*
-		 * Start blur
-		 */
-		this.buttonList.add(new GuiButton(5, 4, 2, 98, 20, "Menu"));
-	}
-
-	@Override
 	public void onGuiClosed() {
 		if(this.mc.entityRenderer.getShaderGroup() != null) {
 			this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
@@ -166,6 +151,6 @@ public class ClickGui extends GuiMainMenu {
 	
 	@Override
 	public boolean doesGuiPauseGame() {
-		return true;
+		return false;
 	}
 }
