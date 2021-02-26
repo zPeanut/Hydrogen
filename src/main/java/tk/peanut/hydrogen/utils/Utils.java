@@ -21,6 +21,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Session;
+import net.minecraftforge.common.ForgeVersion;
+import net.minecraftforge.fml.common.Loader;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -44,6 +46,8 @@ public class Utils {
     private static int lastScaleWidth;
     private static int lastScaleHeight;
     private static ResourceLocation shader = new ResourceLocation("shaders/post/blur.json");
+
+
 
     public Utils() {
         instance = this;

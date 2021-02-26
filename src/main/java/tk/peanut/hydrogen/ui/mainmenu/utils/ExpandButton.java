@@ -17,7 +17,7 @@ public class ExpandButton
     int alpha = 0;
     public int size = 0;
     public boolean tooltipEnabled;
-    public String tText;
+    public String tText2;
 
     public ExpandButton(int par1, int left, int top, int right, int bot, String par6Str) {
         super(par1, left, top, right, bot, par6Str);

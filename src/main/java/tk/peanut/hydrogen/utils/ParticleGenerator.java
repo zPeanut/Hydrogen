@@ -87,7 +87,7 @@ public class ParticleGenerator {
                 GL11.glDepthMask(false);
                 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 GL11.glEnable(GL11.GL_BLEND);
-                GL11.glLineWidth(0.5F);
+                GL11.glLineWidth(0.1F);
                 GL11.glBegin(GL11.GL_LINES);
 
                 GL11.glVertex2f(this.x + xx, this.y + yy);
