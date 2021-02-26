@@ -1,8 +1,10 @@
 package tk.peanut.hydrogen.module.modules.hud;
 
+import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.settings.Setting;
 
 import java.awt.*;
 
@@ -13,5 +15,7 @@ import java.awt.*;
 public class MainMenu extends Module {
     public MainMenu() {
         super(0x00, new Color(199, 255, 201));
+
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Rainbow", this, true));
     }
 }
