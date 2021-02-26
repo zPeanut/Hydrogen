@@ -15,7 +15,7 @@ import tk.peanut.hydrogen.utils.Utils;
 public class MainMenu extends GuiScreen {
 
     public static Minecraft mc = Minecraft.getMinecraft();
-    public static ParticleGenerator particleGenerator = new ParticleGenerator(60, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight());
+    public static ParticleGenerator particleGenerator = new ParticleGenerator(60, mc.displayWidth, mc.displayHeight);
 
     public static void drawMenu(int mouseX, int mouseY) {
         drawRect(40, 0, 140, Utils.getScaledRes().getScaledHeight(), 0x60000000);
@@ -36,8 +36,10 @@ public class MainMenu extends GuiScreen {
         mc.fontRendererObj.drawStringWithShadow("Developed by §7zPeanut §fand §7UltramoxX", Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth("Developed by §7zPeanut §fand §7UltramoxX") - 4, 16, -1);
         mc.fontRendererObj.drawStringWithShadow(mname, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(mname) - 4, 28, -1);
 
-        mc.fontRendererObj.drawStringWithShadow("§cOutdated!", 66, 10, -1);
-        mc.fontRendererObj.drawStringWithShadow("Newest Version: §a1.6", 42, 22, -1);
+        if(Hydrogen.getClient().outdated) {
+            mc.fontRendererObj.drawStringWithShadow("§cOutdated!", 66, 10, -1);
+            mc.fontRendererObj.drawStringWithShadow("Newest Version: §a" + Hydrogen.getClient().newversion, 42, 22, -1);
+        }
 
         float scale = 5F;
 
