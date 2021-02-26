@@ -25,6 +25,13 @@ public abstract class MixinBlock {
 
     @Overwrite
     public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity) {
+        AxisAlignedBB axisalignedbb = this.getCollisionBoundingBox(worldIn, pos, state);
+        EventBoundingBox e = new EventBoundingBox(collidingEntity, (Block) (Object) this, pos, axisalignedbb);
+        EventManager.call(e);
+        axisalignedbb = e.getBounds();
+        if ((!e.isCancelled()) && (axisalignedbb != null) && (mask.intersectsWith(axisalignedbb))) {
+            list.add(axisalignedbb);
+        }
 
     }
 
