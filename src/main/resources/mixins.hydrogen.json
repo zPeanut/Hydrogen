@@ -19,7 +19,6 @@
     "MixinEntityLivingBase",
     "MixinEntityPlayer",
     "MixinEntityRenderer",
-    "MixinItemRenderer",
-    "MixinGuiNewChat"
+    "MixinItemRenderer"
   ]
 }
