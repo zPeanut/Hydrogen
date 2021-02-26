@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import tk.peanut.hydrogen.Hydrogen;
@@ -32,7 +31,6 @@ public abstract class MixinGuiIngame extends MixinGui {
 
 
     @Shadow
-    @Final
     protected static final ResourceLocation widgetsTexPath = new ResourceLocation("textures/gui/widgets.png");
 
 
