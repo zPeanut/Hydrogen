@@ -14,7 +14,7 @@ import java.awt.*;
 public class NoBob extends Module {
 
     public NoBob() {
-        super(Keyboard.KEY_NONE, new Color(199, 255, 201));
+        super(Keyboard.KEY_NONE, colorRender);
     }
 
     @EventTarget

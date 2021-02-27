@@ -23,7 +23,7 @@ import java.awt.*;
 @Info(name = "ChestStealer", description = "Steals items from chests", category = Category.Player)
 public class ChestStealer extends Module {
     public ChestStealer() {
-        super(Keyboard.KEY_NONE, new Color(252, 255, 199));
+        super(Keyboard.KEY_NONE, colorPlayer);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Delay", this, 100.0, 0.0, 1000.0, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Auto Close", this, false));

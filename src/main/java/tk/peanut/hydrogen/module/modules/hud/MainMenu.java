@@ -14,7 +14,7 @@ import java.awt.*;
 @Info(name = "MainMenu", category = Category.Gui, description = "Enables the custom main menu")
 public class MainMenu extends Module {
     public MainMenu() {
-        super(0x00, new Color(199, 255, 201));
+        super(0x00, colorRender);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Rainbow", this, true));
     }

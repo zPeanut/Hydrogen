@@ -12,7 +12,7 @@ import java.awt.image.Kernel;
 @Info(name = "Fullbright", description = "Brightens up the world", category = Category.Render)
 public class Fullbright extends Module {
     public Fullbright() {
-        super(Keyboard.KEY_NONE, new Color(199, 255, 201));
+        super(Keyboard.KEY_NONE, colorRender);
     }
 
     @Override

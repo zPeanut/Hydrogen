@@ -31,7 +31,7 @@ public class NameTags extends Module {
     public static NameTags instance;
 
     public NameTags() {
-        super(Keyboard.KEY_NONE, new Color(199, 255, 201));
+        super(Keyboard.KEY_NONE, colorRender);
         instance = this;
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Health", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("State", this, false));

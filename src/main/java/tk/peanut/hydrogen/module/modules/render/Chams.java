@@ -11,6 +11,6 @@ import java.awt.*;
 @Info(name = "Chams", description = "Draws models through walls", category = Category.Render)
 public class Chams extends Module {
     public Chams() {
-        super(Keyboard.KEY_NONE, new Color(199, 255, 201));
+        super(Keyboard.KEY_NONE, colorRender);
     }
 }

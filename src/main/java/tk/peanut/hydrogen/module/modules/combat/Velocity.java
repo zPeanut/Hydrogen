@@ -25,7 +25,7 @@ public class Velocity extends Module {
     protected Random rand = new Random();
 
     public Velocity() {
-        super(0x00, new Color(255, 219, 171));
+        super(0x00, colorCombat);
 
         addSetting(new Setting("Combat-only", this, true));
         addSetting(new Setting("Horizontal %", this, 100, 0, 100, false));

@@ -19,6 +19,12 @@ public class Module {
     private int keyBind;
     private Color color;
 
+    public static final Color colorCombat = new Color(255, 219, 171);
+    public static final Color colorMovement = new Color(173, 234, 255);
+    public static final Color colorPlayer = new Color(252, 255, 199);
+    public static final Color colorRender = new Color(199, 255, 201);
+
+
     public Module(int keyBind, Color color) {
         this.keyBind = keyBind;
         this.color = color;

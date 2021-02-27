@@ -15,7 +15,7 @@ import java.awt.*;
 @Info(name = "Sprint", description = "Automatically sprints when W is pressed", category = Category.Movement)
 public class Sprint extends Module {
     public Sprint() {
-        super(Keyboard.KEY_NONE, new Color(173, 234, 255));
+        super(Keyboard.KEY_NONE, colorMovement);
     }
 
     @EventTarget

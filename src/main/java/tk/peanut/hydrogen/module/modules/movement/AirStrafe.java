@@ -15,7 +15,7 @@ import java.awt.*;
 @Info(name = "AirStrafe", description = "Lets you move in directions while in air", category = Category.Movement)
 public class AirStrafe extends Module {
     public AirStrafe() {
-        super(0x00, new Color(173, 234, 255));
+        super(0x00, colorMovement);
     }
 
     @EventTarget

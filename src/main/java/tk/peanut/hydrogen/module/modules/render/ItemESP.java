@@ -23,7 +23,7 @@ import java.awt.*;
 @Info(name = "ItemESP", description = "Draws a box around dropped items", category = Category.Render)
 public class ItemESP extends Module {
     public ItemESP() {
-        super(0x00, new Color(199, 255, 201));
+        super(0x00, colorRender);
     }
 
     @EventTarget

@@ -24,7 +24,7 @@ public class Eagle extends Module {
 
 
     public Eagle() {
-        super(Keyboard.KEY_Y, new Color(173, 234, 255));
+        super(Keyboard.KEY_Y, colorMovement);
     }
 
     @EventTarget

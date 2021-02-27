@@ -25,7 +25,7 @@ import java.awt.*;
 @Info(name = "StorageESP", description = "Draws an outline on storage containers", category = Category.Player)
 public class StorageESP extends Module {
     public StorageESP() {
-        super(0x00, new Color(199, 255, 201));
+        super(0x00, colorRender);
 
         addSetting(new Setting("Filling", this, true));
 

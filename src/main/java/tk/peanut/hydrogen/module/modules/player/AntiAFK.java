@@ -14,7 +14,7 @@ import java.awt.*;
 @Info(name = "AntiAFK", description = "Prevents you from getting kicked", category = Category.Player)
 public class AntiAFK extends Module {
     public AntiAFK() {
-        super(0x00, new Color(252, 255, 199));
+        super(0x00, colorPlayer);
     }
 
     @EventTarget

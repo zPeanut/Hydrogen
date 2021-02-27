@@ -22,7 +22,7 @@ public class ClickGUI extends Module {
     public ClickGui clickgui;
 
     public ClickGUI() {
-        super(Keyboard.KEY_LSHIFT, new Color(199, 255, 201));
+        super(Keyboard.KEY_LSHIFT, colorRender);
 
         ArrayList<String> font = new ArrayList<>();
         font.add("TTF");

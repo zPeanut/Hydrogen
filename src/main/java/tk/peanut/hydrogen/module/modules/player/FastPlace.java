@@ -15,7 +15,7 @@ import java.awt.*;
 public class FastPlace extends Module {
 
     public FastPlace() {
-        super(Keyboard.KEY_U, new Color(252, 255, 199));
+        super(Keyboard.KEY_U, colorPlayer);
     }
 
 

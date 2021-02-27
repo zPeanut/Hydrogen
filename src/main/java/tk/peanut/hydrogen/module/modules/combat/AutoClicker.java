@@ -29,7 +29,7 @@ public class AutoClicker extends Module {
     int delay;
 
     public AutoClicker() {
-        super(Keyboard.KEY_NONE, new Color(255, 219, 171));
+        super(Keyboard.KEY_NONE, colorCombat);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
     }

@@ -16,7 +16,7 @@ import java.awt.*;
 @Info(name = "OutlineESP", description = "Draws an outline through walls", category = Category.Render)
 public class ESP extends Module {
     public ESP() {
-        super(Keyboard.KEY_NONE, new Color(199, 255, 201));
+        super(Keyboard.KEY_NONE, colorRender);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("LineWidth", this, 3, 1, 10, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Entities", this, true));
