@@ -96,13 +96,11 @@ public class Hydrogen {
 
       1.5+:
 
-        TODO: Finish Tephra modules import
       TODO: Blur hotbar (maybe 1.5)
       TODO: Blur on ClickGUI Buttons (i.e. see Impact)
       TODO: Visibility Option on Module in ClickGUI
       TODO: Freecam Module
       TODO: Tracers Module
-      TODO: Custom Menu
       TODO: Add more Player modules
      */
 
