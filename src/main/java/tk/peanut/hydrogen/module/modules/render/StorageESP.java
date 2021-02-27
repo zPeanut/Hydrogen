@@ -22,7 +22,7 @@ import java.awt.*;
 /**
  * Created by peanut on 11/02/2021
  */
-@Info(name = "StorageESP", description = "Draws an outline on storage containers", category = Category.Player)
+@Info(name = "StorageESP", description = "Draws an outline on storage containers", category = Category.Render)
 public class StorageESP extends Module {
     public StorageESP() {
         super(0x00, colorRender);
