@@ -20,13 +20,15 @@ The current included Modules are:
 
 ### Movement
 
--  Eagle
--  Sprint
 -  AirStrafe
+-  Eagle
+-  Flight
+-  Sprint
 -  W-Tap
 
 ### Player
 
+-  AntiAFK
 -  AutoRespawn
 -  ChestStealer
 -  FastPlace
@@ -41,11 +43,20 @@ The current included Modules are:
 -  ESP
 -  Fullbright
 -  HUD
+-  ItemESP
 -  NameTags
 -  NoBob
 -  NoChatRect
 -  StorageESP
 -  Trajectories
+-  Main Menu
+
+### Hud (customizable Modules)
+
+-  ArrayList
+-  Hotbar
+-  Info
+-  Watermark
 
 ## Setting up
 
