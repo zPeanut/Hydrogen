@@ -26,7 +26,7 @@ public class Hydrogen {
     public static final String modid = "hydrogen";
     public static final String name = "Hydrogen";
     public static final String devs = "zPeanut & UltramoxX";
-    public static final String version_number = "1.5-beta_01";
+    public static final String version_number = "1.5-dev";
     private static final String version_suffix = "";
     public static final String version = "v" + version_number + version_suffix;
 
