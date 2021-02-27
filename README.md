@@ -7,7 +7,7 @@ Developed by [Me] and [UltramoxX].
 
 ## Features
 
-There are currently 20 modules included in Hydrogen.  
+There are currently 20 cool modules included in Hydrogen.  
 More modules are all being ported over from the previously mentioned MCP client.  
   
 The current included Modules are:
