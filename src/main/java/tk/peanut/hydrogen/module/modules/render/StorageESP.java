@@ -28,23 +28,18 @@ public class StorageESP extends Module {
         super(0x00, colorRender);
 
         addSetting(new Setting("Filling", this, true));
-
-
     }
 
     @EventTarget
-    public void renderWorld(EventRender3D event) {
+    public void onRender(EventRender3D event) {
         if (this.isEnabled()) {
-            for (final Object o : StorageESP.mc.theWorld.loadedTileEntityList) {
+            for (final Object o : mc.theWorld.loadedTileEntityList) {
                 final TileEntity tileEntity = (TileEntity)o;
                 final double n = tileEntity.getPos().getX();
-                StorageESP.mc.getRenderManager();
                 final double x = n - Minecraft.getMinecraft().getRenderManager().renderPosX;
                 final double n2 = tileEntity.getPos().getY();
-                StorageESP.mc.getRenderManager();
                 final double y = n2 - Minecraft.getMinecraft().getRenderManager().renderPosY;
                 final double n3 = tileEntity.getPos().getZ();
-                StorageESP.mc.getRenderManager();
                 final double z = n3 - Minecraft.getMinecraft().getRenderManager().renderPosZ;
                 if (tileEntity instanceof TileEntityFurnace) {
                     Utils.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, 1717987071);
