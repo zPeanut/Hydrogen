@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventRender3D;
 import tk.peanut.hydrogen.module.modules.render.NameTags;
+import tk.peanut.hydrogen.module.modules.render.NoHurtCam;
 
 /**
  * Created by peanut on 08/02/2021
@@ -27,6 +28,13 @@ public abstract class MixinEntityRenderer {
         if(Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
             this.setupCameraTransform(partialTicks, 2);
             NameTags.instance.render3DPost();
+        }
+    }
+
+    @Inject(method = "hurtCameraEffect", at = @At("HEAD"), cancellable = true)
+    private void injectHurtCameraEffect(CallbackInfo callbackInfo) {
+        if (Hydrogen.getClient().moduleManager.getModule(NoHurtCam.class).isEnabled()) {
+            callbackInfo.cancel();
         }
     }
 

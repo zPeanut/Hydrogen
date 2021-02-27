@@ -56,6 +56,7 @@ public class ModuleManager {
         add(new Flight());
         add(new ItemESP());
         add(new MainMenu());
+        add(new NoHurtCam());
 
         // alphabetically sort modules in clickgui
 
