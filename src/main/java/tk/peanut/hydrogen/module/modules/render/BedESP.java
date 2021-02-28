@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.BlockPos;
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.events.EventRender3D;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
@@ -23,7 +24,7 @@ public class BedESP extends Module {
         super(0x00, colorRender);
     }
 
-    public void onRender() {
+    public void onRender(EventRender3D e) {
             BlockPos blockPos;
             double x = blockPos.getX() - Minecraft.getMinecraft().getRenderManager().renderPosX;
             double y = blockPos.getY() - Minecraft.getMinecraft().getRenderManager().renderPosY;
