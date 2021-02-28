@@ -57,6 +57,8 @@ public class ModuleManager {
         add(new ItemESP());
         add(new MainMenu());
         add(new NoHurtCam());
+        add(new BedESP());
+        add(new BedAura());
 
         // alphabetically sort modules in clickgui
 

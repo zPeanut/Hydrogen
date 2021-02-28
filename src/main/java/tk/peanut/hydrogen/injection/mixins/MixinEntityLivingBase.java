@@ -20,4 +20,6 @@ public abstract class MixinEntityLivingBase extends MixinEntity {
 
     @Shadow
     public abstract IAttributeInstance getEntityAttribute(IAttribute attribute);
+
+
 }
