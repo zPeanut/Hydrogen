@@ -33,6 +33,7 @@ public class Hydrogen {
     public String prefix = "[§e" + name + "§f] ";
 
     private static Hydrogen instance;
+    private static Utils utils;
 
     public ModuleManager moduleManager;
     public SettingsManager settingsManager;
@@ -40,6 +41,7 @@ public class Hydrogen {
     public FileManager fileManager;
     public ClickGui clickgui;
     public File directory;
+
 
     public boolean outdated = false;
     public String newversion;
@@ -56,6 +58,7 @@ public class Hydrogen {
         settingsManager = new SettingsManager();
         moduleManager = new ModuleManager();
         keybindManager = new KeybindManager();
+        utils = new Utils();
         clickgui = new ClickGui();
         FontHelper.loadFonts();
         moduleManager.addModules();
@@ -65,6 +68,10 @@ public class Hydrogen {
 
     public static Hydrogen getClient() {
         return instance;
+    }
+
+    public static Utils getUtils() {
+        return utils;
     }
 
     public void stopClient() {
