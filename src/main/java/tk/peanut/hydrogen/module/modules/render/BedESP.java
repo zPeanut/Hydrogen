@@ -35,5 +35,4 @@ public class BedESP extends Module {
             }
 
     }
-    }
 }
