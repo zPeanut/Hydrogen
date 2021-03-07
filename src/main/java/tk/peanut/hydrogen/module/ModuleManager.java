@@ -52,7 +52,6 @@ public class ModuleManager {
         add(new Watermark());
         add(new AntiAFK());
         add(new WTap());
-        add(new Velocity());
         add(new Flight());
         add(new ItemESP());
         add(new MainMenu());
