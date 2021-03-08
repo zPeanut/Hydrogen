@@ -20,11 +20,11 @@ public class Frame {
 	public ArrayList<Component> components;
 	public Category category;
 	public boolean open;
-	private int width;
+	public int width;
 	public int y;
 
 	public int x;
-	private int barHeight;
+	public int barHeight;
 	private boolean isDragging;
 	public int dragX;
 	public int dragY;
