@@ -13,7 +13,7 @@ import java.awt.*;
  * Created by peanut on 05/02/2021
  */
 
-@Info(name = "OutlineESP", description = "Draws an outline through walls", category = Category.Render)
+@Info(name = "OutlineESP", description = "Draws an outline on entities", category = Category.Render)
 public class ESP extends Module {
     public ESP() {
         super(Keyboard.KEY_NONE, colorRender);
