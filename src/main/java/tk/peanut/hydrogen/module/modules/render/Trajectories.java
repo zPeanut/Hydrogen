@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by peanut on 10/02/2021
  */
-@Info(name = "Trajectories", description = "Shows the trajectory a projectile will have", category = Category.Render)
+@Info(name = "Trajectories", description = "Draws lines to where trajectories are going to fall", category = Category.Render)
 public class Trajectories extends Module {
 
     public Trajectories() {
