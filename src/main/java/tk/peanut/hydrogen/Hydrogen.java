@@ -101,8 +101,6 @@ public class Hydrogen {
     /*
       TODO LIST
 
-      1.5+:
-
       TODO: Blur hotbar (maybe 1.5)
       TODO: Blur on ClickGUI Buttons (i.e. see Impact)
       TODO: Visibility Option on Module in ClickGUI
