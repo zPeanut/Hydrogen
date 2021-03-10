@@ -6,8 +6,11 @@ import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.Loader;
 import org.lwjgl.opengl.GL11;
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.utils.FontHelper;
 import tk.peanut.hydrogen.utils.ParticleGenerator;
 import tk.peanut.hydrogen.utils.Utils;
+
+import java.awt.*;
 
 /**
  * Created by peanut on 26/02/2021
@@ -27,19 +30,20 @@ public class MainMenu extends GuiScreen {
         String name = String.format("%s %s", Hydrogen.name, Hydrogen.version);
         String mname = String.format("Logged in as §7%s", Minecraft.getMinecraft().getSession().getUsername());
 
-        mc.fontRendererObj.drawStringWithShadow(mds, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(mds) - 4, Utils.getScaledRes().getScaledHeight() - 14, -1);
-        mc.fontRendererObj.drawStringWithShadow(fml, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(fml) - 4, Utils.getScaledRes().getScaledHeight() - 26, -1);
-        mc.fontRendererObj.drawStringWithShadow(mcp, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(mcp) - 4, Utils.getScaledRes().getScaledHeight() - 38, -1);
-        mc.fontRendererObj.drawStringWithShadow(mcv, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(mcv) - 4, Utils.getScaledRes().getScaledHeight() - 50, -1);
+        FontHelper.cfontnormal.drawStringWithShadow(mds, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(mds) - 4, Utils.getScaledRes().getScaledHeight() - 14, Color.WHITE);
+        FontHelper.cfontnormal.drawStringWithShadow(fml, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(fml) - 4, Utils.getScaledRes().getScaledHeight() - 26, Color.WHITE);
+        FontHelper.cfontnormal.drawStringWithShadow(mcp, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(mcp) - 4, Utils.getScaledRes().getScaledHeight() - 38, Color.WHITE);
+        FontHelper.cfontnormal.drawStringWithShadow(mcv, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(mcv) - 4, Utils.getScaledRes().getScaledHeight() - 50, Color.WHITE);
 
-        mc.fontRendererObj.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(name) - 4, 4, -1);
-        mc.fontRendererObj.drawStringWithShadow("Developed by §7zPeanut §fand §7UltramoxX", Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth("Developed by §7zPeanut §fand §7UltramoxX") - 4, 16, -1);
-        mc.fontRendererObj.drawStringWithShadow(mname, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(mname) - 4, 28, -1);
+        FontHelper.cfontnormal.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(name) - 4, 4, Color.WHITE);
+        FontHelper.cfontnormal.drawStringWithShadow("Developed by §7zPeanut §fand §7UltramoxX", Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth("Developed by §7zPeanut §fand §7UltramoxX") - 4, 16, Color.WHITE);
+        FontHelper.cfontnormal.drawStringWithShadow(mname, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(mname) - 4, 28, Color.WHITE);
 
         if(Hydrogen.getClient().outdated) {
-            mc.fontRendererObj.drawStringWithShadow("§cOutdated!", 66, 10, -1);
-            mc.fontRendererObj.drawStringWithShadow("Newest Version: §a" + Hydrogen.getClient().newversion, 42, 22, -1);
+            FontHelper.cfontnormal.drawStringWithShadow("§cOutdated!", 66, 10, Color.WHITE);
+            FontHelper.cfontnormal.drawStringWithShadow("Newest Version: §a" + Hydrogen.getClient().newversion, 42, 22, Color.WHITE);
         }
+
 
         float scale = 5F;
 

@@ -10,50 +10,69 @@ import java.awt.*;
  * Created by peanut on 04/02/2021
  */
 public class FontUtil {
-        private static FontRenderer fontRenderer;
+
+    private static FontRenderer fontRenderer;
 
 
-        public static void setupFontUtils() {
-            fontRenderer = Minecraft.getMinecraft().fontRendererObj;
-        }
+    public static void setupFontUtils() {
+        fontRenderer = Minecraft.getMinecraft().fontRendererObj;
+    }
 
-        public static int getStringWidth(String text) {
-            return fontRenderer.getStringWidth(StringUtils.stripControlCodes(text));
-        }
+    public static int getStringWidth(String text) {
+        return fontRenderer.getStringWidth(StringUtils.stripControlCodes(text));
+    }
 
-        public static int getFontHeight() {
-            return fontRenderer.FONT_HEIGHT;
-        }
+    public static int getFontHeight() {
+        return fontRenderer.FONT_HEIGHT;
+    }
 
-        public static void drawString(String text, double x, double y, int color) {
-            fontRenderer.drawString(text, (int)x, (int)y, color);
-        }
+    public static void drawString(String text, double x, double y, int color) {
+        fontRenderer.drawString(text, (int)x, (int)y, color);
+    }
 
-        public static void drawStringWithShadow(String text, double x, double y, int color) {
-            Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(text, (float) x, (float) y, color);
-        }
+    public static void TTFdrawString(String text, double x, double y, Color color) {
+        FontHelper.cfontnormal.drawStringWithShadow(text, (int)x, (int)y, color);
+    }
+
+    public static void drawStringWithShadow(String text, double x, double y, int color) {
+        Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(text, (float) x, (float) y, color);
+    }
 
     public static void TTFdrawStringWithShadow(String text, double x, double y, Color color) {
         FontHelper.fontnormal.drawStringWithShadow(text, (float) x, (float) y, color);
     }
 
-        public static void drawCenteredString(String text, double x, double y, int color) {
-            drawString(text, x - fontRenderer.getStringWidth(text) / 2, y, color);
-        }
+    public static void TTFdrawStringWithShadow2(String text, double x, double y, Color color) {
+        FontHelper.cfontnormal.drawStringWithShadow(text, (float) x, (float) y, color);
+    }
 
-        public static void drawCenteredStringWithShadow(String text, double x, double y, int color) {
-            drawStringWithShadow(text, x - fontRenderer.getStringWidth(text) / 2, y, color);
-        }
+    public static void drawCenteredString(String text, double x, double y, int color) {
+        drawString(text, x - fontRenderer.getStringWidth(text) / 2, y, color);
+    }
 
-        public static void drawTotalCenteredString(String text, double x, double y, int color) {
-            drawString(text, x - fontRenderer.getStringWidth(text) / 2, y - fontRenderer.FONT_HEIGHT / 2, color);
-        }
 
-        public static void drawTotalCenteredStringWithShadow(String text, double x, double y, int color) {
-            drawStringWithShadow(text, x - Minecraft.getMinecraft().fontRendererObj.getStringWidth(text) / 2, y - Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2F, color);
-        }
+    public static void drawCenteredString(String text, double x, double y, Color color) {
+        TTFdrawString(text, x - FontHelper.cfontnormal.getStringWidth(text) / 2, y, color);
+    }
+
+    public static void drawCenteredStringWithShadow(String text, double x, double y, int color) {
+        drawStringWithShadow(text, x - fontRenderer.getStringWidth(text) / 2, y, color);
+    }
+
+    public static void drawTotalCenteredString(String text, double x, double y, int color) {
+        drawString(text, x - fontRenderer.getStringWidth(text) / 2, y - fontRenderer.FONT_HEIGHT / 2, color);
+    }
+
+    public static void drawTotalCenteredStringWithShadow(String text, double x, double y, int color) {
+        drawStringWithShadow(text, x - Minecraft.getMinecraft().fontRendererObj.getStringWidth(text) / 2, y - Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2F, color);
+    }
 
     public static void drawTotalCenteredStringWithShadow2(String text, double x, double y, Color color) {
         TTFdrawStringWithShadow(text, x - FontHelper.fontnormal.getStringWidth(text) / 2, y - FontHelper.fontnormal.FONT_HEIGHT / 2F, color);
     }
+
+    public static void drawTotalCenteredStringWithShadow3(String text, double x, double y, Color color) {
+        TTFdrawStringWithShadow2(text, x - FontHelper.cfontnormal.getStringWidth(text) / 2, y - FontHelper.cfontnormal.FONT_HEIGHT / 2F, color);
+    }
+
     }

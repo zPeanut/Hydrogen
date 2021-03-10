@@ -2,6 +2,11 @@ package tk.peanut.hydrogen.ui.mainmenu.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import tk.peanut.hydrogen.utils.FontHelper;
+import tk.peanut.hydrogen.utils.FontUtil;
+import tk.peanut.hydrogen.utils.Utils;
+
+import java.awt.*;
 
 /**
  * Created by peanut on 25/02/2021
@@ -18,6 +23,7 @@ public class ExpandButton
     public int size = 0;
     public boolean tooltipEnabled;
     public String tText2;
+    public boolean cfont;
 
     public ExpandButton(int par1, int left, int top, int right, int bot, String par6Str) {
         super(par1, left, top, right, bot, par6Str);
@@ -37,6 +43,17 @@ public class ExpandButton
         this.text = par6Str;
         this.enabled = enabled;
     }
+
+    public ExpandButton(int par1, int left, int top, int right, int bot, String par6Str, boolean cfont) {
+        super(par1, left, top, right, bot, par6Str);
+        this.x = left;
+        this.y = top;
+        this.x1 = right;
+        this.y1 = bot;
+        this.text = par6Str;
+        this.cfont = cfont;
+    }
+
 
 
     public ExpandButton(int i, int j, int k, String stringParams) {
@@ -64,9 +81,9 @@ public class ExpandButton
                 this.size -= 1;
             }
         }
-        drawRect(this.x - this.size, this.y - this.size, this.x + this.x1 + this.size, this.y + this.y1 + this.size, this.alpha);
+        Utils.rect(this.x - this.size, this.y - this.size, this.x + this.x1 + this.size, this.y + this.y1 + this.size, this.alpha);
         if (!this.tooltipEnabled) {
-            drawCenteredString(mc.fontRendererObj, isOverButton && this.enabled ? "§7" + this.text : this.text, this.x + this.x1 / 2, this.y + this.y1 / 2 - 4, -1);
+            FontUtil.drawTotalCenteredStringWithShadow3(isOverButton && this.enabled ? "§7" + this.text : this.text, this.x + this.x1 / 2, this.y + this.y1 / 2 - 2, Color.white);
         }
     }
 }
