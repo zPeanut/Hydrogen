@@ -26,7 +26,6 @@ public class HUD extends Module {
     public HUD() {
         super(Keyboard.KEY_NONE, Color.white);
         activemodules = new java.util.ArrayList<>();
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Background", this, false));
 
         ArrayList<String> time = new ArrayList<>();
         time.add("24H");

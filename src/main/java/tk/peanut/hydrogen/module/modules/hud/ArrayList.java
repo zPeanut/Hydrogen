@@ -59,6 +59,7 @@ public class ArrayList extends Module {
         array.add("Category");
 
         addSetting(new Setting("Outline", this, true));
+        addSetting(new Setting("Background", this, true));
         addSetting(new Setting("List Color",this, "Rainbow", array));
         addSetting(new Setting("List Speed", this, 3, 0, 20, false));
         addSetting(new Setting("Rb. Saturation", this, 0.4, 0, 1, false));
@@ -82,7 +83,7 @@ public class ArrayList extends Module {
                 Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
                 Color rainbow = Utils.getRainbowColor(rbdelay, rbsaturation, 1, count * 100);
                 Color color = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("White") ? Color.white : (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? rainbow : mod.getColor());
-                boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
+                boolean background = Hydrogen.getClient().settingsManager.getSettingByName(this, "Background").isEnabled();
                 boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
                 int mheight = (count * 11 + i) + 1;
                 double rectX = (sr.getScaledWidth() - mod.getSlide() - 5);
@@ -139,8 +140,6 @@ public class ArrayList extends Module {
 
             }
         }
-
-
     }
 
 

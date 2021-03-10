@@ -34,29 +34,37 @@ public class Watermark extends Module {
         watermark.add("New");
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Watermark", this, "New", watermark));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Background", this, false));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Outline", this, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Time", this, true));
     }
 
     @EventTarget
     public void drawWatermark(EventRender2D e) {
         if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
-            if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
+            if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
                 return;
+            }
 
+            boolean background = Hydrogen.getClient().settingsManager.getSettingByName(this, "Background").isEnabled();
+            boolean time = Hydrogen.getClient().settingsManager.getSettingByName("Time").isEnabled();
+            boolean outline = Hydrogen.getClient().settingsManager.getSettingByName("Outline").isEnabled();
             boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getValString().equals("24H");
             LocalDateTime now = LocalDateTime.now();
             String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
 
             if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
 
-
-
-                if (Hydrogen.getClient().settingsManager.getSettingByName("Time").isEnabled()) {
+                if (time) {
                     String watermarknew = Hydrogen.getClient().version + " §7(" + currenttime + ")" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
 
-                    if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
-                        Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
-                        Gui.drawRect(0, 23, FontHelper.hfontnormal.getStringWidth(watermarknew) + 29, 24, 0x99000000);
+                    if (background) {
+
+                        if(outline) {
+                            Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
+                            Gui.drawRect(0, 23, FontHelper.hfontnormal.getStringWidth(watermarknew) + 29, 24, 0x99000000);
+                        }
+
                         Gui.drawRect(FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 29, 23, 0x99000000);
                     }
 
@@ -71,9 +79,13 @@ public class Watermark extends Module {
                 } else {
                     String watermarknew = Hydrogen.getClient().version + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
 
-                    if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
-                        Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
-                        Gui.drawRect(0, 23, FontHelper.hfontnormal.getStringWidth(watermarknew) + 29, 24, 0x99000000);
+                    if (background) {
+
+                        if(outline) {
+                            Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
+                            Gui.drawRect(0, 23, FontHelper.hfontnormal.getStringWidth(watermarknew) + 29, 24, 0x99000000);
+                        }
+
                         Gui.drawRect(FontHelper.hfontnormal.getStringWidth(watermarknew) + 28, 0, FontHelper.hfontnormal.getStringWidth(watermarknew) + 29, 23, 0x99000000);
                     }
 
@@ -88,12 +100,16 @@ public class Watermark extends Module {
 
             } else {
 
-                if (Hydrogen.getClient().settingsManager.getSettingByName("Time").isEnabled()) {
+                if (time) {
                     String watermark = String.format("%s %s §7(%s)" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.getClient().name, Hydrogen.getClient().version, currenttime);
 
-                    if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
-                        Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
-                        Gui.drawRect(0, 11, FontHelper.hfontnormal.getStringWidth(watermark) + 4, 12, 0x99000000);
+                    if (background) {
+
+                        if(outline) {
+                            Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                            Gui.drawRect(0, 11, FontHelper.hfontnormal.getStringWidth(watermark) + 4, 12, 0x99000000);
+                        }
+
                         Gui.drawRect(FontHelper.hfontnormal.getStringWidth(watermark) + 4, 0, FontHelper.hfontnormal.getStringWidth(watermark) + 3, 11, 0x99000000);
                     }
 
@@ -101,17 +117,18 @@ public class Watermark extends Module {
                 } else {
                     String watermark = String.format("%s %s" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.getClient().name, Hydrogen.getClient().version);
 
-                    if (Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
-                        Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
-                        Gui.drawRect(0, 11, FontHelper.hfontnormal.getStringWidth(watermark) + 4, 12, 0x99000000);
+                    if (background) {
+
+                        if(outline) {
+                            Gui.drawRect(0, 0, FontHelper.hfontnormal.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                            Gui.drawRect(0, 11, FontHelper.hfontnormal.getStringWidth(watermark) + 4, 12, 0x99000000);
+                        }
+
                         Gui.drawRect(FontHelper.hfontnormal.getStringWidth(watermark) + 4, 0, FontHelper.hfontnormal.getStringWidth(watermark) + 3, 11, 0x99000000);
                     }
 
                     FontHelper.hfontnormal.drawStringWithShadow(watermark, 2, 1, Color.white);
                 }
-
-                //TODO: FontHelper.cfArrayList.drawString(watermark, 2, 12, -1);
-
             }
         }
     }
