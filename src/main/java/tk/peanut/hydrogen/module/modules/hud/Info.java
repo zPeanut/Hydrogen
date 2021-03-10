@@ -42,19 +42,19 @@ public class Info extends Module {
 
                 if(Hydrogen.getClient().settingsManager.getSettingByName(this, "Alignment").getValString().equalsIgnoreCase("right")) {
                     if (!Boolean.toString(mc.ingameGUI.getChatGUI().getChatOpen()).equals("true")) {
-                        FontHelper.hfontnormal.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontnormal.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-                        FontHelper.hfontnormal.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontnormal.getStringWidth(fps) - 3, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
+                        FontHelper.fontnormal.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.fontnormal.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                        FontHelper.fontnormal.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.fontnormal.getStringWidth(fps) - 3, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
                     } else {
-                        FontHelper.hfontnormal.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontnormal.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
-                        FontHelper.hfontnormal.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.hfontnormal.getStringWidth(fps) - 3, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
+                        FontHelper.fontnormal.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.fontnormal.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
+                        FontHelper.fontnormal.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.fontnormal.getStringWidth(fps) - 3, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
                     }
                 } else {
                     if (!Boolean.toString(mc.ingameGUI.getChatGUI().getChatOpen()).equals("true")) {
-                        FontHelper.hfontnormal.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-                        FontHelper.hfontnormal.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
+                        FontHelper.fontnormal.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                        FontHelper.fontnormal.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
                     } else {
-                        FontHelper.hfontnormal.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
-                        FontHelper.hfontnormal.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
+                        FontHelper.fontnormal.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
+                        FontHelper.fontnormal.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
                     }
                 }
             }

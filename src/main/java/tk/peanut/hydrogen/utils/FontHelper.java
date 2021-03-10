@@ -9,22 +9,17 @@ import java.awt.*;
  */
 public class FontHelper {
 
-    public static H2FontRenderer hfontnormal;
-    public static H2FontRenderer hfontboldlarge;
+    public static H2FontRenderer fontnormal;
+    public static H2FontRenderer fontlarge;
 
-    public static H2FontRenderer hfontlarge;
-    public static H2FontRenderer hfontnormal2;
-    public static H2FontRenderer hfontnormal3;
-    public static H2FontRenderer hfontnormallarge;
-    public static H2FontRenderer hfontnormalcurved;
 
 
 
     public static void loadFonts() {
         try {
 
-            hfontlarge = new H2FontRenderer(new Font("Verdana", Font.PLAIN, 40), true, 8);
-            hfontnormal = new H2FontRenderer(new Font("Verdana", Font.PLAIN, 32), true, 8);
+            fontlarge = new H2FontRenderer(new Font("Verdana", Font.PLAIN, 40), true, 8);
+            fontnormal = new H2FontRenderer(new Font("Verdana", Font.PLAIN, 32), true, 8);
 
         } catch (Exception exception) {}
     }

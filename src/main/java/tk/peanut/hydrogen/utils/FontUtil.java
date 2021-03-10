@@ -34,7 +34,7 @@ public class FontUtil {
         }
 
     public static void TTFdrawStringWithShadow(String text, double x, double y, Color color) {
-        FontHelper.hfontnormal.drawStringWithShadow(text, (float) x, (float) y, color);
+        FontHelper.fontnormal.drawStringWithShadow(text, (float) x, (float) y, color);
     }
 
         public static void drawCenteredString(String text, double x, double y, int color) {
@@ -54,6 +54,6 @@ public class FontUtil {
         }
 
     public static void drawTotalCenteredStringWithShadow2(String text, double x, double y, Color color) {
-        TTFdrawStringWithShadow(text, x - FontHelper.hfontnormal.getStringWidth(text) / 2, y - FontHelper.hfontnormal.FONT_HEIGHT / 2F, color);
+        TTFdrawStringWithShadow(text, x - FontHelper.fontnormal.getStringWidth(text) / 2, y - FontHelper.fontnormal.FONT_HEIGHT / 2F, color);
     }
     }

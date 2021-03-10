@@ -56,8 +56,8 @@ public class ModeButton extends Component {
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
 		} else {
-			FontHelper.hfontnormal.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
-			FontHelper.hfontnormal.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - FontHelper.hfontnormal.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
+			FontHelper.fontnormal.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
+			FontHelper.fontnormal.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - FontHelper.fontnormal.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
 		}
 
 		GL11.glPopMatrix();
