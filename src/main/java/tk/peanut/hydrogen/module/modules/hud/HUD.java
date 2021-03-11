@@ -32,5 +32,6 @@ public class HUD extends Module {
         time.add("12H");
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Time Format", this, "24H", time));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Drop Shadow", this, true));
     }
 }
