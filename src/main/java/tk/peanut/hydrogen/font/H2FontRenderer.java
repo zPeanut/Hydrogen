@@ -7,6 +7,7 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import tk.peanut.hydrogen.Hydrogen;
 
 import java.awt.*;
 import java.util.*;
@@ -35,33 +36,24 @@ public class H2FontRenderer extends FontRenderer {
         this.setupMinecraftColorcodes();
         this.FONT_HEIGHT = this.getHeight();
     }
-
-    public int drawString(String s, double x, double y, int color) {
-        return this.drawString(s, x, y, color, false);
-    }
-
     public int drawString(String s, double x, double y, Color color) {
         return this.drawString(s, x, y, color.getRGB(), false);
     }
 
-    public int drawStringWithShadow(String s, double x, double y, int color) {
-        return this.drawString(s, x, y, color, false);
-    }
-
     public int drawStringWithShadow(String s, double x, double y, Color color) {
-        return this.drawString(s, x, y, color.getRGB(), true);
-    }
-
-    public void drawCenteredString(String s, double d, double e, int color, boolean shadow) {
-        if (shadow) {
-            this.drawStringWithShadow(s, d - (double)(this.getStringWidth(s) / 2), e, color);
+        if(Hydrogen.getClient().settingsManager.getSettingByName("Drop Shadow").isEnabled()) {
+            return this.drawString(s, x, y, color.getRGB(), true);
         } else {
-            this.drawString(s, d - (double)(this.getStringWidth(s) / 2), e, color);
+            return this.drawString(s, x, y, color.getRGB(), false);
         }
     }
 
     public void drawCenteredString(String s, int x, int y, int color) {
         this.drawStringWithShadow(s, x - this.getStringWidth(s) / 2, y, color);
+    }
+
+    public void drawCenteredString(String s, int x, int y, Color color) {
+        this.drawStringWithShadow(s, x - this.getStringWidth(s) / 2, y, color.getRGB());
     }
 
     public int drawString(String text, double x, double y, int color, boolean shadow) {
