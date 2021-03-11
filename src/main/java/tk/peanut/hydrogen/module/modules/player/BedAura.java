@@ -44,8 +44,7 @@ public class BedAura extends Module {
         addSetting(new Setting("Bed", this, true));
         addSetting(new Setting("Cake", this, false));
         addSetting(new Setting("Egg", this, false));
-        addSetting(new Setting("BypassWall", this, false));
-        addSetting(new Setting("BreakWall", this, false));
+        //addSetting(new Setting("BreakWall", this, false));
         addSetting(new Setting("Radius", this, 5.0D, 1.0D, 6.0D, true));
         addSetting(new Setting("Delay", this, 1000.0D, 1.0D, 2000.0D, true));
     }
@@ -58,8 +57,7 @@ public class BedAura extends Module {
     @EventTarget
     public void onUpdate(EventUpdate e) {
         if(this.isEnabled()) {
-            boolean checkWall = Hydrogen.getClient().settingsManager.getSettingByName(this, "BypassWall").isEnabled();
-            boolean breakWall = Hydrogen.getClient().settingsManager.getSettingByName(this, "BreakWall").isEnabled();
+            //boolean breakWall = Hydrogen.getClient().settingsManager.getSettingByName(this, "BreakWall").isEnabled();
             int radius = (int) Hydrogen.getClient().settingsManager.getSettingByName("Radius").getValDouble();
             int delay = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Delay").getValDouble();
             int startX = this.mc.thePlayer.getPosition().getX() - radius;
@@ -81,7 +79,7 @@ public class BedAura extends Module {
                             int id = Block.getIdFromBlock(this.mc.theWorld.getBlockState(blockPos).getBlock());
                             if (ids.size() > 0 && ids.contains(Integer.valueOf(id))) {
                                 this.pos = blockPos;
-                                if (breakWall) {
+                               /* if (breakWall) {
                                     for (int i = 5; i > 1 && !TestUtil.instance.canBlockBeSeen(blockPos); i--) {
                                         BlockPos pos = new BlockPos(blockPos.getX(), blockPos.getY() + i, blockPos.getZ());
                                         if (this.mc.theWorld.getBlockState(pos).getBlock() != Blocks.air) {
@@ -89,10 +87,7 @@ public class BedAura extends Module {
                                             break;
                                         }
                                     }
-                                }
-                                if (checkWall && !TestUtil.instance.canBlockBeSeen(this.pos)) {
-                                    break;
-                                }
+                                }*/
                                 if (this.time.hasReached(delay)) {
                                     smashBlock(blockPos);
                                     this.time.reset();
