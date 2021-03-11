@@ -31,7 +31,7 @@ public class FontUtil {
     }
 
     public static void TTFdrawString(String text, double x, double y, Color color) {
-        FontHelper.sf_ui_l.drawStringWithShadow(text, (int)x, (int)y, color);
+        FontHelper.sf_l.drawStringWithShadow(text, (int)x, (int)y, color);
     }
 
     public static void drawStringWithShadow(String text, double x, double y, int color) {
@@ -52,7 +52,7 @@ public class FontUtil {
 
 
     public static void drawCenteredString(String text, double x, double y, Color color) {
-        TTFdrawString(text, x - FontHelper.sf_ui_l.getStringWidth(text) / 2, y, color);
+        TTFdrawString(text, x - FontHelper.sf_l.getStringWidth(text) / 2, y, color);
     }
 
     public static void drawCenteredStringWithShadow(String text, double x, double y, int color) {
