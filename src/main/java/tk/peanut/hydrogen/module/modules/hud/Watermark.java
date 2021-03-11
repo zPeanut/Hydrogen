@@ -61,20 +61,17 @@ public class Watermark extends Module {
                     if (background) {
 
                         if(outline) {
-                            Gui.drawRect(0, 0, FontHelper.fontnormal.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
-                            Gui.drawRect(0, 23, FontHelper.fontnormal.getStringWidth(watermarknew) + 29, 24, 0x99000000);
+                            Gui.drawRect(0, 0, FontHelper.sf_ui_l.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
+                            Gui.drawRect(0, 23, FontHelper.sf_ui_l.getStringWidth(watermarknew) + 29, 24, 0x99000000);
                         }
 
-                        Gui.drawRect(FontHelper.fontnormal.getStringWidth(watermarknew) + 28, 0, FontHelper.fontnormal.getStringWidth(watermarknew) + 29, 23, 0x99000000);
+                        Gui.drawRect(FontHelper.sf_ui_l.getStringWidth(watermarknew) + 28, 0, FontHelper.sf_ui_l.getStringWidth(watermarknew) + 29, 23, 0x99000000);
                     }
 
-                    GL11.glPushMatrix();
-                    GL11.glScalef(2f, 2f, 2f);
-                    FontHelper.fontnormal.drawStringWithShadow("H", 2, -1, Color.white);
-                    GL11.glPopMatrix();
+                    FontHelper.sf_ui_l2.drawStringWithShadow("H", 2, -1, Color.white);
 
-                    FontHelper.fontnormal.drawStringWithShadow("2", 17, 12, Color.white);
-                    FontHelper.fontnormal.drawStringWithShadow(watermarknew, 27, 5, Color.white);
+                    FontHelper.sf_ui_l.drawStringWithShadow("2", 17, 12, Color.white);
+                    FontHelper.sf_ui_l.drawStringWithShadow(watermarknew, 27, 5, Color.white);
 
                 } else {
                     String watermarknew = Hydrogen.getClient().version + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
@@ -82,20 +79,17 @@ public class Watermark extends Module {
                     if (background) {
 
                         if(outline) {
-                            Gui.drawRect(0, 0, FontHelper.fontnormal.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
-                            Gui.drawRect(0, 23, FontHelper.fontnormal.getStringWidth(watermarknew) + 29, 24, 0x99000000);
+                            Gui.drawRect(0, 0, FontHelper.sf_ui_l.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
+                            Gui.drawRect(0, 23, FontHelper.sf_ui_l.getStringWidth(watermarknew) + 29, 24, 0x99000000);
                         }
 
-                        Gui.drawRect(FontHelper.fontnormal.getStringWidth(watermarknew) + 28, 0, FontHelper.fontnormal.getStringWidth(watermarknew) + 29, 23, 0x99000000);
+                        Gui.drawRect(FontHelper.sf_ui_l.getStringWidth(watermarknew) + 28, 0, FontHelper.sf_ui_l.getStringWidth(watermarknew) + 29, 23, 0x99000000);
                     }
 
-                    GL11.glPushMatrix();
-                    GL11.glScalef(2f, 2f, 2f);
-                    FontHelper.fontnormal.drawStringWithShadow("H", 2, -1, Color.white);
-                    GL11.glPopMatrix();
+                    FontHelper.sf_ui_l2.drawStringWithShadow("H", 2, -1, Color.white);
 
-                    FontHelper.fontnormal.drawStringWithShadow("2", 17, 12, Color.white);
-                    FontHelper.fontnormal.drawStringWithShadow(watermarknew, 27, 5, Color.white);
+                    FontHelper.sf_ui_l.drawStringWithShadow("2", 17, 12, Color.white);
+                    FontHelper.sf_ui_l.drawStringWithShadow(watermarknew, 27, 5, Color.white);
                 }
 
             } else {
@@ -106,28 +100,28 @@ public class Watermark extends Module {
                     if (background) {
 
                         if(outline) {
-                            Gui.drawRect(0, 0, FontHelper.fontnormal.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
-                            Gui.drawRect(0, 11, FontHelper.fontnormal.getStringWidth(watermark) + 4, 12, 0x99000000);
+                            Gui.drawRect(0, 0, FontHelper.sf_ui_l.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                            Gui.drawRect(0, 11, FontHelper.sf_ui_l.getStringWidth(watermark) + 4, 12, 0x99000000);
                         }
 
-                        Gui.drawRect(FontHelper.fontnormal.getStringWidth(watermark) + 4, 0, FontHelper.fontnormal.getStringWidth(watermark) + 3, 11, 0x99000000);
+                        Gui.drawRect(FontHelper.sf_ui_l.getStringWidth(watermark) + 4, 0, FontHelper.sf_ui_l.getStringWidth(watermark) + 3, 11, 0x99000000);
                     }
 
-                    FontHelper.fontnormal.drawStringWithShadow(watermark, 2, 1, Color.white);
+                    FontHelper.sf_ui_l.drawStringWithShadow(watermark, 2, 1, Color.white);
                 } else {
                     String watermark = String.format("%s %s" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.getClient().name, Hydrogen.getClient().version);
 
                     if (background) {
 
                         if(outline) {
-                            Gui.drawRect(0, 0, FontHelper.fontnormal.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
-                            Gui.drawRect(0, 11, FontHelper.fontnormal.getStringWidth(watermark) + 4, 12, 0x99000000);
+                            Gui.drawRect(0, 0, FontHelper.sf_ui_l.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                            Gui.drawRect(0, 11, FontHelper.sf_ui_l.getStringWidth(watermark) + 4, 12, 0x99000000);
                         }
 
-                        Gui.drawRect(FontHelper.fontnormal.getStringWidth(watermark) + 4, 0, FontHelper.fontnormal.getStringWidth(watermark) + 3, 11, 0x99000000);
+                        Gui.drawRect(FontHelper.sf_ui_l.getStringWidth(watermark) + 4, 0, FontHelper.sf_ui_l.getStringWidth(watermark) + 3, 11, 0x99000000);
                     }
 
-                    FontHelper.fontnormal.drawStringWithShadow(watermark, 2, 1, Color.white);
+                    FontHelper.sf_ui_l .drawStringWithShadow(watermark, 2, 0, Color.white);
                 }
             }
         }

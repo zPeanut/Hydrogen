@@ -50,8 +50,8 @@ public class Keybind extends Component {
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow((binding ? "" : "§l" + (Keyboard.getKeyName(this.parent.mod.getKeybind()))), (parent.parent.getX() + 86) * 1.3333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth("§l" + Keyboard.getKeyName(this.parent.mod.getKeybind())), (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
 		} else {
 			Color c = new Color(255, 255, 255);
-			FontHelper.fontnormal.drawStringWithShadow(this.hovered ? "§7" + (binding ? "Press a key..." : ("Keybind ")) : binding ? "Press a key..." : ("Keybind "), (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
-			FontHelper.fontnormal.drawStringWithShadow((binding ? "" : "§l" + (Keyboard.getKeyName(this.parent.mod.getKeybind()))), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.fontnormal.getStringWidth("§l" + Keyboard.getKeyName(this.parent.mod.getKeybind())), (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
+			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + (binding ? "Press a key..." : ("Keybind ")) : binding ? "Press a key..." : ("Keybind "), (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
+			FontHelper.verdana.drawStringWithShadow((binding ? "" : "§l" + (Keyboard.getKeyName(this.parent.mod.getKeybind()))), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.verdana.getStringWidth("§l" + Keyboard.getKeyName(this.parent.mod.getKeybind())), (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
 
 		}
 

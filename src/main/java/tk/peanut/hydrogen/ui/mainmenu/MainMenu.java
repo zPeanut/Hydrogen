@@ -30,26 +30,22 @@ public class MainMenu extends GuiScreen {
         String name = String.format("%s %s", Hydrogen.name, Hydrogen.version);
         String mname = String.format("Logged in as §7%s", Minecraft.getMinecraft().getSession().getUsername());
 
-        FontHelper.cfontnormal.drawStringWithShadow(mds, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(mds) - 4, Utils.getScaledRes().getScaledHeight() - 14, Color.WHITE);
-        FontHelper.cfontnormal.drawStringWithShadow(fml, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(fml) - 4, Utils.getScaledRes().getScaledHeight() - 26, Color.WHITE);
-        FontHelper.cfontnormal.drawStringWithShadow(mcp, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(mcp) - 4, Utils.getScaledRes().getScaledHeight() - 38, Color.WHITE);
-        FontHelper.cfontnormal.drawStringWithShadow(mcv, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(mcv) - 4, Utils.getScaledRes().getScaledHeight() - 50, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadow(mds, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mds) - 4, Utils.getScaledRes().getScaledHeight() - 14, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadow(fml, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(fml) - 4, Utils.getScaledRes().getScaledHeight() - 26, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadow(mcp, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mcp) - 4, Utils.getScaledRes().getScaledHeight() - 38, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadow(mcv, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mcv) - 4, Utils.getScaledRes().getScaledHeight() - 50, Color.WHITE);
 
-        FontHelper.cfontnormal.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(name) - 4, 4, Color.WHITE);
-        FontHelper.cfontnormal.drawStringWithShadow("Developed by §7zPeanut §fand §7UltramoxX", Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth("Developed by §7zPeanut §fand §7UltramoxX") - 4, 16, Color.WHITE);
-        FontHelper.cfontnormal.drawStringWithShadow(mname, Utils.getScaledRes().getScaledWidth() - FontHelper.cfontnormal.getStringWidth(mname) - 4, 28, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(name) - 4, 4, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadow("Developed by §7zPeanut §fand §7UltramoxX", Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth("Developed by §7zPeanut §fand §7UltramoxX") - 4, 16, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadow(mname, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mname) - 4, 28, Color.WHITE);
 
         if(Hydrogen.getClient().outdated) {
-            FontHelper.cfontnormal.drawStringWithShadow("§cOutdated!", 66, 10, Color.WHITE);
-            FontHelper.cfontnormal.drawStringWithShadow("Newest Version: §a" + Hydrogen.getClient().newversion, 42, 22, Color.WHITE);
+            FontHelper.comfortaa_r.drawStringWithShadow("§cOutdated!", 66, 10, Color.WHITE);
+            FontHelper.comfortaa_r.drawStringWithShadow("Newest Version: §a" + Hydrogen.getClient().newversion, 42, 22, Color.WHITE);
         }
 
+        FontHelper.comfortaa_rb.drawStringWithShadow("Hydrogen", Utils.getScaledRes().getScaledWidth() / 2 - 13, Utils.getScaledRes().getScaledHeight() / 2 - 5F, Color.white);
 
-        float scale = 5F;
-
-        GL11.glScalef(scale, scale, scale);
-        mc.fontRendererObj.drawStringWithShadow("Hydrogen", Utils.getScaledRes().getScaledWidth() / 2 / scale - 13, Utils.getScaledRes().getScaledHeight() / 2 / scale - 5F, -4198401);
-        GL11.glScalef(1.0F / scale, 1.0F / scale, 1.0F / scale);
 
         float scalever = 2.0F;
 

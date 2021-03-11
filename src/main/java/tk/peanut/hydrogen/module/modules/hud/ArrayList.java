@@ -3,7 +3,10 @@ package tk.peanut.hydrogen.module.modules.hud;
 import com.darkmagician6.eventapi.EventTarget;
 import com.darkmagician6.eventapi.types.Priority;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.ResourceLocation;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventRender2D;
 import tk.peanut.hydrogen.module.Category;
@@ -15,6 +18,7 @@ import tk.peanut.hydrogen.utils.ReflectionUtil;
 import tk.peanut.hydrogen.utils.Utils;
 
 import java.awt.*;
+import java.io.InputStream;
 
 /**
  * Created by peanut on 18/02/2021
@@ -38,7 +42,7 @@ public class ArrayList extends Module {
                 }
                 for (Module mod : Hydrogen.getClient().moduleManager.getModules()) {
                     if (mod.isEnabled()) {
-                        if (mod.getSlide() < FontHelper.fontnormal.getStringWidth(mod.getName())) {
+                        if (mod.getSlide() < FontHelper.sf_ui_l.getStringWidth(mod.getName())) {
                             mod.setSlide(mod.getSlide() + 1);
                         }
 
@@ -86,9 +90,9 @@ public class ArrayList extends Module {
                 boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
                 int mheight = (count * 11 + i) + 1;
                 double rectX = (sr.getScaledWidth() - mod.getSlide() - 5);
-                double rectX2 = rectX + FontHelper.fontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) + 3.0D;
+                double rectX2 = rectX + FontHelper.sf_ui_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) + 3.0D;
                 double rectY = (1 + i * 12);
-                double rectY2 = rectY + FontHelper.fontnormal.getFont().getHeight();
+                double rectY2 = rectY + FontHelper.sf_ui_l.getFont().getHeight() - 2;
                 int outlinecolor = 0x80000000;
 
                 if (outline && background) {
@@ -116,13 +120,13 @@ public class ArrayList extends Module {
                     }
 
                     if (i != Hydrogen.getClient().moduleManager.getEnabledMods().size() - 1) {
-                        double modwidth = (FontHelper.fontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()));
-                        double mwidthNext = (FontHelper.fontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()));
+                        double modwidth = (FontHelper.sf_ui_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()));
+                        double mwidthNext = (FontHelper.sf_ui_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()));
                         double difference = modwidth - mwidthNext;
                         if (modwidth < mwidthNext) {
-                            if ((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getSlide() < FontHelper.fontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()) + 3) {
-                                if ((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getSlide() >= FontHelper.fontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) + 3) {
-                                    rectX = rectX - (Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getSlide() + FontHelper.fontnormal.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) - difference + 2.0D;
+                            if ((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getSlide() < FontHelper.sf_ui_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()) + 3) {
+                                if ((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getSlide() >= FontHelper.sf_ui_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) + 3) {
+                                    rectX = rectX - (Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getSlide() + FontHelper.sf_ui_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) - difference + 2.0D;
                                 }
                             }
                         }
@@ -133,8 +137,10 @@ public class ArrayList extends Module {
                 if (background) {
                     Utils.rect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
                 }
+                FontHelper.sf_ui_l.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
 
-                FontHelper.fontnormal.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
+
+
                 count++;
 
             }

@@ -124,9 +124,9 @@ public class ModuleManager {
             }
             Collections.sort(modules, new Comparator<Module>() {
                 public int compare(Module m1, Module m2) {
-                    if (FontHelper.fontnormal.getStringWidth(m1.getName()) > FontHelper.fontnormal.getStringWidth(m2.getName()))
+                    if (FontHelper.verdana.getStringWidth(m1.getName()) > FontHelper.verdana.getStringWidth(m2.getName()))
                         return -1;
-                    if (FontHelper.fontnormal.getStringWidth(m1.getName()) < FontHelper.fontnormal.getStringWidth(m2.getName()))
+                    if (FontHelper.verdana.getStringWidth(m1.getName()) < FontHelper.verdana.getStringWidth(m2.getName()))
                         return 1;
                     return 0;
                 }

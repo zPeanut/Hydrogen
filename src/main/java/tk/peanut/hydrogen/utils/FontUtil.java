@@ -31,7 +31,7 @@ public class FontUtil {
     }
 
     public static void TTFdrawString(String text, double x, double y, Color color) {
-        FontHelper.cfontnormal.drawStringWithShadow(text, (int)x, (int)y, color);
+        FontHelper.sf_ui_l.drawStringWithShadow(text, (int)x, (int)y, color);
     }
 
     public static void drawStringWithShadow(String text, double x, double y, int color) {
@@ -39,11 +39,11 @@ public class FontUtil {
     }
 
     public static void TTFdrawStringWithShadow(String text, double x, double y, Color color) {
-        FontHelper.fontnormal.drawStringWithShadow(text, (float) x, (float) y, color);
+        FontHelper.verdana.drawStringWithShadow(text, (float) x, (float) y, color);
     }
 
     public static void TTFdrawStringWithShadow2(String text, double x, double y, Color color) {
-        FontHelper.cfontnormal.drawStringWithShadow(text, (float) x, (float) y, color);
+        FontHelper.comfortaa_r.drawStringWithShadow(text, (float) x, (float) y, color);
     }
 
     public static void drawCenteredString(String text, double x, double y, int color) {
@@ -52,7 +52,7 @@ public class FontUtil {
 
 
     public static void drawCenteredString(String text, double x, double y, Color color) {
-        TTFdrawString(text, x - FontHelper.cfontnormal.getStringWidth(text) / 2, y, color);
+        TTFdrawString(text, x - FontHelper.sf_ui_l.getStringWidth(text) / 2, y, color);
     }
 
     public static void drawCenteredStringWithShadow(String text, double x, double y, int color) {
@@ -68,11 +68,11 @@ public class FontUtil {
     }
 
     public static void drawTotalCenteredStringWithShadow2(String text, double x, double y, Color color) {
-        TTFdrawStringWithShadow(text, x - FontHelper.fontnormal.getStringWidth(text) / 2, y - FontHelper.fontnormal.FONT_HEIGHT / 2F, color);
+        TTFdrawStringWithShadow(text, x - FontHelper.verdana.getStringWidth(text) / 2, y - FontHelper.verdana.FONT_HEIGHT / 2F, color);
     }
 
     public static void drawTotalCenteredStringWithShadow3(String text, double x, double y, Color color) {
-        TTFdrawStringWithShadow2(text, x - FontHelper.cfontnormal.getStringWidth(text) / 2, y - FontHelper.cfontnormal.FONT_HEIGHT / 2F, color);
+        TTFdrawStringWithShadow2(text, x - FontHelper.comfortaa_r.getStringWidth(text) / 2, y - FontHelper.comfortaa_r.FONT_HEIGHT / 2F, color);
     }
 
     }

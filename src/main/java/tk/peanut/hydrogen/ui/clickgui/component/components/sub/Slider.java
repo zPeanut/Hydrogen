@@ -54,8 +54,8 @@ public class Slider extends Component {
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
-			FontHelper.fontnormal.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + " " : this.set.getName() + " ", (parent.parent.getX() * 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f, Color.white);
-			FontHelper.fontnormal.drawStringWithShadow(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble()), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.fontnormal.getStringWidth(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble())), (parent.parent.getY() + offset + 2) * 1.3333333333f, Color.white);
+			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + " " : this.set.getName() + " ", (parent.parent.getX() * 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f, Color.white);
+			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble()), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.verdana.getStringWidth(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble())), (parent.parent.getY() + offset + 2) * 1.3333333333f, Color.white);
 		} else {
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + " " : this.set.getName() + " ", (parent.parent.getX() * 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f + 2, -1);
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble()), (parent.parent.getX() + 86) * 1.3333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble())), (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);

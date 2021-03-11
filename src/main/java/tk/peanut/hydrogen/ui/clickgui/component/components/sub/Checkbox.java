@@ -43,7 +43,7 @@ public class Checkbox extends Component {
 
 
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
-			FontHelper.fontnormal.drawStringWithShadow(this.hovered ? "§7" + this.op.getName() : this.op.getName(), (parent.parent.getX() + 3) * 1.3333333333f + 5, (parent.parent.getY() + offset + 2) * 1.3333333333f, new Color(255, 255, 255));
+			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + this.op.getName() : this.op.getName(), (parent.parent.getX() + 3) * 1.3333333333f + 5, (parent.parent.getY() + offset + 2) * 1.3333333333f, new Color(255, 255, 255));
 		} else {
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.op.getName() : this.op.getName(), (parent.parent.getX() + 3) * 1.3333333333f + 5, (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
 		}
