@@ -17,16 +17,15 @@ import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Session;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.*;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.Loader;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
+import scala.collection.parallel.ParIterableLike;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.module.modules.render.NameTags;
 
@@ -363,6 +362,10 @@ public class Utils {
 
     public static double distance(float x, float y, float x1, float y1) {
         return Math.sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1));
+    }
+
+    public boolean canBlockBeSeen(BlockPos pos) {
+        return (Minecraft.getMinecraft().theWorld.rayTraceBlocks(new Vec3(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY + Minecraft.getMinecraft().thePlayer.getEyeHeight(), Minecraft.getMinecraft().thePlayer.posZ), new Vec3(pos.getX(), pos.getY(), pos.getZ())) == null);
     }
 
     public static void passSpecialRenderNameTags(EntityLivingBase p_77033_1_, double x, double y, double z) {
