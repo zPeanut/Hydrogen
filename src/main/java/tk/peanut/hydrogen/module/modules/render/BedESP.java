@@ -28,15 +28,15 @@ public class BedESP extends Module {
 
     @EventTarget
     public void onRender(EventRender3D e) {
-            BlockPos blockPos = BedAura.pos;
-            double x = blockPos.getX() - Minecraft.getMinecraft().getRenderManager().renderPosX;
-            double y = blockPos.getY() - Minecraft.getMinecraft().getRenderManager().renderPosY;
-            double z = blockPos.getZ() - Minecraft.getMinecraft().getRenderManager().renderPosZ;
-            int id = Block.getIdFromBlock(this.mc.theWorld.getBlockState(blockPos).getBlock());
-            if (id == 26) {
-                Color c = new Color(255, 0, 0, 30);
-                Utils.renderBox(x + 0.5D, y - 0.5D, z + 0.5D, 1.0F, 0.6F, c);
-            }
+        BlockPos blockPos = BedAura.pos;
+        double x = blockPos.getX() - Minecraft.getMinecraft().getRenderManager().renderPosX;
+        double y = blockPos.getY() - Minecraft.getMinecraft().getRenderManager().renderPosY;
+        double z = blockPos.getZ() - Minecraft.getMinecraft().getRenderManager().renderPosZ;
+        int id = Block.getIdFromBlock(this.mc.theWorld.getBlockState(blockPos).getBlock());
+        if (id == 26) {
+            Color c = new Color(Color.red.getRed(), Color.red.getGreen(), Color.red.getBlue(), 30);
+            Hydrogen.getUtils().renderBox(x + 0.5D, y - 0.5D, z + 0.5D, 1.0F, 0.6F, c);
+        }
 
     }
 }
