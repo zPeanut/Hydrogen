@@ -431,8 +431,9 @@ public class Utils {
                     int co = -1;
 
 
-                    if (Hydrogen.getClient().settingsManager.getSettingByName("Items").isEnabled())
+                    if (Hydrogen.getClient().settingsManager.getSettingByName("Items").isEnabled() && p_77033_1_ != Minecraft.getMinecraft().thePlayer) {
                         NameTags.instance.renderArmorESP(p_77033_1_);
+                    }
                 }
 
                 GlStateManager.enableDepth();
