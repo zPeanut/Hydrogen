@@ -43,7 +43,7 @@ public class FontUtil {
     }
 
     public static void TTFdrawStringWithShadow2(String text, double x, double y, Color color) {
-        FontHelper.comfortaa_r.drawStringWithShadow(text, (float) x, (float) y, color);
+        FontHelper.comfortaa_r.drawStringWithShadowMainMenu(text, (float) x, (float) y, color);
     }
 
     public static void drawCenteredString(String text, double x, double y, int color) {

@@ -48,6 +48,10 @@ public class H2FontRenderer extends FontRenderer {
         }
     }
 
+    public int drawStringWithShadowMainMenu(String s, double x, double y, Color color) {
+        return this.drawString(s, x, y, color.getRGB(), true);
+    }
+
     public void drawCenteredString(String s, int x, int y, int color) {
         this.drawStringWithShadow(s, x - this.getStringWidth(s) / 2, y, color);
     }

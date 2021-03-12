@@ -31,17 +31,17 @@ public class MainMenu extends GuiScreen {
         String name = String.format("%s %s", Hydrogen.name, Hydrogen.version);
         String mname = String.format("Logged in as §7%s", Minecraft.getMinecraft().getSession().getUsername());
 
-        FontHelper.comfortaa_r.drawStringWithShadow(mds, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mds) - 4, Utils.getScaledRes().getScaledHeight() - 14, Color.WHITE);
-        FontHelper.comfortaa_r.drawStringWithShadow(fml, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(fml) - 4, Utils.getScaledRes().getScaledHeight() - 26, Color.WHITE);
-        FontHelper.comfortaa_r.drawStringWithShadow(mcp, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mcp) - 4, Utils.getScaledRes().getScaledHeight() - 38, Color.WHITE);
-        FontHelper.comfortaa_r.drawStringWithShadow(mcv, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mcv) - 4, Utils.getScaledRes().getScaledHeight() - 50, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mds, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mds) - 4, Utils.getScaledRes().getScaledHeight() - 14, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadowMainMenu(fml, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(fml) - 4, Utils.getScaledRes().getScaledHeight() - 26, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mcp, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mcp) - 4, Utils.getScaledRes().getScaledHeight() - 38, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mcv, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mcv) - 4, Utils.getScaledRes().getScaledHeight() - 50, Color.WHITE);
 
-        FontHelper.comfortaa_r.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(name) - 4, 4, Color.WHITE);
-        FontHelper.comfortaa_r.drawStringWithShadow("Developed by §7zPeanut §fand §7UltramoxX", Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth("Developed by §7zPeanut §fand §7UltramoxX") - 4, 16, Color.WHITE);
-        FontHelper.comfortaa_r.drawStringWithShadow(mname, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mname) - 4, 28, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadowMainMenu(name, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(name) - 4, 4, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadowMainMenu("Developed by §7zPeanut §fand §7UltramoxX", Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth("Developed by §7zPeanut §fand §7UltramoxX") - 4, 16, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mname, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mname) - 4, 28, Color.WHITE);
 
         if(Hydrogen.getClient().outdated) {
-            FontHelper.comfortaa_r.drawStringWithShadow("§cOutdated!", 66, 10, Color.WHITE);
+            FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§cOutdated!", 66, 10, Color.WHITE);
             FontUtil.drawTotalCenteredStringWithShadow3("Newest Version: §a" + Hydrogen.getClient().newversion, 91, 25, Color.WHITE);
         }
 
