@@ -24,10 +24,17 @@ import java.awt.*;
 public class ItemESP extends Module {
     public ItemESP() {
         super(0x00, colorRender);
+
+        addSetting(new Setting("Outline", this, true));
+        addSetting(new Setting("Red", this, 255, 0, 255, true));
+        addSetting(new Setting("Blue", this, 255, 0, 255, true));
+        addSetting(new Setting("Green", this, 255, 0, 255, true));
+        addSetting(new Setting("Alpha", this, 120, 0, 255, true));
     }
 
     @EventTarget
     public void onRender(EventRender3D event) {
+        boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
@@ -41,8 +48,16 @@ public class ItemESP extends Module {
                 double x = item.lastTickPosX + (item.posX - item.lastTickPosX) * pTicks - RPX;
                 double y = item.lastTickPosY + (item.posY - item.lastTickPosY) * pTicks - RPY;
                 double z = item.lastTickPosZ + (item.posZ - item.lastTickPosZ) * pTicks - RPZ;
-                Color c = new Color(255, 255, 255, 50);
-                Utils.renderBox(x, y - 0.699999988079071D, z, 0.5F, 0.5F, c);
+                int r = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValDouble();
+                int b = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValDouble();
+                int g = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValDouble();
+                int a = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValDouble();
+                Color c = new Color(r, g, b, a);
+                if(outline) {
+                    Hydrogen.getUtils().renderBoxWithOutline(x, y - 0.7D, z, 0.5F, 0.5F, c);
+                } else {
+                    Hydrogen.getUtils().renderBox(x, y - 0.7D, z, 0.5F, 0.5F, c);
+                }
             }
         }
         RenderHelper.disableStandardItemLighting();
