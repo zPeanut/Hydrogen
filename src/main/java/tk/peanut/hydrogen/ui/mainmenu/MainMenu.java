@@ -19,7 +19,7 @@ import java.awt.*;
 public class MainMenu extends GuiScreen {
 
     public static Minecraft mc = Minecraft.getMinecraft();
-    public static ParticleGenerator particleGenerator = new ParticleGenerator(60, mc.displayWidth, mc.displayHeight);
+    public static ParticleGenerator particleGenerator = new ParticleGenerator(100, mc.displayWidth, mc.displayHeight);
 
     public static void drawMenu(int mouseX, int mouseY) {
         drawRect(40, 0, 140, Utils.getScaledRes().getScaledHeight(), 0x60000000);
@@ -35,6 +35,10 @@ public class MainMenu extends GuiScreen {
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(fml, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(fml) - 4, Utils.getScaledRes().getScaledHeight() - 26, Color.WHITE);
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mcp, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mcp) - 4, Utils.getScaledRes().getScaledHeight() - 38, Color.WHITE);
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mcv, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mcv) - 4, Utils.getScaledRes().getScaledHeight() - 50, Color.WHITE);
+
+        if(Hydrogen.version.contains("dev") || Hydrogen.version.contains("beta")) {
+            FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§cWARNING: §7Early access version! Major issues may arise!", 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+        }
 
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(name, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(name) - 4, 4, Color.WHITE);
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu("Developed by §7zPeanut §fand §7UltramoxX", Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth("Developed by §7zPeanut §fand §7UltramoxX") - 4, 16, Color.WHITE);
