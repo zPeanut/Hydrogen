@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.module.modules.hud.HUD;
+import tk.peanut.hydrogen.utils.BlurUtil;
 import tk.peanut.hydrogen.utils.Utils;
 
 @SideOnly(Side.CLIENT)
@@ -86,9 +87,20 @@ public abstract class MixinGuiIngame extends MixinGui {
 
                 this.zLevel = -90.0F;
 
+                // blur hotbar rect placed behind hotbar rect
+
+                BlurUtil.blurAreaBorder(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 2, 0, 1);
+
+                // actual hotbar rect
+
                 Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 0x77000000);
 
+                // right side white rect
+
                 Utils.drawRect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+
+                // selected hotbar item
+
                 Utils.drawRect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 23, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
 
                 this.zLevel = f;
