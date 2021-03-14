@@ -117,8 +117,8 @@ public class BlurUtil {
         RenderHelper.enableGUIStandardItemLighting();
     }
 
-    public static void blurAreaBoarder(float x, float f, float width, float height, float intensity, float blurWidth,
-                                       float blurHeight) {
+    public static void blurAreaBorder(float x, float f, float width, float height, float intensity, float blurWidth,
+                                      float blurHeight) {
         ScaledResolution scale = new ScaledResolution(mc);
         int factor = scale.getScaleFactor();
         int factor2 = scale.getScaledWidth();
@@ -180,7 +180,7 @@ public class BlurUtil {
         //GlStateManager.enableBlend();
     }
 
-    public static void blurAreaBoarder(int x, int y, int width, int height, float intensity) {
+    public static void blurAreaBorder(int x, int y, int width, int height, float intensity) {
         ScaledResolution scale = new ScaledResolution(mc);
         int factor = scale.getScaleFactor();
         int factor2 = scale.getScaledWidth();
