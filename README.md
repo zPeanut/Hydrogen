@@ -8,7 +8,7 @@ Developed by [Me] and [UltramoxX].
 
 ## Features
 
-There are currently 27 cool modules included in Hydrogen.  
+There are currently 34 cool modules included in Hydrogen.  
 More modules are all being ported over from the previously mentioned MCP client.  
   
 The current included Modules are:
@@ -17,7 +17,6 @@ The current included Modules are:
 
 -  AutoClicker
 -  TriggerBot
--  Velocity
 
 ### Movement
 
@@ -31,6 +30,7 @@ The current included Modules are:
 
 -  AntiAFK
 -  AutoRespawn
+-  BedAura
 -  ChestStealer
 -  FastPlace
 -  InventoryWalk
@@ -39,6 +39,7 @@ The current included Modules are:
 
 ### Render
 
+-  BedESP
 -  Chams
 -  ClickGUI
 -  ESP
@@ -47,16 +48,18 @@ The current included Modules are:
 -  ItemESP
 -  NameTags
 -  NoBob
+-  NoHurtCam
 -  NoChatRect
 -  StorageESP
 -  Trajectories
--  Main Menu
 
-### Hud (customizable Modules)
+### Hud / Gui (customizable Modules)
 
 -  ArrayList
 -  Hotbar
+-  HUD
 -  Info
+-  Main Menu
 -  Watermark
 
 ## Setting up
