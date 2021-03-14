@@ -15,6 +15,7 @@ import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.network.play.client.C01PacketChatMessage;
 import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,6 +23,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.command.CommandManager;
 import tk.peanut.hydrogen.events.EventMotionUpdate;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -118,6 +120,18 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
 
     @Shadow
     protected abstract boolean pushOutOfBlocks(double x, double y, double z);
+
+    @Overwrite
+    public void sendChatMessage(String message) {
+        if (Hydrogen.getClient().commandManager.execute(message)) {
+            return;
+        }
+        if (message.startsWith(".")) {
+            Hydrogen.getClient().commandManager.execute(message.replace(".", " "));
+            return;
+        }
+        this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
+    }
 
     @Inject(method = "onUpdateWalkingPlayer", at = @At("HEAD"))
     private void onUpdateWalkingPlayerPre(CallbackInfo ci) {

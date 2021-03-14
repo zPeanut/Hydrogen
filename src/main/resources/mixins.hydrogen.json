@@ -7,7 +7,6 @@
     "MixinEntity",
     "MixinEntityPlayerSP",
     "MixinGui",
-    "MixinGuiChat",
     "MixinGuiIngame",
     "MixinGuiScreen",
     "MixinGuiSpectator",
