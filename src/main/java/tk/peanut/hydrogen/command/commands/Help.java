@@ -6,7 +6,7 @@ import tk.peanut.hydrogen.command.Command;
 /**
  * Created by peanut on 14/03/2021
  */
-public class HelpCommand extends Command {
+public class Help extends Command {
 
     @Override
     public String getName() {

@@ -9,7 +9,7 @@ import tk.peanut.hydrogen.utils.KeybindManager;
 /**
  * Created by peanut on 13/03/2021
  */
-public class BindCommand extends Command {
+public class Bind extends Command {
 
     public void execute(String[] args) {
         if (args.length == 0) {

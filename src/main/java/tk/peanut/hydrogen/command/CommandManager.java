@@ -1,8 +1,9 @@
 package tk.peanut.hydrogen.command;
 
 import net.minecraft.client.network.NetHandlerPlayClient;
-import tk.peanut.hydrogen.command.commands.BindCommand;
-import tk.peanut.hydrogen.command.commands.HelpCommand;
+import tk.peanut.hydrogen.command.commands.Bind;
+import tk.peanut.hydrogen.command.commands.Help;
+import tk.peanut.hydrogen.command.commands.Toggle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +20,9 @@ public class CommandManager {
     private String prefix = ".";
 
     public CommandManager() {
-        add(new BindCommand());
-        add(new HelpCommand());
+        add(new Bind());
+        add(new Help());
+        add(new Toggle());
     }
 
     public void add(Command command) {
