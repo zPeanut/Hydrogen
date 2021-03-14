@@ -67,9 +67,9 @@ public class Watermark extends Module {
                         Gui.drawRect(0, 0, FontHelper.sf_l.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
                     }
 
-                    FontHelper.sf_l2.drawStringWithShadow("H", 2, -1, Color.white);
+                    FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
 
-                    FontHelper.sf_l.drawStringWithShadow("2", 15, 12, Color.white);
+                    FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
                     FontHelper.sf_l.drawStringWithShadow(watermarknew, 25, 5, Color.white);
 
                 } else {
@@ -86,9 +86,9 @@ public class Watermark extends Module {
 
                         }
 
-                    FontHelper.sf_l2.drawStringWithShadow("H", 2, -1, Color.white);
+                    FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
 
-                    FontHelper.sf_l.drawStringWithShadow("2", 15, 12, Color.white);
+                    FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
                     FontHelper.sf_l.drawStringWithShadow(watermarknew, 25, 5, Color.white);
                 }
 
