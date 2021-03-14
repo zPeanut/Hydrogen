@@ -3,6 +3,7 @@ package tk.peanut.hydrogen;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import tk.peanut.hydrogen.command.CommandManager;
 import tk.peanut.hydrogen.events.ForgeEventHandler;
 import tk.peanut.hydrogen.file.FileManager;
 import tk.peanut.hydrogen.module.ModuleManager;
@@ -30,7 +31,7 @@ public class Hydrogen {
     private static final String version_suffix = "";
     public static final String version = "v" + version_number + version_suffix;
 
-    public String prefix = "[§e" + name + "§f] ";
+    public String prefix = "§7[§b" + name + "§7]";
 
     private static Hydrogen instance;
     private static Utils utils;
@@ -38,6 +39,7 @@ public class Hydrogen {
     public ModuleManager moduleManager;
     public SettingsManager settingsManager;
     public KeybindManager keybindManager;
+    public CommandManager commandManager;
     public FileManager fileManager;
     public ClickGui clickgui;
     public File directory;
@@ -58,6 +60,7 @@ public class Hydrogen {
         settingsManager = new SettingsManager();
         moduleManager = new ModuleManager();
         keybindManager = new KeybindManager();
+        commandManager = new CommandManager();
         utils = new Utils();
         clickgui = new ClickGui();
         FontHelper.loadFonts();
