@@ -4,6 +4,8 @@ A mixin based ghost client for Minecraft 1.8.9 built on Minecraft Forge.
 Originally designed as a MCP Client (called Tephra), it is now being ported to Forge.  
 Over time, more and more features will be added.  
 
+Current stable release: **1.6**
+
 Developed by [Me] and [UltramoxX].
 
 Join our discord!
