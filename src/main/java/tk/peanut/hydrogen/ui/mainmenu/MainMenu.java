@@ -41,7 +41,7 @@ public class MainMenu extends GuiScreen {
         }
 
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(name, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(name) - 4, 4, Color.WHITE);
-        FontHelper.comfortaa_r.drawStringWithShadowMainMenu("Developed by §7zPeanut §fand §7UltramoxX", Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth("Developed by §7zPeanut §fand §7UltramoxX") - 4, 16, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadowMainMenu("Developed by §7" + Hydrogen.devs, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth("Developed by §7" + Hydrogen.devs) - 4, 16, Color.WHITE);
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mname, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mname) - 4, 28, Color.WHITE);
 
         if(Hydrogen.getClient().outdated) {
