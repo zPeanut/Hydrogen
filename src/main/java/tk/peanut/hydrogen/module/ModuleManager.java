@@ -4,11 +4,13 @@ import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.hydrogen.events.EventKey;
 import tk.peanut.hydrogen.module.modules.combat.*;
-import tk.peanut.hydrogen.module.modules.hud.*;
-import tk.peanut.hydrogen.module.modules.hud.Info;
+import tk.peanut.hydrogen.ui.clickgui.ClickGuiModule;
+import tk.peanut.hydrogen.ui.ingame.*;
 import tk.peanut.hydrogen.module.modules.movement.*;
 import tk.peanut.hydrogen.module.modules.player.*;
 import tk.peanut.hydrogen.module.modules.render.*;
+import tk.peanut.hydrogen.ui.ingame.Info;
+import tk.peanut.hydrogen.ui.mainmenu.MainMenuModule;
 import tk.peanut.hydrogen.utils.FontHelper;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class ModuleManager {
     public void addModules() {
         add(new HUD());
         add(new Eagle());
-        add(new ClickGUI());
+        add(new ClickGuiModule());
         add(new FastPlace());
         add(new Sprint());
         add(new Chams());
@@ -46,7 +48,7 @@ public class ModuleManager {
         add(new AutoRespawn());
         add(new StorageESP());
         add(new AirStrafe());
-        add(new tk.peanut.hydrogen.module.modules.hud.ArrayList());
+        add(new tk.peanut.hydrogen.ui.ingame.ArrayList());
         add(new Hotbar());
         add(new Info());
         add(new Watermark());
@@ -54,7 +56,7 @@ public class ModuleManager {
         add(new WTap());
         add(new Flight());
         add(new ItemESP());
-        add(new MainMenu());
+        add(new MainMenuModule());
         add(new NoHurtCam());
         add(new BedESP());
         add(new BedAura());

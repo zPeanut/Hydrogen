@@ -1,4 +1,4 @@
-package tk.peanut.hydrogen.module.modules.render;
+package tk.peanut.hydrogen.ui.clickgui;
 
 import org.lwjgl.input.Keyboard;
 import tk.peanut.hydrogen.Hydrogen;
@@ -17,11 +17,11 @@ import java.util.ArrayList;
  */
 
 @Info(name = "ClickGUI", description = "The click gui", category = Category.Render)
-public class ClickGUI extends Module {
+public class ClickGuiModule extends Module {
 
     public ClickGui clickgui;
 
-    public ClickGUI() {
+    public ClickGuiModule() {
         super(Keyboard.KEY_LSHIFT, colorRender);
 
         ArrayList<String> font = new ArrayList<>();

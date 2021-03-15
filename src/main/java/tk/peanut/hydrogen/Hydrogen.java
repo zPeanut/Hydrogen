@@ -1,13 +1,11 @@
 package tk.peanut.hydrogen;
 
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import tk.peanut.hydrogen.command.CommandManager;
-import tk.peanut.hydrogen.events.ForgeEventHandler;
 import tk.peanut.hydrogen.file.FileManager;
 import tk.peanut.hydrogen.module.ModuleManager;
-import tk.peanut.hydrogen.module.modules.hud.ArrayList;
+import tk.peanut.hydrogen.ui.ingame.ArrayList;
 import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 import tk.peanut.hydrogen.settings.SettingsManager;
 import tk.peanut.hydrogen.utils.FontHelper;

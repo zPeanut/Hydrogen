@@ -1,4 +1,4 @@
-package tk.peanut.hydrogen.module.modules.hud;
+package tk.peanut.hydrogen.ui.mainmenu;
 
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.module.Category;
@@ -12,8 +12,8 @@ import java.awt.*;
  * Created by peanut on 26/02/2021
  */
 @Info(name = "MainMenu", category = Category.Gui, description = "Enables the custom main menu")
-public class MainMenu extends Module {
-    public MainMenu() {
+public class MainMenuModule extends Module {
+    public MainMenuModule() {
         super(0x00, colorRender);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Rainbow", this, true));

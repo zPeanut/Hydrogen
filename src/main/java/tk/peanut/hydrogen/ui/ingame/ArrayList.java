@@ -1,4 +1,4 @@
-package tk.peanut.hydrogen.module.modules.hud;
+package tk.peanut.hydrogen.ui.ingame;
 
 import com.darkmagician6.eventapi.EventTarget;
 import com.darkmagician6.eventapi.types.Priority;
