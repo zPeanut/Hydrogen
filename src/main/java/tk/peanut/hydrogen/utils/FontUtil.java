@@ -38,11 +38,15 @@ public class FontUtil {
         Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(text, (float) x, (float) y, color);
     }
 
-    public static void TTFdrawStringWithShadow(String text, double x, double y, Color color) {
+    public static void drawStringSFL(String text, double x, double y, Color color) {
+        FontHelper.sf_l.drawStringWithShadow(text, (float) x, (float) y, color);
+    }
+
+    public static void drawStringVerdana(String text, double x, double y, Color color) {
         FontHelper.verdana.drawStringWithShadow(text, (float) x, (float) y, color);
     }
 
-    public static void TTFdrawStringWithShadow2(String text, double x, double y, Color color) {
+    public static void drawStringComfortaa(String text, double x, double y, Color color) {
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(text, (float) x, (float) y, color);
     }
 
@@ -68,11 +72,15 @@ public class FontUtil {
     }
 
     public static void drawTotalCenteredStringWithShadow2(String text, double x, double y, Color color) {
-        TTFdrawStringWithShadow(text, x - FontHelper.verdana.getStringWidth(text) / 2, y - FontHelper.verdana.FONT_HEIGHT / 2F, color);
+        drawStringSFL(text, x - FontHelper.sf_l.getStringWidth(text) / 2, y - FontHelper.sf_l.FONT_HEIGHT / 2F, color);
     }
 
     public static void drawTotalCenteredStringWithShadow3(String text, double x, double y, Color color) {
-        TTFdrawStringWithShadow2(text, x - FontHelper.comfortaa_r.getStringWidth(text) / 2, y - FontHelper.comfortaa_r.FONT_HEIGHT / 2F, color);
+        drawStringComfortaa(text, x - FontHelper.comfortaa_r.getStringWidth(text) / 2, y - FontHelper.comfortaa_r.FONT_HEIGHT / 2F, color);
+    }
+
+    public static void drawTotalCenteredStringWithShadow4(String text, double x, double y, Color color) {
+        drawStringVerdana(text, x - FontHelper.verdana.getStringWidth(text) / 2, y - FontHelper.verdana.FONT_HEIGHT / 2F, color);
     }
 
     }
