@@ -21,6 +21,8 @@ import java.util.Comparator;
 @Info(name = "HUD", description = "The overlay", category = Category.Gui)
 public class HUD extends Module {
 
+    // this module basically only exists to have general settings, also to disable the hud alltogether
+
     private static java.util.ArrayList<Module> activemodules;
 
     public HUD() {

@@ -31,7 +31,10 @@ public class ClickGuiModule extends Module {
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Font Type", this, "TTF", font));
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Blur", this, true));
-   /*     ArrayList<String> options = new ArrayList<>();
+   /*
+        this exists to i dont have to remember how to add options lol.
+
+   ArrayList<String> options = new ArrayList<>();
         options.add("DefaultOption");
         options.add("Option2");
         options.add("Option3");
