@@ -102,7 +102,6 @@ public class Hydrogen {
     /*
       TODO LIST
 
-      TODO: Blur on ClickGUI Buttons (i.e. see Impact)
       TODO: Visibility Option on Module in ClickGUI
       TODO: Freecam Module
       TODO: Tracers Module
