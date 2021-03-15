@@ -79,15 +79,12 @@ public class Frame {
 		Utils.rect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, 0xff33aaff);
 
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
-			FontUtil.drawTotalCenteredStringWithShadow2(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 3, Color.white);
+			FontUtil.drawTotalCenteredStringWithShadow4(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 3, Color.white);
 		} else {
 			FontUtil.drawTotalCenteredStringWithShadow(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 1, -1);
 		}
 		if (this.open) {
 			if (!this.components.isEmpty()) {
-				//Gui.drawRect(this.x, this.y + this.barHeight, this.x + 1, this.y + this.barHeight + (12 * components.size()), new Color(0, 200, 20, 150).getRGB());
-				//Gui.drawRect(this.x, this.y + this.barHeight + (12 * components.size()), this.x + this.width, this.y + this.barHeight + (12 * components.size()) + 1, new Color(0, 200, 20, 150).getRGB());
-				//Gui.drawRect(this.x + this.width, this.y + this.barHeight, this.x + this.width - 1, this.y + this.barHeight + (12 * components.size()), new Color(0, 200, 20, 150).getRGB());
 				for (Component component : components) {
 					component.renderComponent();
 				}

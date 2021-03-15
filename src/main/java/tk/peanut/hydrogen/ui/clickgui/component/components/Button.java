@@ -16,6 +16,7 @@ import tk.peanut.hydrogen.ui.clickgui.component.Frame;
 import tk.peanut.hydrogen.ui.clickgui.component.components.sub.*;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.ui.clickgui.component.components.sub.Checkbox;
+import tk.peanut.hydrogen.utils.BlurUtil;
 import tk.peanut.hydrogen.utils.FontUtil;
 import tk.peanut.hydrogen.utils.Utils;
 
@@ -91,11 +92,15 @@ public class Button extends Component {
 	
 	@Override
 	public void renderComponent() {
+		if(!Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
+			BlurUtil.blurAreaBorder(parent.getX(), this.parent.getY() + this.offset, parent.getWidth(), this.parent.getY(), 1, 1, 0);
+		}
+
 		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x99000000);
 		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
 
 		if(this.mod.isEnabled() && this.isHovered) {
-			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x20000000);
+			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth() - 10, this.parent.getY() + 12 + this.offset, 0x20000000);
 		}
 
 		if(this.mod.isEnabled()) {

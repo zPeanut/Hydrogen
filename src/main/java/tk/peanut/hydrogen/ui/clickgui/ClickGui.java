@@ -43,37 +43,20 @@ public class ClickGui extends GuiMainMenu {
 		}
 		}
 
-
-	protected void actionPerformed(GuiButton button) throws IOException {
-		switch (button.id) {
-			case 1:
-				try {
-					URL url = new URL("https://github.com/zPeanut/Hydrogen/releases");
-					String link = url.toString();
-					BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-					Desktop.getDesktop().browse((new URL(link)).toURI());
-				} catch (URISyntaxException e) {
-					e.printStackTrace();
-				}
-				break;
-		}
-	}
-
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		if(!(Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled())) {
+			drawRect(0, 0, this.width, this.height, 0x66101010);
+		} else {
+			BlurUtil.blurAreaBorder(0, 0, this.width, this.height, 1, 0, 1);
+		}
+
+		drawRect(0, 0, this.width, this.height, 0x66101010);
 		for(Frame frame : frames) {
 			frame.renderFrame(this.fontRendererObj);
 			frame.updatePosition(mouseX, mouseY);
 			for(Component comp : frame.getComponents()) {
 				comp.updateComponent(mouseX, mouseY);
-			}
-		}
-		if (OpenGlHelper.shadersSupported) {
-			if (mc.entityRenderer.getShaderGroup() != null) {
-				mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-			}
-			if(Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
-				mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
 			}
 		}
 	}
