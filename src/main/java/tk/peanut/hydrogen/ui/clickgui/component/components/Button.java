@@ -17,6 +17,7 @@ import tk.peanut.hydrogen.ui.clickgui.component.components.sub.*;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.ui.clickgui.component.components.sub.Checkbox;
 import tk.peanut.hydrogen.utils.BlurUtil;
+import tk.peanut.hydrogen.utils.FontHelper;
 import tk.peanut.hydrogen.utils.FontUtil;
 import tk.peanut.hydrogen.utils.Utils;
 
@@ -92,23 +93,25 @@ public class Button extends Component {
 	
 	@Override
 	public void renderComponent() {
-		if(!Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
-			BlurUtil.blurAreaBorder(parent.getX(), this.parent.getY() + this.offset, parent.getWidth(), this.parent.getY(), 1, 1, 0);
-		}
 
-		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x99000000);
-		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
+		if(!Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
+			BlurUtil.blurAreaBorder(parent.getX(), this.parent.getY() + this.offset, parent.getWidth(), (this.parent.barHeight * (this.parent.components.size())) - (this.parent.barHeight * (this.parent.components.size() - 1)) , 1);
+		}
+		Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
+		Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
+
+
 
 		if(this.mod.isEnabled() && this.isHovered) {
-			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth() - 10, this.parent.getY() + 12 + this.offset, 0x20000000);
+			Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth() - 10, this.parent.getY() + 12 + this.offset, 0x20000000);
 		}
 
 		if(this.mod.isEnabled()) {
-			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x40000000);
+			Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x40000000);
 		}
 
 		if(this.isHovered) {
-			Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x30000000);
+			Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x30000000);
 		}
 
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
@@ -118,16 +121,17 @@ public class Button extends Component {
 		}
 
 		if(this.subcomponents.size() > 1)
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.open ? "..." : "§f...", (parent.getX() + parent.getWidth() - 10), (parent.getY() + offset + 2), 0xffffe9ad);
+			FontHelper.sf_l.drawStringWithShadow(this.open ? "v" : "§f>", (parent.getX() + parent.getWidth() - 10), (parent.getY() + offset), new Color(255, 230, 181));
 
 		if(this.open) {
 			if (!this.subcomponents.isEmpty()) {
 				for (Component comp : this.subcomponents) {
 					comp.renderComponent();
 				}
-				Gui.drawRect(parent.getX() + 2, parent.getY() + this.offset + 12, parent.getX() + 3, parent.getY() + this.offset + ((this.subcomponents.size() + 1) * 12), ClickGui.color);
+				Utils.rect(parent.getX() + 2, parent.getY() + this.offset + 12, parent.getX() + 3, parent.getY() + this.offset + ((this.subcomponents.size() + 1) * 12), ClickGui.color);
 			}
 		}
+
 	}
 	
 	@Override

@@ -117,7 +117,7 @@ public class BlurUtil {
         RenderHelper.enableGUIStandardItemLighting();
     }
 
-    public static void blurAreaBorder(float x, float f, float width, float height, float intensity, float blurWidth,
+    public static void blurAreaBorder(float x, float y, float width, float height, float intensity, float blurWidth,
                                       float blurHeight) {
         ScaledResolution scale = new ScaledResolution(mc);
         int factor = scale.getScaleFactor();
@@ -131,12 +131,12 @@ public class BlurUtil {
         lastScaleWidth = factor2;
         lastScaleHeight = factor3;
 
-        GL11.glScissor((int)(x * factor), (int)((mc.displayHeight - (f * factor) - height * factor)) +1, (int)(width * factor),
+        GL11.glScissor((int)(x * factor), (int)((mc.displayHeight - (y * factor) - height * factor)) +1, (int)(width * factor),
                 (int)(height * factor));
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
 
 			/*Stencil.write(false);
-			Gui.drawFloatRect(x, f, x+width, f+height, -1);
+			Gui.drawFloatRect(x, y, x+width, y+height, -1);
 			Stencil.erase(true);
 			 */
 
