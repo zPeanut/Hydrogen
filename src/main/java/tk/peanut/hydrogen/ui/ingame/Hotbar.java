@@ -41,6 +41,8 @@ public class Hotbar extends Module {
     public void drawHotbar(EventRender2D e) {
         if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
 
+            Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 0x44000000);
+
             EntityPlayer entityplayer = (EntityPlayer) Minecraft.getMinecraft().getRenderViewEntity();
 
             float needX = (Utils.getScaledRes().getScaledWidth() / 2 - 91 + entityplayer.inventory.currentItem * 20);
