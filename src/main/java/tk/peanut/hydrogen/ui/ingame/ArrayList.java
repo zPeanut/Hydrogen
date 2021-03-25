@@ -10,9 +10,7 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
-import tk.peanut.hydrogen.utils.FontHelper;
-import tk.peanut.hydrogen.utils.ReflectionUtil;
-import tk.peanut.hydrogen.utils.Utils;
+import tk.peanut.hydrogen.utils.*;
 
 import java.awt.*;
 
@@ -38,7 +36,7 @@ public class ArrayList extends Module {
                 }
                 for (Module mod : Hydrogen.getClient().moduleManager.getModules()) {
                     if (mod.isEnabled()) {
-                        if (mod.getSlide() < FontHelper.sf_l.getStringWidth(mod.getName() + mod.getSuffix())) {
+                        if (mod.getSlide() < FontHelper.sf_l.getStringWidth(mod.getName())) {
                             mod.setSlide(mod.getSlide() + 1);
                         }
 
@@ -85,14 +83,56 @@ public class ArrayList extends Module {
                 boolean background = Hydrogen.getClient().settingsManager.getSettingByName(this, "Background").isEnabled();
                 boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
                 int mheight = (count * 11 + i) + 1;
+                double rectX = (sr.getScaledWidth() - mod.getSlide() - 5);
+                double rectX2 = rectX + FontHelper.sf_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) + 3.0D;
+                double rectY = (1 + i * 12);
+                double rectY2 = rectY + FontHelper.sf_l.getFont().getHeight() - 2;
+                int outlinecolor = 0x80000000;
 
-                if (background) {
-                    Utils.rect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
+                if (outline && background) {
+                    if (i == 0) {
+
+                        // if first module, then draw side line 1px higher, so it connects with the top line
+
+                        Utils.rect(rectX - 1.0D, rectY - 1.0D, rectX2 + 10, rectY, outlinecolor);
+
+                        // top line
+
+                        Utils.rect(rectX - 2.0D, rectY - 2, rectX - 1, rectY2 - 5, outlinecolor);
+                    } else {
+
+                        // side line
+
+                        Utils.rect(rectX - 2.0D, rectY, rectX - 1, rectY2 - 5, outlinecolor);
+                    }
+
+                    if (i == Hydrogen.getClient().moduleManager.getEnabledMods().size() - 1) {
+
+                        // bottom arraylist line
+
+                        Utils.rect(rectX - 2.0D, rectY2 - 5, rectX2 + 10, rectY2 - 4, outlinecolor);
+                    }
+
+                    if (i != Hydrogen.getClient().moduleManager.getEnabledMods().size() - 1) {
+                        double modwidth = (FontHelper.sf_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()));
+                        double mwidthNext = (FontHelper.sf_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()));
+                        double difference = modwidth - mwidthNext;
+                        if (modwidth < mwidthNext) {
+                            if ((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getSlide() < FontHelper.sf_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getName()) + 3) {
+                                if ((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getSlide() >= FontHelper.sf_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) + 3) {
+                                    rectX = rectX - (Hydrogen.getClient().moduleManager.getEnabledMods().get(i + 1)).getSlide() + FontHelper.sf_l.getStringWidth((Hydrogen.getClient().moduleManager.getEnabledMods().get(i)).getName()) - difference + 2.0D;
+                                }
+                            }
+                        }
+                        Utils.rect(rectX - 2, rectY2 - 5, rectX + 3.0D + difference - 5, rectY2 - 4, outlinecolor);
+                    }
                 }
 
-                FontHelper.sf_l.drawStringWithShadow(mod.getName() + mod.getSuffix(), (sr.getScaledWidth() - mod.getSlide() - FontHelper.sf_l.getStringWidth(mod.getName() + mod.getSuffix())) , mheight, color);
+                if (background) {
+                    Utils.rect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x22000000);
+                }
 
-
+                FontHelper.sf_l.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);
 
                 count++;
 
