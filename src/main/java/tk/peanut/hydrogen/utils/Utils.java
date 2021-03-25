@@ -88,6 +88,26 @@ public class Utils {
         }
     }
 
+    public static void enableGL2D() {
+        GL11.glDisable(2929);
+        GL11.glEnable(3042);
+        GL11.glDisable(3553);
+        GL11.glBlendFunc(770, 771);
+        GL11.glDepthMask(true);
+        GL11.glEnable(2848);
+        GL11.glHint(3154, 4354);
+        GL11.glHint(3155, 4354);
+    }
+
+    public static void disableGL2D() {
+        GL11.glEnable(3553);
+        GL11.glDisable(3042);
+        GL11.glEnable(2929);
+        GL11.glDisable(2848);
+        GL11.glHint(3154, 4352);
+        GL11.glHint(3155, 4352);
+    }
+
     public static void endClip() {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
@@ -302,6 +322,37 @@ public class Utils {
         drawRect(drawWidth - 0.5f, drawY + 0.5f, drawWidth, drawHeight - 0.5f, color);
         drawRect(drawX + 0.5f, drawHeight - 0.5f, drawWidth, drawHeight, color);
     }
+
+    public static void drawVLine(float x2, float y2, float x1, int y1) {
+        if (x1 < y2) {
+            float var5 = y2;
+            y2 = x1;
+            x1 = var5;
+        }
+        drawRect(x2, y2 + 1.0f, x2 + 1.0f, x1, y1);
+    }
+
+    public static void drawHLine(float x2, float y2, float x1, int y1) {
+        if (y2 < x2) {
+            float var5 = x2;
+            x2 = y2;
+            y2 = var5;
+        }
+        rect(x2, x1, y2 + 1.0f, x1 + 1.0f, y1);
+    }
+    public static void drawBorderedRect(float x2, float y2, float x1, float y1, int insideC, int borderC) {
+        enableGL2D();
+        GL11.glScalef(0.5f, 0.5f, 0.5f);
+        drawVLine(x2 *= 2.0f, y2 *= 2.0f, y1 *= 2.0f, borderC);
+        drawVLine((x1 *= 2.0f) - 1.0f, y2, y1, borderC);
+        drawHLine(x2, x1 - 1.0f, y2, borderC);
+        drawHLine(x2, x1 - 2.0f, y1 - 1.0f, borderC);
+        rect(x2 + 1.0f, y2 + 1.0f, x1 - 1.0f, y1 - 1.0f, insideC);
+        GL11.glScalef(2.0f, 2.0f, 2.0f);
+        disableGL2D();
+    }
+
+
 
     public static void rectBorder(float x1, float y1, float x2, float y2, int outline) {
         rect(x1 + 1, y2 - 1, x2, y2, outline);
