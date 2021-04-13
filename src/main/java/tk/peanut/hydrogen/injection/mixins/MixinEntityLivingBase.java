@@ -31,8 +31,4 @@ public abstract class MixinEntityLivingBase extends MixinEntity {
     @Shadow
     private int revengeTimer;
 
-    @Shadow
-    public int ticksExisted;
-
-
 }

@@ -129,6 +129,9 @@ public abstract class MixinEntity {
     @Shadow
     public abstract boolean isSneaking();
 
+    @Shadow
+    public int ticksExisted;
+
     public int getNextStepDistance() {
         return nextStepDistance;
     }
