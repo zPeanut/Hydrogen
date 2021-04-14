@@ -94,13 +94,8 @@ public class Button extends Component {
 	@Override
 	public void renderComponent() {
 
-		if(!Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
-			BlurUtil.blurAreaBorder(parent.getX(), this.parent.getY() + this.offset, parent.getWidth(), (this.parent.barHeight * (this.parent.components.size())) - (this.parent.barHeight * (this.parent.components.size() - 1)) , 1);
-		}
 		Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
 		Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
-
-
 
 		if(this.mod.isEnabled() && this.isHovered) {
 			Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth() - 10, this.parent.getY() + 12 + this.offset, 0x20000000);
