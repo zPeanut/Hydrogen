@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by peanut on 03/02/2021
  */
 
-@Info(name = "ClickGUI", description = "The click gui", category = Category.Render)
+@Info(name = "ClickGUI", description = "The click gui", category = Category.Gui)
 public class ClickGuiModule extends Module {
 
     public ClickGui clickgui;
