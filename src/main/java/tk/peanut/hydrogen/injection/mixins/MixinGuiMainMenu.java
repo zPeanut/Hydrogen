@@ -100,9 +100,6 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
     private String openGLWarning2;
 
     @Shadow
-    public abstract boolean func_183501_a();
-
-    @Shadow
     private static final ResourceLocation minecraftTitleTextures = new ResourceLocation("textures/gui/title/minecraft.png");
 
     @Shadow
@@ -167,11 +164,6 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             RealmsBridge realmsbridge = new RealmsBridge();
             this.field_183503_M = realmsbridge.getNotificationScreen(this);
             this.field_183502_L = true;
-        }
-
-        if (this.func_183501_a()) {
-            this.field_183503_M.setGuiSize(this.width, this.height);
-            this.field_183503_M.initGui();
         }
 
     }
@@ -270,10 +262,6 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             }
 
             super.drawScreen(mouseX, mouseY, partialTicks);
-            if (this.func_183501_a()) {
-                this.field_183503_M.drawScreen(mouseX, mouseY, partialTicks);
-            }
-
         }
     }
 }
