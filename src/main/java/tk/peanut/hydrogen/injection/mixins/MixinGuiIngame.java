@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.ui.ingame.HUD;
+import tk.peanut.hydrogen.ui.ingame.Hotbar;
 import tk.peanut.hydrogen.utils.BlurUtil;
 import tk.peanut.hydrogen.utils.Utils;
 
@@ -29,8 +30,6 @@ public abstract class MixinGuiIngame extends MixinGui {
 
     @Shadow
     public abstract void renderHotbarItem(int index, int xPos, int yPos, float partialTicks, EntityPlayer player);
-
-
 
     @Shadow
     @Final
@@ -87,7 +86,7 @@ public abstract class MixinGuiIngame extends MixinGui {
 
                 this.zLevel = -90.0F;
 
-                // blur hotbar rect placed behind hotbar rect
+                // blur drawn behind the rect
 
                 BlurUtil.blurAreaBorder(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 2, 0, 1);
 
