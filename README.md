@@ -67,7 +67,13 @@ The current included Modules are:
 -  Main Menu
 -  Watermark
 
-## Setting up
+## USER INSTALLATION
+
+1. Install Forge for Minecraft 1.8.9
+2. Drag and Drop ``hydrogen-x.x.x.jar`` into your directory for Forge mods (Win-Default: ``%appdata%/.minecraft/mods``).
+3. Enjoy the ride.
+
+## Setup with Forge MDK
 
 Hydrogen runs on Gradle. Make sure you have it is installed correctly before setting up.
 
