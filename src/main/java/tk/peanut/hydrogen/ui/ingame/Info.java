@@ -42,19 +42,19 @@ public class Info extends Module {
 
                 if(Hydrogen.getClient().settingsManager.getSettingByName(this, "Alignment").getValString().equalsIgnoreCase("right")) {
                     if (!Boolean.toString(mc.ingameGUI.getChatGUI().getChatOpen()).equals("true")) {
-                        FontHelper.verdana.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.verdana.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-                        FontHelper.verdana.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.verdana.getStringWidth(fps) - 3, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(fps) - 3, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
                     } else {
-                        FontHelper.verdana.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.verdana.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
-                        FontHelper.verdana.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.verdana.getStringWidth(fps) - 3, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(coordinates, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(coordinates) - 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(fps, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(fps) - 3, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
                     }
                 } else {
                     if (!Boolean.toString(mc.ingameGUI.getChatGUI().getChatOpen()).equals("true")) {
-                        FontHelper.verdana.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-                        FontHelper.verdana.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 22, Color.white);
                     } else {
-                        FontHelper.verdana.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
-                        FontHelper.verdana.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 26, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(fps, 2, Utils.getScaledRes().getScaledHeight() - 36, Color.white);
                     }
                 }
             }
