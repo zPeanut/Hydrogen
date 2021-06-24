@@ -45,18 +45,30 @@ public class ClickGui extends GuiMainMenu {
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		if(!(Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled())) {
-			drawRect(0, 0, this.width, this.height, 0x55101010);
-		} else {
-			BlurUtil.blurAreaBorder(0, 0, this.width, this.height, 1, 0, 1);
-		}
 
 		drawRect(0, 0, this.width, this.height, 0x66101010);
-		for(Frame frame : frames) {
+		for (Frame frame : frames) {
 			frame.renderFrame(this.fontRendererObj);
 			frame.updatePosition(mouseX, mouseY);
-			for(Component comp : frame.getComponents()) {
+			for (Component comp : frame.getComponents()) {
 				comp.updateComponent(mouseX, mouseY);
+			}
+		}
+		if (Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
+			if (OpenGlHelper.shadersSupported) {
+				if (mc.entityRenderer.getShaderGroup() != null) {
+					mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+				}
+				mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+			}
+		} else {
+			if (this.mc.entityRenderer.getShaderGroup() != null) {
+				this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+				try {
+					ReflectionUtil.theShaderGroup.set(Minecraft.getMinecraft().entityRenderer, (ShaderGroup) null);
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
