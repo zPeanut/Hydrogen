@@ -3,6 +3,7 @@ package tk.peanut.hydrogen.module.modules.combat;
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
+import scala.collection.parallel.ParIterableLike;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.Category;
@@ -32,6 +33,7 @@ public class AutoClicker extends Module {
         super(Keyboard.KEY_NONE, colorCombat);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("on Click", this, false));
     }
 
 
@@ -101,19 +103,26 @@ public class AutoClicker extends Module {
                     delay = 47;
                     break;
             }
-            if (ReflectionUtil.pressed.getBoolean(Minecraft.getMinecraft().gameSettings.keyBindAttack));
-            {
                 Random random = new Random();
                 int randomD = random.nextInt(25);
                 int randomInc = random.nextInt(15);
                 if (this.time.hasDelayRun(delay - randomD + randomInc))
                 {
-                    this.time.resetAndAdd(random.nextInt(delay));
-                    this.mc.clickMouse();
-                    this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
-                    this.time.reset();
+                    if(Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
+                        if(Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
+                            this.time.resetAndAdd(random.nextInt(delay));
+                            this.mc.clickMouse();
+                            this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
+                            this.time.reset();
+                        }
+                    } else {
+                        this.time.resetAndAdd(random.nextInt(delay));
+                        this.mc.clickMouse();
+                        this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
+                        this.time.reset();
+                    }
                 }
-            }
+
         }
         catch (Exception localException) {}
     }
