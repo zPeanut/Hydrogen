@@ -60,6 +60,7 @@ public class ModuleManager {
         add(new NoHurtCam());
         add(new BedESP());
         add(new BedAura());
+        add(new AimBot());
 
         // alphabetically sort modules in clickgui
 
