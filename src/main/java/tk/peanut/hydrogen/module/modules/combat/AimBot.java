@@ -17,6 +17,7 @@ import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 @Info(name = "Aimbot", description = "Automatically aims at enemies", category = Category.Combat)
@@ -24,6 +25,9 @@ public class AimBot extends Module {
 
     HashMap<String, GetCriteriaValue> selectionCriterias = new HashMap();
     EntityLivingBase target = null;
+
+    boolean offset = false;
+    boolean onlyPrimaryTarget = false;
 
     public AimBot() {
         super(Keyboard.KEY_R, colorCombat);
@@ -39,6 +43,8 @@ public class AimBot extends Module {
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Max Distance", this, 4.2, 1, 6, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Visible Only", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Alive Only", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Offset", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Target Only", this, false));
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Target Player", this, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Target Mobs", this, false));
@@ -52,6 +58,8 @@ public class AimBot extends Module {
         boolean visibleOnly = Hydrogen.getClient().settingsManager.getSettingByName(this, "Visible Only").isEnabled();
         boolean aliveOnly = Hydrogen.getClient().settingsManager.getSettingByName(this, "Alive Only").isEnabled();
         double maxDistance = Hydrogen.getClient().settingsManager.getSettingByName("Max Distance").getValDouble();
+        offset = Hydrogen.getClient().settingsManager.getSettingByName(this, "Offset").isEnabled();
+        onlyPrimaryTarget = Hydrogen.getClient().settingsManager.getSettingByName(this, "Target Only").isEnabled();
         GetCriteriaValue getCriteriaValue = selectionCriterias.get(Hydrogen.getClient().settingsManager.getSettingByName("Select").getValString());
 
         if (getCriteriaValue == null) {
@@ -76,6 +84,8 @@ public class AimBot extends Module {
                 if (selectSmaller ? candidateValue < value : candidateValue > value) {
                     value = candidateValue;
                     target = (EntityLivingBase) entity;
+                    if(target.equals(SelectTarget.primaryTarget))
+                        return;
                 }
             }
         }
@@ -83,6 +93,9 @@ public class AimBot extends Module {
 
     @EventTarget
     public void onRender(EventRender3D e) {
+        if(!target.equals(SelectTarget.primaryTarget) && onlyPrimaryTarget)
+            return;
+
         final Vec3 positionEyes = target.getPositionEyes(e.getPartialTicks());
         Vec3 thePlayerPositionEyes = mc.thePlayer.getPositionEyes(e.getPartialTicks());
         double diffX = positionEyes.xCoord - thePlayerPositionEyes.xCoord;
@@ -92,6 +105,12 @@ public class AimBot extends Module {
 
         mc.thePlayer.rotationYaw = (float) Math.toDegrees(Math.atan2(diffZ, diffX)) - 90F;
         mc.thePlayer.rotationPitch = (float) -Math.toDegrees(Math.atan2(diffY, diffXZ));
+
+        if(offset) {
+            double f = ((double) new Date().getTime()) / 200f;
+            mc.thePlayer.rotationYaw += (float) Math.sin(f) * 2f;
+            mc.thePlayer.rotationPitch += (float) Math.cos(f) * 2f;
+        }
     }
 
     public interface GetCriteriaValue {
