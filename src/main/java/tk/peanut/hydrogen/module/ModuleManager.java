@@ -61,6 +61,7 @@ public class ModuleManager {
         add(new BedESP());
         add(new BedAura());
         add(new AimBot());
+        add(new SelectTarget());
 
         // alphabetically sort modules in clickgui
 
