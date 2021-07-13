@@ -28,7 +28,6 @@ import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 import tk.peanut.hydrogen.ui.mainmenu.MainMenu;
 import tk.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
-import tk.peanut.hydrogen.ui.uiSettings;
 import tk.peanut.hydrogen.utils.Utils;
 
 import java.awt.*;
@@ -126,10 +125,10 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         if(Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
             this.buttonList.add(new ExpandButton(1, 45, Utils.getScaledRes().getScaledHeight() / 2 - 52, 90, 20, "Singleplayer"));
             this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 30, 90, 20, "Multiplayer"));
-           // this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 18, 90, 20, "Hydrogen"));
-            this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 - 8, 90, 20, "Settings"));
-            this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 14, 90, 20, "Mods"));
-            this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 58, 90, 20, "Quit"));
+            this.buttonList.add(new ExpandButton(3, 45, Utils.getScaledRes().getScaledHeight() / 2 - 8, 90, 20, "Alt Manager"));
+            this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 + 14 , 90, 20, "Settings"));
+            this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 36, 90, 20, "Mods"));
+            this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 72, 90, 20, "Quit"));
 
             if(Hydrogen.getClient().outdated) {
                 this.buttonList.add(new ExpandButton(99, 45, 37, 90, 20, "Update!"));
