@@ -733,7 +733,7 @@ public class Utils {
     }
 
     public static void errorLog(String message) {
-        System.out.println("[ERROR] [Phosphor] " + message);
+        System.err.println("[Hydrogen] " + message);
     }
 
     public static void drawRect(double left, double top, double right, double bottom, int color) {
