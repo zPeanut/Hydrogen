@@ -34,6 +34,12 @@ public class HUD extends Module {
         time.add("12H");
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Time Format", this, "24H", time));
+
+        ArrayList<String> font = new ArrayList<>();
+        font.add("TTF");
+        font.add("Minecraft");
+
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Font", this, "TTF", font));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Drop Shadow", this, true));
     }
 }
