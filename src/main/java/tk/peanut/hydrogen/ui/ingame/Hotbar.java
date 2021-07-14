@@ -68,16 +68,29 @@ public class Hotbar extends Module {
             String coordinates = String.format("X: §7%s §fY: §7%s §fZ: §7%s", x, y, z);
 
             if (tdate) {
-                FontHelper.sf_l.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-                FontHelper.sf_l.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 22 : Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 16, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+                if(Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF")) {
+                    FontHelper.sf_l.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                    FontHelper.sf_l.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 10 : Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 10, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+                } else {
+                    mc.fontRendererObj.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(date) - 16, Utils.getScaledRes().getScaledHeight() - 10, -1);
+                    mc.fontRendererObj.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 13 : Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 13, Utils.getScaledRes().getScaledHeight() - 21, -1);
+                }
             }
 
             if (coord) {
-                FontHelper.sf_l.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                if(Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF")) {
+                    FontHelper.sf_l.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                } else {
+                    mc.fontRendererObj.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
+                }
             }
 
             if (fps) {
-                FontHelper.sf_l.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 23 : Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                if(Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF")) {
+                    FontHelper.sf_l.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 23 : Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+                } else {
+                    mc.fontRendererObj.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 21 : Utils.getScaledRes().getScaledHeight() - 10, -1);
+                }
             }
 
         }
