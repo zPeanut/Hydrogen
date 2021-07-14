@@ -27,8 +27,8 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
  - OS: [e.g. Windows 10]
- - Version [e.g. 1.7.0]
- - Other mods [e.g. Optifine]
+ - Version: [e.g. 1.7.0]
+ - Other mods: [e.g. Optifine]
 
 **Additional context**
 Add any other context about the problem here.
