@@ -26,7 +26,7 @@ public class HUD extends Module {
     private static java.util.ArrayList<Module> activemodules;
 
     public HUD() {
-        super(Keyboard.KEY_NONE, Color.white);
+        super(Keyboard.KEY_NONE);
         activemodules = new java.util.ArrayList<>();
 
         ArrayList<String> time = new ArrayList<>();

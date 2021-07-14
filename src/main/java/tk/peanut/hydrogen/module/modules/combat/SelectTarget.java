@@ -27,7 +27,7 @@ public class SelectTarget extends Module {
     private MovingObjectPosition objectMouseOver;
 
     public SelectTarget() {
-        super(Keyboard.KEY_NONE, colorCombat);
+        super(Keyboard.KEY_NONE);
         this.setEnabled();
     }
 

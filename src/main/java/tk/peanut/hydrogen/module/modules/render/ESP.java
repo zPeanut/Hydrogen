@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @Info(name = "ESP", description = "Draws an outline on entities through walls", category = Category.Render)
 public class ESP extends Module {
     public ESP() {
-        super(Keyboard.KEY_NONE, colorRender);
+        super(Keyboard.KEY_NONE);
 
         ArrayList<String> esp = new ArrayList<>();
         esp.add("Outline");

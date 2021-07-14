@@ -30,7 +30,7 @@ public class TriggerBot extends Module {
     TimeHelper time = new TimeHelper();
 
     public TriggerBot() {
-        super(Keyboard.KEY_NONE, colorCombat);
+        super(Keyboard.KEY_NONE);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
     }

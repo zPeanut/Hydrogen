@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @tk.peanut.hydrogen.module.Info(name = "Info", description = "Shows FPS and Coordinates", category = Category.Gui)
 public class Info extends Module {
     public Info() {
-        super(0x00, Color.white);
+        super(0x00);
 
         java.util.ArrayList<String> alignment = new ArrayList<>();
         alignment.add("Left");

@@ -30,7 +30,7 @@ public class AimBot extends Module {
     boolean onlyPrimaryTarget = false;
 
     public AimBot() {
-        super(Keyboard.KEY_R, colorCombat);
+        super(Keyboard.KEY_R);
 
         selectionCriterias.put("Distance", (thePlayer, target) -> (thePlayer.getPositionEyes(0).distanceTo(target.getPositionEyes(0))));
         selectionCriterias.put("Health", ((thePlayer, target) -> target.getHealth()));

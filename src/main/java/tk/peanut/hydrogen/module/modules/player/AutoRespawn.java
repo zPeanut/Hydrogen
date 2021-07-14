@@ -15,7 +15,7 @@ import java.awt.*;
 @Info(name = "AutoRespawn", description = "Automatically respawn when dead", category = Category.Player)
 public class AutoRespawn extends Module {
     public AutoRespawn() {
-        super(0x00, colorPlayer);
+        super(0x00);
     }
 
     @EventTarget

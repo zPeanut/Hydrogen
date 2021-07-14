@@ -29,7 +29,7 @@ public class Hotbar extends Module {
     static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
 
     public Hotbar() {
-        super(0x00, Color.white);
+        super(0x00);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("FPS", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Coordinates", this, true));

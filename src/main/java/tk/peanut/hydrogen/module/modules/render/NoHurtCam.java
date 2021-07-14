@@ -12,6 +12,6 @@ import java.awt.*;
 @Info(name = "NoHurtCam", description = "Removes the hurt camera effect", category = Category.Render)
 public class NoHurtCam extends Module {
     public NoHurtCam() {
-        super(0x00, colorRender);
+        super(0x00);
     }
 }

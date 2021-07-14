@@ -23,7 +23,7 @@ import java.awt.*;
 @Info(name = "ItemESP", description = "Draws a box around dropped items", category = Category.Render)
 public class ItemESP extends Module {
     public ItemESP() {
-        super(0x00, colorRender);
+        super(0x00);
 
         addSetting(new Setting("Outline", this, true));
         addSetting(new Setting("Red", this, 255, 0, 255, true));

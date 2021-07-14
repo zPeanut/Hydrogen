@@ -31,7 +31,7 @@ import java.util.List;
 public class Trajectories extends Module {
 
     public Trajectories() {
-        super(0x00, colorRender);
+        super(0x00);
 
         addSetting(new Setting("Alpha", this, 150, 0, 255, false));
     }

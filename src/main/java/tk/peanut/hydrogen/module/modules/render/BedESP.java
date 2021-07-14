@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class BedESP extends Module {
 
     public BedESP() {
-        super(0x00, colorRender);
+        super(0x00);
     }
 
     @EventTarget

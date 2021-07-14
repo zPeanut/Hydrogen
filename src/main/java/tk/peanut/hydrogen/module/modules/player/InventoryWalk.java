@@ -21,7 +21,7 @@ import java.util.Objects;
 public class InventoryWalk extends Module {
 
     public InventoryWalk() {
-        super(Keyboard.KEY_NONE, colorPlayer);
+        super(Keyboard.KEY_NONE);
     }
     @EventTarget
     public void onUpdate(EventUpdate e)

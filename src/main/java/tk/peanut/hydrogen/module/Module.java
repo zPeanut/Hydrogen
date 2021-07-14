@@ -19,15 +19,9 @@ public class Module {
     private int keyBind;
     private Color color;
 
-    public static final Color colorCombat = new Color(255, 219, 171);
-    public static final Color colorMovement = new Color(173, 234, 255);
-    public static final Color colorPlayer = new Color(252, 255, 199);
-    public static final Color colorRender = new Color(199, 255, 201);
 
-
-    public Module(int keyBind, Color color) {
+    public Module(int keyBind) {
         this.keyBind = keyBind;
-        this.color = color;
     }
 
     public Info getModuleInfo() {
@@ -54,7 +48,16 @@ public class Module {
     }
 
     public Color getColor() {
-        return color;
+        if(this.getCategory().equals(Category.Combat)) {
+            return new Color(255, 219, 171);
+        } else if(this.getCategory().equals(Category.Movement)) {
+            return new Color(173, 234, 255);
+        } else if (this.getCategory().equals(Category.Player)) {
+            return new Color(252, 255, 199);
+        } else if (this.getCategory().equals(Category.Render)) {
+            new Color(199, 255, 201);
+        }
+        return new Color(199, 255, 201);
     }
 
 

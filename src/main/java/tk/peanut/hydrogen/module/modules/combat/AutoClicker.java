@@ -30,7 +30,7 @@ public class AutoClicker extends Module {
     int delay;
 
     public AutoClicker() {
-        super(Keyboard.KEY_NONE, colorCombat);
+        super(Keyboard.KEY_NONE);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("on Click", this, false));

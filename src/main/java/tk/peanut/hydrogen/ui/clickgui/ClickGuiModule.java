@@ -22,7 +22,7 @@ public class ClickGuiModule extends Module {
     public ClickGui clickgui;
 
     public ClickGuiModule() {
-        super(Keyboard.KEY_LCONTROL, colorRender);
+        super(Keyboard.KEY_LCONTROL);
 
         ArrayList<String> font = new ArrayList<>();
         font.add("TTF");

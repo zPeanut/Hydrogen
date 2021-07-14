@@ -21,7 +21,7 @@ import java.awt.*;
 public class ArrayList extends Module {
 
     public ArrayList() {
-        super(0x00, Color.white);
+        super(0x00);
 
         new Thread(() -> {
             while (true) {

@@ -24,7 +24,7 @@ public class SafeWalk extends Module {
     public boolean safewalk;
 
     public SafeWalk() {
-        super(Keyboard.KEY_NONE, colorPlayer);
+        super(Keyboard.KEY_NONE);
     }
 
     @Override
