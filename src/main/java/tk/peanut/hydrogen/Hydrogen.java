@@ -1,7 +1,9 @@
 package tk.peanut.hydrogen;
 
+import com.thealtening.auth.AltService;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
+import tk.peanut.hydrogen.altmanager.account.AccountManager;
 import tk.peanut.hydrogen.command.CommandManager;
 import tk.peanut.hydrogen.file.FileManager;
 import tk.peanut.hydrogen.module.ModuleManager;
@@ -39,6 +41,8 @@ public class Hydrogen {
     public KeybindManager keybindManager;
     public CommandManager commandManager;
     public FileManager fileManager;
+    public AccountManager accountManager;
+    public AltService altService;
     public ClickGui clickgui;
     public File directory;
 
@@ -59,6 +63,8 @@ public class Hydrogen {
         moduleManager = new ModuleManager();
         keybindManager = new KeybindManager();
         commandManager = new CommandManager();
+        accountManager = new AccountManager(new File(this.directory.toString()));
+        altService = new AltService();
         utils = new Utils();
         clickgui = new ClickGui();
         FontHelper.loadFonts();
@@ -95,6 +101,26 @@ public class Hydrogen {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void switchToMojang() {
+        try {
+            this.altService.switchService(AltService.EnumAltService.MOJANG);
+        } catch (NoSuchFieldException e) {
+            Utils.errorLog("Couldn't switch to modank altservice");
+        } catch (IllegalAccessException e) {
+            Utils.errorLog("Couldn't switch to modank altservice -2");
+        }
+    }
+
+    public void switchToAltening() {
+        try {
+            this.altService.switchService(AltService.EnumAltService.THEALTENING);
+        } catch (NoSuchFieldException e) {
+            Utils.errorLog("Couldn't switch to altening altservice");
+        } catch (IllegalAccessException e) {
+            Utils.errorLog("Couldn't switch to altening altservice -2");
         }
     }
 
