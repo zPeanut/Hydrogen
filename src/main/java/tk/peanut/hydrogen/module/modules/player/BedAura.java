@@ -2,11 +2,14 @@ package tk.peanut.hydrogen.module.modules.player;
 
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.network.play.client.C03PacketPlayer;
 import net.minecraft.network.play.client.C07PacketPlayerDigging;
 import net.minecraft.network.play.client.C0APacketAnimation;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventUpdate;
@@ -16,8 +19,11 @@ import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.TimeHelper;
 import tk.peanut.hydrogen.utils.Utils;
+import net.minecraft.util.Vector3d;
 
 import java.util.ArrayList;
+
+import static net.minecraft.util.MathHelper.wrapAngleTo180_double;
 
 /**
  * Created by peanut on 28/02/2021
@@ -56,7 +62,7 @@ public class BedAura extends Module {
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
-        if(this.isEnabled()) {
+        if (this.isEnabled()) {
             boolean bypassWall = Hydrogen.getClient().settingsManager.getSettingByName(this, "ThroughWalls").isEnabled();
             int radius = (int) Hydrogen.getClient().settingsManager.getSettingByName("Radius").getValDouble();
             int delay = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Delay").getValDouble();
@@ -80,10 +86,10 @@ public class BedAura extends Module {
                             if (ids.size() > 0 && ids.contains(Integer.valueOf(id))) {
                                 this.pos = blockPos;
                                 if (this.time.hasReached(delay)) {
-                                    if(bypassWall) {
+                                    if (bypassWall) {
                                         smashBlock(blockPos);
                                     } else {
-                                        if(Hydrogen.getUtils().canBlockBeSeen(blockPos)) {
+                                        if (Hydrogen.getUtils().canBlockBeSeen(blockPos)) {
                                             smashBlock(blockPos);
                                         }
                                     }
@@ -123,8 +129,36 @@ public class BedAura extends Module {
     }
 
     public void smashBlock(BlockPos pos) {
+        lookAtPacket(x, y, z, mc.thePlayer);
         this.mc.thePlayer.sendQueue.addToSendQueue(new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
         this.mc.thePlayer.sendQueue.addToSendQueue(new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.STOP_DESTROY_BLOCK, pos, EnumFacing.UP));
         this.mc.thePlayer.sendQueue.addToSendQueue(new C0APacketAnimation());
+    }
+
+    public static double[] calculateLookAt(double px, double py, double pz, EntityPlayer me) {
+        double dirx = me.posX - px;
+        double diry = me.posY - py;
+        double dirz = me.posZ - pz;
+
+        double len = Math.sqrt(dirx * dirx + diry * diry + dirz * dirz);
+
+        dirx /= len;
+        diry /= len;
+        dirz /= len;
+
+        double pitch = Math.asin(diry);
+        double yaw = Math.atan2(dirz, dirx);
+
+        pitch = pitch * 180.0d / Math.PI;
+        yaw = yaw * 180.0d / Math.PI;
+
+        yaw += 90f;
+
+        return new double[]{yaw, pitch};
+    }
+
+    public static void lookAtPacket(double px, double py, double pz, EntityPlayer me) {
+        double[] v = calculateLookAt(px, py, pz, me);
+        mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C05PacketPlayerLook((float) v[0], (float) v[1], mc.thePlayer.onGround));
     }
 }
