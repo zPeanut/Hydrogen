@@ -52,6 +52,7 @@ public class Hotbar extends Module {
             boolean fps = Hydrogen.getClient().settingsManager.getSettingByName(mod, "FPS").isEnabled();
             boolean coord = Hydrogen.getClient().settingsManager.getSettingByName(mod, "Coordinates").isEnabled();
             boolean tdate = Hydrogen.getClient().settingsManager.getSettingByName(mod, "Time / Date").isEnabled();
+            boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF");
 
             addSlide(needX, steps);
 
@@ -68,17 +69,17 @@ public class Hotbar extends Module {
             String coordinates = String.format("X: §7%s §fY: §7%s §fZ: §7%s", x, y, z);
 
             if (tdate) {
-                if(Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF")) {
+                if(ttf) {
                     FontHelper.sf_l.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
                     FontHelper.sf_l.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 10 : Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 10, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
                 } else {
                     mc.fontRendererObj.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(date) - 16, Utils.getScaledRes().getScaledHeight() - 10, -1);
-                    mc.fontRendererObj.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 13 : Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 13, Utils.getScaledRes().getScaledHeight() - 21, -1);
+                    mc.fontRendererObj.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 15 : Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 15, Utils.getScaledRes().getScaledHeight() - 21, -1);
                 }
             }
 
             if (coord) {
-                if(Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF")) {
+                if(ttf) {
                     FontHelper.sf_l.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
                 } else {
                     mc.fontRendererObj.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
@@ -86,7 +87,7 @@ public class Hotbar extends Module {
             }
 
             if (fps) {
-                if(Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF")) {
+                if(ttf) {
                     FontHelper.sf_l.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 23 : Utils.getScaledRes().getScaledHeight() - 12, Color.white);
                 } else {
                     mc.fontRendererObj.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 21 : Utils.getScaledRes().getScaledHeight() - 10, -1);
