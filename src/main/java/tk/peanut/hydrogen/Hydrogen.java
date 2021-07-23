@@ -1,6 +1,7 @@
 package tk.peanut.hydrogen;
 
 import com.thealtening.auth.AltService;
+import com.vdurmont.semver4j.Semver;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import tk.peanut.hydrogen.altmanager.account.AccountManager;
@@ -86,11 +87,12 @@ public class Hydrogen {
 
     public void isOutdated() {
         try {
-            URL url = new URL("https://raw.githubusercontent.com/zPeanut/Resources/master/version-hydrogen");
+            URL url = new URL("https://raw.githubusercontent.com/zPeanut/Resources/master/semversion-hydrogen");
             BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
             String line;
             while ((line = br.readLine()) != null) {
-                if (Float.parseFloat(line) > Float.parseFloat(version_number)) {
+                Semver semver = new Semver(line);
+                if (semver.isGreaterThan(version_number)) {
                     outdated = true;
                     newversion = line;
                 }
@@ -128,7 +130,6 @@ public class Hydrogen {
     /*
       TODO LIST
 
-      TODO: Visibility Option on Module in ClickGUI
       TODO: Freecam Module
       TODO: Tracers Module
       TODO: Add more Player modules
