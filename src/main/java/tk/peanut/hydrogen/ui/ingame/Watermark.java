@@ -49,6 +49,7 @@ public class Watermark extends Module {
             boolean time = Hydrogen.getClient().settingsManager.getSettingByName("Time").isEnabled();
             boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
             boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getValString().equals("24H");
+            boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF");
             LocalDateTime now = LocalDateTime.now();
             String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
 
@@ -97,32 +98,39 @@ public class Watermark extends Module {
                 if (time) {
                     String watermark = String.format("%s %s §7(%s)" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.getClient().name, Hydrogen.getClient().version, currenttime);
 
-                    if (background) {
+                    if(outline) {
 
-                        if(outline) {
-
-                            Gui.drawRect(FontHelper.sf_l.getStringWidth(watermark) + 4, 0, FontHelper.sf_l.getStringWidth(watermark) + 3, 11, 0x99000000);
-                            Gui.drawRect(0, 11, FontHelper.sf_l.getStringWidth(watermark) + 4, 12, 0x99000000);
-                        }
-
-                        Gui.drawRect(0, 0, FontHelper.sf_l.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                        Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermark) + 4 : mc.fontRendererObj.getStringWidth(watermark) + 4, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 3 : mc.fontRendererObj.getStringWidth(watermark) + 3, 11, 0x99000000);
+                        Gui.drawRect(0, 11, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 4 : mc.fontRendererObj.getStringWidth(watermark) + 4, 12, 0x99000000);
                     }
 
-                    FontHelper.sf_l.drawStringWithShadow(watermark, 2, 0, Color.white);
+                    if (background) {
+                        Gui.drawRect(0, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 3 : mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                    }
+
+                    if(ttf) {
+                        FontHelper.sf_l.drawStringWithShadow(watermark, 2, 0, Color.white);
+                    } else {
+                        mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
+                    }
+
                 } else {
                     String watermark = String.format("%s %s" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.getClient().name, Hydrogen.getClient().version);
 
-                    if (background) {
-
-                        if(outline) {
-                            Gui.drawRect(0, 11, FontHelper.sf_l.getStringWidth(watermark) + 4, 12, 0x99000000);
-                            Gui.drawRect(FontHelper.sf_l.getStringWidth(watermark) + 4, 0, FontHelper.sf_l.getStringWidth(watermark) + 3, 11, 0x99000000);
-                        }
-
-                        Gui.drawRect(0, 0, FontHelper.sf_l.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                    if(outline) {
+                        Gui.drawRect(0, 11, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 4 : mc.fontRendererObj.getStringWidth(watermark) + 4, 12, 0x99000000);
+                        Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermark) + 4 : mc.fontRendererObj.getStringWidth(watermark) + 4, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 3 : mc.fontRendererObj.getStringWidth(watermark) + 3, 11, 0x99000000);
                     }
 
-                    FontHelper.sf_l.drawStringWithShadow(watermark, 2, 0, Color.white);
+                    if (background) {
+                        Gui.drawRect(0, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 3 : mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+                    }
+
+                    if(ttf) {
+                        FontHelper.sf_l.drawStringWithShadow(watermark, 2, 0, Color.white);
+                    } else {
+                        mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
+                    }
                 }
             }
         }
