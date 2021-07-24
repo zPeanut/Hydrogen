@@ -736,6 +736,10 @@ public class Utils {
         System.err.println("[Hydrogen] " + message);
     }
 
+    public static void log(String message) {
+        System.out.println("[Hydrogen] " + message);
+    }
+
     public static void drawRect(double left, double top, double right, double bottom, int color) {
         int j;
         if (left < right) {
