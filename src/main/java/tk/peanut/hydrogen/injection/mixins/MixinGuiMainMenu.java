@@ -26,18 +26,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.altmanager.GuiAltManager;
 import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.ui.GuiCredits;
 import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 import tk.peanut.hydrogen.ui.mainmenu.MainMenu;
 import tk.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
 import tk.peanut.hydrogen.utils.Utils;
 
-import java.awt.*;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -123,19 +118,27 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         }
 
         int j = this.height / 4 + 48;
-        if(Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
-            this.buttonList.add(new ExpandButton(1, 45, Utils.getScaledRes().getScaledHeight() / 2 - 52, 90, 20, "Singleplayer"));
-            this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 30, 90, 20, "Multiplayer"));
-            this.buttonList.add(new ExpandButton(3, 45, Utils.getScaledRes().getScaledHeight() / 2 - 8, 90, 20, "Alt Manager"));
-            this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 + 14 , 90, 20, "Settings"));
-            this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 36, 90, 20, "Mods"));
-            this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 72, 90, 20, "Quit"));
 
-            if(Hydrogen.getClient().outdated) {
-                this.buttonList.add(new ExpandButton(99, 45, 37, 90, 20, "Update!"));
+        if(Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
+
+            if (Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
+
+                this.buttonList.add(new ExpandButton(1, 45, Utils.getScaledRes().getScaledHeight() / 2 - 62, 90, 20, "Singleplayer"));
+                this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 40, 90, 20, "Multiplayer"));
+                this.buttonList.add(new ExpandButton(3, 45, Utils.getScaledRes().getScaledHeight() / 2 - 18, 90, 20, "Alt Manager"));
+                this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 + 4, 90, 20, "Settings"));
+                this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 26, 44, 20, "Mods"));
+                this.buttonList.add(new ExpandButton(36, 91, Utils.getScaledRes().getScaledHeight() / 2 + 26, 45, 20, "Credits"));
+                this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 60, 90, 20, "Quit"));
+
+            }
+
+            if (Hydrogen.getClient().outdated) {
+                this.buttonList.add(new ExpandButton(99, 45, 36, 90, 20, "Update!"));
             }
 
         } else {
+
             if (this.mc.isDemo()) {
                 this.addDemoButtons(j, 24);
             } else {
@@ -170,26 +173,11 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
     @Inject(method = "actionPerformed", at = @At("HEAD"))
     public void actionPerformedNewButtons(GuiButton button, CallbackInfo ci) throws IOException {
-        if(button.id == 99) {
-            try {
-                // TODO: ADD GITHUB CHANGELOG
-                URL url = new URL("https://github.com/zPeanut/Hydrogen/releases");
-                String link = url.toString();
-                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-                Desktop.getDesktop().browse((new URL(link)).toURI());
-            }
-
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
         if(button.id == 3) {
             this.mc.displayGuiScreen(new GuiAltManager());
+        }
+        if(button.id == 36) {
+            this.mc.displayGuiScreen(new GuiCredits());
         }
     }
 
