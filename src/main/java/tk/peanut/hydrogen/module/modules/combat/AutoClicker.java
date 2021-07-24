@@ -43,64 +43,64 @@ public class AutoClicker extends Module {
         {
             switch((int) Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble()) {
                 case 1:
-                    delay = 500;
+                    delay = 1000;
                     break;
                 case 2:
-                    delay = 333;
+                    delay = 500;
                     break;
                 case 3:
-                    delay = 250;
+                    delay = 333;
                     break;
                 case 4:
-                    delay = 200;
+                    delay = 250;
                     break;
                 case 5:
-                    delay = 166;
+                    delay = 200;
                     break;
                 case 6:
-                    delay = 142;
+                    delay = 166;
                     break;
                 case 7:
-                    delay = 125;
+                    delay = 142;
                     break;
                 case 8:
-                    delay = 111;
+                    delay = 125;
                     break;
                 case 9:
-                    delay = 100;
+                    delay = 111;
                     break;
                 case 10:
-                    delay = 90;
+                    delay = 100;
                     break;
                 case 11:
-                    delay = 83;
+                    delay = 90;
                     break;
                 case 12:
-                    delay = 76;
+                    delay = 83;
                     break;
                 case 13:
-                    delay = 71;
+                    delay = 76;
                     break;
                 case 14:
-                    delay = 66;
+                    delay = 71;
                     break;
                 case 15:
-                    delay = 62;
+                    delay = 66;
                     break;
                 case 16:
-                    delay = 58;
+                    delay = 62;
                     break;
                 case 17:
-                    delay = 55;
+                    delay = 58;
                     break;
                 case 18:
-                    delay = 52;
+                    delay = 55;
                     break;
                 case 19:
-                    delay = 50;
+                    delay = 52;
                     break;
                 case 20:
-                    delay = 47;
+                    delay = 50;
                     break;
             }
                 Random random = new Random();
@@ -110,13 +110,11 @@ public class AutoClicker extends Module {
                 {
                     if(Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
                         if(Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
-                            this.time.resetAndAdd(random.nextInt(delay));
                             this.mc.clickMouse();
                             this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
                             this.time.reset();
                         }
                     } else {
-                        this.time.resetAndAdd(random.nextInt(delay));
                         this.mc.clickMouse();
                         this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
                         this.time.reset();
