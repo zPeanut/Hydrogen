@@ -25,10 +25,14 @@ import org.jetbrains.annotations.NotNull;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.Util;
 import scala.collection.parallel.ParIterableLike;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.module.modules.render.NameTags;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.net.Proxy;
 import java.sql.Ref;
@@ -68,6 +72,19 @@ public class Utils {
 
         GL11.glScissor((int) x1, (int) (Display.getHeight() - y2), (int) (x2 - x1), (int) (y2 - y1));
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
+    }
+
+    public static synchronized void playSound(final String url) {
+        new Thread(() -> {
+            try {
+                Clip clip = AudioSystem.getClip();
+                AudioInputStream inputStream = AudioSystem.getAudioInputStream(Utils.class.getResourceAsStream("/assets/hydrogen/" + url));
+                clip.open(inputStream);
+                clip.start();
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }, "sound play").start();
     }
 
     public static double slide = 1D;
