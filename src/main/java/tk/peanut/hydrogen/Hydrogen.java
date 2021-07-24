@@ -4,21 +4,20 @@ import com.thealtening.auth.AltService;
 import com.vdurmont.semver4j.Semver;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 import tk.peanut.hydrogen.altmanager.account.AccountManager;
 import tk.peanut.hydrogen.command.CommandManager;
 import tk.peanut.hydrogen.file.FileManager;
 import tk.peanut.hydrogen.module.ModuleManager;
-import tk.peanut.hydrogen.ui.ingame.ArrayList;
-import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 import tk.peanut.hydrogen.settings.SettingsManager;
+import tk.peanut.hydrogen.ui.clickgui.ClickGui;
+import tk.peanut.hydrogen.ui.ingame.ArrayList;
 import tk.peanut.hydrogen.utils.FontHelper;
 import tk.peanut.hydrogen.utils.KeybindManager;
 import tk.peanut.hydrogen.utils.Utils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -48,6 +47,7 @@ public class Hydrogen {
     public File directory;
 
 
+
     public boolean outdated = false;
     public String newversion;
 
@@ -72,6 +72,7 @@ public class Hydrogen {
         moduleManager.addModules();
         new ArrayList();
         this.isOutdated();
+        Utils.playSound("startup.wav");
     }
 
     public static Hydrogen getClient() {
@@ -95,6 +96,8 @@ public class Hydrogen {
                 if (semver.isGreaterThan(version_number)) {
                     outdated = true;
                     newversion = line;
+                } else {
+                    outdated = false;
                 }
             }
         } catch (MalformedURLException e) {
