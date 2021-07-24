@@ -6,6 +6,7 @@ import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.Loader;
 import org.lwjgl.opengl.GL11;
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
 import tk.peanut.hydrogen.utils.FontHelper;
 import tk.peanut.hydrogen.utils.FontUtil;
 import tk.peanut.hydrogen.utils.ParticleGenerator;
@@ -46,7 +47,7 @@ public class MainMenu extends GuiScreen {
 
         if(Hydrogen.getClient().outdated) {
             FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§cOutdated!", 66, 10, Color.WHITE);
-            FontUtil.drawTotalCenteredStringWithShadow3("Newest Version: §a" + Hydrogen.getClient().newversion, 91, 25, Color.WHITE);
+            FontUtil.drawTotalCenteredStringWithShadow3("Newest Version: §a" + Hydrogen.getClient().newversion, 91, 26, Color.WHITE);
         }
 
         float scale = 5F;
