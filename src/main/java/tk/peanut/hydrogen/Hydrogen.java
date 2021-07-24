@@ -72,7 +72,9 @@ public class Hydrogen {
         moduleManager.addModules();
         new ArrayList();
         this.isOutdated();
-        Utils.playSound("startup.wav");
+        if(settingsManager.getSettingByName("Startup Sound").isEnabled()) {
+            Utils.playSound("startup.wav");
+        }
     }
 
     public static Hydrogen getClient() {

@@ -17,5 +17,6 @@ public class MainMenuModule extends Module {
         super(0x00);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Rainbow", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Startup Sound", this, true));
     }
 }
