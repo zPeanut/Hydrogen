@@ -1,4 +1,4 @@
-package tk.peanut.hydrogen.ui;
+package tk.peanut.hydrogen.ui.mainmenu.screens;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
