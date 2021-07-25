@@ -19,14 +19,14 @@ import tk.peanut.hydrogen.module.Module;
 
 import java.util.List;
 
-@Info(name = "Target Focus", description = "Press middle mouse button to select a focused target.", category = Category.Combat)
-public class SelectTarget extends Module {
+@Info(name = "TargetSelect", description = "Press middle mouse button to select a focused target.", category = Category.Combat)
+public class TargetSelect extends Module {
 
     public static EntityLivingBase primaryTarget = null;
     private Entity pointedEntity;
     private MovingObjectPosition objectMouseOver;
 
-    public SelectTarget() {
+    public TargetSelect() {
         super(Keyboard.KEY_NONE);
         this.setEnabled();
     }
