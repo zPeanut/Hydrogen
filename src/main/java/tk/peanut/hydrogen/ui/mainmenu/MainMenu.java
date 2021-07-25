@@ -25,6 +25,9 @@ public class MainMenu extends GuiScreen {
     public static void drawMenu(int mouseX, int mouseY) {
         drawRect(40, 0, 140, Utils.getScaledRes().getScaledHeight(), 0x60000000);
 
+        drawRect(40, 0, 41, Utils.getScaledRes().getScaledHeight(), 0x60000000);
+        drawRect(139, 0, 140, Utils.getScaledRes().getScaledHeight(), 0x60000000);
+
         String mds = String.format("%s mods loaded, %s mods active", Loader.instance().getModList().size(), Loader.instance().getActiveModList().size());
         String fml = String.format("Powered by Forge %s", ForgeVersion.getVersion());
         String mcp = "MCP 9.19";
