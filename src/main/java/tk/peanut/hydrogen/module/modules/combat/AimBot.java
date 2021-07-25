@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-@Info(name = "Aimbot", description = "Automatically aims at enemies", category = Category.Combat)
+@Info(name = "Aim Assist", description = "Automatically aims at enemies", category = Category.Combat)
 public class AimBot extends Module {
 
     HashMap<String, GetCriteriaValue> selectionCriterias = new HashMap();
@@ -84,7 +84,7 @@ public class AimBot extends Module {
                 if (selectSmaller ? candidateValue < value : candidateValue > value) {
                     value = candidateValue;
                     target = (EntityLivingBase) entity;
-                    if(target.equals(SelectTarget.primaryTarget))
+                    if(target.equals(TargetSelect.primaryTarget))
                         return;
                 }
             }
@@ -93,7 +93,7 @@ public class AimBot extends Module {
 
     @EventTarget
     public void onRender(EventRender3D e) {
-        if(!target.equals(SelectTarget.primaryTarget) && onlyPrimaryTarget)
+        if(!target.equals(TargetSelect.primaryTarget) && onlyPrimaryTarget)
             return;
 
         final Vec3 positionEyes = target.getPositionEyes(e.getPartialTicks());
