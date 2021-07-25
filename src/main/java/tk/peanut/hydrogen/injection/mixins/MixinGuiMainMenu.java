@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.altmanager.GuiAltManager;
 import tk.peanut.hydrogen.module.Module;
-import tk.peanut.hydrogen.ui.GuiCredits;
+import tk.peanut.hydrogen.ui.mainmenu.screens.GuiCredits;
 import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 import tk.peanut.hydrogen.ui.mainmenu.MainMenu;
 import tk.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
