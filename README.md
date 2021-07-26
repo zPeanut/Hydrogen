@@ -10,59 +10,11 @@ https://discord.gg/dmw5N5X9p6
 
 ## Features
 
-There are currently 34 modules included in Hydrogen.  
-More and more modules will be added over time.
+There are currently over 40 modules included in Hydrogen  
+including a fully customizable Ingame GUI, aswell as various  
+render, combat and utility focused modules.  
   
-The current included Modules are:
-
-### Combat
-
--  AutoClicker
--  TriggerBot
-
-### Movement
-
--  AirStrafe
--  Eagle
--  Flight
--  Sprint
--  W-Tap
-
-### Player
-
--  AntiAFK
--  AutoRespawn
--  BedAura
--  ChestStealer
--  FastPlace
--  InventoryWalk
--  NoSpeedFOV
--  SafeWalk
-
-### Render
-
--  BedESP
--  Chams
--  ClickGUI
--  ESP
--  Fullbright
--  HUD
--  ItemESP
--  NameTags
--  NoBob
--  NoHurtCam
--  NoChatRect
--  StorageESP
--  Trajectories
-
-### Hud / Gui (customizable Modules)
-
--  ArrayList
--  Hotbar
--  HUD
--  Info
--  Main Menu
--  Watermark
+Go ahead and try them out!
 
 ## USER INSTALLATION
 
