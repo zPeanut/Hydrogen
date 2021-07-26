@@ -29,14 +29,6 @@ public class ModuleManager {
 
     public void addModules() {
 
-        // HUD / GUI modules
-
-        add(new tk.peanut.hydrogen.ui.ingame.ArrayList());
-        add(new Hotbar());
-        add(new Info());
-        add(new Watermark());
-        add(new HUD());
-
         // 1.0
 
         add(new Eagle());
@@ -89,6 +81,14 @@ public class ModuleManager {
         add(new FastBow());
         add(new Reach());
         add(new HitBox());
+
+        // hud gui modules
+
+        add(new tk.peanut.hydrogen.ui.ingame.ArrayList());
+        add(new Hotbar());
+        add(new Info());
+        add(new Watermark());
+        add(new HUD());
 
         // alphabetically sort modules in clickgui
 
