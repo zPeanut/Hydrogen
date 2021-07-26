@@ -1,20 +1,17 @@
 ![alt text](https://raw.githubusercontent.com/zPeanut/Resources/master/hydrogen.png)
 
-An open source, mixin based utility mod for Minecraft 1.8.9 built on Minecraft Forge.
-Originally designed as a MCP Client (called Tephra), it is now being ported to Forge.  
-Over time, more and more features will be added.  
+An open source, mixin based utility mod for Minecraft 1.8.9 built on Minecraft Forge.  
+Developed by [Me] and [UltramoxX].
 
 Current stable release: **1.7**
-
-Developed by [Me] and [UltramoxX].
 
 Join our discord!
 https://discord.gg/dmw5N5X9p6
 
 ## Features
 
-There are currently 34 cool modules included in Hydrogen.  
-More modules are all being ported over from the previously mentioned MCP client.  
+There are currently 34 modules included in Hydrogen.  
+More and more modules will be added over time.
   
 The current included Modules are:
 
