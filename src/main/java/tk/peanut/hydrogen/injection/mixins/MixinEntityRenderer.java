@@ -1,9 +1,7 @@
 package tk.peanut.hydrogen.injection.mixins;
 
 import com.darkmagician6.eventapi.EventManager;
-import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import jdk.nashorn.internal.codegen.CompilerConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.Entity;
@@ -18,13 +16,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventRender3D;
-import tk.peanut.hydrogen.injection.interfaces.IMixinResourceManagerReloadListener;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.module.modules.combat.HitBox;
 import tk.peanut.hydrogen.module.modules.combat.Reach;
 import tk.peanut.hydrogen.module.modules.render.NameTags;
 import tk.peanut.hydrogen.module.modules.render.NoHurtCam;
-import tk.peanut.hydrogen.utils.Utils;
 
 import java.util.List;
 import java.util.Objects;
