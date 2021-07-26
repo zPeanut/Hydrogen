@@ -28,18 +28,37 @@ public class ModuleManager {
 
 
     public void addModules() {
+
+        // HUD / GUI modules
+
+        add(new tk.peanut.hydrogen.ui.ingame.ArrayList());
+        add(new Hotbar());
+        add(new Info());
+        add(new Watermark());
         add(new HUD());
+
+        // 1.0
+
         add(new Eagle());
         add(new ClickGuiModule());
         add(new FastPlace());
         add(new Sprint());
         add(new Chams());
+
+        // 1.1
+
         add(new AutoClicker());
         add(new ESP());
         add(new TriggerBot());
         add(new NoBob());
+
+        // 1.2
+
         add(new Fullbright());
         add(new SafeWalk());
+
+        // 1.3
+
         add(new NameTags());
         add(new ChestStealer());
         add(new InventoryWalk());
@@ -48,20 +67,28 @@ public class ModuleManager {
         add(new AutoRespawn());
         add(new StorageESP());
         add(new AirStrafe());
-        add(new tk.peanut.hydrogen.ui.ingame.ArrayList());
-        add(new Hotbar());
-        add(new Info());
-        add(new Watermark());
+
+        // 1.4
+
         add(new AntiAFK());
         add(new WTap());
         add(new Flight());
         add(new ItemESP());
+
+        // 1.5
+
         add(new MainMenuModule());
         add(new NoHurtCam());
         add(new BedESP());
         add(new BedAura());
+
+        // 1.8
+
         add(new AimBot());
         add(new TargetSelect());
+        add(new FastBow());
+        add(new Reach());
+        add(new HitBox());
 
         // alphabetically sort modules in clickgui
 
