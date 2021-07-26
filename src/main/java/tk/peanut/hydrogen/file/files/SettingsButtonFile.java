@@ -22,7 +22,7 @@ public class SettingsButtonFile {
         try {
             ButtonList.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
-                String line = (setting.getName() + ":" + String.valueOf(setting.isEnabled()));
+                String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + String.valueOf(setting.isEnabled()));
                 ButtonList.write(line);
             }
         } catch (Exception e) {
@@ -34,8 +34,9 @@ public class SettingsButtonFile {
             for (String s : ButtonList.read()) {
                 for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
                     String name = s.split(":")[0];
-                    boolean toggled = Boolean.parseBoolean(s.split(":")[1]);
-                    if (setting.getName().equalsIgnoreCase(name)) {
+                    String modname = s.split(":")[1];
+                    boolean toggled = Boolean.parseBoolean(s.split(":")[2]);
+                    if (setting.getName().equalsIgnoreCase(name) && setting.getParentMod().getName().equalsIgnoreCase(modname)) {
                         setting.setValBoolean(toggled);
                     }
                 }

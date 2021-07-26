@@ -2,6 +2,7 @@ package tk.peanut.hydrogen.file.files;
 
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.file.FileManager;
+import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 
 /**
@@ -22,7 +23,7 @@ public class SettingsSliderFile {
         try {
             SliderValue.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
-                String line = (setting.getName() + ":" + String.valueOf(setting.getValDouble()));
+                String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + String.valueOf(setting.getValDouble()));
                 SliderValue.write(line);
             }
         } catch (Exception e) {
@@ -34,8 +35,9 @@ public class SettingsSliderFile {
             for (String s : SliderValue.read()) {
                 for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
                     String name = s.split(":")[0];
-                    double value = Double.parseDouble(s.split(":")[1]);
-                    if (setting.getName().equalsIgnoreCase(name)) {
+                    String modname = s.split(":")[1];
+                    double value = Double.parseDouble(s.split(":")[2]);
+                    if (setting.getName().equalsIgnoreCase(name) && setting.getParentMod().getName().equalsIgnoreCase(modname)) {
                         setting.setValDouble(value);
                     }
                 }

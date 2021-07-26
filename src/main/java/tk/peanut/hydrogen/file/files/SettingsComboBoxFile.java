@@ -22,7 +22,7 @@ public class SettingsComboBoxFile {
         try {
             ComboSetting.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
-                String line = (setting.getName() + ":" + String.valueOf(setting.getValString()));
+                String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + String.valueOf(setting.getValString()));
                 ComboSetting.write(line);
             }
         } catch (Exception e) {
@@ -34,8 +34,9 @@ public class SettingsComboBoxFile {
             for (String s : ComboSetting.read()) {
                 for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
                     String name = s.split(":")[0];
-                    String Setting = String.valueOf(s.split(":")[1]);
-                    if (setting.getName().equalsIgnoreCase(name)) {
+                    String modname = s.split(":")[1];
+                    String Setting = String.valueOf(s.split(":")[2]);
+                    if (setting.getName().equalsIgnoreCase(name) && setting.getParentMod().getName().equalsIgnoreCase(modname)) {
                         setting.setValString(Setting);
                     }
                 }
