@@ -10,7 +10,7 @@ https://discord.gg/dmw5N5X9p6
 
 ## Features
 
-There are currently over 40 modules included in Hydrogen  
+There are currently over 40 modules included in Hydrogen,  
 including a fully customizable Ingame GUI, aswell as various  
 render, combat and utility focused modules.  
   
