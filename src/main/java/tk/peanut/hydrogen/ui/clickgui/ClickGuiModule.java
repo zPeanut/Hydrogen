@@ -29,8 +29,12 @@ public class ClickGuiModule extends Module {
         font.add("Minecraft");
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Font Type", this, "TTF", font));
-
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Blur", this, true));
+
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Red", this, 163, 0, 255, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Blue", this, 223, 0, 255, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Green", this, 255, 0, 255, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Alpha", this, 220, 0, 255, true));
    /*
         this exists to i dont have to remember how to add options lol.
 

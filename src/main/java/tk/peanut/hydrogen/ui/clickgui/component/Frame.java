@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Module;
+import tk.peanut.hydrogen.ui.clickgui.ClickGuiModule;
 import tk.peanut.hydrogen.ui.clickgui.component.components.Button;
 import tk.peanut.hydrogen.utils.FontUtil;
 import tk.peanut.hydrogen.utils.Utils;
@@ -76,7 +77,9 @@ public class Frame {
 	}
 
 	public void renderFrame(FontRenderer fontRenderer) {
-		Utils.rect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, 0xff33aaff);
+		Module cgui = Hydrogen.getClient().moduleManager.getModule(ClickGuiModule.class);
+		int color = new Color((int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Red").getValDouble(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Green").getValDouble(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Blue").getValDouble(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Alpha").getValDouble()).getRGB();
+		Utils.rect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, color);
 
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
 			FontUtil.drawTotalCenteredStringWithShadow4(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 3, Color.white);
