@@ -10,6 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventKey;
+import tk.peanut.hydrogen.events.EventMouseClick;
 import tk.peanut.hydrogen.events.EventTick;
 import tk.peanut.hydrogen.file.files.*;
 import tk.peanut.hydrogen.injection.interfaces.IMixinMinecraft;
@@ -27,7 +28,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinMinecraft implements IMixinMinecraft {
     @Shadow
     public GuiScreen currentScreen;
-
 
     @Shadow
     @Mutable
@@ -54,6 +54,12 @@ public class MixinMinecraft implements IMixinMinecraft {
     private void onKey(CallbackInfo ci) {
         if (Keyboard.getEventKeyState() && currentScreen == null)
             EventManager.call(new EventKey(Keyboard.getEventKey() == 0 ? Keyboard.getEventCharacter() + 256 : Keyboard.getEventKey()));
+    }
+
+    @Inject(method = "clickMouse", at = @At("HEAD"))
+    public void clickMouse(CallbackInfo ci) {
+        EventMouseClick e = new EventMouseClick();
+        EventManager.register(e);
     }
 
     @Inject(method = "shutdown", at = @At("HEAD"))
