@@ -3,7 +3,7 @@
 An open source, mixin based utility mod for Minecraft 1.8.9 built on Minecraft Forge.  
 Developed by [Me] and [UltramoxX].
 
-Current stable release: **1.7**
+Current stable release: **1.8**
 
 Join our discord!
 https://discord.gg/dmw5N5X9p6
