@@ -1,4 +1,4 @@
-package tk.peanut.hydrogen.module.modules.movement;
+package tk.peanut.hydrogen.module.modules.combat;
 
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.entity.Entity;
@@ -20,7 +20,7 @@ import static tk.peanut.hydrogen.utils.TimeHelper.getCurrentMS;
 /*
  * Created by peanut on 20/02/2021
  */
-@Info(name = "W-Tap", category = Category.Movement,  description = "Stops holding W when hitting an enemy for more knockback")
+@Info(name = "W-Tap", category = Category.Combat,  description = "Stops holding W when hitting an enemy for more knockback")
 public class WTap extends Module {
 
     private long lastAttack = 0L;
