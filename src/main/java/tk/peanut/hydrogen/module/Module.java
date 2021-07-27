@@ -131,14 +131,15 @@ public class Module {
         this.suffix = suffix;
     }
 
-    public void onRender() {
-    }
+    public void onRender() {}
 
-    public void render3DPost() {
-
-    }
+    public void render3DPost() {}
 
     public void onPreUpdate() {}
+
+    public void onPacket() {}
+
+    public void onTick() {}
 
 
 
