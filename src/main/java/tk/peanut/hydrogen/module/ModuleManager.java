@@ -95,6 +95,8 @@ public class ModuleManager {
 
         add(new BowAimbot());
         add(new STap());
+        add(new AutoGG());
+        add(new AutoL());
 
 
         // alphabetically sort modules in clickgui
