@@ -27,7 +27,7 @@ public class Hydrogen {
     public static final String modid = "hydrogen";
     public static final String name = "Hydrogen";
     public static final String devs = "zPeanut & UltramoxX";
-    public static final String version_number = "1.8";
+    public static final String version_number = "1.8.1";
     private static final String version_suffix = "";
     public static final String version = "v" + version_number + version_suffix;
 
@@ -45,7 +45,6 @@ public class Hydrogen {
     public AltService altService;
     public ClickGui clickgui;
     public File directory;
-
 
 
     public boolean outdated = false;
