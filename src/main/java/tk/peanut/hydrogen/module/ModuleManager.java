@@ -3,6 +3,7 @@ package tk.peanut.hydrogen.module;
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.hydrogen.events.EventKey;
+import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.modules.combat.*;
 import tk.peanut.hydrogen.ui.clickgui.ClickGuiModule;
 import tk.peanut.hydrogen.ui.ingame.*;
@@ -36,6 +37,14 @@ public class ModuleManager {
         add(new FastPlace());
         add(new Sprint());
         add(new Chams());
+
+        // hud
+
+        add(new tk.peanut.hydrogen.ui.ingame.ArrayList());
+        add(new Hotbar());
+        add(new Info());
+        add(new Watermark());
+        add(new HUD());
 
         // 1.1
 
@@ -82,13 +91,11 @@ public class ModuleManager {
         add(new Reach());
         add(new HitBox());
 
-        // hud gui modules
+        // 1.9
 
-        add(new tk.peanut.hydrogen.ui.ingame.ArrayList());
-        add(new Hotbar());
-        add(new Info());
-        add(new Watermark());
-        add(new HUD());
+        add(new BowAimbot());
+        add(new STap());
+
 
         // alphabetically sort modules in clickgui
 
