@@ -20,7 +20,7 @@ import static tk.peanut.hydrogen.utils.TimeHelper.getCurrentMS;
 /*
  * Created by peanut on 20/02/2021
  */
-@Info(name = "W-Tap", category = Category.Combat,  description = "Stops holding W when hitting an enemy for more knockback")
+@Info(name = "WTap", category = Category.Combat,  description = "Stops holding W when hitting an enemy for more knockback")
 public class WTap extends Module {
 
     private long lastAttack = 0L;
@@ -69,11 +69,6 @@ public class WTap extends Module {
 
         for (Entity e1 : this.mc.theWorld.getLoadedEntityList()) {
             if (e1 != this.mc.thePlayer && this.isTargetValid(e1)) {
-
-                float yaw = Utils.getAngles(e1)[1];
-
-                double yawdistance = Utils.getDistanceBetweenAngles(yaw, this.mc.thePlayer.rotationYaw);
-
                 if (mc.thePlayer.isSwingInProgress) {
                     ens = e1;
                 }
