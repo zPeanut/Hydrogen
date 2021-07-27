@@ -12,6 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
 
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.util.ResourceLocation;
@@ -25,7 +26,7 @@ import tk.peanut.hydrogen.utils.ParticleGenerator;
 import tk.peanut.hydrogen.utils.ReflectionUtil;
 import tk.peanut.hydrogen.utils.Utils;
 
-public class ClickGui extends GuiMainMenu {
+public class ClickGui extends GuiScreen {
 
 	public static ArrayList<Frame> frames;
 	public static int color = 0x99cfdcff;

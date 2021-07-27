@@ -51,8 +51,9 @@ public class ClickGuiModule extends Module {
     @Override
     public void onEnable()
     {
-        if(this.clickgui == null)
+        if(this.clickgui == null) {
             this.clickgui = new ClickGui();
+        }
         ClickGuiFile.loadClickGui();
         mc.displayGuiScreen(this.clickgui);
         toggle();
