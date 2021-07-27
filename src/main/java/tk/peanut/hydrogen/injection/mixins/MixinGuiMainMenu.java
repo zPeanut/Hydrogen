@@ -32,7 +32,12 @@ import tk.peanut.hydrogen.ui.mainmenu.MainMenu;
 import tk.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
 import tk.peanut.hydrogen.utils.Utils;
 
+import java.awt.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -178,6 +183,22 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         }
         if(button.id == 36) {
             this.mc.displayGuiScreen(new GuiCredits());
+        }
+        if(button.id == 99) {
+            try {
+                URL url = new URL(Hydrogen.release);
+                String link = url.toString();
+                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                Desktop.getDesktop().browse((new URL(link)).toURI());
+            }
+
+            catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
