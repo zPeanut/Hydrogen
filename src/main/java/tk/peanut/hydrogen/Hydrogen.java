@@ -27,7 +27,8 @@ public class Hydrogen {
     public static final String modid = "hydrogen";
     public static final String name = "Hydrogen";
     public static final String devs = "zPeanut & UltramoxX";
-    public static final String version_number = "1.8.1";
+    public static final String version_number = "1.8.2";
+    private static final String semantic_version = "1.8.2";
     private static final String version_suffix = "";
     public static final String version = "v" + version_number + version_suffix;
 
@@ -94,7 +95,7 @@ public class Hydrogen {
             String line;
             while ((line = br.readLine()) != null) {
                 Semver semver = new Semver(line);
-                if (semver.isGreaterThan(version_number)) {
+                if (semver.isGreaterThan(semantic_version)) {
                     outdated = true;
                     newversion = line;
                 } else {
