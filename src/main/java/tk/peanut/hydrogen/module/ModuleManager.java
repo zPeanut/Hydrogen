@@ -97,6 +97,7 @@ public class ModuleManager {
         add(new STap());
         add(new AutoGG());
         add(new AutoL());
+        add(new ChatRect());
 
 
         // alphabetically sort modules in clickgui
