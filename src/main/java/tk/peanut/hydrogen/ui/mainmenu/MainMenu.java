@@ -59,7 +59,6 @@ public class MainMenu extends GuiScreen {
 
         FontHelper.sf_l2.drawStringWithShadow("§7" + Hydrogen.version_number, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 46, Utils.getScaledRes().getScaledHeight() / 2 - 38, Color.white);
 
-
         particleGenerator.drawParticles(mouseX, mouseY);
     }
 
