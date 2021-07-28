@@ -22,33 +22,21 @@ public class IRCModule extends Module {
     @Override
     public void onEnable() {
 
-
-        if (Hydrogen.Auth == 100) {
-
-            if (IRC.connect("127.0.0.1",12313) == true) {
-                Hydrogen.isircenable = true;
-                if (Minecraft.getMinecraft().theWorld != null) {
-                    PlayerUtils.INFO("Connected");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Connected", Hydrogen.name, JOptionPane.ERROR);
-                }
-
-
+        if (IRC.connect("127.0.0.1",12313) == true) {
+            Hydrogen.isircenable = true;
+            if (Minecraft.getMinecraft().theWorld != null) {
+                PlayerUtils.INFO("Connected");
             } else {
-                Hydrogen.isircenable = false;
-                if (Minecraft.getMinecraft().theWorld != null) {
-                    PlayerUtils.ERROR("Connect Failed");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Connect Failed", Hydrogen.name, JOptionPane.ERROR);
-                }
-
+                JOptionPane.showMessageDialog(null, "Connected", Hydrogen.name, JOptionPane.ERROR);
             }
 
+
         } else {
+            Hydrogen.isircenable = false;
             if (Minecraft.getMinecraft().theWorld != null) {
-                PlayerUtils.ERROR("Please Login Your Account First！");
+                PlayerUtils.ERROR("Connect Failed");
             } else {
-                JOptionPane.showMessageDialog(null, "Please Login Your Account First！", Hydrogen.name, JOptionPane.ERROR);
+                JOptionPane.showMessageDialog(null, "Connect Failed", Hydrogen.name, JOptionPane.ERROR);
             }
 
         }
