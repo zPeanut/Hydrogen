@@ -54,7 +54,7 @@ public class Hydrogen {
     public File directory;
     
     public static boolean isircenable = false;
-
+    public static String FGF = "Payl14125";
 
     public boolean outdated = false;
     public String newversion;
