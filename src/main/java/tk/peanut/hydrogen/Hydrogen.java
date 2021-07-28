@@ -52,6 +52,8 @@ public class Hydrogen {
     public AltService altService;
     public ClickGui clickgui;
     public File directory;
+    
+    public static boolean isircenable = false;
 
 
     public boolean outdated = false;
