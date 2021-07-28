@@ -126,17 +126,13 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
         if(Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
 
-            if (Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
-
-                this.buttonList.add(new ExpandButton(1, 45, Utils.getScaledRes().getScaledHeight() / 2 - 62, 90, 20, "Singleplayer"));
-                this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 40, 90, 20, "Multiplayer"));
-                this.buttonList.add(new ExpandButton(3, 45, Utils.getScaledRes().getScaledHeight() / 2 - 18, 90, 20, "Alt Manager"));
-                this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 + 4, 90, 20, "Settings"));
-                this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 26, 44, 20, "Mods"));
-                this.buttonList.add(new ExpandButton(36, 91, Utils.getScaledRes().getScaledHeight() / 2 + 26, 45, 20, "Credits"));
-                this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 60, 90, 20, "Quit"));
-
-            }
+            this.buttonList.add(new ExpandButton(1, 45, Utils.getScaledRes().getScaledHeight() / 2 - 62, 90, 20, "Singleplayer"));
+            this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 40, 90, 20, "Multiplayer"));
+            this.buttonList.add(new ExpandButton(3, 45, Utils.getScaledRes().getScaledHeight() / 2 - 18, 90, 20, "Alt Manager"));
+            this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 + 4, 90, 20, "Settings"));
+            this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 26, 44, 20, "Mods"));
+            this.buttonList.add(new ExpandButton(36, 91, Utils.getScaledRes().getScaledHeight() / 2 + 26, 45, 20, "Credits"));
+            this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 60, 90, 20, "Quit"));
 
             if (Hydrogen.getClient().outdated) {
                 this.buttonList.add(new ExpandButton(99, 45, 36, 90, 20, "Update!"));
