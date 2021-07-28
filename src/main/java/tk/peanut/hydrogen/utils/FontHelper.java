@@ -15,6 +15,7 @@ public class FontHelper {
     public static H2FontRenderer sf_r;
     public static H2FontRenderer sf_l;
     public static H2FontRenderer sf_l2;
+    public static H2FontRenderer sf_l_mm;
 
     public static H2FontRenderer comfortaa_r;
     public static H2FontRenderer comfortaa_rb;
@@ -41,6 +42,10 @@ public class FontHelper {
             InputStream stream33 = FontHelper.class.getResourceAsStream("/assets/hydrogen/SF-UI-Display-Light.ttf");
             Font font33 = Font.createFont(Font.TRUETYPE_FONT, stream33).deriveFont(72f);
             sf_l2 = new H2FontRenderer(font33, true, 8);
+
+            InputStream stream34 = FontHelper.class.getResourceAsStream("/assets/hydrogen/SF-UI-Display-Light.ttf");
+            Font font34 = Font.createFont(Font.TRUETYPE_FONT, stream34).deriveFont(200f);
+            sf_l_mm = new H2FontRenderer(font34, true, 8);
 
             InputStream stream2 = FontHelper.class.getResourceAsStream("/assets/hydrogen/SF-UI-Display-Regular.otf");
             Font font2 = Font.createFont(Font.TRUETYPE_FONT, stream2).deriveFont(36f);

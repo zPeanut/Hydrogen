@@ -13,6 +13,7 @@ import tk.peanut.hydrogen.utils.ParticleGenerator;
 import tk.peanut.hydrogen.utils.Utils;
 
 import java.awt.*;
+import java.util.Locale;
 
 /**
  * Created by peanut on 26/02/2021
@@ -41,7 +42,7 @@ public class MainMenu extends GuiScreen {
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mcv, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mcv) - 4, Utils.getScaledRes().getScaledHeight() - 50, Color.WHITE);
 
         if(Hydrogen.version.contains("dev") || Hydrogen.version.contains("beta")) {
-            FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§cWARNING: §7Early access version! Major issues may arise!", 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+            FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§cWARNING: §7Early access version! Major issues may arise!", 144, Utils.getScaledRes().getScaledHeight() - 14, Color.white);
         }
 
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(name, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(name) - 4, 4, Color.WHITE);
@@ -53,17 +54,11 @@ public class MainMenu extends GuiScreen {
             FontUtil.drawTotalCenteredStringWithShadow3("Newest Version: §a" + Hydrogen.getClient().newversion, 91, 26, Color.WHITE);
         }
 
-        float scale = 5F;
+        FontHelper.sf_l_mm.drawString("hydrogen", Utils.getScaledRes().getScaledWidth() / 2 - 43, Utils.getScaledRes().getScaledHeight() / 2 - 36, new Color(51, 50, 50));
+        FontHelper.sf_l_mm.drawString("hydrogen", Utils.getScaledRes().getScaledWidth() / 2 - 45, Utils.getScaledRes().getScaledHeight() / 2 - 37, new Color(207, 238, 255));
 
-        GL11.glScalef(scale, scale, scale);
-        mc.fontRendererObj.drawStringWithShadow("Hydrogen", Utils.getScaledRes().getScaledWidth() / 2 / scale - 13, Utils.getScaledRes().getScaledHeight() / 2 / scale - 5F, -4198401);
-        GL11.glScalef(1.0F / scale, 1.0F / scale, 1.0F / scale);
+        FontHelper.sf_l2.drawStringWithShadow("§7" + Hydrogen.version_number, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 46, Utils.getScaledRes().getScaledHeight() / 2 - 38, Color.white);
 
-        float scalever = 2.0F;
-
-        GL11.glScalef(scalever, scalever, scalever);
-        mc.fontRendererObj.drawStringWithShadow("§7" + Hydrogen.version, Utils.getScaledRes().getScaledWidth() / 2 / scalever + 85, Utils.getScaledRes().getScaledHeight() / 2 / scalever - 17F, -1);
-        GL11.glScalef(1.0F / scalever, 1.0F / scalever, 1.0F / scalever);
 
         particleGenerator.drawParticles(mouseX, mouseY);
     }
