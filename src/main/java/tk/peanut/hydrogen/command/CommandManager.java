@@ -7,6 +7,7 @@ import tk.peanut.hydrogen.command.commands.Toggle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -58,9 +59,8 @@ public class CommandManager {
                 return true;
             }
         }
-        Command.msg("The Command \"§9" + ranCmd + "§7\" has not been found!");
+        Command.msg("The command \"§9" + ranCmd + "§7\" has not been found!");
 
         return false;
     }
-
 }
