@@ -52,18 +52,20 @@ public class AutoClicker extends Module {
                     System.out.println(delay + " " +  randomD + " " + randomInc);
                     if(Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
                         if(Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
-                            this.mc.clickMouse();
-                            this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
-                            this.time.reset();
+                            this.click();
                         }
                     } else {
-                        this.mc.clickMouse();
-                        this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
-                        this.time.reset();
+                        this.click();
                     }
                 }
 
         }
         catch (Exception localException) {}
+    }
+
+    private void click() {
+        this.mc.clickMouse();
+        this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
+        this.time.reset();
     }
 }
