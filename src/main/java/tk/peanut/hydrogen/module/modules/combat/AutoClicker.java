@@ -41,73 +41,15 @@ public class AutoClicker extends Module {
     public void onUpdate(EventUpdate e) {
         try
         {
-            switch((int) Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble()) {
-                case 1:
-                    delay = 1000;
-                    break;
-                case 2:
-                    delay = 500;
-                    break;
-                case 3:
-                    delay = 333;
-                    break;
-                case 4:
-                    delay = 250;
-                    break;
-                case 5:
-                    delay = 200;
-                    break;
-                case 6:
-                    delay = 166;
-                    break;
-                case 7:
-                    delay = 142;
-                    break;
-                case 8:
-                    delay = 125;
-                    break;
-                case 9:
-                    delay = 111;
-                    break;
-                case 10:
-                    delay = 100;
-                    break;
-                case 11:
-                    delay = 90;
-                    break;
-                case 12:
-                    delay = 83;
-                    break;
-                case 13:
-                    delay = 76;
-                    break;
-                case 14:
-                    delay = 71;
-                    break;
-                case 15:
-                    delay = 66;
-                    break;
-                case 16:
-                    delay = 62;
-                    break;
-                case 17:
-                    delay = 58;
-                    break;
-                case 18:
-                    delay = 55;
-                    break;
-                case 19:
-                    delay = 52;
-                    break;
-                case 20:
-                    delay = 50;
-                    break;
-            }
+            delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
+
                 Random random = new Random();
                 int randomD = random.nextInt(25);
                 int randomInc = random.nextInt(15);
+
                 if (this.time.hasDelayRun(delay - randomD + randomInc))
                 {
+                    System.out.println(delay + " " +  randomD + " " + randomInc);
                     if(Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
                         if(Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
                             this.mc.clickMouse();
