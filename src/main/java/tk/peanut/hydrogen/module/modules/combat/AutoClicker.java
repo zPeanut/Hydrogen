@@ -3,17 +3,14 @@ package tk.peanut.hydrogen.module.modules.combat;
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
-import scala.collection.parallel.ParIterableLike;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
-import tk.peanut.hydrogen.utils.ReflectionUtil;
 import tk.peanut.hydrogen.utils.TimeHelper;
 
-import java.awt.*;
 import java.util.Random;
 
 /**
@@ -39,33 +36,28 @@ public class AutoClicker extends Module {
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
-        try
-        {
-            delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
-
-                Random random = new Random();
-                int randomD = random.nextInt(25);
-                int randomInc = random.nextInt(15);
-
-                if (this.time.hasDelayRun(delay - randomD + randomInc))
-                {
-                    System.out.println(delay + " " +  randomD + " " + randomInc);
-                    if(Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
-                        if(Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
-                            this.click();
-                        }
-                    } else {
+        try {
+            if (this.time.isDelayComplete(delay)) {
+                if (Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
+                    if (Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
                         this.click();
                     }
+                } else {
+                    this.click();
                 }
+            }
 
+        } catch (Exception localException) {
         }
-        catch (Exception localException) {}
     }
 
     private void click() {
-        this.mc.clickMouse();
-        this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
-        this.time.reset();
+        delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
+        int randomD = random.nextInt(25);
+        int randomInc = random.nextInt(15);
+        delay = delay - randomD + randomInc;
+        this.time.setLastMS();
+        mc.clickMouse();
+        mc.playerController.attackEntity(mc.thePlayer, mc.objectMouseOver.entityHit);
     }
 }
