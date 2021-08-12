@@ -21,8 +21,6 @@ import java.util.Random;
 public class AutoClicker extends Module {
 
     Random random = new Random();
-    int randomD = this.random.nextInt(25);
-    int randomInc = this.random.nextInt(15);
     TimeHelper time = new TimeHelper();
     int delay;
 
@@ -31,31 +29,28 @@ public class AutoClicker extends Module {
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("on Click", this, false));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Random ms", this, 5, 0, 250, true));
     }
 
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
-        try {
-            if (this.time.isDelayComplete(delay)) {
-                if (Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
-                    if (Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
-                        this.click();
-                    }
-                } else {
+        if (this.time.isDelayComplete(delay)) {
+            if (Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
+                if (Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
                     this.click();
                 }
+            } else {
+                this.click();
             }
-
-        } catch (Exception localException) {
         }
     }
 
     private void click() {
         delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
-        int randomD = random.nextInt(25);
-        int randomInc = random.nextInt(15);
-        delay = delay - randomD + randomInc;
+        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random ms").getValDouble());
+        System.out.println(random);
+        delay = delay + random;
         this.time.setLastMS();
         mc.clickMouse();
         mc.playerController.attackEntity(mc.thePlayer, mc.objectMouseOver.entityHit);
