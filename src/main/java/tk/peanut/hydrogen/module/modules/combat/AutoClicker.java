@@ -49,7 +49,6 @@ public class AutoClicker extends Module {
     private void click() {
         delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
         int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random ms").getValDouble());
-        System.out.println(random);
         delay = delay + random;
         this.time.setLastMS();
         mc.clickMouse();
