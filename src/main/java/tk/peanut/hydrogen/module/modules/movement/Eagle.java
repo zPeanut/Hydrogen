@@ -19,10 +19,6 @@ import java.time.format.DateTimeFormatter;
 @Info(name = "FastBridge", description = "Automatically fastbridges for you", category = Category.Movement)
 public class Eagle extends Module {
 
-    private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
-
-
     public Eagle() {
         super(Keyboard.KEY_Y);
     }
