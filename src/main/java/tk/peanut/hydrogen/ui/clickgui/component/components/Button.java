@@ -98,7 +98,7 @@ public class Button extends Component {
 		Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
 
 		if(this.mod.isEnabled() && this.isHovered) {
-			Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth() - 10, this.parent.getY() + 12 + this.offset, 0x20000000);
+			Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x20000000);
 		}
 
 		if(this.mod.isEnabled()) {

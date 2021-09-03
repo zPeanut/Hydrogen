@@ -69,6 +69,10 @@ public class Module {
         this.keyBind = keyBind;
     }
 
+    public void unbindKeyBind() {
+        this.keyBind = Keyboard.KEY_NONE;
+    }
+
     public int getSlide() {
         return slide;
     }
