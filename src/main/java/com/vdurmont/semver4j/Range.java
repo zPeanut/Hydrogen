@@ -2,7 +2,6 @@ package com.vdurmont.semver4j;
 
 import java.util.Objects;
 
-// TODO doc
 public class Range {
     protected final Semver version;
     protected final RangeOperator op;
