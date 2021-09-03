@@ -11,6 +11,7 @@ import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.TimeHelper;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -27,6 +28,10 @@ public class AutoClicker extends Module {
     public AutoClicker() {
         super(Keyboard.KEY_NONE);
 
+        ArrayList<String> mode = new ArrayList<>();
+        mode.add("Left Click");
+        mode.add("Right Click");
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Type", this, "Left Click", mode));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("on Click", this, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Random ms", this, 5, 0, 250, true));
@@ -35,10 +40,18 @@ public class AutoClicker extends Module {
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
+        boolean type = Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getValString().equalsIgnoreCase("Left Click");
+
         if (this.time.isDelayComplete(delay)) {
             if (Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
-                if (Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
-                    this.click();
+                if(type) {
+                    if (Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
+                        this.click();
+                    }
+                } else {
+                    if (Minecraft.getMinecraft().gameSettings.keyBindUseItem.pressed) {
+                        this.click();
+                    }
                 }
             } else {
                 this.click();
@@ -47,11 +60,16 @@ public class AutoClicker extends Module {
     }
 
     private void click() {
+        boolean type = Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getValString().equalsIgnoreCase("Left Click");
         delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
         int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random ms").getValDouble());
         delay = delay + random;
         this.time.setLastMS();
-        mc.clickMouse();
+        if(type) {
+            mc.clickMouse();
+        } else {
+            mc.rightClickMouse();
+        }
         mc.playerController.attackEntity(mc.thePlayer, mc.objectMouseOver.entityHit);
     }
 }
