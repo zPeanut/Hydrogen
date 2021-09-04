@@ -4,11 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.GlStateManager;
-import org.lwjgl.opengl.GL11;
 import tk.peanut.hydrogen.Hydrogen;
-import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.ui.clickgui.ClickGui;
 import tk.peanut.hydrogen.ui.clickgui.component.Component;
@@ -16,7 +12,6 @@ import tk.peanut.hydrogen.ui.clickgui.component.Frame;
 import tk.peanut.hydrogen.ui.clickgui.component.components.sub.*;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.ui.clickgui.component.components.sub.Checkbox;
-import tk.peanut.hydrogen.utils.BlurUtil;
 import tk.peanut.hydrogen.utils.FontHelper;
 import tk.peanut.hydrogen.utils.FontUtil;
 import tk.peanut.hydrogen.utils.Utils;
@@ -29,10 +24,10 @@ public class Button extends Component {
 	private boolean isHovered;
 	public ArrayList<Component> subcomponents;
 	public boolean open;
-	private int height;
+	public int height;
+	private	int tooltipX;
+	private int tooltipY;
 
-	int tooltipX;
-	int tooltipY;
 	
 	public Button(Module mod, Frame parent, int offset) {
 		this.mod = mod;
@@ -60,6 +55,28 @@ public class Button extends Component {
 		}
 		this.subcomponents.add(new Keybind(this, opY));
 	}
+
+	public void updateTooltipPosition(int mouseX, int mouseY) {
+		tooltipX = mouseX + 18;
+		tooltipY = mouseY - 18;
+	}
+
+	public void renderTooltip(String name) {
+		boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF");
+		if(ttf) {
+			Utils.drawBorderedCorneredRect(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + FontHelper.sf_l.getStringWidth(name) - 47, this.parent.barHeight + tooltipY + 12, 2, 0x95000000, 0x80000000);
+			FontHelper.sf_l.drawStringWithShadow(name, parent.getWidth() / 2 + tooltipX - 50, (this.parent.barHeight + tooltipY) - 2, Color.white);
+
+			Utils.startClip(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + FontHelper.sf_l.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12);
+			Utils.endClip();
+		} else {
+			Utils.drawBorderedCorneredRect(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12, 2, 0x95000000, 0x80000000);
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, parent.getWidth() / 2 + tooltipX - 50, (this.parent.barHeight + tooltipY), -1);
+
+			Utils.startClip(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12);
+			Utils.endClip();
+		}
+	}
 	
 	@Override
 	public void setOff(int newOff) {
@@ -70,30 +87,9 @@ public class Button extends Component {
 			opY += 12;
 		}
 	}
-
-	public void update(int mouseX, int mouseY) {
-		this.tooltipX = mouseX + 12;
-		this.tooltipY = mouseY - 12;
-	}
-
-	public void drawTooltip() {
-		this.height = (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2);
-		int padding = 6;
-
-		GlStateManager.color(0, 0, 0, 0);
-		GL11.glColor4f(0, 0, 0, 0);
-
-
-		Utils.drawBorderedCorneredRect((int) (this.parent.getX() - padding) + tooltipX, (int) (this.parent.getY() - padding) + 2 + tooltipY, (int) (this.parent.getX() + parent.getWidth() + padding) + Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod.getDescription()) + tooltipX, (int) (this.parent.getY() + height + padding) + tooltipY, 2, 0x90000000, 0x80000000);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getDescription(), (float) this.parent.getX(), (float) this.parent.getY() + (float) height - 4, -1);
-
-		Utils.startClip((int) (tooltipX - padding), (int) (tooltipY), (int) (tooltipX + parent.getWidth() + padding), (int) (tooltipY + height + padding));
-		Utils.endClip();
-	}
 	
 	@Override
 	public void renderComponent() {
-
 		Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
 		Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
 
@@ -127,6 +123,9 @@ public class Button extends Component {
 			}
 		}
 
+		if(this.isHovered && Hydrogen.getClient().settingsManager.getSettingByName("Tooltip").isEnabled()) {
+			renderTooltip(mod.getDescription());
+		}
 	}
 	
 	@Override
@@ -140,6 +139,9 @@ public class Button extends Component {
 	@Override
 	public void updateComponent(int mouseX, int mouseY) {
 		this.isHovered = isMouseOnButton(mouseX, mouseY);
+		if(Hydrogen.getClient().settingsManager.getSettingByName("Tooltip").isEnabled()) {
+			updateTooltipPosition(mouseX, mouseY);
+		}
 		if(!this.subcomponents.isEmpty()) {
 			for(Component comp : this.subcomponents) {
 				comp.updateComponent(mouseX, mouseY);
