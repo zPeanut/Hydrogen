@@ -131,7 +131,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             this.buttonList.add(new ExpandButton(3, 45, Utils.getScaledRes().getScaledHeight() / 2 - 18, 90, 20, "Alt Manager"));
             this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 + 4, 90, 20, "Settings"));
             this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 26, 44, 20, "Mods"));
-            this.buttonList.add(new ExpandButton(36, 91, Utils.getScaledRes().getScaledHeight() / 2 + 26, 45, 20, "Credits"));
+            this.buttonList.add(new ExpandButton(36, 90, Utils.getScaledRes().getScaledHeight() / 2 + 26, 45, 20, "Credits"));
             this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 60, 90, 20, "Quit"));
 
             if (Hydrogen.getClient().outdated) {
