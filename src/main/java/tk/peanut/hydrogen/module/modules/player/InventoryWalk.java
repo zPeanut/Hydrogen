@@ -17,7 +17,7 @@ import java.util.Objects;
 /**
  * Created by peanut on 09/02/2021
  */
-@Info(name = "InventoryWalk", description = "Lets you walk while in Inventory", category = Category.Player)
+@Info(name = "InventoryWalk", description = "Lets you walk while in inventory", category = Category.Player)
 public class InventoryWalk extends Module {
 
     public InventoryWalk() {

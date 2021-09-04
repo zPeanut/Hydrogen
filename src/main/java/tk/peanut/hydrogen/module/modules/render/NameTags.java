@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Created by peanut on 08/02/2021
  */
-@Info(name = "NameTags", description = "Enhanced Nametags", category = Category.Render)
+@Info(name = "NameTags", description = "Enhances nametags", category = Category.Render)
 public class NameTags extends Module {
 
     public static NameTags instance;

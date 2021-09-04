@@ -10,7 +10,7 @@ import java.awt.*;
 /**
  * Created by peanut on 10/02/2021
  */
-@Info(name = "NoSpeedFOV", description = "Removes the FOV gained by speed effects", category = Category.Player)
+@Info(name = "NoSpeedFOV", description = "Removes FOV gained by speed effects", category = Category.Player)
 public class NoSpeedFOV extends Module {
     public NoSpeedFOV() {
         super(Keyboard.KEY_NONE);

@@ -19,7 +19,7 @@ import tk.peanut.hydrogen.module.Module;
 
 import java.util.List;
 
-@Info(name = "TargetSelect", description = "Press middle mouse button to select a focused target.", category = Category.Combat)
+@Info(name = "TargetSelect", description = "Press middle mouse on an enemy to focus them using AimAssist", category = Category.Combat)
 public class TargetSelect extends Module {
 
     public static EntityLivingBase primaryTarget = null;

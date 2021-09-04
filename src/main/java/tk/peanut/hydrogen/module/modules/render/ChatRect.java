@@ -7,7 +7,7 @@ import tk.peanut.hydrogen.module.Module;
 /**
  * Created by peanut on 28/07/2021
  */
-@Info(name = "NoChatRect", category = Category.Render, description = "Removes the chat rect.")
+@Info(name = "NoChatRect", category = Category.Render, description = "Removes the chat background")
 public class ChatRect extends Module {
 
     public ChatRect() {

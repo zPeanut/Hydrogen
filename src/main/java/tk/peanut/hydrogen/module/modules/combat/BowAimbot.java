@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by peanut on 27/07/2021
  */
-@Info(name = "BowAimbot", category = Category.Combat, description = "Automatically aims a bow for you.")
+@Info(name = "BowAimbot", category = Category.Combat, description = "Automatically aims a bow for you")
 public class BowAimbot extends Module {
 
     boolean send;

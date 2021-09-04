@@ -20,7 +20,7 @@ import static tk.peanut.hydrogen.utils.TimeHelper.getCurrentMS;
 /*
  * Created by peanut on 29/07/2021
  */
-@Info(name = "STap", category = Category.Combat,  description = "Stops holding W when hitting an enemy for more knockback")
+@Info(name = "STap", category = Category.Combat,  description = "Stops holding S when sprinting and hitting an enemy.")
 public class STap extends Module {
 
     private long lastAttack = 0L;

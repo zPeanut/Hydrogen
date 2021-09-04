@@ -20,7 +20,7 @@ import tk.peanut.hydrogen.utils.TimeHelper;
 import java.awt.*;
 import java.util.Random;
 
-@Info(name = "TriggerBot", description = "Attacks when hovered over enemy", category = Category.Combat)
+@Info(name = "TriggerBot", description = "Attacks when hovering over an enemy", category = Category.Combat)
 public class TriggerBot extends Module {
 
     public static double delay;

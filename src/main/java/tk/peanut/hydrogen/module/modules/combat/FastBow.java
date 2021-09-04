@@ -14,7 +14,7 @@ import tk.peanut.hydrogen.module.Module;
  * Created by peanut on 26/07/2021
  */
 
-@Info(name = "FastBow", description = "Increases your bow speed", category = Category.Combat)
+@Info(name = "FastBow", description = "Removes the bow load-up time", category = Category.Combat)
 public class FastBow extends Module {
 
     public FastBow() {

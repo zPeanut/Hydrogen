@@ -20,7 +20,7 @@ import static tk.peanut.hydrogen.utils.TimeHelper.getCurrentMS;
 /*
  * Created by peanut on 20/02/2021
  */
-@Info(name = "WTap", category = Category.Combat,  description = "Stops holding W when hitting an enemy for more knockback")
+@Info(name = "WTap", category = Category.Combat,  description = "Stops holding W when sprinting and hitting an enemy.")
 public class WTap extends Module {
 
     private long lastAttack = 0L;
