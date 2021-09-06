@@ -74,6 +74,23 @@ public class Utils {
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
     }
 
+    public static Color blend(Color color1, Color color2, double ratio) {
+        float r = (float) ratio;
+        float ir = (float) 1.0 - r;
+
+        float rgb1[] = new float[3];
+        float rgb2[] = new float[3];
+
+        color1.getColorComponents(rgb1);
+        color2.getColorComponents(rgb2);
+
+        Color color = new Color(rgb1[0] * r + rgb2[0] * ir,
+                rgb1[1] * r + rgb2[1] * ir,
+                rgb1[2] * r + rgb2[2] * ir);
+
+        return color;
+    }
+
     public static synchronized void playSound(final String url) {
         new Thread(() -> {
             try {
@@ -691,6 +708,15 @@ public class Utils {
         GL11.glVertex3d(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
         GL11.glVertex3d(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ);
         GL11.glEnd();
+    }
+
+    public static Color glColor(int color, float alpha) {
+        int hex = color;
+        float red = (hex >> 16 & 255) / 255.0F;
+        float green = (hex >> 8 & 255) / 255.0F;
+        float blue = (hex & 255) / 255.0F;
+        GL11.glColor4f(red, green, blue, alpha);
+        return new Color(red, green, blue, alpha);
     }
 
     public static void drawBoundingBoxESP(final AxisAlignedBB axisalignedbb, final float width, final int color) {
