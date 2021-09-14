@@ -40,6 +40,7 @@ public class AimBot extends Module {
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Select", this, "Health", selectionOrders));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Select smaller", this, true));
 
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("on Click Only", this, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Max Distance", this, 4.2, 1, 6, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Visible Only", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Alive Only", this, true));
@@ -76,16 +77,14 @@ public class AimBot extends Module {
             if (mc.thePlayer.getPositionEyes(0).distanceTo(entity.getPositionEyes(0)) > maxDistance)
                 continue;
 
-            if ((targetPlayer && entity instanceof EntityOtherPlayerMP
-                    || targetMobs && entity instanceof EntityMob)
-                    && (!visibleOnly || !entity.isInvisible())
-                    && (!aliveOnly || !entity.isDead && entity.isEntityAlive())) {
+            if ((targetPlayer && entity instanceof EntityOtherPlayerMP || targetMobs && entity instanceof EntityMob) && (!visibleOnly || !entity.isInvisible()) && (!aliveOnly || !entity.isDead && entity.isEntityAlive())) {
                 double candidateValue = getCriteriaValue.op(mc.thePlayer, (EntityLivingBase) entity);
                 if (selectSmaller ? candidateValue < value : candidateValue > value) {
                     value = candidateValue;
                     target = (EntityLivingBase) entity;
-                    if(target.equals(TargetSelect.primaryTarget))
+                    if(target.equals(TargetSelect.primaryTarget)) {
                         return;
+                    }
                 }
             }
         }
@@ -95,7 +94,7 @@ public class AimBot extends Module {
     public void onRender(EventRender3D e) {
         if(!target.equals(TargetSelect.primaryTarget) && onlyPrimaryTarget)
             return;
-
+        boolean onClick = Hydrogen.getClient().settingsManager.getSettingByName(this, "on Click Only").isEnabled();
         final Vec3 positionEyes = target.getPositionEyes(e.getPartialTicks());
         Vec3 thePlayerPositionEyes = mc.thePlayer.getPositionEyes(e.getPartialTicks());
         double diffX = positionEyes.xCoord - thePlayerPositionEyes.xCoord;
@@ -103,13 +102,15 @@ public class AimBot extends Module {
         double diffZ = positionEyes.zCoord - thePlayerPositionEyes.zCoord;
         double diffXZ = Math.sqrt(diffX * diffX + diffZ * diffZ);
 
-        mc.thePlayer.rotationYaw = (float) Math.toDegrees(Math.atan2(diffZ, diffX)) - 90F;
-        mc.thePlayer.rotationPitch = (float) -Math.toDegrees(Math.atan2(diffY, diffXZ));
+        if(!onClick || mc.gameSettings.keyBindAttack.pressed) {
+            mc.thePlayer.rotationYaw = (float) Math.toDegrees(Math.atan2(diffZ, diffX)) - 90F;
+            mc.thePlayer.rotationPitch = (float) -Math.toDegrees(Math.atan2(diffY, diffXZ));
 
-        if(offset) {
-            double f = ((double) new Date().getTime()) / 200f;
-            mc.thePlayer.rotationYaw += (float) Math.sin(f) * 2f;
-            mc.thePlayer.rotationPitch += (float) Math.cos(f) * 2f;
+            if (offset) {
+                double f = ((double) new Date().getTime()) / 200f;
+                mc.thePlayer.rotationYaw += (float) Math.sin(f) * 2f;
+                mc.thePlayer.rotationPitch += (float) Math.cos(f) * 2f;
+            }
         }
     }
 
