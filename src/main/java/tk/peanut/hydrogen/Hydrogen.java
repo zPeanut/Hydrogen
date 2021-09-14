@@ -29,13 +29,13 @@ public class Hydrogen {
     public static final String devs = "zPeanut & UltramoxX";
     public static final String release = "https://github.com/zPeanut/Hydrogen/releases/";
 
-    public static final String version_number = "1.9.1";
+    public static final String version_number = "1.10";
     private static final String version_suffix = "";
 
     // this basically only exists so the semver comparison doesnt result in an error when it tries to compare a full release version (i.e. no patch version) e.g "1.9" with "1.8.3"
     // the error "no patch version" results as "1.9" should be expected to be written as "1.9.0"
     // ive refrained from just renaming the version number to 1.9.0 to keep unity with all the other full release versions
-    private static final String semantic_version = "1.9.1";
+    private static final String semantic_version = "1.10.0";
 
     public static final String version = "v" + version_number + version_suffix;
 
