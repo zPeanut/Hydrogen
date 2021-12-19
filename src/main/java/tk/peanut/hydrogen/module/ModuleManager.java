@@ -3,7 +3,6 @@ package tk.peanut.hydrogen.module;
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
 import tk.peanut.hydrogen.events.EventKey;
-import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.modules.combat.*;
 import tk.peanut.hydrogen.ui.clickgui.ClickGuiModule;
 import tk.peanut.hydrogen.ui.ingame.*;
