@@ -78,7 +78,7 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                 GlStateManager.alphaFunc(516, 0.003921569F);
             }
 
-            if (Hydrogen.getClient().moduleManager.getModule(ESP.class) != null && Hydrogen.getClient().moduleManager.getModule(ESP.class).isEnabled() && Hydrogen.getClient().settingsManager.getSettingByName("Type").getValString().equalsIgnoreCase("Outline")) {
+            if (Hydrogen.getClient().moduleManager.getModule(ESP.class) != null && Hydrogen.getClient().moduleManager.getModule(ESP.class).isEnabled()) {
                 if (entitylivingbaseIn instanceof EntityPlayer && entitylivingbaseIn != Minecraft.getMinecraft().thePlayer) {
                     Color n = Color.WHITE;
                     OutlineUtils.setColor(n);

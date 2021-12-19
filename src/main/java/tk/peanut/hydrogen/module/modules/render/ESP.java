@@ -20,26 +20,7 @@ import java.util.ArrayList;
 public class ESP extends Module {
     public ESP() {
         super(Keyboard.KEY_NONE);
-
-        ArrayList<String> esp = new ArrayList<>();
-        esp.add("Outline");
-        esp.add("2D");
-        esp.add("Box");
-
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Type", this, "Outline", esp));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("LineWidth", this, 3, 1, 10, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Entities", this, true));
     }
-
-    @EventTarget
-    public void onUpdate(EventUpdate e) {
-        if(Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getValString().equalsIgnoreCase("outline")) {
-            this.setSuffix(" §7Outline");
-        } else if (Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getValString().equalsIgnoreCase("box")) {
-            this.setSuffix(" §7Box");
-        } else if (Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getValString().equalsIgnoreCase("2d")) {
-            this.setSuffix(" §72D");
-        }
-    }
-
 }
