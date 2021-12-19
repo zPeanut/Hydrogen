@@ -26,7 +26,6 @@ public class ModuleManager {
         EventManager.register(this);
     }
 
-
     public void addModules() {
 
         // 1.0
@@ -95,6 +94,10 @@ public class ModuleManager {
         add(new BowAimbot());
         add(new STap());
         add(new ChatRect());
+
+        // 1.10
+
+        add(new PingSpoof());
 
 
         // alphabetically sort modules in clickgui
