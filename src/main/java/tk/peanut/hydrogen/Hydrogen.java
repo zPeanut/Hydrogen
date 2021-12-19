@@ -122,9 +122,9 @@ public class Hydrogen {
         try {
             this.altService.switchService(AltService.EnumAltService.MOJANG);
         } catch (NoSuchFieldException e) {
-            Utils.errorLog("Couldn't switch to Mojang altservice!");
+            Utils.errorLog("Couldn't switch to Mojang AltService");
         } catch (IllegalAccessException e) {
-            Utils.errorLog("Couldn't switch to Mojang altservice -2!");
+            Utils.errorLog("Couldn't switch to Mojang AltService");
         }
     }
 
@@ -132,9 +132,9 @@ public class Hydrogen {
         try {
             this.altService.switchService(AltService.EnumAltService.THEALTENING);
         } catch (NoSuchFieldException e) {
-            Utils.errorLog("Couldn't switch to TheAltening altservice!");
+            Utils.errorLog("Couldn't switch to TheAltening AltService");
         } catch (IllegalAccessException e) {
-            Utils.errorLog("Couldn't switch to TheAltening altservice -2!");
+            Utils.errorLog("Couldn't switch to TheAltening AltService");
         }
     }
 }
