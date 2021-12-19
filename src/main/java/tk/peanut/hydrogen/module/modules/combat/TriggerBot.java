@@ -15,9 +15,8 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
-import tk.peanut.hydrogen.utils.TimeHelper;
+import tk.peanut.hydrogen.utils.TimeUtils;
 
-import java.awt.*;
 import java.util.Random;
 
 @Info(name = "TriggerBot", description = "Attacks when hovering over an enemy", category = Category.Combat)
@@ -27,7 +26,7 @@ public class TriggerBot extends Module {
     Random random = new Random();
     int randomD = this.random.nextInt(25);
     int randomInc = this.random.nextInt(15);
-    TimeHelper time = new TimeHelper();
+    TimeUtils time = new TimeUtils();
 
     public TriggerBot() {
         super(Keyboard.KEY_NONE);

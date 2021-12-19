@@ -9,7 +9,7 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
-import tk.peanut.hydrogen.utils.TimeHelper;
+import tk.peanut.hydrogen.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,7 +22,7 @@ import java.util.Random;
 public class AutoClicker extends Module {
 
     Random random = new Random();
-    TimeHelper time = new TimeHelper();
+    TimeUtils time = new TimeUtils();
     int delay;
 
     public AutoClicker() {

@@ -5,17 +5,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventTick;
-import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
-import tk.peanut.hydrogen.utils.TimeHelper;
-import tk.peanut.hydrogen.utils.Utils;
+import tk.peanut.hydrogen.utils.TimeUtils;
 
-import java.awt.*;
-
-import static tk.peanut.hydrogen.utils.TimeHelper.getCurrentMS;
+import static tk.peanut.hydrogen.utils.TimeUtils.getCurrentMS;
 
 /*
  * Created by peanut on 20/02/2021
@@ -75,14 +71,14 @@ public class WTap extends Module {
             }
         }
 
-        if (ens != null && this.mc.thePlayer.isSprinting() && TimeHelper.hasTimePassedMS((long) Hydrogen.getClient().settingsManager.getSettingByName("Delay").getValDouble())) {
+        if (ens != null && this.mc.thePlayer.isSprinting() && TimeUtils.hasTimePassedMS((long) Hydrogen.getClient().settingsManager.getSettingByName("Delay").getValDouble())) {
             this.mc.gameSettings.keyBindForward.pressed = false;
             this.lastHold = getCurrentMS();
-            TimeHelper.reset();
+            TimeUtils.reset();
         }
 
 
-        if (this.lastHold != -1L && TimeHelper.hasTimePassedMS(this.lastHold, (long) Hydrogen.getClient().settingsManager.getSettingByName("Held").getValDouble())) {
+        if (this.lastHold != -1L && TimeUtils.hasTimePassedMS(this.lastHold, (long) Hydrogen.getClient().settingsManager.getSettingByName("Held").getValDouble())) {
             this.mc.gameSettings.keyBindForward.pressed = true;
             this.lastHold = -1L;
         }

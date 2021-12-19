@@ -2,20 +2,17 @@ package tk.peanut.hydrogen.module.modules.player;
 
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.C07PacketPlayerDigging;
 import net.minecraft.network.play.client.C0APacketAnimation;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Vec3;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
-import tk.peanut.hydrogen.utils.TimeHelper;
-import tk.peanut.hydrogen.utils.Utils;
+import tk.peanut.hydrogen.utils.TimeUtils;
 
 import java.util.ArrayList;
 
@@ -25,7 +22,7 @@ import java.util.ArrayList;
 @Info(name = "BedAura", category = Category.Player, description = "Automatically destroys beds")
 public class BedAura extends Module {
 
-    private TimeHelper time = new TimeHelper();
+    private TimeUtils time = new TimeUtils();
 
     public static ArrayList<Integer> ids = new ArrayList<>();
 

@@ -6,16 +6,13 @@ import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
-import org.spongepowered.asm.mixin.injection.Inject;
 import tk.peanut.hydrogen.Hydrogen;
 import tk.peanut.hydrogen.events.EventUpdate;
 import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.settings.Setting;
-import tk.peanut.hydrogen.utils.TimeHelper;
-
-import java.awt.*;
+import tk.peanut.hydrogen.utils.TimeUtils;
 
 /**
  * Created by peanut on 08/02/2021
@@ -29,7 +26,7 @@ public class ChestStealer extends Module {
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Auto Close", this, false));
     }
 
-    TimeHelper delay = new TimeHelper();
+    TimeUtils delay = new TimeUtils();
 
     @EventTarget
     public void onUpdate(EventUpdate event) {
