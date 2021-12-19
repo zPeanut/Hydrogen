@@ -20,6 +20,8 @@ import java.util.ArrayList;
  * Created by peanut on 05/09/2021
  */
 @Info(name = "MurderMystery", category = Category.Player, description = "Draws a line to the murderer")
+
+// TODO: finally finish this
 public class MurderMystery extends Module {
 
     public ArrayList<Entity> entities = new ArrayList<Entity>();
@@ -58,12 +60,12 @@ public class MurderMystery extends Module {
             Entity entity = (Entity)o;
             if ((entity.isEntityAlive() && entities.contains(entity))) {
 
-                //final double posX = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * e.getPartialTicks() - RenderManager.renderPosX;
-                //final double posY = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * e.getPartialTicks() - RenderManager.renderPosY;
-                //final double posZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * e.getPartialTicks() - RenderManager.renderPosZ;
+                final double posX = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * e.getPartialTicks() - mc.getRenderManager().renderPosX;
+                final double posY = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * e.getPartialTicks() - mc.getRenderManager().renderPosY;
+                final double posZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * e.getPartialTicks() - mc.getRenderManager().renderPosZ;
 
-                //mc.entityRenderer.setupCameraTransform(mc.timer.renderPartialTicks, 2);
-                //renderTracer(entity, posX, posY, posZ);
+                // TODO: accesstransformer setupcameratransform mc.entityRenderer.setupCameraTransform(mc.timer.renderPartialTicks, 2);
+                // TODO: renderTracer(entity, posX, posY, posZ);
             }
         });
     }
