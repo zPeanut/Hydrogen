@@ -1,11 +1,13 @@
 package tk.peanut.hydrogen.utils;
 
-public class TimeHelper {
+import org.apache.commons.lang3.RandomUtils;
+
+public class TimeUtils {
     private static long lastMS = 0L;
     private long resetMS = 0L;
 
-    public int convertToMS(int d) {
-        return 1000 / d;
+    public static long randomDelay(final int minDelay, final int maxDelay) {
+        return RandomUtils.nextInt(minDelay, maxDelay);
     }
 
     public static long getCurrentMS() {
@@ -15,11 +17,6 @@ public class TimeHelper {
     public static long getCurrentTime()
     {
         return (long) (System.nanoTime() / 1000000.0D);
-    }
-
-    public static boolean hasDelayRun(long resetMS, int delay)
-    {
-        return getCurrentTime() >= resetMS + delay;
     }
 
     public boolean isDelayComplete(long delay)
@@ -34,6 +31,7 @@ public class TimeHelper {
     {
         return getCurrentTime() >= this.resetMS + d;
     }
+
     public static boolean hasTimePassedMS(long LastMS, long MS) {
         return (getCurrentMS() >= LastMS + MS);
     }
@@ -51,24 +49,12 @@ public class TimeHelper {
         return getCurrentMS() - lastMS >= milliseconds;
     }
 
-    public boolean hasTimeReached(long delay) {
-        return System.currentTimeMillis() - lastMS >= delay;
-    }
-
-    public long getDelay() {
-        return System.currentTimeMillis() - lastMS;
-    }
-
     public static void reset() {
         lastMS = getCurrentMS();
     }
 
     public void setLastMS() {
         lastMS = System.currentTimeMillis();
-    }
-
-    public void setLastMS(long lastMS) {
-        this.lastMS = lastMS;
     }
 
 }
