@@ -98,6 +98,8 @@ public class ModuleManager {
         // 1.10
 
         add(new PingSpoof());
+        add(new MurderMystery());
+        add(new Tracers());
 
 
         // alphabetically sort modules in clickgui
