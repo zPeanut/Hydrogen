@@ -44,8 +44,8 @@ public class BedAura extends Module {
         addSetting(new Setting("Cake", this, false));
         addSetting(new Setting("Egg", this, false));
         addSetting(new Setting("ThroughWalls", this, false));
-        addSetting(new Setting("Radius", this, 5.0D, 1.0D, 6.0D, true));
-        addSetting(new Setting("Delay", this, 1000.0D, 1.0D, 2000.0D, true));
+        addSetting(new Setting("Radius", this, 5, 1, 6, true));
+        addSetting(new Setting("Delay", this, 1000, 1, 2000, true));
     }
 
     @Override
