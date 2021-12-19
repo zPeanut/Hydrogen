@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.client.shader.Shader;
@@ -61,6 +62,10 @@ public class Utils {
         if (max <= min) return min;
 
         return RANDOM.nextInt(max - min) + min;
+    }
+
+    public static void sendChatMessage(final String message) {
+        Minecraft.getMinecraft().thePlayer.addChatMessage(IChatComponent.Serializer.jsonToComponent("{text:\"" + Hydrogen.getClient().prefix + " " + message + "\"}"));
     }
 
     public static void startClip(float x1, float y1, float x2, float y2) {
@@ -293,6 +298,32 @@ public class Utils {
         GlStateManager.enableCull();
         GlStateManager.enableBlend();
         GlStateManager.popMatrix();
+    }
+
+    public static void drawTracer(Entity entity, Color color) {
+        final RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
+        final double x = entity.posX - renderManager.renderPosX;
+        final double y = entity.posY - renderManager.renderPosY;
+        final double z = entity.posZ - renderManager.renderPosZ;
+        final Vec3 eyeVector = new Vec3(0.0, 0.0, 1.0).rotatePitch(-(float)Math.toRadians(Minecraft.getMinecraft().thePlayer.rotationPitch)).rotateYaw(-(float)Math.toRadians(Minecraft.getMinecraft().thePlayer.rotationYaw));
+        GL11.glBlendFunc(770, 771);
+        GL11.glEnable(3042);
+        GL11.glLineWidth(2.0f);
+        GL11.glDisable(3553);
+        GL11.glDisable(2929);
+        GL11.glDepthMask(false);
+        glColor(color);
+        GL11.glBegin(1);
+        GL11.glVertex3d(eyeVector.xCoord, Minecraft.getMinecraft().thePlayer.getEyeHeight() + eyeVector.yCoord, eyeVector.zCoord);
+        GL11.glVertex3d(x, y, z);
+        GL11.glVertex3d(x, y, z);
+        GL11.glVertex3d(x, y + entity.height, z);
+        GL11.glEnd();
+        GL11.glEnable(3553);
+        GL11.glEnable(2929);
+        GL11.glDepthMask(true);
+        GL11.glDisable(3042);
+        GlStateManager.resetColor();
     }
 
     public void renderBoxWithOutline(double x, double y, double z, float width, float height, Color c) {
@@ -718,6 +749,10 @@ public class Utils {
         float blue = (hex & 255) / 255.0F;
         GL11.glColor4f(red, green, blue, alpha);
         return new Color(red, green, blue, alpha);
+    }
+
+    public static void glColor(Color color) {
+        GL11.glColor4f(color.getRed() / 255.0f, color.getGreen() / 255.0f, color.getBlue() / 255.0f, color.getAlpha() / 255.0f);
     }
 
     public static void drawBoundingBoxESP(final AxisAlignedBB axisalignedbb, final float width, final int color) {

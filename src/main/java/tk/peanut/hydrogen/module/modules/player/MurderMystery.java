@@ -45,7 +45,7 @@ public class MurderMystery extends Module {
                     if (player.getCurrentEquippedItem() != null) {
                         if (player.getCurrentEquippedItem().getItem() instanceof ItemSword) {
                             if (!entities.contains(entity)) {
-                                //Logger.logChat(entity.getName() + " is the murderer!");
+                                Utils.sendChatMessage(entity.getName() + " is the murderer!");
                                 entities.add(entity);
                             }
                         } else if (entities.contains(entity)) {
@@ -64,8 +64,8 @@ public class MurderMystery extends Module {
                 final double posY = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * e.getPartialTicks() - mc.getRenderManager().renderPosY;
                 final double posZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * e.getPartialTicks() - mc.getRenderManager().renderPosZ;
 
-                // TODO: accesstransformer setupcameratransform mc.entityRenderer.setupCameraTransform(mc.timer.renderPartialTicks, 2);
-                // TODO: renderTracer(entity, posX, posY, posZ);
+                mc.entityRenderer.setupCameraTransform(mc.timer.renderPartialTicks, 2);
+                Utils.drawTracer(entity, new Color(255, 255, 255, 150));
             }
         });
     }
