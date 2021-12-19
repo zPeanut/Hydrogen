@@ -124,8 +124,7 @@ public class Module {
 
     public void onPre() {}
 
-    public void setup() {
-    }
+    public void setup() {}
 
     public String getSuffix() {
         return suffix;
