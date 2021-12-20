@@ -41,7 +41,9 @@ abstract class MixinRenderer<T extends Entity> {
     @Shadow
     protected abstract void renderOffsetLivingLabel(T entityIn, double x, double y, double z, String str, float p_177069_9_, double p_177069_10_);
 
-
+    /**
+     * @author
+     */
     @Overwrite
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
         if(Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
@@ -81,6 +83,10 @@ abstract class MixinRenderer<T extends Entity> {
                             } else if (player.isInvisible()) {
                                 p_147906_2_ += " \u00a7f[I]";
                             }
+                        }
+
+                        if (Hydrogen.getClient().settingsManager.getSettingByName("MurderMystery").isEnabled()) {
+                            p_147906_2_ += " §c[MURDERER]";
                         }
 
                         if (distance >= 10.0F) {
