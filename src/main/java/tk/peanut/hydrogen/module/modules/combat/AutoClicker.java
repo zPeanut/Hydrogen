@@ -63,7 +63,7 @@ public class AutoClicker extends Module {
         boolean type = Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getValString().equalsIgnoreCase("Left Click");
         delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
         int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random ms").getValDouble());
-        delay = delay + random;
+        delay += random;
         this.time.setLastMS();
         if(type) {
             mc.clickMouse();

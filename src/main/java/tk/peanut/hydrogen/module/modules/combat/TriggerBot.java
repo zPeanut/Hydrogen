@@ -38,85 +38,17 @@ public class TriggerBot extends Module {
     @EventTarget
     public void onUpdate(EventUpdate e)
     {
-        switch((int) Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble()) {
-            case 1:
-                delay = 500;
-                break;
-            case 2:
-                delay = 333;
-                break;
-            case 3:
-                delay = 250;
-                break;
-            case 4:
-                delay = 200;
-                break;
-            case 5:
-                delay = 166;
-                break;
-            case 6:
-                delay = 142;
-                break;
-            case 7:
-                delay = 125;
-                break;
-            case 8:
-                delay = 111;
-                break;
-            case 9:
-                delay = 100;
-                break;
-            case 10:
-                delay = 90;
-                break;
-            case 11:
-                delay = 83;
-                break;
-            case 12:
-                delay = 76;
-                break;
-            case 13:
-                delay = 71;
-                break;
-            case 14:
-                delay = 66;
-                break;
-            case 15:
-                delay = 62;
-                break;
-            case 16:
-                delay = 58;
-                break;
-            case 17:
-                delay = 55;
-                break;
-            case 18:
-                delay = 52;
-                break;
-            case 19:
-                delay = 50;
-                break;
-            case 20:
-                delay = 47;
-                break;
-        }
-        try
-        {
-            if ((!(this.mc.currentScreen instanceof GuiContainer)) && (!(this.mc.currentScreen instanceof GuiChat)) && (!(this.mc.currentScreen instanceof GuiScreen)) && (
-                    ((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemSword)) ||
-                            ((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemPickaxe)) ||
-                            ((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemAxe)))) {
-                if ((this.mc.objectMouseOver != null) &&
-                        (this.mc.objectMouseOver.entityHit != null) && ((this.mc.objectMouseOver.entityHit instanceof EntityLivingBase)) &&
-                        (this.time.hasDelayRun(delay - this.randomD + this.randomInc)))
-                {
-                    this.time.resetAndAdd(new Random().nextInt((int) delay));
-
+        delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
+        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random ms").getValDouble());
+        delay += random;
+        this.time.setLastMS();
+        try {
+            if ((!(this.mc.currentScreen instanceof GuiContainer)) && (!(this.mc.currentScreen instanceof GuiChat)) && (!(this.mc.currentScreen instanceof GuiScreen)) && (((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemSword)) || ((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemPickaxe)) || ((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemAxe)))) {
+                if ((this.mc.objectMouseOver != null) && (this.mc.objectMouseOver.entityHit != null) && ((this.mc.objectMouseOver.entityHit instanceof EntityLivingBase))) {
                     mc.thePlayer.swingItem();
                     this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
                 }
             }
-        }
-        catch (Exception localException) {}
+        } catch (Exception localException) {}
     }
 }
