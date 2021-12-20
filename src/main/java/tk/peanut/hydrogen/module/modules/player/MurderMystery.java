@@ -11,6 +11,7 @@ import tk.peanut.hydrogen.module.Category;
 import tk.peanut.hydrogen.module.Info;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.module.modules.render.ESP;
+import tk.peanut.hydrogen.module.modules.render.Tracers;
 import tk.peanut.hydrogen.settings.Setting;
 import tk.peanut.hydrogen.utils.Utils;
 
@@ -35,7 +36,13 @@ public class MurderMystery extends Module {
 
     @EventTarget
     public void onRender(EventRender3D e) {
-        boolean tracers = Hydrogen.getClient().settingsManager.getSettingByName(this, "Tracers").isEnabled();
+        Module Tracers = new Hydrogen().moduleManager.getModule(Tracers.class);
+        boolean drawTracers = Hydrogen.getClient().settingsManager.getSettingByName(this, "Tracers").isEnabled();
+        int red = (int) Hydrogen.getClient().settingsManager.getSettingByName(Tracers, "Red").getValDouble();
+        int blue = (int) Hydrogen.getClient().settingsManager.getSettingByName(Tracers, "Blue").getValDouble();
+        int green = (int) Hydrogen.getClient().settingsManager.getSettingByName(Tracers, "Green").getValDouble();
+        int alpha = (int) Hydrogen.getClient().settingsManager.getSettingByName(Tracers, "Alpha").getValDouble();
+
         mc.theWorld.loadedEntityList.forEach(o -> {
             Entity entity = (Entity)o;
             if (!entity.isEntityAlive() && entities.contains(entity)) {
@@ -69,8 +76,8 @@ public class MurderMystery extends Module {
                 final double posZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * e.getPartialTicks() - mc.getRenderManager().renderPosZ;
 
                 mc.entityRenderer.setupCameraTransform(mc.timer.renderPartialTicks, 2);
-                if(tracers) {
-                    Utils.drawTracer(entity, new Color(255, 255, 255, 150));
+                if(drawTracers) {
+                    Utils.drawTracer(entity, new Color(red, green, blue, alpha));
                 }
             }
         });

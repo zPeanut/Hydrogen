@@ -23,20 +23,23 @@ import java.awt.*;
 public class Tracers extends Module {
 
     public Tracers() {
-
-        // TODO: finish this
-
         super(0x00);
+
+        addSetting(new Setting("Red", this, 255, 0, 255, true));
+        addSetting(new Setting("Blue", this, 255, 0, 255, true));
+        addSetting(new Setting("Green", this, 255, 0, 255, true));
+        addSetting(new Setting("Alpha", this, 120, 0, 255, true));
     }
 
     @EventTarget
     public void onRender3D(EventRender3D event) {
-        boolean players = Hydrogen.getClient().settingsManager.getSettingByName(this, "Players").isEnabled();
-        boolean entites = Hydrogen.getClient().settingsManager.getSettingByName(this, "Entites").isEnabled();
-        boolean mobs = Hydrogen.getClient().settingsManager.getSettingByName(this, "Mobs").isEnabled();
+        int red = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValDouble();
+        int blue = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValDouble();
+        int green = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValDouble();
+        int alpha = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValDouble();
         for (final Entity entity : Minecraft.getMinecraft().theWorld.getLoadedEntityList()) {
             if (entity != null && entity != Minecraft.getMinecraft().thePlayer && entity instanceof EntityPlayer) {
-                Utils.drawTracer(entity, new Color(255, 255, 255, 150));
+                Utils.drawTracer(entity, new Color(red, green, blue, alpha));
             }
         }
     }
