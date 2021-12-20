@@ -28,6 +28,8 @@ public class MurderMystery extends Module {
 
     public ArrayList<Entity> entities = new ArrayList<Entity>();
 
+    public static boolean isMurderer = false;
+
     public MurderMystery() {
         super(0x00);
 
@@ -59,6 +61,7 @@ public class MurderMystery extends Module {
                     if (player.getCurrentEquippedItem() != null) {
                         if (player.getCurrentEquippedItem().getItem() instanceof ItemSword) {
                             if (!entities.contains(entity)) {
+                                isMurderer = true;
                                 Utils.sendChatMessage(entity.getName() + " is the murderer!");
                                 entities.add(entity);
                             }

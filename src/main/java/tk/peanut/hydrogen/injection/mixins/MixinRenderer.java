@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.module.modules.player.MurderMystery;
 import tk.peanut.hydrogen.module.modules.render.NameTags;
 import tk.peanut.hydrogen.utils.Utils;
 
@@ -85,7 +86,7 @@ abstract class MixinRenderer<T extends Entity> {
                             }
                         }
 
-                        if (Hydrogen.getClient().settingsManager.getSettingByName("MurderMystery").isEnabled()) {
+                        if (Hydrogen.getClient().settingsManager.getSettingByName("MurderMystery").isEnabled() && Hydrogen.getClient().moduleManager.getModulebyName("MurderMystery").isEnabled() && MurderMystery.isMurderer) {
                             p_147906_2_ += " §c[MURDERER]";
                         }
 
