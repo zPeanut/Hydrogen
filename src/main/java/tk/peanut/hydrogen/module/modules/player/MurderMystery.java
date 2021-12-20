@@ -23,7 +23,6 @@ import java.util.ArrayList;
  */
 @Info(name = "MurderMystery", category = Category.Player, description = "Reveals you the murderer")
 
-// TODO: finally finish this
 public class MurderMystery extends Module {
 
     public ArrayList<Entity> entities = new ArrayList<Entity>();
