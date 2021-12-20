@@ -32,16 +32,19 @@ public class MurderMystery extends Module {
         super(0x00);
 
         addSetting(new Setting("Tracers", this, true));
+        addSetting(new Setting("Red", this, 255, 0, 255, true));
+        addSetting(new Setting("Blue", this, 255, 0, 255, true));
+        addSetting(new Setting("Green", this, 255, 0, 255, true));
+        addSetting(new Setting("Alpha", this, 120, 0, 255, true));
     }
 
     @EventTarget
     public void onRender(EventRender3D e) {
-        Module Tracers = new Hydrogen().moduleManager.getModule(Tracers.class);
         boolean drawTracers = Hydrogen.getClient().settingsManager.getSettingByName(this, "Tracers").isEnabled();
-        int red = (int) Hydrogen.getClient().settingsManager.getSettingByName(Tracers, "Red").getValDouble();
-        int blue = (int) Hydrogen.getClient().settingsManager.getSettingByName(Tracers, "Blue").getValDouble();
-        int green = (int) Hydrogen.getClient().settingsManager.getSettingByName(Tracers, "Green").getValDouble();
-        int alpha = (int) Hydrogen.getClient().settingsManager.getSettingByName(Tracers, "Alpha").getValDouble();
+        int red = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValDouble();
+        int blue = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValDouble();
+        int green = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValDouble();
+        int alpha = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValDouble();
 
         mc.theWorld.loadedEntityList.forEach(o -> {
             Entity entity = (Entity)o;

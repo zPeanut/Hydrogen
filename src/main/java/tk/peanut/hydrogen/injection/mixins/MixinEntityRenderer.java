@@ -20,6 +20,7 @@ import tk.peanut.hydrogen.events.EventRender3D;
 import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.module.modules.combat.HitBox;
 import tk.peanut.hydrogen.module.modules.combat.Reach;
+import tk.peanut.hydrogen.module.modules.player.MurderMystery;
 import tk.peanut.hydrogen.module.modules.render.NameTags;
 import tk.peanut.hydrogen.module.modules.render.NoHurtCam;
 import tk.peanut.hydrogen.module.modules.render.Tracers;
@@ -152,14 +153,14 @@ public abstract class MixinEntityRenderer{
 
     @Inject(method = "setupCameraTransform", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/EntityRenderer;setupViewBobbing(F)V", shift = At.Shift.BEFORE))
     private void setupCameraViewBobbingBefore(final CallbackInfo callbackInfo) {
-        if (Hydrogen.getClient().moduleManager.getModule(Tracers.class).isEnabled()) {
+        if (Hydrogen.getClient().moduleManager.getModule(Tracers.class).isEnabled() || Hydrogen.getClient().moduleManager.getModule(MurderMystery.class).isEnabled()) {
             GL11.glPushMatrix();
         }
     }
 
     @Inject(method = "setupCameraTransform", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/EntityRenderer;setupViewBobbing(F)V", shift = At.Shift.AFTER))
     private void setupCameraViewBobbingAfter(final CallbackInfo callbackInfo) {
-        if (Hydrogen.getClient().moduleManager.getModule(Tracers.class).isEnabled()) {
+        if (Hydrogen.getClient().moduleManager.getModule(Tracers.class).isEnabled() || Hydrogen.getClient().moduleManager.getModule(MurderMystery.class).isEnabled()) {
             GL11.glPopMatrix();
         }
     }

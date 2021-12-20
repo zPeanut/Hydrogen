@@ -36,6 +36,7 @@ public class NameTags extends Module {
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Health", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("State", this, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Items", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("MurderMystery", this, true));
     }
 
 
