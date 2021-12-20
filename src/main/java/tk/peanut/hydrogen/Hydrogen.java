@@ -54,7 +54,6 @@ public class Hydrogen {
     public ClickGui clickgui;
     public File directory;
 
-
     public boolean outdated = false;
     public String newversion;
 

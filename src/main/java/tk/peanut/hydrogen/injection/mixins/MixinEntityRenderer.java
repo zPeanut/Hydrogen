@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.util.*;
+import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,6 +22,7 @@ import tk.peanut.hydrogen.module.modules.combat.HitBox;
 import tk.peanut.hydrogen.module.modules.combat.Reach;
 import tk.peanut.hydrogen.module.modules.render.NameTags;
 import tk.peanut.hydrogen.module.modules.render.NoHurtCam;
+import tk.peanut.hydrogen.module.modules.render.Tracers;
 
 import java.util.List;
 import java.util.Objects;
@@ -61,6 +63,7 @@ public abstract class MixinEntityRenderer{
         EventRender3D e = new EventRender3D(partialTicks);
         EventManager.call(e);
     }
+
     @Overwrite
     public void getMouseOver(float p_getMouseOver_1_) {
         Entity entity = this.mc.getRenderViewEntity();
@@ -144,6 +147,20 @@ public abstract class MixinEntityRenderer{
             }
 
             this.mc.mcProfiler.endSection();
+        }
+    }
+
+    @Inject(method = "setupCameraTransform", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/EntityRenderer;setupViewBobbing(F)V", shift = At.Shift.BEFORE))
+    private void setupCameraViewBobbingBefore(final CallbackInfo callbackInfo) {
+        if (Hydrogen.getClient().moduleManager.getModule(Tracers.class).isEnabled()) {
+            GL11.glPushMatrix();
+        }
+    }
+
+    @Inject(method = "setupCameraTransform", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/EntityRenderer;setupViewBobbing(F)V", shift = At.Shift.AFTER))
+    private void setupCameraViewBobbingAfter(final CallbackInfo callbackInfo) {
+        if (Hydrogen.getClient().moduleManager.getModule(Tracers.class).isEnabled()) {
+            GL11.glPopMatrix();
         }
     }
 }
