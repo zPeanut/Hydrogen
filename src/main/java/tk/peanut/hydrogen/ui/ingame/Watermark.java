@@ -61,18 +61,18 @@ public class Watermark extends Module {
                     String watermarknew = Hydrogen.getClient().version + " §7(" + currenttime + ")" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
 
                     if(outline) {
-                        Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 28 : mc.fontRendererObj.getStringWidth(watermarknew) + 28, 0, ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 29 : mc.fontRendererObj.getStringWidth(watermarknew) + 29, 23, 0x99000000);
-                        Gui.drawRect(0, 23, ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 29 : mc.fontRendererObj.getStringWidth(watermarknew) + 29, 24, 0x99000000);
+                        Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 24 : mc.fontRendererObj.getStringWidth(watermarknew) + 28, 0, ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 25 : mc.fontRendererObj.getStringWidth(watermarknew) + 29, 23, 0x99000000);
+                        Gui.drawRect(0, 23, ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 25 : mc.fontRendererObj.getStringWidth(watermarknew) + 29, 24, 0x99000000);
                     }
 
                     if (background) {
-                        Gui.drawRect(0, 0, ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 28 : mc.fontRendererObj.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
+                        Gui.drawRect(0, 0, ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 24 : mc.fontRendererObj.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
                     }
 
                     if(ttf) {
                         FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
                         FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
-                        FontHelper.sf_l.drawStringWithShadow(watermarknew, 25, 5, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(watermarknew, 22, 5, Color.white);
                     } else {
 
                         mc.fontRendererObj.drawStringWithShadow("2", 17, 13, -1);
@@ -98,7 +98,7 @@ public class Watermark extends Module {
                     if(ttf) {
                         FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
                         FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
-                        FontHelper.sf_l.drawStringWithShadow(watermarknew_notime, 25, 5, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(watermarknew_notime, 22, 5, Color.white);
                     } else {
 
                         mc.fontRendererObj.drawStringWithShadow("2", 17, 13, -1);
