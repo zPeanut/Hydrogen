@@ -12,5 +12,7 @@ public class Freecam extends Module {
 
     public Freecam() {
         super(0x00);
+
+        // TODO: do this
     }
 }
