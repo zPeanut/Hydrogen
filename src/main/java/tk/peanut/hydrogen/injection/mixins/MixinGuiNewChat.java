@@ -12,9 +12,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import tk.peanut.hydrogen.Hydrogen;
+import tk.peanut.hydrogen.module.Module;
 import tk.peanut.hydrogen.module.modules.render.ChatRect;
+import tk.peanut.hydrogen.module.modules.render.TTFChat;
+import tk.peanut.hydrogen.utils.FontHelper;
 import tk.peanut.hydrogen.utils.Utils;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -49,6 +53,9 @@ public abstract class MixinGuiNewChat extends MixinGui {
     @Shadow
     private boolean isScrolled;
 
+    /**
+     * @author
+     */
     @Overwrite
     public void drawChat(int updateCounter) {
         if (this.mc.gameSettings.chatVisibility != EntityPlayer.EnumChatVisibility.HIDDEN) {
@@ -67,6 +74,9 @@ public abstract class MixinGuiNewChat extends MixinGui {
                 GlStateManager.pushMatrix();
                 GlStateManager.translate(2.0F, 20.0F, 0.0F);
                 GlStateManager.scale(f1, f1, 1.0F);
+
+                Module ttfchat = Hydrogen.getClient().moduleManager.getModulebyName("TTFChat");
+                boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName(ttfchat, "Type").getValString().equalsIgnoreCase("sf ui display");
 
                 int i1;
                 int j1;
@@ -93,11 +103,21 @@ public abstract class MixinGuiNewChat extends MixinGui {
                                 int j2 = -i1 * 9;
 
                                 if(!Hydrogen.getClient().moduleManager.getModule(ChatRect.class).isEnabled()) {
-                                    Utils.drawRect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
+                                    Utils.rect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
                                 }
                                 String s = chatline.getChatComponent().getFormattedText();
                                 GlStateManager.enableBlend();
-                                this.mc.fontRendererObj.drawStringWithShadow(s, (float)i2, (float)(j2 - 8), 16777215 + (l1 << 24));
+
+
+                                if(Hydrogen.getClient().moduleManager.getModule(TTFChat.class).isEnabled()) {
+                                    if(ttf) {
+                                        FontHelper.sf_l.drawStringWithShadow(s, (float) i2 + 1, (float) (j2 - 10), Color.WHITE);
+                                    } else {
+                                        FontHelper.comfortaa_l.drawStringWithShadow(s, (float) i2 + 1, (float) (j2 - 9), Color.WHITE);
+                                    }
+                                } else {
+                                    this.mc.fontRendererObj.drawStringWithShadow(s, (float) i2, (float) (j2 - 8), 16777215 + (l1 << 24));
+                                }
                                 GlStateManager.disableAlpha();
                                 GlStateManager.disableBlend();
                             }
@@ -106,7 +126,7 @@ public abstract class MixinGuiNewChat extends MixinGui {
                 }
 
                 if (flag) {
-                    i1 = this.mc.fontRendererObj.FONT_HEIGHT;
+                    i1 = Hydrogen.getClient().moduleManager.getModule(TTFChat.class).isEnabled() ? ttf ? FontHelper.sf_l.getFont().getHeight() : FontHelper.comfortaa_l.getFont().getHeight() : this.mc.fontRendererObj.FONT_HEIGHT;
                     GlStateManager.translate(-3.0F, 0.0F, 0.0F);
                     int l2 = k * i1 + k;
                     j1 = j * i1 + j;
@@ -115,8 +135,8 @@ public abstract class MixinGuiNewChat extends MixinGui {
                     if (l2 != j1) {
                         l1 = j3 > 0 ? 170 : 96;
                         int l3 = this.isScrolled ? 13382451 : 3355562;
-                        Utils.drawRect(0, -j3, 2, -j3 - k1, l3 + (l1 << 24));
-                        Utils.drawRect(2, -j3, 1, -j3 - k1, 13421772 + (l1 << 24));
+                        Utils.rect(0, -j3, 2, -j3 - k1, l3 + (l1 << 24));
+                        Utils.rect(2, -j3, 1, -j3 - k1, 13421772 + (l1 << 24));
                     }
                 }
 

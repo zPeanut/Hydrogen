@@ -100,7 +100,7 @@ public class ModuleManager {
         add(new PingSpoof());
         add(new MurderMystery());
         add(new Tracers());
-
+        add(new TTFChat());
 
         // alphabetically sort modules in clickgui
 
