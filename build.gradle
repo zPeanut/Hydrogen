@@ -55,6 +55,8 @@ minecraft {
     runDir = "run"
     mappings = "stable_22"
     makeObfSourceJar = true
+    // Tells FML to load our mixin loader in IDE's.
+    clientJvmArgs += '-Dfml.coreMods.load=me.peanut.hydrogen.injection.MixinLoader'
 }
 
 dependencies {
