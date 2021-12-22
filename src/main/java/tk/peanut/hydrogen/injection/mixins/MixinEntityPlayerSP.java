@@ -121,14 +121,19 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
     @Shadow
     protected abstract boolean pushOutOfBlocks(double x, double y, double z);
 
+    /**
+     * @author
+     */
     @Overwrite
     public void sendChatMessage(String message) {
-        if (Hydrogen.getClient().commandManager.execute(message)) {
-            return;
-        }
-        if (message.startsWith(".")) {
-            Hydrogen.getClient().commandManager.execute(message.replace(".", " "));
-            return;
+        if(!Hydrogen.getClient().panic) {
+            if (Hydrogen.getClient().commandManager.execute(message)) {
+                return;
+            }
+            if (message.startsWith(".")) {
+                Hydrogen.getClient().commandManager.execute(message.replace(".", " "));
+                return;
+            }
         }
         this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
     }

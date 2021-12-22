@@ -20,7 +20,7 @@ public class MixinGuiScreen {
 
     @Inject(method = "sendChatMessage(Ljava/lang/String;Z)V", at = @At("HEAD"), cancellable = true)
     private void onChat(String msg, boolean addToChat, @NotNull CallbackInfo ci) {
-        if (msg.startsWith(".") && msg.length() > 1) {
+        if (msg.startsWith(".") && msg.length() > 1 && !(Hydrogen.getClient().panic)) {
             if (Hydrogen.getClient().commandManager.execute(msg)) {
                 this.mc.ingameGUI.getChatGUI().addToSentMessages(msg);
             }

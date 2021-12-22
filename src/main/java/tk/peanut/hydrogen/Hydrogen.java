@@ -55,6 +55,7 @@ public class Hydrogen {
     public File directory;
 
     public boolean outdated = false;
+    public boolean panic = false;
     public String newversion;
 
     public Hydrogen() {
@@ -62,6 +63,7 @@ public class Hydrogen {
     }
 
     public void startClient() {
+        panic = false;
         directory = new File(Minecraft.getMinecraft().mcDataDir, name);
         if (!this.directory.exists()) {
             directory.mkdir();
@@ -91,8 +93,7 @@ public class Hydrogen {
         return utils;
     }
 
-    public void stopClient() {
-    }
+    public void stopClient() {}
 
     public void isOutdated() {
         try {

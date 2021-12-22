@@ -41,6 +41,9 @@ public class Watermark extends Module {
 
     @EventTarget
     public void drawWatermark(EventRender2D e) {
+        if(Hydrogen.getClient().panic) {
+            return;
+        }
         if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
             if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
                 return;

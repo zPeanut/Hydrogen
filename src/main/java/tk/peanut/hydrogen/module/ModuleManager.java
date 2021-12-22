@@ -101,6 +101,7 @@ public class ModuleManager {
         add(new MurderMystery());
         add(new Tracers());
         add(new TTFChat());
+        add(new Panic());
 
         // alphabetically sort modules in clickgui
 
