@@ -43,7 +43,7 @@ repositories {
 }
 
 version = "1.9.1"
-group="tk.peanut.hydrogen"
+group="me.peanut.hydrogen"
 archivesBaseName = "hydrogen"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
