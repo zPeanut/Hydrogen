@@ -1,27 +1,20 @@
 package tk.peanut.hydrogen.events;
 
+import com.darkmagician6.eventapi.events.Event;
 import com.darkmagician6.eventapi.events.callables.EventCancellable;
 import com.darkmagician6.eventapi.types.EventType;
 import net.minecraft.network.Packet;
 
-public class EventPacket extends EventCancellable {
-    private final EventType eventType;
+public class EventPacket extends EventCancellable implements Event {
+
     private Packet packet;
 
-    public EventPacket(EventType eventType, Packet packet) {
-        this.eventType = eventType;
+    public EventPacket(Packet packet) {
         this.packet = packet;
-    }
-
-    public EventType getEventType() {
-        return eventType;
     }
 
     public Packet getPacket() {
         return packet;
     }
 
-    public void setPacket(Packet packet) {
-        this.packet = packet;
-    }
 }
