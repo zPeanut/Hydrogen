@@ -42,7 +42,7 @@ repositories {
     }
 }
 
-version = "1.9.1"
+version = "1.10-pre"
 group="me.peanut.hydrogen"
 archivesBaseName = "hydrogen"
 
@@ -101,7 +101,7 @@ jar {
             "tweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
             "TweakOrder": 0,
             'FMLAT': 'hydrogen_at.cfg',
-            "FMLCorePluginContainsFMLMod": 'tk.peanut.phosphor.injection.MixinLoader',
+            "FMLCorePluginContainsFMLMod": 'me.peanut.hydrogen.injection.MixinLoader',
     )
 }
 
