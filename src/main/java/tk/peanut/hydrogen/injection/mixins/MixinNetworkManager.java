@@ -1,6 +1,7 @@
 package tk.peanut.hydrogen.injection.mixins;
 
 import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.events.Event;
 import com.darkmagician6.eventapi.types.EventType;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.network.NetworkManager;
@@ -14,20 +15,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(NetworkManager.class)
 public class MixinNetworkManager {
 
-    @Inject(method = "channelRead0", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/Packet;processPacket(Lnet/minecraft/network/INetHandler;)V", shift = At.Shift.BEFORE), cancellable = true)
-    private void packetReceived(ChannelHandlerContext p_channelRead0_1_, Packet packet, CallbackInfo ci) {
-        EventPacket event = new EventPacket(EventType.RECIEVE, packet);
+    @Inject(method = "channelRead0", at = @At("HEAD"), cancellable = true)
+    private void read(final ChannelHandlerContext context, final Packet<?> packet, final CallbackInfo callback) {
+        EventPacket event = new EventPacket(packet);
         EventManager.call(event);
-
-        if (event.isCancelled()) ci.cancel();
+        if (event.isCancelled()) {
+            callback.cancel();
+        }
     }
 
     @Inject(method = "sendPacket(Lnet/minecraft/network/Packet;)V", at = @At("HEAD"), cancellable = true)
-    private void sendPacket(Packet packetIn, CallbackInfo ci) {
-        EventPacket event = new EventPacket(EventType.SEND, packetIn);
+    private void send(final Packet<?> packet, final CallbackInfo callback) {
+        EventPacket event = new EventPacket(packet);
         EventManager.call(event);
-
-        if (event.isCancelled()) ci.cancel();
+        if (event.isCancelled()) {
+            callback.cancel();
+        }
     }
 
 
