@@ -9,6 +9,7 @@ import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.ui.mainmenu.MainMenu;
 import me.peanut.hydrogen.ui.mainmenu.screens.GuiCredits;
 import me.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
+import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
@@ -108,6 +109,9 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
     @Shadow
     public abstract void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_);
 
+    /**
+     * @author
+     */
     @Overwrite
     public void initGui() {
         this.viewportTexture = new DynamicTexture(256, 256);
@@ -136,6 +140,10 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
             if (Hydrogen.getClient().outdated) {
                 this.buttonList.add(new ExpandButton(99, 45, 36, 90, 20, "Update!"));
+            }
+
+            if(Hydrogen.version.contains("dev") || Hydrogen.version.contains("beta") || Hydrogen.version.contains("pre")) {
+                this.buttonList.add(new ExpandButton(98, 144, Utils.getScaledRes().getScaledHeight() - 14, FontHelper.sf_l.getStringWidth("§7Please report any issues at our §f§n§lGitHub!") + 34, 20, "", false));
             }
 
         } else {
@@ -183,6 +191,23 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         if(button.id == 99) {
             try {
                 URL url = new URL(Hydrogen.release);
+                String link = url.toString();
+                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                Desktop.getDesktop().browse((new URL(link)).toURI());
+            }
+
+            catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(button.id == 98) {
+            try {
+                URL url = new URL(Hydrogen.github);
                 String link = url.toString();
                 BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                 Desktop.getDesktop().browse((new URL(link)).toURI());

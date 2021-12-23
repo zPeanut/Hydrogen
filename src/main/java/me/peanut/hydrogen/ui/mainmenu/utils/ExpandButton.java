@@ -21,6 +21,7 @@ public class ExpandButton
     int alpha = 0;
     public int size = 0;
     public boolean tooltipEnabled;
+    public boolean visible = true;
     public String tText2;
     public boolean cfont;
 
@@ -33,6 +34,16 @@ public class ExpandButton
         this.text = par6Str;
     }
 
+    public ExpandButton(int par1, int left, int top, int right, int bot, String par6Str, boolean visible) {
+        super(par1, left, top, right, bot, par6Str);
+        this.x = left;
+        this.y = top;
+        this.x1 = right;
+        this.y1 = bot;
+        this.text = par6Str;
+        this.visible = visible;
+    }
+
     public ExpandButton(boolean enabled, int par1, int par2, int par3, int par4, int par5, String par6Str) {
         super(par1, par2, par3, par4, par5, par6Str);
         this.x = par2;
@@ -42,18 +53,6 @@ public class ExpandButton
         this.text = par6Str;
         this.enabled = enabled;
     }
-
-    public ExpandButton(int par1, int left, int top, int right, int bot, String par6Str, boolean cfont) {
-        super(par1, left, top, right, bot, par6Str);
-        this.x = left;
-        this.y = top;
-        this.x1 = right;
-        this.y1 = bot;
-        this.text = par6Str;
-        this.cfont = cfont;
-    }
-
-
 
     public ExpandButton(int i, int j, int k, String stringParams) {
         this(i, j, k, 200, 20, stringParams);
@@ -80,9 +79,11 @@ public class ExpandButton
                 this.size -= 1;
             }
         }
-        Utils.rect(this.x - this.size, this.y - this.size, this.x + this.x1 + this.size, this.y + this.y1 + this.size, this.alpha);
-        if (!this.tooltipEnabled) {
-            FontUtil.drawTotalCenteredStringWithShadow3(isOverButton && this.enabled ? "§7" + this.text : this.text, this.x + this.x1 / 2, this.y + this.y1 / 2 , Color.white);
+        if(this.visible) {
+            Utils.rect(this.x - this.size, this.y - this.size, this.x + this.x1 + this.size, this.y + this.y1 + this.size, this.alpha);
+            if (!this.tooltipEnabled) {
+                FontUtil.drawTotalCenteredStringWithShadow3(isOverButton && this.enabled ? "§7" + this.text : this.text, this.x + this.x1 / 2, this.y + this.y1 / 2, Color.white);
+            }
         }
     }
 }
