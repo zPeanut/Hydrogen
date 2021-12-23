@@ -23,14 +23,14 @@ public final class TheAltening {
 		getClass();
 		URLConnection licenseEndpoint = (new URL(attach(website + "license"))).openConnection();
 		String userInfo = new String(Utilities.getInstance().readAllBytes(licenseEndpoint.getInputStream()));
-		return (User) this.gson.fromJson(userInfo, User.class);
+		return this.gson.fromJson(userInfo, User.class);
 	}
 
 	public AlteningAlt generateAccount(User user) throws IOException {
 		getClass();
 		URLConnection generateEndpoint = (new URL(attach(website + "generate"))).openConnection();
 		String accountInfo = new String(Utilities.getInstance().readAllBytes(generateEndpoint.getInputStream()));
-			return (AlteningAlt) this.gson.fromJson(accountInfo, AlteningAlt.class);
+			return this.gson.fromJson(accountInfo, AlteningAlt.class);
 	}
 
 	public boolean favoriteAccount(AlteningAlt account) throws IOException {
