@@ -1,10 +1,12 @@
 [
 {
-"modid":"hydrogen",
-"name":"Hydrogen",
-"description":"A forge-mixin based ghost client for Minecraft 1.8.9.",
-"version":"1.6.1",
-"authorList":["zPeanut"],
-"credits":"superblaubeere27 for providing the initial client base."
+  "modid":"hydrogen",
+  "name":"Hydrogen",
+  "description":"An open source, mixin based utility mod for Minecraft 1.8.9 built on Minecraft Forge.",
+  "mcversion": "1.8.9",
+  "version":"1.10",
+  "url": "https://github.com/zPeanut/Hydrogen",
+  "authorList":["zPeanut", "UltramoxX"],
+  "credits":"superblaubeere27 for providing most of the initial client base.\nHeroCode for providing the ClickGUI API.\nLemon for providing the Settings system, used in the client.\nAll of my contributors on discord who've reported bugs and suggested modules over the past."
 }
 ]

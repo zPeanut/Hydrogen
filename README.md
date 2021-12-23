@@ -48,9 +48,10 @@ inside of your directory. Simply put that file into your mods folder inside .min
 
 ## Credits
 
-**superblaubeere27** for providing most of the initial ClientBase  
+**superblaubeere27** for providing most of the initial client base.  
 **HeroCode** for providing the ClickGUI API.  
-**Hexeption** for providing the OutlineESP code.
+**Lemon** for providing the Settings system, used in the client.  
+**All of my contributors on discord**, who've reported bugs and suggested modules over the past.
 
 [me]: https://github.com/zPeanut
 [UltramoxX]: https://github.com/Morten-Renner
