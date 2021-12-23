@@ -27,7 +27,7 @@ public class PingSpoof extends Module {
 
     private final HashMap<Packet<?>, Long> packetsMap;
 
-    private List<Packet> packetList = new CopyOnWriteArrayList<>();
+    private final List<Packet> packetList = new CopyOnWriteArrayList<>();
 
     public PingSpoof() {
         super(0x00);
@@ -42,7 +42,7 @@ public class PingSpoof extends Module {
         int minDelay = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Min. Delay").getValDouble();
         int maxDelay = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Max. Delay").getValDouble();
         final Packet packet = event.getPacket();
-        if ((packet instanceof C00PacketKeepAlive || packet instanceof C16PacketClientStatus) && !this.packetsMap.keySet().contains(packet)) {
+        if ((packet instanceof C00PacketKeepAlive || packet instanceof C16PacketClientStatus) && !this.packetsMap.containsKey(packet)) {
             event.setCancelled(true);
             synchronized (this.packetsMap) {
                 this.packetsMap.put((Packet<?>)packet, System.currentTimeMillis() + TimeUtils.randomDelay(minDelay, maxDelay));
@@ -58,7 +58,7 @@ public class PingSpoof extends Module {
                 while (iterator.hasNext()) {
                     final Map.Entry<Packet<?>, Long> entry = iterator.next();
                     if (entry.getValue() < System.currentTimeMillis()) {
-                        PingSpoof.mc.getNetHandler().addToSendQueue((Packet)entry.getKey());
+                        PingSpoof.mc.getNetHandler().addToSendQueue(entry.getKey());
                         iterator.remove();
                     }
                 }

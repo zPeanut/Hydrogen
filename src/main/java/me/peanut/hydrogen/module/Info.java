@@ -12,10 +12,10 @@ import java.lang.annotation.Target;
 @Retention(value=RetentionPolicy.RUNTIME)
 public @interface Info {
 
-    public String name();
+    String name();
 
-    public String description();
+    String description();
 
-    public Category category();
+    Category category();
 
 }
