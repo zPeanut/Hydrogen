@@ -33,6 +33,19 @@ Hydrogen runs on Gradle. Make sure you have it is installed correctly before set
     - Eclipse: `gradlew setupDecompWorkspace eclipse build`
 4. Open the folder in your preferred IDEA, depending which you chose above.
 
+## Exporting the client using Forge MDK
+
+After you have succesfully made changes to Hydrogen and want to export it, simply type  
+
+`.\gradlew clean build`  
+
+into your IDEA Terminal or Windows Command Prompt / Windows Powershell.  
+You will then get a jar file located at  
+
+`\build\libs`  
+
+inside of your directory. Simply put that file into your mods folder inside .minecraft and you're good to go!
+
 ## Credits
 
 **superblaubeere27** for providing most of the initial ClientBase  
