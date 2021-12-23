@@ -16,8 +16,8 @@ import java.awt.*;
 public class Checkbox extends Component {
 
 	private boolean hovered;
-	private Setting op;
-	private Button parent;
+	private final Setting op;
+	private final Button parent;
 	private int offset;
 	private int x;
 	private int y;

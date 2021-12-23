@@ -9,7 +9,7 @@ import me.peanut.hydrogen.settings.Setting;
  */
 public class SettingsSliderFile {
 
-    private static FileManager SliderValue = new FileManager("slider", "Hydrogen");
+    private static final FileManager SliderValue = new FileManager("slider", "Hydrogen");
 
     public SettingsSliderFile() {
         try {
@@ -22,7 +22,7 @@ public class SettingsSliderFile {
         try {
             SliderValue.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
-                String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + String.valueOf(setting.getValDouble()));
+                String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + setting.getValDouble());
                 SliderValue.write(line);
             }
         } catch (Exception e) {
