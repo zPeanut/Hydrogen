@@ -9,7 +9,7 @@ import me.peanut.hydrogen.settings.Setting;
  */
 public class SettingsButtonFile {
 
-    private static FileManager ButtonList = new FileManager("button", "Hydrogen");
+    private static final FileManager ButtonList = new FileManager("button", "Hydrogen");
 
     public SettingsButtonFile() {
         try {
@@ -22,7 +22,7 @@ public class SettingsButtonFile {
         try {
             ButtonList.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
-                String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + String.valueOf(setting.isEnabled()));
+                String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + setting.isEnabled());
                 ButtonList.write(line);
             }
         } catch (Exception e) {

@@ -16,12 +16,12 @@ import org.lwjgl.opengl.GL11;
 public class BlurUtil {
 
     private static ShaderGroup blurShader;
-    private static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
     private static Framebuffer buffer;
     private static int lastScale;
     private static int lastScaleWidth;
     private static int lastScaleHeight;
-    private static ResourceLocation shader = new ResourceLocation("shaders/post/blur.json");
+    private static final ResourceLocation shader = new ResourceLocation("shaders/post/blur.json");
 
    public static void initFboAndShader() {
         try {

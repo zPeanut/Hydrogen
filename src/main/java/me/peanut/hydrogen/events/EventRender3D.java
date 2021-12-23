@@ -11,7 +11,7 @@ public class EventRender3D extends EventCancellable {
 
     public EventRender3D(float partialTicks)
     {
-        this.partialTicks = partialTicks;
+        EventRender3D.partialTicks = partialTicks;
     }
 
     public float getPartialTicks()

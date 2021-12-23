@@ -9,7 +9,7 @@ import me.peanut.hydrogen.ui.clickgui.component.Frame;
  */
 public class ClickGuiFile {
 
-    private static FileManager clickGuiCoord = new FileManager("clickgui", "Hydrogen");
+    private static final FileManager clickGuiCoord = new FileManager("clickgui", "Hydrogen");
 
     public ClickGuiFile() {
         try {

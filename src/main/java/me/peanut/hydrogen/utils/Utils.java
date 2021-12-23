@@ -36,12 +36,8 @@ public class Utils {
     public static Utils instance;
 
     private static ShaderGroup blurShader;
-    private static Minecraft mc = Minecraft.getMinecraft();
-    private static Framebuffer buffer;
-    private static int lastScale;
-    private static int lastScaleWidth;
-    private static int lastScaleHeight;
-    private static ResourceLocation shader = new ResourceLocation("shaders/post/blur.json");
+    private static final Minecraft mc = Minecraft.getMinecraft();
+    private static final ResourceLocation shader = new ResourceLocation("shaders/post/blur.json");
 
     public Utils() {
         instance = this;
@@ -73,15 +69,13 @@ public class Utils {
         float r = (float) ratio;
         float ir = (float) 1.0 - r;
 
-        float rgb1[] = new float[3];
-        float rgb2[] = new float[3];
+        float[] rgb1 = new float[3];
+        float[] rgb2 = new float[3];
 
         color1.getColorComponents(rgb1);
         color2.getColorComponents(rgb2);
 
-        Color color = new Color(rgb1[0] * r + rgb2[0] * ir,
-                rgb1[1] * r + rgb2[1] * ir,
-                rgb1[2] * r + rgb2[2] * ir);
+        Color color = new Color(rgb1[0] * r + rgb2[0] * ir, rgb1[1] * r + rgb2[1] * ir, rgb1[2] * r + rgb2[2] * ir);
 
         return color;
     }
@@ -147,13 +141,13 @@ public class Utils {
     }
 
     public static int getRainbowInt(float seconds, float saturation, float brightness, long index) {
-        float hue = ((System.currentTimeMillis() + index) % (int) (seconds * 1000)) / (float) (seconds * 1000);
+        float hue = ((System.currentTimeMillis() + index) % (int) (seconds * 1000)) / (seconds * 1000);
         int color = Color.HSBtoRGB(hue, saturation, brightness);
         return color;
     }
 
     public static Color getRainbowColor(float seconds, float saturation, float brightness, long index) {
-        float hue = ((System.currentTimeMillis() + index) % (int) (seconds * 1000)) / (float) (seconds * 1000);
+        float hue = ((System.currentTimeMillis() + index) % (int) (seconds * 1000)) / (seconds * 1000);
         Color color = Color.getHSBColor(hue, saturation, brightness);
         return color;
     }
@@ -553,18 +547,6 @@ public class Utils {
         }
     }
 
-    public static void initFboAndShader() {
-        try {
-
-            blurShader = new ShaderGroup(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), shader);
-            blurShader.createBindFramebuffers(mc.displayWidth, mc.displayHeight);
-            buffer = blurShader.mainFramebuffer;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void drawOutlineForEntity(final Entity e, final AxisAlignedBB axisalignedbb, final float width, final float red, final float green, final float blue, final float alpha) {
         GL11.glEnable(3042);
         GL11.glBlendFunc(770, 771);
@@ -833,10 +815,10 @@ public class Utils {
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.color(f, f1, f2, f3);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION);
-        worldrenderer.pos((double)left, (double)bottom, 0.0D).endVertex();
-        worldrenderer.pos((double)right, (double)bottom, 0.0D).endVertex();
-        worldrenderer.pos((double)right, (double)top, 0.0D).endVertex();
-        worldrenderer.pos((double)left, (double)top, 0.0D).endVertex();
+        worldrenderer.pos(left, bottom, 0.0D).endVertex();
+        worldrenderer.pos(right, bottom, 0.0D).endVertex();
+        worldrenderer.pos(right, top, 0.0D).endVertex();
+        worldrenderer.pos(left, top, 0.0D).endVertex();
         tessellator.draw();
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();

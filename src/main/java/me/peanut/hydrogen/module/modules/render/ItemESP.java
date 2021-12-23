@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.module.modules.render;
 
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -36,10 +37,10 @@ public class ItemESP extends Module {
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-        for (Entity e : this.mc.theWorld.loadedEntityList) {
+        for (Entity e : mc.theWorld.loadedEntityList) {
             if (e instanceof EntityItem) {
                 EntityItem item = (EntityItem)e;
-                float pTicks = this.mc.timer.renderPartialTicks;
+                float pTicks = mc.timer.renderPartialTicks;
                 double RPX = Minecraft.getMinecraft().getRenderManager().renderPosX;
                 double RPY = Minecraft.getMinecraft().getRenderManager().renderPosY;
                 double RPZ = Minecraft.getMinecraft().getRenderManager().renderPosZ;
@@ -54,7 +55,7 @@ public class ItemESP extends Module {
                 if(outline) {
                     Hydrogen.getUtils().renderBoxWithOutline(x, y - 0.7D, z, 0.5F, 0.5F, c);
                 } else {
-                    Hydrogen.getUtils().renderBox(x, y - 0.7D, z, 0.5F, 0.5F, c);
+                    Utils.renderBox(x, y - 0.7D, z, 0.5F, 0.5F, c);
                 }
             }
         }

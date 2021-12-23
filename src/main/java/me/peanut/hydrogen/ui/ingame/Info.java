@@ -41,7 +41,7 @@ public class Info extends Module {
                 String y = String.valueOf((int) mc.thePlayer.posY);
                 String z = String.valueOf((int) mc.thePlayer.posZ);
                 String coordinates = String.format("XYZ §7(%s, %s, %s)", x, y, z);
-                String fps = String.format("FPS §7%s", mc.getDebugFPS());
+                String fps = String.format("FPS §7%s", Minecraft.getDebugFPS());
                 boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF");
 
                 if(Hydrogen.getClient().settingsManager.getSettingByName(this, "Alignment").getValString().equalsIgnoreCase("right")) {

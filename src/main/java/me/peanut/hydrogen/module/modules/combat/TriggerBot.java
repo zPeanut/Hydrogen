@@ -43,10 +43,10 @@ public class TriggerBot extends Module {
         delay += random;
         this.time.setLastMS();
         try {
-            if ((!(this.mc.currentScreen instanceof GuiContainer)) && (!(this.mc.currentScreen instanceof GuiChat)) && (!(this.mc.currentScreen instanceof GuiScreen)) && (((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemSword)) || ((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemPickaxe)) || ((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemAxe)))) {
-                if ((this.mc.objectMouseOver != null) && (this.mc.objectMouseOver.entityHit != null) && ((this.mc.objectMouseOver.entityHit instanceof EntityLivingBase))) {
+            if ((!(mc.currentScreen instanceof GuiContainer)) && (!(mc.currentScreen instanceof GuiChat)) && (!(mc.currentScreen instanceof GuiScreen)) && (((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemSword)) || ((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemPickaxe)) || ((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemAxe)))) {
+                if ((mc.objectMouseOver != null) && (mc.objectMouseOver.entityHit != null) && ((mc.objectMouseOver.entityHit instanceof EntityLivingBase))) {
                     mc.thePlayer.swingItem();
-                    this.mc.playerController.attackEntity(mc.thePlayer, this.mc.objectMouseOver.entityHit);
+                    mc.playerController.attackEntity(mc.thePlayer, mc.objectMouseOver.entityHit);
                 }
             }
         } catch (Exception localException) {}

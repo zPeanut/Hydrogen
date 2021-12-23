@@ -130,7 +130,7 @@ public class NameTags extends Module {
 
         RenderHelper.enableStandardItemLighting();
         for(int i = 0; i < mc.theWorld.loadedEntityList.size(); i++) {
-            Entity e = (Entity)mc.theWorld.loadedEntityList.get(i);
+            Entity e = mc.theWorld.loadedEntityList.get(i);
 
             if (e instanceof EntityLivingBase) {
                 if (mc.getRenderManager().getEntityRenderObject(e) instanceof RendererLivingEntity) {

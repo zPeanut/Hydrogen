@@ -9,14 +9,14 @@ import net.minecraft.client.gui.Gui;
 import me.peanut.hydrogen.ui.clickgui.component.Component;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
 
-public class VisibleButton extends Component { // Remove this class if you don't want it (it's kinda useless)
+public class VisibleButton extends Component { // TODO: add this
 
 	private boolean hovered;
-	private Button parent;
+	private final Button parent;
 	private int offset;
 	private int x;
 	private int y;
-	private Module mod;
+	private final Module mod;
 	
 	public VisibleButton(Button button, Module mod, int offset) {
 		this.parent = button;
@@ -56,9 +56,6 @@ public class VisibleButton extends Component { // Remove this class if you don't
 	}
 	
 	public boolean isMouseOnButton(int x, int y) {
-		if(x > this.x && x < this.x + 88 && y > this.y && y < this.y + 12) {
-			return true;
-		}
-		return false;
+		return x > this.x && x < this.x + 88 && y > this.y && y < this.y + 12;
 	}
 }

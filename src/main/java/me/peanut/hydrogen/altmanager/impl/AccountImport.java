@@ -19,11 +19,11 @@ public class AccountImport extends JPanel implements ActionListener {
 
 	public JButton openButton;
 
-	private JFileChooser fc;
+	private final JFileChooser fc;
 
 	public AccountImport() {
 		this.fc = new JFileChooser();
-		this.fc.setFileFilter(new FileNameExtensionFilter("Text Files", new String[] { "txt" }));
+		this.fc.setFileFilter(new FileNameExtensionFilter("Text Files", "txt"));
 		this.openButton = new JButton("Open a File...");
 		this.openButton.addActionListener(this);
 		add(this.openButton);

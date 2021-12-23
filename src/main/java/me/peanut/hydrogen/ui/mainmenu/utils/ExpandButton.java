@@ -10,13 +10,12 @@ import java.awt.*;
 /**
  * Created by peanut on 25/02/2021
  */
-public class ExpandButton
-        extends GuiButton {
-    private int x;
+public class ExpandButton extends GuiButton {
+    private final int x;
     public int y;
-    private int x1;
-    private int y1;
-    private String text;
+    private final int x1;
+    private final int y1;
+    private final String text;
     int alphaInc = 100;
     int alpha = 0;
     public int size = 0;

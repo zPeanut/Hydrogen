@@ -11,11 +11,11 @@ import java.util.Random;
  */
 public class ParticleGenerator {
 
-    private int count;
-    private int width;
-    private int height;
-    private ArrayList<Particle> particles = new ArrayList();
-    private Random random = new Random();
+    private final int count;
+    private final int width;
+    private final int height;
+    private final ArrayList<Particle> particles = new ArrayList();
+    private final Random random = new Random();
     int state = 0;
     int a = 255;
     int r = 255;
@@ -53,7 +53,7 @@ public class ParticleGenerator {
         private int k;
         private float size;
         private boolean reset;
-        private Random random = new Random();
+        private final Random random = new Random();
 
         public Particle(int x, int y)
         {

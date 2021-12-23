@@ -9,7 +9,7 @@ import me.peanut.hydrogen.file.FileManager;
  */
 public class KeybindFile {
 
-    private static FileManager bindList = new FileManager("binds", "Hydrogen");
+    private static final FileManager bindList = new FileManager("binds", "Hydrogen");
 
     public KeybindFile() {
         try {
@@ -22,7 +22,7 @@ public class KeybindFile {
         try {
             bindList.clear();
             for (Module module : Hydrogen.getClient().moduleManager.getModules()) {
-                String line = (module.getName() + ":" + String.valueOf(module.getKeybind()));
+                String line = (module.getName() + ":" + module.getKeybind());
                 bindList.write(line);
             }
         } catch (Exception e) {
