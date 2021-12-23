@@ -1,124 +1,142 @@
+// courtesy of notperry
+
 buildscript {
     repositories {
-        jcenter()
-        mavenLocal()
+        // The mavenCentral() alias means that dependencies are fetched from the central Maven 2 repository (https://repo1.maven.org/maven2).
         mavenCentral()
-
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-
-        maven {
-            url = "https://plugins.gradle.org/m2"
-        }
-
-        maven {
-            name = 'SpongePowered'
-            url = 'https://repo.spongepowered.org/maven'
-        }
+        // The url to get the spongepowered dependencies from.
+        maven { url 'https://repo.spongepowered.org/maven' }
+        // The url to get the forge dependencies from.
+        maven { url 'https://files.minecraftforge.net/maven' }
     }
-
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
-        classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.0.10"
-        classpath "org.spongepowered:mixingradle:0.6-SNAPSHOT"
-        classpath "com.github.jengelman.gradle.plugins:shadow:1.2.3"
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
     }
 }
 
-apply plugin: "net.minecraftforge.gradle.forge"
-apply plugin: "org.spongepowered.mixin"
-apply plugin: "com.github.johnrengelman.shadow"
+// Gradle plugin for all Minecraft mod development needs.
+apply plugin: 'net.minecraftforge.gradle.forge'
+// Gradle plugin. Mixin is a trait/mixin & bytecode weaving framework for Java using ASM.
+apply plugin: 'org.spongepowered.mixin'
+// Only edit below this line, the above code adds & enables the necessary things for Forge to be setup.
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    jcenter()
+// The jar version number that will be output when building.
+version = '1.10-pre'
+// https://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'me.peanut.hydrogen'
+// The jar name that will be output when building.
+archivesBaseName = 'hydrogen'
 
-    maven {
-        name = 'spongepowered-repo'
-        url = 'https://repo.spongepowered.org/maven/'
-    }
+// Need this here so eclipse task generates correctly.
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    // This ensures that the generated class files will be compatible with JVMs specified by targetCompatibility.
+    sourceCompatibility = targetCompatibility = '1.8'
+    // Makes it so u don't need to convert unicode to basic latin for it to be able to build/run.
+    options.encoding 'UTF-8'
 }
-
-version = "1.10-pre"
-group="me.peanut.hydrogen"
-archivesBaseName = "hydrogen"
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-compileJava.options.encoding = 'UTF-8'
 
 minecraft {
-    version = "1.8.9-11.15.1.1722"
-    runDir = "run"
-    mappings = "stable_22"
-    makeObfSourceJar = true
+    // The version of forge.
+    version = '1.8.9-11.15.1.1722'
+    // The directory of where the files that are output when doing runClient will be put.
+    runDir = 'run'
+    // MCP Mapping version.
+    mappings = 'stable_22'
+    // An Srg named sources jar is made by default. No point for it aka bloat so it has been disabled.
+    makeObfSourceJar = false
     // Tells FML to load our mixin loader in IDE's.
     clientJvmArgs += '-Dfml.coreMods.load=me.peanut.hydrogen.injection.MixinLoader'
 }
 
-dependencies {
-    compile("org.spongepowered:mixin:0.6.4-SNAPSHOT") {
-        exclude module: "launchwrapper"
-    }
-    implementation 'org.jetbrains:annotations:15.0'
-}
-
-processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
-
 mixin {
-    add sourceSets.main, "mixins.hydrogen.refmap.json"
-}
-
-shadowJar {
-    dependencies {
-        include(dependency('org.spongepowered:mixin'))
-        include(dependency('org.jetbrains:annotations'))
+    // The obfuscation environment to use when generating refMaps. This is the obfuscation which will end up in the mappings in the generated refMap.
+    defaultObfuscationEnv searge // Types of obf env: searge, notch.
+    // Sets the main sourceSets refmap name instead of add sourceSets.main so there is no conflict cause of it adding another value instead of setting the 1 value.
+    sourceSets {
+        main {
+            ext.refMap = 'mixins.hydrogen.refmap.json'
+        }
     }
-
-    classifier = '##'
 }
 
-build.dependsOn(shadowJar)
-
-jar {
-    manifest.attributes(
-            "MixinConfigs": 'mixins.hydrogen.json',
-            "tweakClass": 'org.spongepowered.asm.launch.MixinTweaker',
-            "TweakOrder": 0,
-            'FMLAT': 'hydrogen_at.cfg',
-            "FMLCorePluginContainsFMLMod": 'me.peanut.hydrogen.injection.MixinLoader',
-    )
+repositories {
+    // The mavenCentral() alias means that dependencies are fetched from the central Maven 2 repository (https://repo1.maven.org/maven2).
+    mavenCentral()
+    // The url to get the spongepowered dependencies from.
+    maven {
+        url 'https://repo.spongepowered.org/maven'
+    }
 }
 
 configurations {
-    mods
-    shade
-    compile.extendsFrom shade
+    // Adds a reference so that we extend/add on to it with depends so we can grab them and compile them into the jar.
+    embed
+    // Grabs what's extended/added on from/to embed and compiles it into the jar when being built.
+    compile.extendsFrom embed
 }
 
-apply plugin: "idea"
+dependencies {
+    embed('org.spongepowered:mixin:0.6.4-SNAPSHOT') {
 
-idea {
-    module {
-        inheritOutputDirs = true
+        // Excludes unneeded stuff.
+        exclude module: 'gson'
+        exclude module: 'guava'
+        exclude module: 'jarjar'
+        exclude module: 'commons-codec'
+        exclude module: 'commons-io'
+        exclude module: 'launchwrapper'
+        exclude module: 'asm-commons'
+        exclude module: 'slf4j-api'
     }
+    implementation 'org.jetbrains:annotations:22.0.0'
+}
+
+processResources {
+    // This will ensure that this task is redone when the versions change.
+    inputs.property 'version', project.version
+    // Replace stuff in mcmod.info, Nothing else.
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        // Replace version.
+        expand 'version': project.version
+    }
+    // Copy everything else except the mcmod.info.
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+    // Moves the access transformer into META-INF.
+    rename '(.+_at.cfg)', 'META-INF/$1'
+}
+
+jar {
+    from(configurations.embed.collect {
+        it.isDirectory() ? it : zipTree(it)
+    }) {
+        // Excludes/Removes useless bloat files from the compiled jar.
+        exclude 'dummyThing',
+                'LICENSE.txt',
+                'META-INF/MUMFREY.RSA',
+                'META-INF/maven/**',
+                'org/**/*.html'
+    }
+    manifest.attributes(
+            // Name for the clients mixins.json.
+            'MixinConfigs': 'mixins.hydrogen.json',
+            // Access transformer configuration.
+            'FMLAT': 'hydrogen_at.cfg',
+            // Directory for the org library mixin loader.
+            'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+            // Actually not too sure what this is for.
+            'TweakOrder': 0,
+            // Whether ur using mcp accessor's or not.
+            'FMLCorePluginContainsFMLMod': 'true',
+            // Directory for the mixin loader for the built jar.
+            'FMLCorePlugin': 'me.peanut.hydrogen.injection.MixinLoader',
+            // Turn this to false for the client to be able to load in a IDE.
+            'ForceLoadAsMod': 'true'
+    )
 }
 
 
