@@ -9,7 +9,7 @@ import me.peanut.hydrogen.file.FileManager;
  */
 public class ModuleFile {
 
-    private static FileManager ModuleList = new FileManager("modules", "Hydrogen");
+    private static final FileManager ModuleList = new FileManager("modules", "Hydrogen");
 
     public ModuleFile() {
         try {
@@ -22,7 +22,7 @@ public class ModuleFile {
         try {
             ModuleList.clear();
             for (Module module : Hydrogen.getClient().moduleManager.getModules()) {
-                String line = (module.getName() + ":" + String.valueOf(module.isEnabled()));
+                String line = (module.getName() + ":" + module.isEnabled());
                 ModuleList.write(line);
             }
         } catch (Exception e) {

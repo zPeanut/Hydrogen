@@ -17,7 +17,7 @@ import net.minecraft.client.gui.ScaledResolution;
 
 public class GuiAlteningLogin extends GuiScreen {
 
-	private GuiScreen previousScreen;
+	private final GuiScreen previousScreen;
 
 	public static AccountLoginThread thread;
 
@@ -46,7 +46,7 @@ public class GuiAlteningLogin extends GuiScreen {
 			try {
 				TheAltening theAltening = new TheAltening(key.getText());
 				AlteningAlt account = theAltening.generateAccount(theAltening.getUser());
-				token.setText(((AlteningAlt) Objects.<AlteningAlt>requireNonNull(account)).getToken());
+				token.setText(Objects.requireNonNull(account).getToken());
 				Hydrogen.getClient().accountManager.save();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -63,7 +63,7 @@ public class GuiAlteningLogin extends GuiScreen {
 			this.mc.displayGuiScreen(this.previousScreen);
 			break;
 		case 2:
-			this.mc.displayGuiScreen((GuiScreen) new GuiMultiplayer(this));
+			this.mc.displayGuiScreen(new GuiMultiplayer(this));
 			break;
 		case 3:
 			if (key.getText().isEmpty() || Hydrogen.getClient().accountManager.getLastAlteningAlt() == null)

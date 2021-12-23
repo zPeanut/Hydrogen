@@ -16,7 +16,7 @@ public class GuiAccountList extends GuiSlot {
 
 	public int selected = -1;
 
-	private GuiAltManager parent;
+	private final GuiAltManager parent;
 
 	public GuiAccountList(GuiAltManager parent) {
 		super(Minecraft.getMinecraft(), parent.width, parent.height, 36, parent.height - 56, 40);

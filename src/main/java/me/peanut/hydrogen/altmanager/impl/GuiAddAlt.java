@@ -17,7 +17,7 @@ public class GuiAddAlt extends GuiScreen {
 
 	private GuiPasswordField password;
 
-	private GuiScreen parent;
+	private final GuiScreen parent;
 
 	public GuiAddAlt(GuiScreen parent) {
 		this.parent = parent;

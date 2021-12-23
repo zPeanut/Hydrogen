@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ModuleManager {
 
-    private List<Module> modules = new ArrayList<Module>();
+    private final List<Module> modules = new ArrayList<Module>();
 
     public ModuleManager() {
         EventManager.register(this);

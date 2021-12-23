@@ -16,11 +16,11 @@ import com.google.gson.JsonParser;
 
 public class AccountManager {
 
-	private ArrayList<Account> accounts = new ArrayList<>();
+	private final ArrayList<Account> accounts = new ArrayList<>();
 
 	private final Gson gson = (new GsonBuilder()).setPrettyPrinting().create();
 
-	private File altsFile;
+	private final File altsFile;
 
 	private String alteningKey;
 
@@ -40,7 +40,7 @@ public class AccountManager {
 			if (!this.altsFile.exists())
 				this.altsFile.createNewFile();
 			PrintWriter printWriter = new PrintWriter(this.altsFile);
-			printWriter.write(this.gson.toJson((JsonElement) toJson()));
+			printWriter.write(this.gson.toJson(toJson()));
 			printWriter.close();
 		} catch (IOException iOException) {
 		}
@@ -61,14 +61,14 @@ public class AccountManager {
 	public JsonObject toJson() {
 		JsonObject jsonObject = new JsonObject();
 		JsonArray jsonArray = new JsonArray();
-		getAccounts().forEach(account -> jsonArray.add((JsonElement) account.toJson()));
+		getAccounts().forEach(account -> jsonArray.add(account.toJson()));
 		if (this.alteningKey != null)
 			jsonObject.addProperty("altening", this.alteningKey);
 		if (this.lastAlteningAlt != null)
 			jsonObject.addProperty("alteningAlt", this.lastAlteningAlt);
 		if (this.lastAlt != null)
-			jsonObject.add("lastalt", (JsonElement) this.lastAlt.toJson());
-		jsonObject.add("accounts", (JsonElement) jsonArray);
+			jsonObject.add("lastalt", this.lastAlt.toJson());
+		jsonObject.add("accounts", jsonArray);
 		return jsonObject;
 	}
 

@@ -16,7 +16,7 @@ public class Sprint extends Module {
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
-        int sprintKeyBind = this.mc.gameSettings.keyBindSprint.getKeyCode();
+        int sprintKeyBind = mc.gameSettings.keyBindSprint.getKeyCode();
         KeyBinding.setKeyBindState(sprintKeyBind, true);
         KeyBinding.onTick(sprintKeyBind);
     }

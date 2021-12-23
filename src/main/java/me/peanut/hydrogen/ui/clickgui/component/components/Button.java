@@ -180,10 +180,7 @@ public class Button extends Component {
 	}
 	
 	public boolean isMouseOnButton(int x, int y) {
-		if(x > parent.getX() && x < parent.getX() + parent.getWidth() && y > this.parent.getY() + this.offset && y < this.parent.getY() + 12 + this.offset) {
-			return true;
-		}
-		return false;
+		return x > parent.getX() && x < parent.getX() + parent.getWidth() && y > this.parent.getY() + this.offset && y < this.parent.getY() + 12 + this.offset;
 	}
 
 

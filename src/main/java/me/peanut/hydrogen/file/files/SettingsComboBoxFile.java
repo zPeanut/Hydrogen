@@ -9,7 +9,7 @@ import me.peanut.hydrogen.settings.Setting;
  */
 public class SettingsComboBoxFile {
 
-    private static FileManager ComboSetting = new FileManager("combobox", "Hydrogen");
+    private static final FileManager ComboSetting = new FileManager("combobox", "Hydrogen");
 
     public SettingsComboBoxFile() {
         try {
@@ -22,7 +22,7 @@ public class SettingsComboBoxFile {
         try {
             ComboSetting.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
-                String line = (setting.getName() + ":" + setting.getParentMod().getName() + (String.valueOf(setting.getValString()) != null ? ":" + String.valueOf(setting.getValString()) : ""));
+                String line = (setting.getName() + ":" + setting.getParentMod().getName() + (String.valueOf(setting.getValString()) != null ? ":" + setting.getValString() : ""));
                 ComboSetting.write(line);
             }
         } catch (Exception e) {

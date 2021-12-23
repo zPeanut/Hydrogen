@@ -51,10 +51,7 @@ public class BowAimbot extends Module {
         if(Hydrogen.getClient().moduleManager.getModule(FastBow.class).isEnabled() && mc.gameSettings.keyBindUseItem.pressed) {
             return true;
         }
-        if(mc.thePlayer.isUsingItem()) {
-            return true;
-        }
-        return false;
+        return mc.thePlayer.isUsingItem();
     }
 
     private EntityLivingBase getTarget() {

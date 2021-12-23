@@ -19,7 +19,7 @@ import static me.peanut.hydrogen.utils.TimeUtils.getCurrentMS;
 @Info(name = "WTap", category = Category.Combat,  description = "Stops holding W when sprinting and hitting an enemy.")
 public class WTap extends Module {
 
-    private long lastAttack = 0L;
+    private final long lastAttack = 0L;
     private long lastHold = 2000000000L;
 
     public WTap() {
@@ -36,11 +36,11 @@ public class WTap extends Module {
         if (!entity.isEntityAlive()) {
             return false;
         }
-        if (!this.mc.thePlayer.canEntityBeSeen(entity)) {
+        if (!mc.thePlayer.canEntityBeSeen(entity)) {
             return false;
         }
         float range = 4f;
-        if (this.mc.thePlayer.getDistanceToEntity(entity) > range) {
+        if (mc.thePlayer.getDistanceToEntity(entity) > range) {
             return false;
         }
         if (entity instanceof EntityPlayer) {
@@ -53,33 +53,33 @@ public class WTap extends Module {
     public void onUpdate(EventTick e) {
         if (!isEnabled())
             return;
-        if (this.mc.theWorld == null)
+        if (mc.theWorld == null)
             return;
-        if (this.mc.thePlayer == null)
+        if (mc.thePlayer == null)
             return;
-        if (!this.mc.thePlayer.isEntityAlive())
+        if (!mc.thePlayer.isEntityAlive())
             return;
-        if (this.mc.currentScreen != null)
+        if (mc.currentScreen != null)
             return;
         Entity ens = null;
 
-        for (Entity e1 : this.mc.theWorld.getLoadedEntityList()) {
-            if (e1 != this.mc.thePlayer && this.isTargetValid(e1)) {
+        for (Entity e1 : mc.theWorld.getLoadedEntityList()) {
+            if (e1 != mc.thePlayer && this.isTargetValid(e1)) {
                 if (mc.thePlayer.isSwingInProgress) {
                     ens = e1;
                 }
             }
         }
 
-        if (ens != null && this.mc.thePlayer.isSprinting() && TimeUtils.hasTimePassedMS((long) Hydrogen.getClient().settingsManager.getSettingByName("Delay").getValDouble())) {
-            this.mc.gameSettings.keyBindForward.pressed = false;
+        if (ens != null && mc.thePlayer.isSprinting() && TimeUtils.hasTimePassedMS((long) Hydrogen.getClient().settingsManager.getSettingByName("Delay").getValDouble())) {
+            mc.gameSettings.keyBindForward.pressed = false;
             this.lastHold = getCurrentMS();
             TimeUtils.reset();
         }
 
 
         if (this.lastHold != -1L && TimeUtils.hasTimePassedMS(this.lastHold, (long) Hydrogen.getClient().settingsManager.getSettingByName("Held").getValDouble())) {
-            this.mc.gameSettings.keyBindForward.pressed = true;
+            mc.gameSettings.keyBindForward.pressed = true;
             this.lastHold = -1L;
         }
     }

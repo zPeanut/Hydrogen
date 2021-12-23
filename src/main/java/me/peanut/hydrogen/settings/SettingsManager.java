@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class SettingsManager {
 	
-	private ArrayList<Setting> settings;
+	private final ArrayList<Setting> settings;
 	
 	public SettingsManager(){
 		this.settings = new ArrayList<Setting>();
@@ -40,7 +40,7 @@ public class SettingsManager {
 				return set;
 			}
 		}
-		System.err.println("["+ Hydrogen.getClient().name + "] Error Setting NOT found: '" + name +"'!");
+		System.err.println("["+ Hydrogen.name + "] Error Setting NOT found: '" + name +"'!");
 		return null;
 	}
 
@@ -50,7 +50,7 @@ public class SettingsManager {
 				return set;
 			}
 		}
-		System.err.println("["+ Hydrogen.getClient().name + "] Error Setting NOT found: '" + name +"'!");
+		System.err.println("["+ Hydrogen.name + "] Error Setting NOT found: '" + name +"'!");
 		return null;
 	}
 

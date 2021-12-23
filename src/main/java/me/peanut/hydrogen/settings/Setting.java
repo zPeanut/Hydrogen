@@ -6,9 +6,9 @@ import me.peanut.hydrogen.module.Module;
 
 public class Setting {
 	
-	private String name;
-	private Module parent;
-	private String mode;
+	private final String name;
+	private final Module parent;
+	private final String mode;
 	
 	private String sval;
 	private ArrayList<String> options;
@@ -94,15 +94,15 @@ public class Setting {
 	}
 	
 	public boolean isCombo(){
-		return this.mode.equalsIgnoreCase("Combo") ? true : false;
+		return this.mode.equalsIgnoreCase("Combo");
 	}
 	
 	public boolean isCheck(){
-		return this.mode.equalsIgnoreCase("Check") ? true : false;
+		return this.mode.equalsIgnoreCase("Check");
 	}
 	
 	public boolean isSlider(){
-		return this.mode.equalsIgnoreCase("Slider") ? true : false;
+		return this.mode.equalsIgnoreCase("Slider");
 	}
 	
 	public boolean onlyInt(){

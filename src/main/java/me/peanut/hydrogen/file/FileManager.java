@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class FileManager {
 
         protected Minecraft mc;
-        private String fileName;
-        private File path;
+        private final String fileName;
+        private final File path;
 
         public FileManager(String fileName, String clientName) {
             mc = Minecraft.getMinecraft();

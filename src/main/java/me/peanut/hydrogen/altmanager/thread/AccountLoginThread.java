@@ -19,9 +19,9 @@ import me.peanut.hydrogen.altmanager.impl.GuiAlteningLogin;
 
 public class AccountLoginThread extends Thread {
 
-	private String email;
+	private final String email;
 
-	private String password;
+	private final String password;
 
 	public static boolean unknownBoolean1;
 

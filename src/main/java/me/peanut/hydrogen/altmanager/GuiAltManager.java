@@ -78,7 +78,7 @@ public class GuiAltManager extends GuiScreen {
 		switch (button.id) {
 		case 0:
 			if (this.loginThread == null || !this.loginThread.getStatus().contains("Logging in"))
-				this.mc.displayGuiScreen((GuiScreen) new GuiMainMenu());
+				this.mc.displayGuiScreen(new GuiMainMenu());
 			break;
 		case 1:
 			if (this.accountList.selected == -1)
@@ -93,15 +93,15 @@ public class GuiAltManager extends GuiScreen {
 		case 3:
 			if (this.loginThread != null)
 				this.loginThread = null;
-			this.mc.displayGuiScreen((GuiScreen) new GuiAddAlt(this));
+			this.mc.displayGuiScreen(new GuiAddAlt(this));
 			break;
 		case 4:
 			if (this.loginThread != null)
 				this.loginThread = null;
-			this.mc.displayGuiScreen((GuiScreen) new GuiAltLogin(this));
+			this.mc.displayGuiScreen(new GuiAltLogin(this));
 			break;
 		case 6:
-			this.mc.displayGuiScreen((GuiScreen) new GuiAlteningLogin(this));
+			this.mc.displayGuiScreen(new GuiAlteningLogin(this));
 			break;
 		}
 	}

@@ -24,7 +24,7 @@ public class Eagle extends Module {
     public void onUpdate(EventUpdate e) {
 
         try {
-            if (((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock)) && (!this.mc.gameSettings.keyBindJump.isPressed())) {
+            if (((mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock)) && (!mc.gameSettings.keyBindJump.isPressed())) {
                 BlockPos bp = new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 1.0D, mc.thePlayer.posZ);
                 if (mc.theWorld.getBlockState(bp).getBlock() == Blocks.air) {
                     ReflectionUtil.pressed.set(Minecraft.getMinecraft().gameSettings.keyBindSneak, true);

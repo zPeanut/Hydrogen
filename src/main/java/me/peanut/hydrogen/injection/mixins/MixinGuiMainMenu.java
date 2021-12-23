@@ -146,8 +146,8 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
                 this.addSingleplayerMultiplayerButtons(j, 24);
             }
 
-            this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, I18n.format("menu.options", new Object[0])));
-            this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit", new Object[0])));
+            this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, I18n.format("menu.options")));
+            this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit")));
             this.buttonList.add(new GuiButtonLanguage(5, this.width / 2 - 124, j + 72 + 12));
         }
 
@@ -158,7 +158,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             this.field_92024_r = this.fontRendererObj.getStringWidth(this.openGLWarning2);
             int k = Math.max(this.field_92023_s, this.field_92024_r);
             this.field_92022_t = (this.width - k) / 2;
-            this.field_92021_u = ((GuiButton) this.buttonList.get(0)).yPosition - 24;
+            this.field_92021_u = this.buttonList.get(0).yPosition - 24;
             this.field_92020_v = this.field_92022_t + k;
             this.field_92019_w = this.field_92021_u + 24;
         }
@@ -255,7 +255,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             List<String> brandings = Lists.reverse(FMLCommonHandler.instance().getBrandings(true));
 
             for(int brdline = 0; brdline < brandings.size(); ++brdline) {
-                String brd = (String)brandings.get(brdline);
+                String brd = brandings.get(brdline);
                 if (!Strings.isNullOrEmpty(brd)) {
                     this.drawString(this.fontRendererObj, brd, 2, this.height - (10 + brdline * (this.fontRendererObj.FONT_HEIGHT + 1)), 16777215);
                 }
@@ -267,7 +267,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0) {
                 Utils.rect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
                 this.drawString(this.fontRendererObj, this.openGLWarning1, this.field_92022_t, this.field_92021_u, -1);
-                this.drawString(this.fontRendererObj, this.openGLWarning2, (this.width - this.field_92024_r) / 2, ((GuiButton)this.buttonList.get(0)).yPosition - 12, -1);
+                this.drawString(this.fontRendererObj, this.openGLWarning2, (this.width - this.field_92024_r) / 2, this.buttonList.get(0).yPosition - 12, -1);
             }
 
             super.drawScreen(mouseX, mouseY, partialTicks);

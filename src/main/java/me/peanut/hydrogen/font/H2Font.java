@@ -83,7 +83,7 @@ public class H2Font {
                 rowHeight = newIntObject.height;
             }
             this.chars[i] = newIntObject;
-            g.drawImage((Image)fontImage, positionX, positionY, null);
+            g.drawImage(fontImage, positionX, positionY, null);
             positionX += newIntObject.width;
         }
         try {
@@ -141,19 +141,19 @@ public class H2Font {
         float renderSRCY = srcY / (float)this.IMAGE_HEIGHT;
         float renderSRCWidth = srcWidth / (float)this.IMAGE_WIDTH;
         float renderSRCHeight = srcHeight / (float)this.IMAGE_HEIGHT;
-        GL11.glBegin((int)4);
-        GL11.glTexCoord2f((float)(renderSRCX + renderSRCWidth), (float)renderSRCY);
-        GL11.glVertex2d((double)(x + width), (double)y);
-        GL11.glTexCoord2f((float)renderSRCX, (float)renderSRCY);
-        GL11.glVertex2d((double)x, (double)y);
-        GL11.glTexCoord2f((float)renderSRCX, (float)(renderSRCY + renderSRCHeight));
-        GL11.glVertex2d((double)x, (double)(y + height));
-        GL11.glTexCoord2f((float)renderSRCX, (float)(renderSRCY + renderSRCHeight));
-        GL11.glVertex2d((double)x, (double)(y + height));
-        GL11.glTexCoord2f((float)(renderSRCX + renderSRCWidth), (float)(renderSRCY + renderSRCHeight));
-        GL11.glVertex2d((double)(x + width), (double)(y + height));
-        GL11.glTexCoord2f((float)(renderSRCX + renderSRCWidth), (float)renderSRCY);
-        GL11.glVertex2d((double)(x + width), (double)y);
+        GL11.glBegin(4);
+        GL11.glTexCoord2f(renderSRCX + renderSRCWidth, renderSRCY);
+        GL11.glVertex2d(x + width, y);
+        GL11.glTexCoord2f(renderSRCX, renderSRCY);
+        GL11.glVertex2d(x, y);
+        GL11.glTexCoord2f(renderSRCX, renderSRCY + renderSRCHeight);
+        GL11.glVertex2d(x, y + height);
+        GL11.glTexCoord2f(renderSRCX, renderSRCY + renderSRCHeight);
+        GL11.glVertex2d(x, y + height);
+        GL11.glTexCoord2f(renderSRCX + renderSRCWidth, renderSRCY + renderSRCHeight);
+        GL11.glVertex2d(x + width, y + height);
+        GL11.glTexCoord2f(renderSRCX + renderSRCWidth, renderSRCY);
+        GL11.glVertex2d(x + width, y);
         GL11.glEnd();
     }
 
@@ -161,7 +161,7 @@ public class H2Font {
         x *= 2.0;
         y = y * 2.0 - 2.0;
         GL11.glPushMatrix();
-        GL11.glScaled((double)0.25, (double)0.25, (double)0.25);
+        GL11.glScaled(0.25, 0.25, 0.25);
         TextureUtil.bindTexture(this.texID);
         this.glColor(shadow ? new Color(0.05f, 0.05f, 0.05f, (float)color.getAlpha() / 255.0f) : color);
         int size = text.length();
@@ -169,7 +169,7 @@ public class H2Font {
             char character = text.charAt(indexInString);
             if (character >= this.chars.length || character < '\u0000') continue;
             this.drawChar(character, (float)x, (float)y);
-            x += (double)(this.chars[character].width - this.charOffset);
+            x += this.chars[character].width - this.charOffset;
         }
         GL11.glPopMatrix();
     }
@@ -181,14 +181,14 @@ public class H2Font {
         float green = (float)color.getGreen() / 255.0f;
         float blue = (float)color.getBlue() / 255.0f;
         float alpha = (float)color.getAlpha() / 255.0f;
-        GL11.glColor4f((float)red, (float)green, (float)blue, (float)alpha);
+        GL11.glColor4f(red, green, blue, alpha);
     }
 
     public int getStringHeight(String text) {
         int lines = 1;
         char[] arrayOfChar = text.toCharArray();
         int i = arrayOfChar.length;
-        for (int b = 0; b < i; b = (int)((byte)(b + 1))) {
+        for (int b = 0; b < i; b = (byte)(b + 1)) {
             char c = arrayOfChar[b];
             if (c != '\n') continue;
             ++lines;
@@ -204,7 +204,7 @@ public class H2Font {
         int width = 0;
         char[] arrayOfChar = text.toCharArray();
         int i = arrayOfChar.length;
-        for (int b = 0; b < i; b = (int)((byte)(b + 1))) {
+        for (int b = 0; b < i; b = (byte)(b + 1)) {
             char c = arrayOfChar[b];
             if (c >= this.chars.length || c < '\u0000') continue;
             width += this.chars[c].width - this.charOffset;

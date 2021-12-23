@@ -15,9 +15,9 @@ import java.util.List;
 public class CommandManager {
 
     public NetHandlerPlayClient sendQueue;
-    private static CommandManager me = new CommandManager();
-    private List<Command> commands = new ArrayList();
-    private String prefix = ".";
+    private static final CommandManager me = new CommandManager();
+    private final List<Command> commands = new ArrayList();
+    private final String prefix = ".";
 
     public CommandManager() {
         add(new Bind());
@@ -52,7 +52,7 @@ public class CommandManager {
         String ranCmd = arguments[0];
         for (Command cmd : this.commands) {
             if (cmd.getName().equalsIgnoreCase(arguments[0])) {
-                String[] args = (String[]) Arrays.copyOfRange(arguments, 1, arguments.length);
+                String[] args = Arrays.copyOfRange(arguments, 1, arguments.length);
                 String[] args1 = text.split(" ");
                 cmd.execute(args);
                 return true;

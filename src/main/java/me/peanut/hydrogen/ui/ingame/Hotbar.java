@@ -61,7 +61,7 @@ public class Hotbar extends Module {
             LocalDateTime now = LocalDateTime.now();
             String date = dateFormat.format(now);
             String time = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
-            String fps1 = String.format("FPS §7%s", mc.getDebugFPS());
+            String fps1 = String.format("FPS §7%s", Minecraft.getDebugFPS());
 
             String x = String.valueOf((int) mc.thePlayer.posX);
             String y = String.valueOf((int) mc.thePlayer.posY);
@@ -72,10 +72,10 @@ public class Hotbar extends Module {
             if (tdate) {
                 if(ttf) {
                     FontHelper.sf_l.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
-                    FontHelper.sf_l.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 10 : Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 10, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+                    FontHelper.sf_l.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 10, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
                 } else {
                     mc.fontRendererObj.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(date) - 16, Utils.getScaledRes().getScaledHeight() - 10, -1);
-                    mc.fontRendererObj.drawStringWithShadow(time, timeformat ? Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 15 : Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 15, Utils.getScaledRes().getScaledHeight() - 21, -1);
+                    mc.fontRendererObj.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 15, Utils.getScaledRes().getScaledHeight() - 21, -1);
                 }
             }
 

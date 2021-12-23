@@ -82,7 +82,7 @@ public abstract class MixinGuiNewChat extends MixinGui {
                 int j1;
                 int l1;
                 for(i1 = 0; i1 + this.scrollPos < this.drawnChatLines.size() && i1 < i; ++i1) {
-                    ChatLine chatline = (ChatLine)this.drawnChatLines.get(i1 + this.scrollPos);
+                    ChatLine chatline = this.drawnChatLines.get(i1 + this.scrollPos);
                     if (chatline != null) {
                         j1 = updateCounter - chatline.getUpdatedCounter();
                         if (j1 < 200 || flag) {

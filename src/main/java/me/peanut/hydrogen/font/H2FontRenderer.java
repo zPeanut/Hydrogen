@@ -87,12 +87,12 @@ public class H2FontRenderer extends FontRenderer {
             return 0;
         }
         GL11.glPushMatrix();
-        GL11.glTranslated((double)(d - 1.5), (double)(e + 0.5), (double)0.0);
-        boolean wasBlend = GL11.glGetBoolean((int)3042);
+        GL11.glTranslated(d - 1.5, e + 0.5, 0.0);
+        boolean wasBlend = GL11.glGetBoolean(3042);
         GlStateManager.enableAlpha();
-        GL11.glEnable((int)3042);
-        GL11.glBlendFunc((int)770, (int)771);
-        GL11.glEnable((int)3553);
+        GL11.glEnable(3042);
+        GL11.glBlendFunc(770, 771);
+        GL11.glEnable(3553);
         if ((color & 0xFC000000) == 0) {
             color |= 0xFF000000;
         }
@@ -171,10 +171,10 @@ public class H2FontRenderer extends FontRenderer {
                 float u = (float)this.font.getHeight() / 16.0f;
                 int h = currentFont.getStringHeight(words);
                 if (strikethrough) {
-                    this.renderString((double)width / 2.0 + 1.0, (double)(h / 3), (double)(width + currentFont.getStringWidth(words)) / 2.0 + 1.0, (double)(h / 3), u);
+                    this.renderString((double)width / 2.0 + 1.0, h / 3, (double)(width + currentFont.getStringWidth(words)) / 2.0 + 1.0, h / 3, u);
                 }
                 if (underline) {
-                    this.renderString((double)width / 2.0 + 1.0, (double)(h / 2), (double)(width + currentFont.getStringWidth(words)) / 2.0 + 1.0, (double)(h / 2), u);
+                    this.renderString((double)width / 2.0 + 1.0, h / 2, (double)(width + currentFont.getStringWidth(words)) / 2.0 + 1.0, h / 2, u);
                 }
                 width += currentFont.getStringWidth(words);
             }
@@ -182,10 +182,10 @@ public class H2FontRenderer extends FontRenderer {
             this.font.drawString(text, 0.0, 0.0, c, shadow);
         }
         if (!wasBlend) {
-            GL11.glDisable((int)3042);
+            GL11.glDisable(3042);
         }
         GL11.glPopMatrix();
-        GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         return (int)(d + (double)this.getStringWidth(text));
     }
 
@@ -195,7 +195,7 @@ public class H2FontRenderer extends FontRenderer {
         for (char c : text.toCharArray()) {
             if (!ChatAllowedCharacters.isAllowedCharacter(c)) continue;
             int index = this.fontRandom.nextInt("\u00c0\u00c1\u00c2\u00c8\u00ca\u00cb\u00cd\u00d3\u00d4\u00d5\u00da\u00df\u00e3\u00f5\u011f\u0130\u0131\u0152\u0153\u015e\u015f\u0174\u0175\u017e\u0207\u0000\u0000\u0000\u0000\u0000\u0000\u0000 !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u0000\u00c7\u00fc\u00e9\u00e2\u00e4\u00e0\u00e5\u00e7\u00ea\u00eb\u00e8\u00ef\u00ee\u00ec\u00c4\u00c5\u00c9\u00e6\u00c6\u00f4\u00f6\u00f2\u00fb\u00f9\u00ff\u00d6\u00dc\u00f8\u00a3\u00d8\u00d7\u0192\u00e1\u00ed\u00f3\u00fa\u00f1\u00d1\u00aa\u00ba\u00bf\u00ae\u00ac\u00bd\u00bc\u00a1\u00ab\u00bb\u2591\u2592\u2593\u2502\u2524\u2561\u2562\u2556\u2555\u2563\u2551\u2557\u255d\u255c\u255b\u2510\u2514\u2534\u252c\u251c\u2500\u253c\u255e\u255f\u255a\u2554\u2569\u2566\u2560\u2550\u256c\u2567\u2568\u2564\u2565\u2559\u2558\u2552\u2553\u256b\u256a\u2518\u250c\u2588\u2584\u258c\u2590\u2580\u03b1\u03b2\u0393\u03c0\u03a3\u03c3\u03bc\u03c4\u03a6\u0398\u03a9\u03b4\u221e\u2205\u2208\u2229\u2261\u00b1\u2265\u2264\u2320\u2321\u00f7\u2248\u00b0\u2219\u00b7\u221a\u207f\u00b2\u25a0\u0000".length());
-            newText = String.valueOf(newText) + "\u00c0\u00c1\u00c2\u00c8\u00ca\u00cb\u00cd\u00d3\u00d4\u00d5\u00da\u00df\u00e3\u00f5\u011f\u0130\u0131\u0152\u0153\u015e\u015f\u0174\u0175\u017e\u0207\u0000\u0000\u0000\u0000\u0000\u0000\u0000 !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u0000\u00c7\u00fc\u00e9\u00e2\u00e4\u00e0\u00e5\u00e7\u00ea\u00eb\u00e8\u00ef\u00ee\u00ec\u00c4\u00c5\u00c9\u00e6\u00c6\u00f4\u00f6\u00f2\u00fb\u00f9\u00ff\u00d6\u00dc\u00f8\u00a3\u00d8\u00d7\u0192\u00e1\u00ed\u00f3\u00fa\u00f1\u00d1\u00aa\u00ba\u00bf\u00ae\u00ac\u00bd\u00bc\u00a1\u00ab\u00bb\u2591\u2592\u2593\u2502\u2524\u2561\u2562\u2556\u2555\u2563\u2551\u2557\u255d\u255c\u255b\u2510\u2514\u2534\u252c\u251c\u2500\u253c\u255e\u255f\u255a\u2554\u2569\u2566\u2560\u2550\u256c\u2567\u2568\u2564\u2565\u2559\u2558\u2552\u2553\u256b\u256a\u2518\u250c\u2588\u2584\u258c\u2590\u2580\u03b1\u03b2\u0393\u03c0\u03a3\u03c3\u03bc\u03c4\u03a6\u0398\u03a9\u03b4\u221e\u2205\u2208\u2229\u2261\u00b1\u2265\u2264\u2320\u2321\u00f7\u2248\u00b0\u2219\u00b7\u221a\u207f\u00b2\u25a0\u0000".toCharArray()[index];
+            newText = newText + "\u00c0\u00c1\u00c2\u00c8\u00ca\u00cb\u00cd\u00d3\u00d4\u00d5\u00da\u00df\u00e3\u00f5\u011f\u0130\u0131\u0152\u0153\u015e\u015f\u0174\u0175\u017e\u0207\u0000\u0000\u0000\u0000\u0000\u0000\u0000 !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u0000\u00c7\u00fc\u00e9\u00e2\u00e4\u00e0\u00e5\u00e7\u00ea\u00eb\u00e8\u00ef\u00ee\u00ec\u00c4\u00c5\u00c9\u00e6\u00c6\u00f4\u00f6\u00f2\u00fb\u00f9\u00ff\u00d6\u00dc\u00f8\u00a3\u00d8\u00d7\u0192\u00e1\u00ed\u00f3\u00fa\u00f1\u00d1\u00aa\u00ba\u00bf\u00ae\u00ac\u00bd\u00bc\u00a1\u00ab\u00bb\u2591\u2592\u2593\u2502\u2524\u2561\u2562\u2556\u2555\u2563\u2551\u2557\u255d\u255c\u255b\u2510\u2514\u2534\u252c\u251c\u2500\u253c\u255e\u255f\u255a\u2554\u2569\u2566\u2560\u2550\u256c\u2567\u2568\u2564\u2565\u2559\u2558\u2552\u2553\u256b\u256a\u2518\u250c\u2588\u2584\u258c\u2590\u2580\u03b1\u03b2\u0393\u03c0\u03a3\u03c3\u03bc\u03c4\u03a6\u0398\u03a9\u03b4\u221e\u2205\u2208\u2229\u2261\u00b1\u2265\u2264\u2320\u2321\u00f7\u2248\u00b0\u2219\u00b7\u221a\u207f\u00b2\u25a0\u0000".toCharArray()[index];
         }
         return newText;
     }
@@ -220,7 +220,7 @@ public class H2FontRenderer extends FontRenderer {
                 continue;
             }
             if (!H2FontRenderer.isFormatSpecial(var4)) continue;
-            var1 = String.valueOf(var1) + "\u00a7" + var4;
+            var1 = var1 + "\u00a7" + var4;
         }
         return var1;
     }
@@ -385,17 +385,17 @@ public class H2FontRenderer extends FontRenderer {
                     if (c != '\u00a7' || i >= s.toCharArray().length - 1) continue;
                     lastColorCode = s.toCharArray()[i + 1];
                 }
-                StringBuilder stringBuilder = new StringBuilder(String.valueOf(currentWord));
+                StringBuilder stringBuilder = new StringBuilder(currentWord);
                 if ((double)this.getStringWidth(stringBuilder.append(s).append(" ").toString()) < width) {
-                    currentWord = String.valueOf(currentWord) + s + " ";
+                    currentWord = currentWord + s + " ";
                     continue;
                 }
                 finalWords.add(currentWord);
-                currentWord = lastColorCode == '\uffff' ? String.valueOf(s) + " " : "\u00a7" + lastColorCode + s + " ";
+                currentWord = lastColorCode == '\uffff' ? s + " " : "\u00a7" + lastColorCode + s + " ";
             }
             if (!currentWord.equals("")) {
                 if ((double)this.getStringWidth(currentWord) < width) {
-                    finalWords.add(lastColorCode == '\uffff' ? String.valueOf(currentWord) + " " : "\u00a7" + lastColorCode + currentWord + " ");
+                    finalWords.add(lastColorCode == '\uffff' ? currentWord + " " : "\u00a7" + lastColorCode + currentWord + " ");
                     currentWord = "";
                 } else {
                     for (String s : this.formatString(currentWord, width)) {
@@ -418,9 +418,9 @@ public class H2FontRenderer extends FontRenderer {
             if (c == '\u00a7' && i < s.toCharArray().length - 1) {
                 lastColorCode = s.toCharArray()[i + 1];
             }
-            StringBuilder stringBuilder = new StringBuilder(String.valueOf(currentWord));
+            StringBuilder stringBuilder = new StringBuilder(currentWord);
             if ((double)this.getStringWidth(stringBuilder.append(c).toString()) < width) {
-                currentWord = String.valueOf(currentWord) + c;
+                currentWord = currentWord + c;
                 continue;
             }
             finalWords.add(currentWord);
@@ -433,13 +433,13 @@ public class H2FontRenderer extends FontRenderer {
     }
 
     private void renderString(double x, double y, double x1, double y1, float width) {
-        GL11.glDisable((int)3553);
-        GL11.glLineWidth((float)width);
-        GL11.glBegin((int)1);
-        GL11.glVertex2d((double)x, (double)y);
-        GL11.glVertex2d((double)x1, (double)y1);
+        GL11.glDisable(3553);
+        GL11.glLineWidth(width);
+        GL11.glBegin(1);
+        GL11.glVertex2d(x, y);
+        GL11.glVertex2d(x1, y1);
         GL11.glEnd();
-        GL11.glEnable((int)3553);
+        GL11.glEnable(3553);
     }
 
     public boolean isAntiAliasing() {
@@ -528,8 +528,8 @@ public class H2FontRenderer extends FontRenderer {
         String var4 = str.substring(0, var3);
         char var5 = str.charAt(var3);
         boolean var6 = var5 == ' ' || var5 == '\n';
-        String var7 = String.valueOf(H2FontRenderer.getFormatFromString(var4)) + str.substring(var3 + (var6 ? 1 : 0));
-        return String.valueOf(var4) + "\n" + this.wrapFormattedStringToWidth(var7, wrapWidth);
+        String var7 = H2FontRenderer.getFormatFromString(var4) + str.substring(var3 + (var6 ? 1 : 0));
+        return var4 + "\n" + this.wrapFormattedStringToWidth(var7, wrapWidth);
     }
 
     public Color getColor(int colorCode, float alpha) {
@@ -540,7 +540,7 @@ public class H2FontRenderer extends FontRenderer {
         String minecraftColorCodes = "0123456789abcdefklmnor";
         for (int i = 0; i < this.customColorCodes.length; ++i) {
             if (this.customColorCodes[i] == null) continue;
-            minecraftColorCodes = String.valueOf(minecraftColorCodes) + (char)i;
+            minecraftColorCodes = minecraftColorCodes + (char)i;
         }
         return minecraftColorCodes;
     }

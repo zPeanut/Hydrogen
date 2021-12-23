@@ -45,8 +45,8 @@ public class MurderMystery extends Module {
         int alpha = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValDouble();
 
         mc.theWorld.loadedEntityList.forEach(o -> {
-            Entity entity = (Entity)o;
-            if (!entity.isEntityAlive() && entities.contains(entity)) {
+            Entity entity = o;
+            if (!entity.isEntityAlive()) {
                 entities.remove(entity);
             }
 
@@ -61,16 +61,14 @@ public class MurderMystery extends Module {
                                 Utils.sendChatMessage(entity.getName() + " is the murderer!");
                                 entities.add(entity);
                             }
-                        } else if (entities.contains(entity)) {
-                            entities.remove(entity);
-                        }
+                        } else entities.remove(entity);
                     }
                 }
             }
         });
 
         mc.theWorld.loadedEntityList.forEach(o -> {
-            Entity entity = (Entity)o;
+            Entity entity = o;
             if ((entity.isEntityAlive() && entities.contains(entity))) {
 
                 final double posX = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * e.getPartialTicks() - mc.getRenderManager().renderPosX;

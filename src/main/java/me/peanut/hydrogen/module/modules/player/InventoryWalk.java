@@ -24,10 +24,10 @@ public class InventoryWalk extends Module {
     @EventTarget
     public void onUpdate(EventUpdate e)
     {
-        KeyBinding[] moveKeys = { this.mc.gameSettings.keyBindRight, this.mc.gameSettings.keyBindLeft,
-                this.mc.gameSettings.keyBindBack, this.mc.gameSettings.keyBindForward,
-                this.mc.gameSettings.keyBindJump, this.mc.gameSettings.keyBindSprint };
-        if ((this.mc.currentScreen instanceof GuiContainer))
+        KeyBinding[] moveKeys = { mc.gameSettings.keyBindRight, mc.gameSettings.keyBindLeft,
+                mc.gameSettings.keyBindBack, mc.gameSettings.keyBindForward,
+                mc.gameSettings.keyBindJump, mc.gameSettings.keyBindSprint };
+        if ((mc.currentScreen instanceof GuiContainer))
         {
             KeyBinding[] arrayOfKeyBinding1;
             int j = (arrayOfKeyBinding1 = moveKeys).length;
@@ -41,7 +41,7 @@ public class InventoryWalk extends Module {
                 }
             }
         }
-        else if (Objects.isNull(this.mc.currentScreen))
+        else if (Objects.isNull(mc.currentScreen))
         {
             KeyBinding[] arrayOfKeyBinding1;
             int j = (arrayOfKeyBinding1 = moveKeys).length;

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @Info(name = "BedAura", category = Category.Player, description = "Automatically destroys beds")
 public class BedAura extends Module {
 
-    private TimeUtils time = new TimeUtils();
+    private final TimeUtils time = new TimeUtils();
 
     public static ArrayList<Integer> ids = new ArrayList<>();
 
@@ -57,12 +57,12 @@ public class BedAura extends Module {
             boolean bypassWall = Hydrogen.getClient().settingsManager.getSettingByName(this, "ThroughWalls").isEnabled();
             int radius = (int) Hydrogen.getClient().settingsManager.getSettingByName("Radius").getValDouble();
             int delay = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Delay").getValDouble();
-            int startX = this.mc.thePlayer.getPosition().getX() - radius;
-            int startY = this.mc.thePlayer.getPosition().getY() - radius;
-            int startZ = this.mc.thePlayer.getPosition().getZ() - radius;
-            int endX = this.mc.thePlayer.getPosition().getX() + radius;
-            int endY = this.mc.thePlayer.getPosition().getY() + radius;
-            int endZ = this.mc.thePlayer.getPosition().getZ() + radius;
+            int startX = mc.thePlayer.getPosition().getX() - radius;
+            int startY = mc.thePlayer.getPosition().getY() - radius;
+            int startZ = mc.thePlayer.getPosition().getZ() - radius;
+            int endX = mc.thePlayer.getPosition().getX() + radius;
+            int endY = mc.thePlayer.getPosition().getY() + radius;
+            int endZ = mc.thePlayer.getPosition().getZ() + radius;
             checkIds();
             this.x = startX;
 
@@ -72,10 +72,10 @@ public class BedAura extends Module {
                     this.y = startY;
                     while (this.y < endY) {
                         BlockPos blockPos = new BlockPos(this.x, this.y, this.z);
-                        if (this.mc.theWorld.getBlockState(blockPos) != null) {
-                            int id = Block.getIdFromBlock(this.mc.theWorld.getBlockState(blockPos).getBlock());
+                        if (mc.theWorld.getBlockState(blockPos) != null) {
+                            int id = Block.getIdFromBlock(mc.theWorld.getBlockState(blockPos).getBlock());
                             if (ids.size() > 0 && ids.contains(Integer.valueOf(id))) {
-                                this.pos = blockPos;
+                                pos = blockPos;
                                 if (this.time.hasReached(delay)) {
                                     if(bypassWall) {
                                         smashBlock(blockPos);
@@ -84,7 +84,7 @@ public class BedAura extends Module {
                                             smashBlock(blockPos);
                                         }
                                     }
-                                    this.time.reset();
+                                    TimeUtils.reset();
                                     break;
                                 }
                             }
@@ -120,8 +120,8 @@ public class BedAura extends Module {
     }
 
     public void smashBlock(BlockPos pos) {
-        this.mc.thePlayer.sendQueue.addToSendQueue(new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
-        this.mc.thePlayer.sendQueue.addToSendQueue(new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.STOP_DESTROY_BLOCK, pos, EnumFacing.UP));
-        this.mc.thePlayer.sendQueue.addToSendQueue(new C0APacketAnimation());
+        mc.thePlayer.sendQueue.addToSendQueue(new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.START_DESTROY_BLOCK, pos, EnumFacing.UP));
+        mc.thePlayer.sendQueue.addToSendQueue(new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.STOP_DESTROY_BLOCK, pos, EnumFacing.UP));
+        mc.thePlayer.sendQueue.addToSendQueue(new C0APacketAnimation());
     }
 }

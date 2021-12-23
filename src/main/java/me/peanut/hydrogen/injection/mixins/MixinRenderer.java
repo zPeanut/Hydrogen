@@ -46,7 +46,7 @@ abstract class MixinRenderer<T extends Entity> {
     @Overwrite
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
         if(Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
-            if (this.canRenderName((T) entity) && entity.getEntityId() != -3)
+            if (this.canRenderName(entity) && entity.getEntityId() != -3)
             {
                 if (Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
                     String p_147906_2_ = entity.getDisplayName().getFormattedText();
@@ -180,10 +180,10 @@ abstract class MixinRenderer<T extends Entity> {
                     int i = fontrenderer.getStringWidth(str) / 2;
                     GlStateManager.disableTexture2D();
                     worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    worldrenderer.pos((double) (-i - 1), (double) (-1 + b0), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-                    worldrenderer.pos((double) (-i - 1), (double) (8 + b0), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-                    worldrenderer.pos((double) (i + 1), (double) (8 + b0), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-                    worldrenderer.pos((double) (i + 1), (double) (-1 + b0), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+                    worldrenderer.pos(-i - 1, -1 + b0, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+                    worldrenderer.pos(-i - 1, 8 + b0, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+                    worldrenderer.pos(i + 1, 8 + b0, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+                    worldrenderer.pos(i + 1, -1 + b0, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
                     tessellator.draw();
                     GlStateManager.enableTexture2D();
                     fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, b0, 553648127);
