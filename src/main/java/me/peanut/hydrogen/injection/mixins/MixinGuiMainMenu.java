@@ -188,37 +188,15 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             this.mc.displayGuiScreen(new GuiCredits());
         }
         if(button.id == 99) {
-            try {
-                URL url = new URL(Hydrogen.release);
-                String link = url.toString();
-                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-                Desktop.getDesktop().browse((new URL(link)).toURI());
-            }
 
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            // TODO: fix this
+
+            URL url = new URL(Hydrogen.release);
+            this.mc.displayGuiScreen(new GuiConfirmOpenLink(this, url.toString(), 1, true));
         }
-
         if(button.id == 98) {
-            try {
-                URL url = new URL(Hydrogen.github);
-                String link = url.toString();
-                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-                Desktop.getDesktop().browse((new URL(link)).toURI());
-            }
-
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            URL url = new URL(Hydrogen.github);
+            this.mc.displayGuiScreen(new GuiConfirmOpenLink(this, url.toString(), 1, true));
         }
     }
 

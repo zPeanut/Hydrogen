@@ -155,6 +155,29 @@ public class ModuleManager {
         return null;
     }
 
+    public List<Module> getAllEnabledMods() {
+        List<Module> modules = new ArrayList<>();
+
+        for (Module mod : this.getModules()) {
+            if (mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled())) {
+                if (!modules.contains(mod)) {
+                    modules.add(mod);
+                }
+            }
+
+            Collections.sort(modules, new Comparator<Module>() {
+                public int compare(Module m1, Module m2) {
+                    if (FontHelper.sf_l.getStringWidth(m1.getName()) > FontHelper.sf_l.getStringWidth(m2.getName()))
+                        return -1;
+                    if (FontHelper.sf_l.getStringWidth(m1.getName()) < FontHelper.sf_l.getStringWidth(m2.getName()))
+                        return 1;
+                    return 0;
+                }
+            });
+        }
+        return modules;
+    }
+
     public List<Module> getEnabledMods() {
         List<Module> modules = new ArrayList<>();
 

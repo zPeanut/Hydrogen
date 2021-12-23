@@ -57,25 +57,31 @@ public class MixinMinecraft implements IMixinMinecraft {
 
     @Inject(method = "clickMouse", at = @At("HEAD"))
     public void clickMouse(CallbackInfo ci) {
-        EventMouseClick e = new EventMouseClick();
-        EventManager.register(e);
+        if(!Hydrogen.getClient().panic) {
+            EventMouseClick e = new EventMouseClick();
+            EventManager.register(e);
+        }
     }
 
     @Inject(method = "shutdown", at = @At("HEAD"))
     private void onShutdown(CallbackInfo ci) {
-        Hydrogen.getClient().stopClient();
-        KeybindFile.saveKeybinds();
-        SettingsButtonFile.saveState();
-        SettingsComboBoxFile.saveState();
-        SettingsSliderFile.saveState();
-        ClickGuiFile.saveClickGui();
-        ModuleFile.saveModules();
+        if(!Hydrogen.getClient().panic) {
+            Hydrogen.getClient().stopClient();
+            KeybindFile.saveKeybinds();
+            SettingsButtonFile.saveState();
+            SettingsComboBoxFile.saveState();
+            SettingsSliderFile.saveState();
+            ClickGuiFile.saveClickGui();
+            ModuleFile.saveModules();
+        }
     }
 
     @Inject(method = "runTick", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;joinPlayerCounter:I", shift = At.Shift.BEFORE))
     private void onTick(final CallbackInfo callbackInfo) {
-        EventTick e = new EventTick();
-        EventManager.call(e);
+        if(!Hydrogen.getClient().panic) {
+            EventTick e = new EventTick();
+            EventManager.call(e);
+        }
     }
 
     @Override

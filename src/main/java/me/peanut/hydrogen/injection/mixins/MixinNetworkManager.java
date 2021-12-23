@@ -2,6 +2,7 @@ package me.peanut.hydrogen.injection.mixins;
 
 import com.darkmagician6.eventapi.EventManager;
 import io.netty.channel.ChannelHandlerContext;
+import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventPacket;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -15,21 +16,23 @@ public class MixinNetworkManager {
 
     @Inject(method = "channelRead0*", at = @At("HEAD"), cancellable = true)
     private void read(final ChannelHandlerContext context, final Packet<?> packet, final CallbackInfo callback) {
-        EventPacket event = new EventPacket(packet);
-        EventManager.call(event);
-        if (event.isCancelled()) {
-            callback.cancel();
+        if(!Hydrogen.getClient().panic) {
+            EventPacket event = new EventPacket(packet);
+            EventManager.call(event);
+            if (event.isCancelled()) {
+                callback.cancel();
+            }
         }
     }
 
     @Inject(method = "sendPacket(Lnet/minecraft/network/Packet;)V", at = @At("HEAD"), cancellable = true)
     private void send(final Packet<?> packet, final CallbackInfo callback) {
-        EventPacket event = new EventPacket(packet);
-        EventManager.call(event);
-        if (event.isCancelled()) {
-            callback.cancel();
+        if(!Hydrogen.getClient().panic) {
+            EventPacket event = new EventPacket(packet);
+            EventManager.call(event);
+            if (event.isCancelled()) {
+                callback.cancel();
+            }
         }
     }
-
-
 }

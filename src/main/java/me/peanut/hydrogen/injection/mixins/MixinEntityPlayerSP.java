@@ -137,44 +137,53 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
 
     @Inject(method = "onUpdateWalkingPlayer", at = @At("HEAD"))
     private void onUpdateWalkingPlayerPre(CallbackInfo ci) {
-        EventPreMotion e = new EventPreMotion();
-        EventManager.call(e);
-
-        cachedX = posX;
-        cachedY = posY;
-        cachedZ = posZ;
-
-        cachedRotationYaw = rotationYaw;
-        cachedRotationPitch = rotationPitch;
-
-        EventMotionUpdate event = new EventMotionUpdate(EventType.PRE, posX, posY, posZ, rotationYaw, rotationPitch, onGround);
-        EventManager.call(event);
+        if(!Hydrogen.getClient().panic) {
+            EventPreMotion e = new EventPreMotion();
+            EventManager.call(e);
 
 
-        posX = event.getX();
-        posY = event.getY();
-        posZ = event.getZ();
+            cachedX = posX;
+            cachedY = posY;
+            cachedZ = posZ;
 
-        rotationYaw = event.getYaw();
-        rotationPitch = event.getPitch();
+            cachedRotationYaw = rotationYaw;
+            cachedRotationPitch = rotationPitch;
+        }
+
+        if(!Hydrogen.getClient().panic) {
+            EventMotionUpdate event = new EventMotionUpdate(EventType.PRE, posX, posY, posZ, rotationYaw, rotationPitch, onGround);
+            EventManager.call(event);
+
+
+            posX = event.getX();
+            posY = event.getY();
+            posZ = event.getZ();
+
+            rotationYaw = event.getYaw();
+            rotationPitch = event.getPitch();
+        }
     }
 
     @Inject(method = "onUpdate", at = @At("HEAD"))
     private void onUpdate(CallbackInfo ci) {
-        EventUpdate event = new EventUpdate();
-        EventManager.call(event);
+        if(!Hydrogen.getClient().panic) {
+            EventUpdate event = new EventUpdate();
+            EventManager.call(event);
+        }
     }
 
     @Inject(method = "onUpdateWalkingPlayer", at = @At("RETURN"))
     private void onUpdateWalkingPlayerPost(CallbackInfo ci) {
-        posX = cachedX;
-        posY = cachedY;
-        posZ = cachedZ;
+        if(!Hydrogen.getClient().panic) {
+            posX = cachedX;
+            posY = cachedY;
+            posZ = cachedZ;
 
-        rotationYaw = cachedRotationYaw;
-        rotationPitch = cachedRotationPitch;
+            rotationYaw = cachedRotationYaw;
+            rotationPitch = cachedRotationPitch;
 
-        EventManager.call(new EventMotionUpdate(EventType.POST, posX, posY, posZ, rotationYaw, rotationPitch, onGround));
+            EventManager.call(new EventMotionUpdate(EventType.POST, posX, posY, posZ, rotationYaw, rotationPitch, onGround));
+        }
     }
 
     @Override
@@ -210,10 +219,13 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
             double d5 = z;
             boolean flag = this.onGround && this.isSneaking() && (Entity) (Object) this instanceof EntityPlayer;
 
-            EventSafeWalk e = new EventSafeWalk();
-            EventManager.call(e);
-            if(e.isCancelled()) {
-                flag = true;
+            if(!Hydrogen.getClient().panic) {
+                EventSafeWalk e = new EventSafeWalk();
+                EventManager.call(e);
+
+                if (e.isCancelled()) {
+                    flag = true;
+                }
             }
 
             if (flag)

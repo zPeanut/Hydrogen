@@ -24,7 +24,6 @@ public class ClickGui extends GuiScreen {
 
 	public ClickGui() {
 		frames = new ArrayList<me.peanut.hydrogen.ui.clickgui.component.Frame>();
-		ParticleGenerator particleGen = new ParticleGenerator(60, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight());
 		int frameX = 5;
 		for(Category category : Category.values()) {
 			me.peanut.hydrogen.ui.clickgui.component.Frame frame = new me.peanut.hydrogen.ui.clickgui.component.Frame(category);
@@ -32,11 +31,10 @@ public class ClickGui extends GuiScreen {
 			frames.add(frame);
 			frameX += frame.getWidth() + 1;
 		}
-		}
+	}
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
 		drawRect(0, 0, this.width, this.height, 0x66101010);
 		for (me.peanut.hydrogen.ui.clickgui.component.Frame frame : frames) {
 			frame.renderFrame(this.fontRendererObj);

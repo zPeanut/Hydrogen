@@ -19,18 +19,6 @@ public class Panic extends Module {
 
     @Override
     public void onEnable() {
-
-        // disables commands, disables keybinds
-        // -> mixinminecraft, mixinentityplayersp
-
-        Hydrogen.getClient().panic = true;
-
-        // disables all modules
-
-        for (Module m : Hydrogen.getClient().moduleManager.getEnabledMods()) {
-            m.setDisabled();
-        }
-
         // saves all settings
 
         KeybindFile.saveKeybinds();
@@ -39,5 +27,16 @@ public class Panic extends Module {
         SettingsSliderFile.saveState();
         ClickGuiFile.saveClickGui();
         ModuleFile.saveModules();
+
+        // disables commands, disables keybinds
+        // -> mixinminecraft, mixinentityplayers
+
+        Hydrogen.getClient().panic = true;
+
+        // disables all modules
+
+        for (Module m : Hydrogen.getClient().moduleManager.getAllEnabledMods()) {
+            m.setDisabled();
+        }
     }
 }

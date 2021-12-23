@@ -1,5 +1,7 @@
 package me.peanut.hydrogen.ui.clickgui;
 
+import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.file.files.ClickGuiFile;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
@@ -47,16 +49,25 @@ public class ClickGuiModule extends Module {
         Hydrogen.getInstance().settingsManager.rSetting(new Setting("SliderOptionDouble", this, 10, 0, 20, false));*/
     }
 
+    // TODO: fix this
+
     @Override
-    public void onEnable()
-    {
+    public void onEnable() {
         if(this.clickgui == null) {
             this.clickgui = new ClickGui();
         }
         ClickGuiFile.loadClickGui();
         mc.displayGuiScreen(this.clickgui);
+        mc.displayGuiScreen(null);
         toggle();
         super.onEnable();
+    }
+
+    @EventTarget
+    public void onUpdate(EventUpdate e) {
+        if(Hydrogen.getClient().panic) {
+            this.setEnabled();
+        }
     }
 
 }
