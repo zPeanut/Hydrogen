@@ -70,15 +70,12 @@ public class Checkbox extends Component {
 	@Override
 	public void mouseClicked(int mouseX, int mouseY, int button) {
 		if(isMouseOnButton(mouseX, mouseY) && button == 0 && this.parent.open) {
-			this.op.setValBoolean(!op.isEnabled());;
+			this.op.setValBoolean(!op.isEnabled());
 			SettingsButtonFile.saveState();
 		}
 	}
 	
 	public boolean isMouseOnButton(int x, int y) {
-		if(x > this.x && x < this.x + 88 && y > this.y && y < this.y + 12) {
-			return true;
-		}
-		return false;
+		return x > this.x && x < this.x + 88 && y > this.y && y < this.y + 12;
 	}
 }

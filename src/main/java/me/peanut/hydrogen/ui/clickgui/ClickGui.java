@@ -21,11 +21,10 @@ public class ClickGui extends GuiScreen {
 
 	public static ArrayList<me.peanut.hydrogen.ui.clickgui.component.Frame> frames;
 	public static int color = 0x99cfdcff;
-	private ParticleGenerator particleGen;
-	
+
 	public ClickGui() {
-		this.frames = new ArrayList<me.peanut.hydrogen.ui.clickgui.component.Frame>();
-		this.particleGen = new ParticleGenerator(60, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight());
+		frames = new ArrayList<me.peanut.hydrogen.ui.clickgui.component.Frame>();
+		ParticleGenerator particleGen = new ParticleGenerator(60, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight());
 		int frameX = 5;
 		for(Category category : Category.values()) {
 			me.peanut.hydrogen.ui.clickgui.component.Frame frame = new me.peanut.hydrogen.ui.clickgui.component.Frame(category);
@@ -57,7 +56,7 @@ public class ClickGui extends GuiScreen {
 			if (this.mc.entityRenderer.getShaderGroup() != null) {
 				this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
 				try {
-					ReflectionUtil.theShaderGroup.set(Minecraft.getMinecraft().entityRenderer, (ShaderGroup) null);
+					ReflectionUtil.theShaderGroup.set(Minecraft.getMinecraft().entityRenderer, null);
 				} catch (IllegalAccessException e) {
 					e.printStackTrace();
 				}
