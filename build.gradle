@@ -1,5 +1,5 @@
-//file:noinspection GroovyAssignabilityCheck I don't like warnings!!!! fuck you nigga!!!
-//file:noinspection GroovyUnusedAssignment I don't like warnings!!!! fuck you nigga!!!
+//file:noinspection GroovyAssignabilityCheck I don't like warnings!!!!
+//file:noinspection GroovyUnusedAssignment I don't like warnings!!!!
 buildscript {
     repositories {
         // The mavenCentral() alias means that dependencies are fetched from the central Maven 2 repository (https://repo1.maven.org/maven2).
