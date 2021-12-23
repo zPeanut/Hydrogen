@@ -33,6 +33,8 @@ public class Panic extends Module {
 
         Hydrogen.getClient().panic = true;
 
+        mc.displayGuiScreen(null);
+
         // disables all modules
 
         for (Module m : Hydrogen.getClient().moduleManager.getAllEnabledMods()) {

@@ -58,7 +58,6 @@ public class ClickGuiModule extends Module {
         }
         ClickGuiFile.loadClickGui();
         mc.displayGuiScreen(this.clickgui);
-        mc.displayGuiScreen(null);
         toggle();
         super.onEnable();
     }
