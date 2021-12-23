@@ -49,8 +49,6 @@ public class ClickGuiModule extends Module {
         Hydrogen.getInstance().settingsManager.rSetting(new Setting("SliderOptionDouble", this, 10, 0, 20, false));*/
     }
 
-    // TODO: fix this
-
     @Override
     public void onEnable() {
         if(this.clickgui == null) {

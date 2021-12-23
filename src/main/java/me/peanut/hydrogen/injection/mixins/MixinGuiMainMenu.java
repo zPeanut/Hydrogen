@@ -195,10 +195,6 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
                 String link = url.toString();
                 BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                 Desktop.getDesktop().browse((new URL(link)).toURI());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -209,10 +205,6 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
                 String link = url.toString();
                 BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                 Desktop.getDesktop().browse((new URL(link)).toURI());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
