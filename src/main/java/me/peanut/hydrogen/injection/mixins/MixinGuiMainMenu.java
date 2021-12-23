@@ -111,6 +111,8 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
     @Shadow
     protected abstract void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_);
 
+    @Shadow private String openGLWarningLink;
+
     @Overwrite
     public void initGui() {
         this.viewportTexture = new DynamicTexture(256, 256);
@@ -188,15 +190,32 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             this.mc.displayGuiScreen(new GuiCredits());
         }
         if(button.id == 99) {
-
-            // TODO: fix this
-
-            URL url = new URL(Hydrogen.release);
-            this.mc.displayGuiScreen(new GuiConfirmOpenLink(this, url.toString(), 1, true));
+            try {
+                URL url = new URL(Hydrogen.release);
+                String link = url.toString();
+                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                Desktop.getDesktop().browse((new URL(link)).toURI());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         if(button.id == 98) {
-            URL url = new URL(Hydrogen.github);
-            this.mc.displayGuiScreen(new GuiConfirmOpenLink(this, url.toString(), 1, true));
+            try {
+                URL url = new URL(Hydrogen.github);
+                String link = url.toString();
+                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                Desktop.getDesktop().browse((new URL(link)).toURI());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
