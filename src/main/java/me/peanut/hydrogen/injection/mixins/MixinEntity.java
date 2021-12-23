@@ -55,7 +55,7 @@ public abstract class MixinEntity {
     public World worldObj;
 
     @Shadow
-    public boolean isInWeb;
+    protected boolean isInWeb;
 
     @Shadow
     public float stepHeight;

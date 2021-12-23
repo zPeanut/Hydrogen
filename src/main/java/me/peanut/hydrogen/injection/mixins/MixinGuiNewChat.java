@@ -33,8 +33,9 @@ public abstract class MixinGuiNewChat extends MixinGui {
 
     @Shadow
     @Final
-    public Minecraft mc;
+    private Minecraft mc;
 
+    @Final
     @Shadow
     private final List<ChatLine> drawnChatLines = Lists.newArrayList();
 

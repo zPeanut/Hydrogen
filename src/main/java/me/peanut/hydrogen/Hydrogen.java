@@ -38,7 +38,7 @@ public class Hydrogen {
 
     public static final String version = "v" + version_number + version_suffix;
 
-    public String prefix = "§7[§b" + name + "§7]";
+    public final String prefix = "§7[§b" + name + "§7]";
 
     private static Hydrogen instance;
     private static Utils utils;

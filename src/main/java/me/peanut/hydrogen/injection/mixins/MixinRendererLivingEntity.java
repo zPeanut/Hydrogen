@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.awt.*;
 
+@SuppressWarnings("ALL")
 @Mixin(RendererLivingEntity.class)
 public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> extends MixinRenderer<T> {
 
@@ -31,7 +32,7 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
     @Shadow
     public static float NAME_TAG_RANGE_SNEAK = 32.0F;
 
-    @Inject(method = "doRender", at = @At("HEAD"))
+    @Inject(method = "doRender*", at = @At("HEAD"))
     private <T extends EntityLivingBase> void injectChamsPre(final T a, final double b, final double c, final double d, final float e, final float f, final CallbackInfo g) {
         if (Hydrogen.getClient().moduleManager.getModulebyName("Chams").isEnabled()) {
             GL11.glEnable(32823);
@@ -39,7 +40,7 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
         }
     }
 
-    @Inject(method = "doRender", at = @At("RETURN"))
+    @Inject(method = "doRender*", at = @At("RETURN"))
     private <T extends EntityLivingBase> void injectChamsPost(final T a, final double b, final double c, final double d, final float e, final float f, final CallbackInfo g) {
         if (Hydrogen.getClient().moduleManager.getModulebyName("Chams").isEnabled()) {
             GL11.glPolygonOffset(1.0f, 1000000.0f);

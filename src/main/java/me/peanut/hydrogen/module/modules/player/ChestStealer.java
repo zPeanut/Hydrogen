@@ -26,7 +26,7 @@ public class ChestStealer extends Module {
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Auto Close", this, false));
     }
 
-    TimeUtils delay = new TimeUtils();
+    final TimeUtils delay = new TimeUtils();
 
     @EventTarget
     public void onUpdate(EventUpdate event) {

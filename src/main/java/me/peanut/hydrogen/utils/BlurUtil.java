@@ -135,11 +135,6 @@ public class BlurUtil {
                 (int)(height * factor));
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
 
-			/*Stencil.write(false);
-			Gui.drawFloatRect(x, y, x+width, y+height, -1);
-			Stencil.erase(true);
-			 */
-
         setShaderConfigs(intensity, blurWidth, blurHeight, 1);
         buffer.bindFramebuffer(true);
 

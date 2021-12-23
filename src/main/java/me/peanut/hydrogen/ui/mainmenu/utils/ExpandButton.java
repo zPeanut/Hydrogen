@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class ExpandButton extends GuiButton {
     private final int x;
-    public int y;
+    public final int y;
     private final int x1;
     private final int y1;
     private final String text;

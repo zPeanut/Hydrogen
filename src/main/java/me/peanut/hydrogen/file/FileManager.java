@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class FileManager {
 
-    protected Minecraft mc;
+    protected final Minecraft mc;
     private final String fileName;
     private final File path;
 
@@ -20,7 +20,7 @@ public class FileManager {
         fileName = fileName + ".txt";
         this.fileName = fileName;
         this.path = new File(Hydrogen.getClient().directory.toString());
-        if (path.exists() == false) {
+        if (!path.exists()) {
             try {
                 path.mkdir();
             } catch (Exception e) {

@@ -64,10 +64,6 @@ public class Slider extends Component {
 		GL11.glPopMatrix();
 	}
 
-	public void drawTest() {
-
-	}
-	
 	@Override
 	public void setOff(int newOff) {
 		offset = newOff;
@@ -89,13 +85,12 @@ public class Slider extends Component {
 		if (dragging) {
 			if (diff == 0) {
 				set.setValDouble(set.getMin());
-				SettingsSliderFile.saveState();
 			}
 			else {
 				double newValue = roundToPlace(((diff / 88) * (max - min) + min), 2);
 				set.setValDouble(newValue);
-				SettingsSliderFile.saveState();
 			}
+			SettingsSliderFile.saveState();
 		}
 	}
 	

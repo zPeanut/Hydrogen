@@ -146,8 +146,6 @@ abstract class MixinRenderer<T extends Entity> {
         }
     }
 
-
-
     /**
      * @author
      */

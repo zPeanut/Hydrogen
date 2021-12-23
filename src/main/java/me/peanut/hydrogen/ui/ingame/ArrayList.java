@@ -146,11 +146,4 @@ public class ArrayList extends Module {
     }
 
 
-    @EventTarget(Priority.LOWEST)
-    public void drawBackgrounds(EventRender2D e) {
-
-    }
-
-
-
 }

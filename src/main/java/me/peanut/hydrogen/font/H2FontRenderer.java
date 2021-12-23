@@ -458,7 +458,7 @@ public class H2FontRenderer extends FontRenderer {
             int var6 = (index >> 3 & 1) * 85;
             int var7 = (index >> 2 & 1) * 170 + var6;
             int var8 = (index >> 1 & 1) * 170 + var6;
-            int var9 = (index >> 0 & 1) * 170 + var6;
+            int var9 = (index & 1) * 170 + var6;
             if (index == 6) {
                 var7 += 85;
             }

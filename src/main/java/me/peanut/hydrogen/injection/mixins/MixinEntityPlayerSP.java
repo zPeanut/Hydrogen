@@ -45,7 +45,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
     private float cachedRotationYaw;
 
     @Shadow
-    public boolean serverSprintState;
+    private boolean serverSprintState;
 
     @Shadow
     public abstract void playSound(String name, float volume, float pitch);
@@ -75,10 +75,10 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
     public abstract void sendPlayerAbilities();
 
     @Shadow
-    public float horseJumpPower;
+    private float horseJumpPower;
 
     @Shadow
-    public int horseJumpPowerCounter;
+    private int horseJumpPowerCounter;
 
     @Shadow
     protected abstract void sendHorseJump();
@@ -120,9 +120,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
     @Shadow
     protected abstract boolean pushOutOfBlocks(double x, double y, double z);
 
-    /**
-     * @author
-     */
+    @SuppressWarnings("OverwriteAuthorRequired")
     @Overwrite
     public void sendChatMessage(String message) {
         if(!Hydrogen.getClient().panic) {

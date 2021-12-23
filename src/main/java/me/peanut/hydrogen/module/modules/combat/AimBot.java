@@ -23,6 +23,8 @@ import java.util.HashMap;
 @Info(name = "AimAssist", description = "Automatically aims at enemies", category = Category.Combat)
 public class AimBot extends Module {
 
+    @SuppressWarnings("unchecked")
+    final
     HashMap<String, GetCriteriaValue> selectionCriterias = new HashMap();
     EntityLivingBase target = null;
 

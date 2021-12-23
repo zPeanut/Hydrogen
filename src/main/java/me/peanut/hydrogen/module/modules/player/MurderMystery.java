@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class MurderMystery extends Module {
 
-    public ArrayList<Entity> entities = new ArrayList<Entity>();
+    public final ArrayList<Entity> entities = new ArrayList<Entity>();
 
     public static boolean isMurderer = false;
 

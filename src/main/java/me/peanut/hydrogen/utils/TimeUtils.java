@@ -21,7 +21,7 @@ public class TimeUtils {
 
     public boolean isDelayComplete(long delay)
     {
-        return System.currentTimeMillis() - this.lastMS >= delay;
+        return System.currentTimeMillis() - lastMS >= delay;
     }
 
     public boolean hasDelayRun(double d)

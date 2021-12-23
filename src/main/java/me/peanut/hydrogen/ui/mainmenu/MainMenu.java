@@ -20,8 +20,8 @@ import java.awt.*;
  */
 public class MainMenu extends GuiScreen {
 
-    public static Minecraft mc = Minecraft.getMinecraft();
-    public static ParticleGenerator particleGenerator = new ParticleGenerator(100, mc.displayWidth, mc.displayHeight);
+    public static final Minecraft mc = Minecraft.getMinecraft();
+    public static final ParticleGenerator particleGenerator = new ParticleGenerator(100, mc.displayWidth, mc.displayHeight);
 
     public static void drawMenu(int mouseX, int mouseY) {
         drawRect(40, 0, 140, Utils.getScaledRes().getScaledHeight(), 0x60000000);

@@ -24,7 +24,7 @@ public class BedAura extends Module {
 
     private final TimeUtils time = new TimeUtils();
 
-    public static ArrayList<Integer> ids = new ArrayList<>();
+    public static final ArrayList<Integer> ids = new ArrayList<>();
 
     public static BlockPos pos;
 

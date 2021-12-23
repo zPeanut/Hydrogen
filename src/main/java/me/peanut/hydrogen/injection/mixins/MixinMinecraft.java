@@ -30,8 +30,7 @@ public class MixinMinecraft implements IMixinMinecraft {
 
     @Shadow
     @Mutable
-    @Final
-    private Session session;
+    public Session session;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void minecraftConstructor(GameConfiguration gameConfig, CallbackInfo ci) {

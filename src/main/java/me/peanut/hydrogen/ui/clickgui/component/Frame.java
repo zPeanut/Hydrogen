@@ -14,14 +14,14 @@ import me.peanut.hydrogen.ui.clickgui.ClickGuiModule;
 
 public class Frame {
 
-	public ArrayList<me.peanut.hydrogen.ui.clickgui.component.Component> components;
-	public Category category;
+	public final ArrayList<me.peanut.hydrogen.ui.clickgui.component.Component> components;
+	public final Category category;
 	public boolean open;
-	public int width;
+	public final int width;
 	public int y;
 
 	public int x;
-	public int barHeight;
+	public final int barHeight;
 	private boolean isDragging;
 	public int dragX;
 	public int dragY;

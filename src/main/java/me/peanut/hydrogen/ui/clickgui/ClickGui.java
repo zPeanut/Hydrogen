@@ -20,7 +20,7 @@ import me.peanut.hydrogen.Hydrogen;
 public class ClickGui extends GuiScreen {
 
 	public static ArrayList<me.peanut.hydrogen.ui.clickgui.component.Frame> frames;
-	public static int color = 0x99cfdcff;
+	public static final int color = 0x99cfdcff;
 
 	public ClickGui() {
 		frames = new ArrayList<me.peanut.hydrogen.ui.clickgui.component.Frame>();

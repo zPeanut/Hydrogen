@@ -20,13 +20,13 @@ import me.peanut.hydrogen.settings.Setting;
 
 public class Button extends Component {
 
-	public Module mod;
-	public Frame parent;
+	public final Module mod;
+	public final Frame parent;
 	public int offset;
 	private boolean isHovered;
-	public ArrayList<Component> subcomponents;
+	public final ArrayList<Component> subcomponents;
 	public boolean open;
-	public int height;
+	public final int height;
 	private	int tooltipX;
 	private int tooltipY;
 
@@ -70,14 +70,13 @@ public class Button extends Component {
 			FontHelper.sf_l.drawStringWithShadow(name, parent.getWidth() / 2 + tooltipX - 50, (this.parent.barHeight + tooltipY) - 2, Color.white);
 
 			Utils.startClip(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + FontHelper.sf_l.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12);
-			Utils.endClip();
 		} else {
 			Utils.drawBorderedCorneredRect(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12, 2, 0x95000000, 0x80000000);
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, parent.getWidth() / 2 + tooltipX - 50, (this.parent.barHeight + tooltipY), -1);
 
 			Utils.startClip(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12);
-			Utils.endClip();
 		}
+		Utils.endClip();
 	}
 	
 	@Override

@@ -22,7 +22,7 @@ import java.util.Random;
 public class AutoClicker extends Module {
 
     Random random = new Random();
-    TimeUtils time = new TimeUtils();
+    final TimeUtils time = new TimeUtils();
     int delay;
 
     public AutoClicker() {

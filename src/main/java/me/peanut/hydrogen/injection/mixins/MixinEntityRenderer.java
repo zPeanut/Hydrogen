@@ -32,6 +32,7 @@ import java.util.Objects;
  * Created by peanut on 08/02/2021
  */
 
+@SuppressWarnings("OverwriteAuthorRequired")
 @Mixin(EntityRenderer.class)
 public abstract class MixinEntityRenderer{
 
@@ -65,9 +66,6 @@ public abstract class MixinEntityRenderer{
         EventManager.call(e);
     }
 
-    /**
-     * @author
-     */
     @Overwrite
     public void getMouseOver(float p_getMouseOver_1_) {
         Entity entity = this.mc.getRenderViewEntity();

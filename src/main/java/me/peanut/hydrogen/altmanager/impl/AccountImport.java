@@ -17,7 +17,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class AccountImport extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
-	public JButton openButton;
+	public final JButton openButton;
 
 	private final JFileChooser fc;
 

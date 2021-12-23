@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.Shadow;
  * Created by peanut on 07/02/2021
  */
 
+@SuppressWarnings("OverwriteAuthorRequired")
 @Mixin(AbstractClientPlayer.class)
 @SideOnly(Side.CLIENT)
 public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {

@@ -23,10 +23,10 @@ import java.util.Random;
 public class TriggerBot extends Module {
 
     public static double delay;
-    Random random = new Random();
+    final Random random = new Random();
     int randomD = this.random.nextInt(25);
     int randomInc = this.random.nextInt(15);
-    TimeUtils time = new TimeUtils();
+    final TimeUtils time = new TimeUtils();
 
     public TriggerBot() {
         super(Keyboard.KEY_NONE);

@@ -135,7 +135,7 @@ public class Utils {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
-    public static final ScaledResolution getScaledRes() {
+    public static ScaledResolution getScaledRes() {
         final ScaledResolution scaledRes = new ScaledResolution(Minecraft.getMinecraft());
         return scaledRes;
     }

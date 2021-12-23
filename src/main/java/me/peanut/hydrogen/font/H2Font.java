@@ -141,7 +141,6 @@ public class H2Font {
         float renderSRCY = srcY / (float)this.IMAGE_HEIGHT;
         float renderSRCWidth = srcWidth / (float)this.IMAGE_WIDTH;
         float renderSRCHeight = srcHeight / (float)this.IMAGE_HEIGHT;
-        GL11.glBegin((int)4);
         GL11.glBegin(4);
         GL11.glTexCoord2f(renderSRCX + renderSRCWidth, renderSRCY);
         GL11.glVertex2d(x + width, y);

@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MixinGuiIngame extends MixinGui {
 
     @Shadow
-    public abstract void renderHotbarItem(int index, int xPos, int yPos, float partialTicks, EntityPlayer player);
+    protected abstract void renderHotbarItem(int index, int xPos, int yPos, float partialTicks, EntityPlayer player);
 
     @Shadow
     @Final
@@ -41,6 +41,7 @@ public abstract class MixinGuiIngame extends MixinGui {
         EventManager.call(e);
     }
     
+    @SuppressWarnings("OverwriteAuthorRequired")
     @Overwrite
     protected void renderTooltip(ScaledResolution sr, float partialTicks) {
 

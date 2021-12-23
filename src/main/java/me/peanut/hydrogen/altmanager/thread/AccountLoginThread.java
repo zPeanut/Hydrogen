@@ -36,7 +36,7 @@ public class AccountLoginThread extends Thread {
 		if ((Minecraft.getMinecraft()).currentScreen instanceof GuiAlteningLogin) {
 			Hydrogen.getClient().switchToAltening();
 			unknownBoolean1 = false;
-		} else if (unknownBoolean1 == true) {
+		} else if (unknownBoolean1) {
 			try {
 				Hydrogen.getClient().altService.switchService(AltService.EnumAltService.MOJANG);
 			} catch (NoSuchFieldException e) {
@@ -73,7 +73,7 @@ public class AccountLoginThread extends Thread {
 				Hydrogen.getClient().accountManager.setLastAlt(account);
 			Hydrogen.getClient().accountManager.save();
 			GuiAltManager.INSTANCE.currentAccount = account;
-			if (unknownBoolean1 == true) {
+			if (unknownBoolean1) {
 				this.status = String.format("§aLogged in as §7%s§a.", account.getName());
 			}
 		} catch (AuthenticationException exception) {

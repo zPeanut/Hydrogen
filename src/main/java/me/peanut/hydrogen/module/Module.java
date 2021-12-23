@@ -12,7 +12,7 @@ import java.awt.*;
 public class Module {
 
     public boolean visible;
-    public static Minecraft mc = Minecraft.getMinecraft();
+    public static final Minecraft mc = Minecraft.getMinecraft();
     public boolean toggled;
     public String suffix;
     private int slide = 0;

@@ -46,6 +46,7 @@ import java.util.List;
 /**
  * Created by peanut on 22/02/2021
  */
+@SuppressWarnings("ALL")
 @Mixin(GuiMainMenu.class)
 public abstract class MixinGuiMainMenu extends GuiScreen {
 
@@ -53,7 +54,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
     public abstract void renderSkybox(int p_73971_1_, int p_73971_2_, float p_73971_3_);
 
     @Shadow
-    public abstract void addDemoButtons(int p_73972_1_, int p_73972_2_);
+    protected abstract void addDemoButtons(int p_73972_1_, int p_73972_2_);
 
     @Shadow
     private DynamicTexture viewportTexture;
@@ -100,6 +101,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
     @Shadow
     private String openGLWarning2;
 
+    @Final
     @Shadow
     private static final ResourceLocation minecraftTitleTextures = new ResourceLocation("textures/gui/title/minecraft.png");
 
@@ -107,11 +109,8 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
     private float updateCounter;
 
     @Shadow
-    public abstract void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_);
+    protected abstract void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_);
 
-    /**
-     * @author
-     */
     @Overwrite
     public void initGui() {
         this.viewportTexture = new DynamicTexture(256, 256);
@@ -223,9 +222,6 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         }
     }
 
-    /**
-     * @author
-     */
     @Overwrite
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         if (Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
