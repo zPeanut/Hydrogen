@@ -19,7 +19,7 @@ public class GuiAltLogin extends GuiScreen {
 
 	private AccountLoginThread loginThread;
 
-	private GuiScreen parent;
+	private final GuiScreen parent;
 
 	public GuiAltLogin(GuiScreen parent) {
 		this.parent = parent;

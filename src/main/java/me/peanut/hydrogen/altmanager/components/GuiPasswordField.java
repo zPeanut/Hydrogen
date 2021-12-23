@@ -30,7 +30,7 @@ public class GuiPasswordField extends Gui {
 
 	public boolean isFocused = false;
 
-	private boolean isEnabled = true;
+	private final boolean isEnabled = true;
 
 	private int field_73816_n = 0;
 
@@ -40,7 +40,7 @@ public class GuiPasswordField extends Gui {
 
 	private int enabledColor = 14737632;
 
-	private int disabledColor = 7368816;
+	private final int disabledColor = 7368816;
 
 	private boolean field_73823_s = true;
 
