@@ -15,6 +15,8 @@ import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.settings.Setting;
 
 import java.awt.*;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by peanut on 18/02/2021
@@ -51,6 +53,17 @@ public class ArrayList extends Module {
                 }
             }
         }, "smooth array").start();
+
+        Collections.sort(Hydrogen.getClient().moduleManager.getModules(), new Comparator<Module>() {
+            public int compare(Module m1, Module m2) {
+                if (FontHelper.sf_l.getStringWidth(m1.getName()) > FontHelper.sf_l.getStringWidth(m2.getName()))
+                    return -1;
+                if (FontHelper.sf_l.getStringWidth(m1.getName()) < FontHelper.sf_l.getStringWidth(m2.getName()))
+                    return 1;
+                return 0;
+            }
+        });
+
 
         java.util.ArrayList<String> array = new java.util.ArrayList<>();
         array.add("Rainbow");

@@ -113,15 +113,6 @@ public class ModuleManager {
                 }
             });
         }
-        Collections.sort(modules, new Comparator<Module>() {
-            public int compare(Module m1, Module m2) {
-                if (FontHelper.sf_l.getStringWidth(m1.getName()) > FontHelper.sf_l.getStringWidth(m2.getName()))
-                    return -1;
-                if (FontHelper.sf_l.getStringWidth(m1.getName()) < FontHelper.sf_l.getStringWidth(m2.getName()))
-                    return 1;
-                return 0;
-            }
-        });
         for(Module m : this.getModules()) {
             if(!m.getCategory().equals(Category.Gui)) {
                 m.visible = true;

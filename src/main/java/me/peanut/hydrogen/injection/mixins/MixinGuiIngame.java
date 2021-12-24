@@ -45,7 +45,7 @@ public abstract class MixinGuiIngame extends MixinGui {
     @Overwrite
     protected void renderTooltip(ScaledResolution sr, float partialTicks) {
 
-        if(!(Hydrogen.getClient().moduleManager.getModulebyName("Hotbar").isEnabled() && Hydrogen.getClient().moduleManager.getModule(HUD.class).isEnabled())) {
+        if (!(Hydrogen.getClient().moduleManager.getModulebyName("Hotbar").isEnabled() && Hydrogen.getClient().moduleManager.getModule(HUD.class).isEnabled()) || Hydrogen.getClient().panic) {
             if (Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 Minecraft.getMinecraft().getTextureManager().bindTexture(widgetsTexPath);
@@ -72,14 +72,13 @@ public abstract class MixinGuiIngame extends MixinGui {
                 GlStateManager.disableBlend();
             }
         } else {
-
             if (Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
                 GlStateManager.enableRescaleNormal();
                 GlStateManager.enableBlend();
                 GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 Minecraft.getMinecraft().getTextureManager().bindTexture(widgetsTexPath);
-                EntityPlayer entityplayer = (EntityPlayer)Minecraft.getMinecraft().getRenderViewEntity();
+                EntityPlayer entityplayer = (EntityPlayer) Minecraft.getMinecraft().getRenderViewEntity();
 
                 int i = sr.getScaledWidth() / 2;
                 float f = this.zLevel;
@@ -117,7 +116,5 @@ public abstract class MixinGuiIngame extends MixinGui {
                 GlStateManager.disableBlend();
             }
         }
-
     }
-
 }
