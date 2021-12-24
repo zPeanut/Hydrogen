@@ -10,6 +10,7 @@
     "MixinEntityPlayer",
     "MixinEntityPlayerSP",
     "MixinEntityRenderer",
+    "MixinFontRenderer",
     "MixinGui",
     "MixinGuiIngame",
     "MixinGuiMainMenu",

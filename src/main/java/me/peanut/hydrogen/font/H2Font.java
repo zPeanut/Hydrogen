@@ -1,5 +1,7 @@
 package me.peanut.hydrogen.font;
 
+import com.darkmagician6.eventapi.EventManager;
+import me.peanut.hydrogen.events.EventText;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import org.lwjgl.opengl.GL11;
 
@@ -158,6 +160,9 @@ public class H2Font {
     }
 
     public void drawString(String text, double x, double y, Color color, boolean shadow) {
+        EventText e = new EventText(text);
+        EventManager.call(e);
+        text = e.getText();
         x *= 2.0;
         y = y * 2.0 - 2.0;
         GL11.glPushMatrix();
@@ -201,6 +206,9 @@ public class H2Font {
     }
 
     public int getStringWidth(String text) {
+        EventText e = new EventText(text);
+        EventManager.call(e);
+        text = e.getText();
         int width = 0;
         char[] arrayOfChar = text.toCharArray();
         int i = arrayOfChar.length;

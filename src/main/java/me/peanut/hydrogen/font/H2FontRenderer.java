@@ -1,5 +1,7 @@
 package me.peanut.hydrogen.font;
 
+import com.darkmagician6.eventapi.EventManager;
+import me.peanut.hydrogen.events.EventText;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -61,6 +63,9 @@ public class H2FontRenderer extends FontRenderer {
     }
 
     public int drawString(String text, double x, double y, int color, boolean shadow) {
+        EventText e = new EventText(text);
+        EventManager.call(e);
+        text = e.getText();
         GlStateManager.enableAlpha();
         int result = 0;
         try {

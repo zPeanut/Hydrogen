@@ -1,19 +1,27 @@
 package me.peanut.hydrogen.injection.mixins;
 
 import me.peanut.hydrogen.Hydrogen;
+import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.module.modules.player.NameProtect;
 import me.peanut.hydrogen.module.modules.render.NoSpeedFOV;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * Created by peanut on 07/02/2021
@@ -64,6 +72,15 @@ public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
         return ForgeHooksClient.getOffsetFOV((EntityPlayer) (Object) this, f);
     }
 
-
+    @Inject(method = "getLocationSkin()Lnet/minecraft/util/ResourceLocation;", at = { @At("HEAD") }, cancellable = true)
+    private void getSkin(final CallbackInfoReturnable<ResourceLocation> callbackInfoReturnable) {
+        Module nameProtect = Hydrogen.getClient().moduleManager.getModule(NameProtect.class);
+        if (nameProtect.isEnabled() && Hydrogen.getClient().settingsManager.getSettingByName(nameProtect, "SkinProtect").isEnabled()) {
+            if (!Hydrogen.getClient().settingsManager.getSettingByName(nameProtect, "All Players").isEnabled() && !this.getGameProfile().getName().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getName())) {
+                return;
+            }
+            callbackInfoReturnable.setReturnValue(DefaultPlayerSkin.getDefaultSkin(this.getUniqueID()));
+        }
+    }
 
 }

@@ -102,6 +102,7 @@ public class ModuleManager {
         add(new Tracers());
         add(new TTFChat());
         add(new Panic());
+        add(new NameProtect());
 
         // alphabetically sort modules in clickgui
 
