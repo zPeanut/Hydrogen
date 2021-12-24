@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.ui.clickgui.component.components.sub.*;
-import me.peanut.hydrogen.ui.clickgui.component.components.sub.Checkbox;
+import me.peanut.hydrogen.ui.clickgui.component.components.sub.CheckboxButton;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.FontUtil;
 import me.peanut.hydrogen.utils.Utils;
@@ -44,17 +44,17 @@ public class Button extends Component {
 					opY += 12;
 				}
 				if(s.isSlider()){
-					this.subcomponents.add(new Slider(s, this, opY));
+					this.subcomponents.add(new SliderButton(s, this, opY));
 					opY += 12;
 				}
 				if(s.isCheck()){
-					this.subcomponents.add(new Checkbox(s, this, opY));
+					this.subcomponents.add(new CheckboxButton(s, this, opY));
 					opY += 12;
 				}
 			}
 		}
 		this.subcomponents.add(new VisibleButton(this, mod, opY));
-		this.subcomponents.add(new Keybind(this, opY));
+		this.subcomponents.add(new KeybindButton(this, opY));
 	}
 
 	public void updateTooltipPosition(int mouseX, int mouseY) {

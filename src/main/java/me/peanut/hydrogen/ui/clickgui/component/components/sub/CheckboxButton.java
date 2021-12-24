@@ -13,7 +13,7 @@ import me.peanut.hydrogen.settings.Setting;
 
 import java.awt.*;
 
-public class Checkbox extends Component {
+public class CheckboxButton extends Component {
 
 	private boolean hovered;
 	private final Setting op;
@@ -22,7 +22,7 @@ public class Checkbox extends Component {
 	private int x;
 	private int y;
 	
-	public Checkbox(Setting option, Button button, int offset) {
+	public CheckboxButton(Setting option, Button button, int offset) {
 		this.op = option;
 		this.parent = button;
 		this.x = button.parent.getX() + button.parent.getWidth();

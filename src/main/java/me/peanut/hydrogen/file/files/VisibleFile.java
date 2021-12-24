@@ -12,6 +12,8 @@ public class VisibleFile {
 
     private static final FileManager VisibleList = new FileManager("visible", "Hydrogen");
 
+    // TODO: put all module settings into a json instead of seperate txt files some time
+
     public VisibleFile() {
         try {
             loadState();

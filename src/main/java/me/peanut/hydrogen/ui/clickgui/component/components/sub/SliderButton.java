@@ -15,7 +15,7 @@ import me.peanut.hydrogen.ui.clickgui.component.Component;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
 import me.peanut.hydrogen.settings.Setting;
 
-public class Slider extends Component {
+public class SliderButton extends Component {
 
 	private boolean hovered;
 
@@ -28,7 +28,7 @@ public class Slider extends Component {
 
 	private double renderWidth;
 	
-	public Slider(Setting value, Button button, int offset) {
+	public SliderButton(Setting value, Button button, int offset) {
 		this.set = value;
 		this.parent = button;
 		this.x = button.parent.getX() + button.parent.getWidth();

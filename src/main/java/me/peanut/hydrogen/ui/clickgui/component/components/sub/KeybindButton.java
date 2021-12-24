@@ -13,7 +13,7 @@ import me.peanut.hydrogen.ui.clickgui.component.components.Button;
 
 import java.awt.*;
 
-public class Keybind extends Component {
+public class KeybindButton extends Component {
 
 	private boolean hovered;
 	private boolean binding;
@@ -22,7 +22,7 @@ public class Keybind extends Component {
 	private int x;
 	private int y;
 	
-	public Keybind(Button button, int offset) {
+	public KeybindButton(Button button, int offset) {
 		this.parent = button;
 		this.x = button.parent.getX() + button.parent.getWidth();
 		this.y = button.parent.getY() + button.offset;
