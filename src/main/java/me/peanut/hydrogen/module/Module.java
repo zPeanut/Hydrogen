@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class Module {
 
-    public boolean visible;
+    public boolean visible = false;
     public static final Minecraft mc = Minecraft.getMinecraft();
     public boolean toggled;
     public String suffix;

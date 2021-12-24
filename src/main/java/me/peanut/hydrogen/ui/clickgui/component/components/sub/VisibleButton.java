@@ -1,6 +1,9 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
+import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.utils.FontHelper;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -8,6 +11,8 @@ import net.minecraft.client.gui.Gui;
 
 import me.peanut.hydrogen.ui.clickgui.component.Component;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
+
+import java.awt.*;
 
 public class VisibleButton extends Component { // TODO: add this
 
@@ -33,12 +38,25 @@ public class VisibleButton extends Component { // TODO: add this
 	
 	@Override
 	public void renderComponent() {
-		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, this.hovered ? 0x88222222 : 0x88111111);
-		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
+
+		int c1 = new Color(17, 17, 17, 140).getRGB(); // 0x88111111
+		int c3 = new Color(34, 34, 34, 140).getRGB(); // 0x88222222
+
+		Gui.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, hovered ? 0x99000000 : 0x88000000);
+		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, c1);
 		GL11.glPushMatrix();
-		GL11.glScalef(0.5f,0.5f, 0.5f);
-		Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow("Visible: " + mod.visible, (parent.parent.getX() + 7) * 2, (parent.parent.getY() + offset + 2) * 2 + 5, -1);
-		GL11.glPopMatrix(); //													    mod.visible is a public boolean variable in the Module.java class. If it's == false, the mod won't show up in the ArrayList
+		GL11.glScalef(0.75f,0.75f, 0.75f);
+
+		if (Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+			Color c = new Color(255, 255, 255);
+			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7Visible" : "Visible", (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
+			FontHelper.verdana.drawStringWithShadow("§l" + mod.isVisible(), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.verdana.getStringWidth("§l" + mod.visible), (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
+		} else {
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7Visible" : "Visible", (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow("§l" + mod.isVisible(), (parent.parent.getX() + 86) * 1.3333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth("§l" + mod.visible), (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
+		}
+
+		GL11.glPopMatrix();
 	}
 	
 	@Override

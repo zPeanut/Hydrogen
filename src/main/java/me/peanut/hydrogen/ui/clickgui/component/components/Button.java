@@ -4,10 +4,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.ui.clickgui.component.components.sub.*;
 import me.peanut.hydrogen.ui.clickgui.component.components.sub.Checkbox;
-import me.peanut.hydrogen.ui.clickgui.component.components.sub.Keybind;
-import me.peanut.hydrogen.ui.clickgui.component.components.sub.ModeButton;
-import me.peanut.hydrogen.ui.clickgui.component.components.sub.Slider;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.FontUtil;
 import me.peanut.hydrogen.utils.Utils;
@@ -55,6 +53,7 @@ public class Button extends Component {
 				}
 			}
 		}
+		this.subcomponents.add(new VisibleButton(this, mod, opY));
 		this.subcomponents.add(new Keybind(this, opY));
 	}
 
@@ -112,7 +111,7 @@ public class Button extends Component {
 			FontUtil.drawTotalCenteredStringWithShadow(this.mod.toggled ? this.mod.getName() : this.isHovered ? "§7" + this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7), 0xffffe9b5);
 		}
 
-		if(this.subcomponents.size() > 1)
+		if(this.subcomponents.size() > 2)
 			FontHelper.sf_l.drawStringWithShadow(this.open ? "v" : "§f>", (parent.getX() + parent.getWidth() - 10), (parent.getY() + offset), new Color(255, 230, 181));
 
 		if(this.open) {
