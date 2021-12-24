@@ -23,6 +23,7 @@ public class Panic extends Module {
 
         KeybindFile.saveKeybinds();
         SettingsButtonFile.saveState();
+        VisibleFile.saveState();
         SettingsComboBoxFile.saveState();
         SettingsSliderFile.saveState();
         ClickGuiFile.saveClickGui();
