@@ -14,7 +14,7 @@ import me.peanut.hydrogen.ui.clickgui.component.components.Button;
 
 import java.awt.*;
 
-public class VisibleButton extends Component { // TODO: add this
+public class VisibleButton extends Component {
 
 	private boolean hovered;
 	private final Button parent;
