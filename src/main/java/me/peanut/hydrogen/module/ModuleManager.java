@@ -113,6 +113,20 @@ public class ModuleManager {
                 }
             });
         }
+        Collections.sort(modules, new Comparator<Module>() {
+            public int compare(Module m1, Module m2) {
+                if (FontHelper.sf_l.getStringWidth(m1.getName()) > FontHelper.sf_l.getStringWidth(m2.getName()))
+                    return -1;
+                if (FontHelper.sf_l.getStringWidth(m1.getName()) < FontHelper.sf_l.getStringWidth(m2.getName()))
+                    return 1;
+                return 0;
+            }
+        });
+        for(Module m : this.getModules()) {
+            if(!m.getCategory().equals(Category.Gui)) {
+                m.visible = true;
+            }
+        }
     }
 
     private void add(Module module) {
@@ -155,49 +169,14 @@ public class ModuleManager {
         return null;
     }
 
-    public List<Module> getAllEnabledMods() {
+    public List<Module> getEnabledMods() {
         List<Module> modules = new ArrayList<>();
-
         for (Module mod : this.getModules()) {
-            if (mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled())) {
+            if (mod.isEnabled() && mod.visible || (mod.getSlide() != 0 && !mod.isEnabled())) {
                 if (!modules.contains(mod)) {
                     modules.add(mod);
                 }
             }
-
-            Collections.sort(modules, new Comparator<Module>() {
-                public int compare(Module m1, Module m2) {
-                    if (FontHelper.sf_l.getStringWidth(m1.getName()) > FontHelper.sf_l.getStringWidth(m2.getName()))
-                        return -1;
-                    if (FontHelper.sf_l.getStringWidth(m1.getName()) < FontHelper.sf_l.getStringWidth(m2.getName()))
-                        return 1;
-                    return 0;
-                }
-            });
-        }
-        return modules;
-    }
-
-    public List<Module> getEnabledMods() {
-        List<Module> modules = new ArrayList<>();
-
-        for (Module mod : this.getModules()) {
-            if (mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled())) {
-                if (mod.getCategory() != Category.Gui) {
-                    if (!modules.contains(mod)) {
-                        modules.add(mod);
-                    }
-                }
-            }
-            Collections.sort(modules, new Comparator<Module>() {
-                public int compare(Module m1, Module m2) {
-                    if (FontHelper.sf_l.getStringWidth(m1.getName()) > FontHelper.sf_l.getStringWidth(m2.getName()))
-                        return -1;
-                    if (FontHelper.sf_l.getStringWidth(m1.getName()) < FontHelper.sf_l.getStringWidth(m2.getName()))
-                        return 1;
-                    return 0;
-                }
-            });
         }
         return modules;
     }
