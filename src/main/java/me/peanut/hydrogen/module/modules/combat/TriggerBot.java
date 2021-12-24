@@ -32,6 +32,7 @@ public class TriggerBot extends Module {
         super(Keyboard.KEY_NONE);
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Random MS", this, 5, 0, 250, true));
     }
 
 
@@ -39,7 +40,7 @@ public class TriggerBot extends Module {
     public void onUpdate(EventUpdate e)
     {
         delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
-        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random ms").getValDouble());
+        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random MS").getValDouble());
         delay += random;
         this.time.setLastMS();
         try {

@@ -34,7 +34,7 @@ public class AutoClicker extends Module {
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Type", this, "Left Click", mode));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("on Click", this, false));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Random ms", this, 5, 0, 250, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Random MS", this, 5, 0, 250, true));
     }
 
 
@@ -62,7 +62,7 @@ public class AutoClicker extends Module {
     private void click() {
         boolean type = Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getValString().equalsIgnoreCase("Left Click");
         delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
-        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random ms").getValDouble());
+        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random MS").getValDouble());
         delay += random;
         this.time.setLastMS();
         if(type) {
