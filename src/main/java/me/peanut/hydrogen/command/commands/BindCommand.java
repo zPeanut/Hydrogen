@@ -9,7 +9,7 @@ import me.peanut.hydrogen.command.Command;
 /**
  * Created by peanut on 13/03/2021
  */
-public class Bind extends Command {
+public class BindCommand extends Command {
 
     public void execute(String[] args) {
         if (args.length == 0) {

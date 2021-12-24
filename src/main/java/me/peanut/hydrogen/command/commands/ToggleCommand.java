@@ -8,7 +8,7 @@ import me.peanut.hydrogen.command.Command;
 /**
  * Created by peanut on 14/03/2021
  */
-public class Toggle extends Command {
+public class ToggleCommand extends Command {
 
     public void execute(String[] args) {
         if (args.length != 1) {
