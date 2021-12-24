@@ -33,7 +33,6 @@ public class Eagle extends Module {
                 }
             }
         } catch (Exception localException) {
-            localException.printStackTrace();
         }
     }
     @Override

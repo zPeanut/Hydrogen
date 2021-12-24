@@ -37,7 +37,7 @@ public class Panic extends Module {
 
         // disables all modules
 
-        for (Module m : Hydrogen.getClient().moduleManager.getAllEnabledMods()) {
+        for (Module m : Hydrogen.getClient().moduleManager.getEnabledMods()) {
             m.setDisabled();
         }
     }
