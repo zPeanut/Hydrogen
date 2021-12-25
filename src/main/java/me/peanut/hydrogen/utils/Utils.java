@@ -50,7 +50,7 @@ public class Utils {
     }
 
     public static void sendChatMessage(final String message) {
-        Minecraft.getMinecraft().thePlayer.addChatMessage(IChatComponent.Serializer.jsonToComponent("{text:\"" + Hydrogen.getClient().prefix + " " + message + "\"}"));
+        Minecraft.getMinecraft().thePlayer.addChatMessage(IChatComponent.Serializer.jsonToComponent("{text:\"" + Hydrogen.prefix + " " + message + "\"}"));
     }
 
     public static void startClip(float x1, float y1, float x2, float y2) {

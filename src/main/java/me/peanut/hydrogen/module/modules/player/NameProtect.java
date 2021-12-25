@@ -24,7 +24,7 @@ public class NameProtect extends Module {
 
     @EventTarget
     public void onText(EventText event) {
-        if (NameProtect.mc.thePlayer == null || event.getText().contains(Hydrogen.getClient().prefix)) {
+        if (NameProtect.mc.thePlayer == null || event.getText().contains(Hydrogen.prefix)) {
             return;
         }
         if (!this.isEnabled()) {
