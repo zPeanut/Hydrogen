@@ -61,25 +61,24 @@ public class Watermark extends Module {
 
                 if (time) {
 
-                    String watermarknew = Hydrogen.version + " §7(" + currenttime + ")" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
+                    String watermark = Hydrogen.version + " §7(" + currenttime + ")" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
 
                     if(outline) {
-                        Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 24 : mc.fontRendererObj.getStringWidth(watermarknew) + 28, 0, ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 25 : mc.fontRendererObj.getStringWidth(watermarknew) + 29, 23, 0x99000000);
-                        Gui.drawRect(0, 23, ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 25 : mc.fontRendererObj.getStringWidth(watermarknew) + 29, 24, 0x99000000);
+                        Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermark) + 24 : mc.fontRendererObj.getStringWidth(watermark) + 28, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 25 : mc.fontRendererObj.getStringWidth(watermark) + 29, 23, 0x99000000);
+                        Gui.drawRect(0, 23, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 25 : mc.fontRendererObj.getStringWidth(watermark) + 29, 24, 0x99000000);
                     }
 
                     if (background) {
-                        Gui.drawRect(0, 0, ttf ? FontHelper.sf_l.getStringWidth(watermarknew) + 24 : mc.fontRendererObj.getStringWidth(watermarknew) + 28, 23, Integer.MIN_VALUE);
+                        Gui.drawRect(0, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 24 : mc.fontRendererObj.getStringWidth(watermark) + 28, 23, Integer.MIN_VALUE);
                     }
 
                     if(ttf) {
                         FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
                         FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
-                        FontHelper.sf_l.drawStringWithShadow(watermarknew, 22, 5, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(watermark, 22, 5, Color.white);
                     } else {
-
                         mc.fontRendererObj.drawStringWithShadow("2", 17, 13, -1);
-                        mc.fontRendererObj.drawStringWithShadow(watermarknew, 26, 7, -1);
+                        mc.fontRendererObj.drawStringWithShadow(watermark, 26, 7, -1);
                         GL11.glPushMatrix();
                         GL11.glScalef(2, 2, 2);
                         mc.fontRendererObj.drawStringWithShadow("h", 2, 1, -1);
@@ -87,25 +86,25 @@ public class Watermark extends Module {
                     }
 
                 } else {
-                    String watermarknew_notime = Hydrogen.version + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
+
+                    String watermark_no_time = Hydrogen.version + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
 
                     if(outline) {
-                        Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermarknew_notime) + 28 : mc.fontRendererObj.getStringWidth(watermarknew_notime) + 28, 0, ttf ? FontHelper.sf_l.getStringWidth(watermarknew_notime) + 29 : mc.fontRendererObj.getStringWidth(watermarknew_notime) + 29, 23, 0x99000000);
-                        Gui.drawRect(0, 23, ttf ? FontHelper.sf_l.getStringWidth(watermarknew_notime) + 29 : mc.fontRendererObj.getStringWidth(watermarknew_notime) + 29, 24, 0x99000000);
+                        Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 28 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 28, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 29 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 29, 23, 0x99000000);
+                        Gui.drawRect(0, 23, ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 29 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 29, 24, 0x99000000);
                     }
 
                     if (background) {
-                        Gui.drawRect(0, 0, ttf ? FontHelper.sf_l.getStringWidth(watermarknew_notime) + 28 : mc.fontRendererObj.getStringWidth(watermarknew_notime) + 28, 23, Integer.MIN_VALUE);
+                        Gui.drawRect(0, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 28 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 28, 23, Integer.MIN_VALUE);
                     }
 
                     if(ttf) {
                         FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
                         FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
-                        FontHelper.sf_l.drawStringWithShadow(watermarknew_notime, 22, 5, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(watermark_no_time, 22, 5, Color.white);
                     } else {
-
                         mc.fontRendererObj.drawStringWithShadow("2", 17, 13, -1);
-                        mc.fontRendererObj.drawStringWithShadow(watermarknew_notime, 26, 7, -1);
+                        mc.fontRendererObj.drawStringWithShadow(watermark_no_time, 26, 7, -1);
                         GL11.glPushMatrix();
                         GL11.glScalef(2, 2, 2);
                         mc.fontRendererObj.drawStringWithShadow("h", 2, 1, -1);
@@ -113,7 +112,9 @@ public class Watermark extends Module {
                     }
                 }
 
-            } else {
+            }
+
+            if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("Old")) {
 
                 if (time) {
 
@@ -136,21 +137,21 @@ public class Watermark extends Module {
 
                 } else {
 
-                    String watermark_notime = String.format("%s %s" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.name, Hydrogen.version);
+                    String watermark_no_time = String.format("%s %s" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.name, Hydrogen.version);
 
                     if(outline) {
-                        Gui.drawRect(0, 11, ttf ? FontHelper.sf_l.getStringWidth(watermark_notime) + 4 : mc.fontRendererObj.getStringWidth(watermark_notime) + 4, 12, 0x99000000);
-                        Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermark_notime) + 4 : mc.fontRendererObj.getStringWidth(watermark_notime) + 4, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark_notime) + 3 : mc.fontRendererObj.getStringWidth(watermark_notime) + 3, 11, 0x99000000);
+                        Gui.drawRect(0, 11, ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 4 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 4, 12, 0x99000000);
+                        Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 4 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 4, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 3 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 3, 11, 0x99000000);
                     }
 
                     if (background) {
-                        Gui.drawRect(0, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark_notime) + 3 : mc.fontRendererObj.getStringWidth(watermark_notime) + 3, 11, Integer.MIN_VALUE);
+                        Gui.drawRect(0, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 3 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 3, 11, Integer.MIN_VALUE);
                     }
 
                     if(ttf) {
-                        FontHelper.sf_l.drawStringWithShadow(watermark_notime, 2, 0, Color.white);
+                        FontHelper.sf_l.drawStringWithShadow(watermark_no_time, 2, 0, Color.white);
                     } else {
-                        mc.fontRendererObj.drawStringWithShadow(watermark_notime, 2, 2, -1);
+                        mc.fontRendererObj.drawStringWithShadow(watermark_no_time, 2, 2, -1);
                     }
                 }
             }
