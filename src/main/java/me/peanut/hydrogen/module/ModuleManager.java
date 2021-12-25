@@ -11,7 +11,6 @@ import me.peanut.hydrogen.ui.clickgui.*;
 import me.peanut.hydrogen.ui.mainmenu.*;
 import me.peanut.hydrogen.ui.ingame.Info;
 import me.peanut.hydrogen.events.EventKey;
-import me.peanut.hydrogen.utils.FontHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,11 +37,11 @@ public class ModuleManager {
 
         // hud
 
+        add(new HUD());
         add(new me.peanut.hydrogen.ui.ingame.ArrayList());
         add(new Hotbar());
         add(new Info());
         add(new Watermark());
-        add(new HUD());
 
         // 1.1
 

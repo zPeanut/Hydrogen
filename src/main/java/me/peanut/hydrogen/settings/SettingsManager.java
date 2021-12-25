@@ -40,7 +40,7 @@ public class SettingsManager {
 				return set;
 			}
 		}
-		System.err.println("["+ Hydrogen.name + "] Error Setting NOT found: '" + name +"'!");
+		String errormessage = String.format("[%s] ERROR! Setting not found! [%s] in [%s] returned null!", Hydrogen.name, name, mod);
 		return null;
 	}
 
@@ -50,7 +50,7 @@ public class SettingsManager {
 				return set;
 			}
 		}
-		System.err.println("["+ Hydrogen.name + "] Error Setting NOT found: '" + name +"'!");
+		String errormessage = String.format("[%s] ERROR! Setting not found! [%s] returned null!", Hydrogen.name, name);
 		return null;
 	}
 

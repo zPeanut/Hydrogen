@@ -138,6 +138,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 26, 44, 20, "Mods"));
             this.buttonList.add(new ExpandButton(36, 90, Utils.getScaledRes().getScaledHeight() / 2 + 26, 45, 20, "Credits"));
             this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 60, 90, 20, "Quit"));
+            this.buttonList.add(new ExpandButton(97, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 49, Utils.getScaledRes().getScaledHeight() / 2 - 38, FontHelper.sf_l2.getStringWidth(Hydrogen.version) + 6, 20, "", true, Hydrogen.getClient().semantic_version));
 
             if (Hydrogen.getClient().outdated) {
                 this.buttonList.add(new ExpandButton(99, 45, 36, 90, 20, "Update!"));
@@ -202,6 +203,16 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         if(button.id == 98) {
             try {
                 URL url = new URL(Hydrogen.github);
+                String link = url.toString();
+                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                Desktop.getDesktop().browse((new URL(link)).toURI());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if(button.id == 97) {
+            try {
+                URL url = new URL(Hydrogen.tags);
                 String link = url.toString();
                 BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                 Desktop.getDesktop().browse((new URL(link)).toURI());

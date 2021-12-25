@@ -14,31 +14,26 @@ import net.minecraftforge.fml.common.Mod;
 import me.peanut.hydrogen.altmanager.account.AccountManager;
 import me.peanut.hydrogen.command.CommandManager;
 import me.peanut.hydrogen.settings.SettingsManager;
+import org.lwjgl.Sys;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-@Mod(modid = Hydrogen.modid, name = Hydrogen.name, version = Hydrogen.version_number, useMetadata = true)
+@Mod(modid = Hydrogen.modid, name = Hydrogen.name, version = Hydrogen.version, useMetadata = true)
 public class Hydrogen {
 
     public static final String modid = "hydrogen";
     public static final String name = "Hydrogen";
     public static final String devs = "zPeanut & UltramoxX";
+    public final String prefix = "§7[§b" + name + "§7]";
+
+    public static final String version = "1.11 Dev";
+    public static String semantic_version = "1.11.0-dev";
+
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
-
-    public static final String version_number = "1.10";
-    private static final String version_suffix = "";
-
-    // this basically only exists so the semver comparison doesnt result in an error when it tries to compare a full release version (i.e. no patch version) e.g "1.9" with "1.8.3"
-    // the error "no patch version" results as "1.9" should be expected to be written as "1.9.0"
-    // ive refrained from just renaming the version number to 1.9.0 to keep unity with all the other full release versions
-    private static final String semantic_version = "1.10.0";
-
-    public static final String version = "v" + version_number + version_suffix;
-
-    public final String prefix = "§7[§b" + name + "§7]";
+    public static final String tags = release + "tag/" + semantic_version + "/";
 
     private static Hydrogen instance;
     private static Utils utils;
@@ -67,8 +62,8 @@ public class Hydrogen {
         if (!this.directory.exists()) {
             directory.mkdir();
         }
-        settingsManager = new SettingsManager();
         moduleManager = new ModuleManager();
+        settingsManager = new SettingsManager();
         keybindManager = new KeybindManager();
         commandManager = new CommandManager();
         accountManager = new AccountManager(new File(this.directory.toString()));
@@ -77,11 +72,11 @@ public class Hydrogen {
         clickgui = new ClickGui();
         FontHelper.loadFonts();
         moduleManager.addModules();
-        new ArrayList();
         this.isOutdated();
         if(settingsManager.getSettingByName("Startup Sound").isEnabled()) {
             Utils.playSound("startup.wav");
         }
+        new ArrayList();
     }
 
     public static Hydrogen getClient() {
