@@ -16,7 +16,7 @@ public abstract class Command {
     public abstract String getDesc();
 
     public static void msg(String msg) {
-        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(Hydrogen.getClient().prefix + "§7 " + msg));
+        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(Hydrogen.prefix + "§7 " + msg));
     }
 
     public void normal(String msg)  {

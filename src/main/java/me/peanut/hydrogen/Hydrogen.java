@@ -20,16 +20,16 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-@Mod(modid = Hydrogen.modid, name = Hydrogen.name, version = Hydrogen.version, useMetadata = true)
+@Mod(modid = Hydrogen.modid, name = Hydrogen.name, version = Hydrogen.semantic_version, useMetadata = true)
 public class Hydrogen {
 
     public static final String modid = "hydrogen";
     public static final String name = "Hydrogen";
     public static final String devs = "zPeanut & UltramoxX";
-    public final String prefix = "§7[§b" + name + "§7]";
+    public static final String prefix = "§7[§b" + name + "§7]";
 
     public static final String version = "1.11 Dev";
-    public static String semantic_version = "1.11.0-dev";
+    public static final String semantic_version = "1.11.0-dev";
 
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
