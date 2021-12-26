@@ -10,7 +10,7 @@ import me.peanut.hydrogen.utils.FontUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.gui.FontRenderer;
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.module.modules.ui.ClickGui;
+import me.peanut.hydrogen.module.modules.ui.ClickGUI;
 
 public class Frame {
 
@@ -73,7 +73,7 @@ public class Frame {
 	}
 
 	public void renderFrame(FontRenderer fontRenderer) {
-		Module cgui = Hydrogen.getClient().moduleManager.getModule(ClickGui.class);
+		Module cgui = Hydrogen.getClient().moduleManager.getModule(ClickGUI.class);
 		int color = new Color((int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Red").getValDouble(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Green").getValDouble(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Blue").getValDouble(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Alpha").getValDouble()).getRGB();
 		Utils.rect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, color);
 

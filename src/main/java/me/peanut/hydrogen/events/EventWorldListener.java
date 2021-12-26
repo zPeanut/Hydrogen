@@ -1,7 +1,7 @@
 package me.peanut.hydrogen.events;
 
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.module.modules.ui.ClickGui;
+import me.peanut.hydrogen.module.modules.ui.ClickGUI;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;
@@ -22,7 +22,7 @@ public class EventWorldListener {
         World world = e.world;
         if (world != null && Hydrogen.getClient().firstStart) {
             Utils.sendChatMessage(EnumChatFormatting.GRAY + "Welcome to §fHydrogen " + Hydrogen.version + "§7!");
-            Utils.sendChatMessage(EnumChatFormatting.GRAY + "To get started, press §f[" + Keyboard.getKeyName(Hydrogen.getClient().moduleManager.getModule(ClickGui.class).getKeybind()) + "]§7 to open the ClickGUI!");
+            Utils.sendChatMessage(EnumChatFormatting.GRAY + "To get started, press §f[" + Keyboard.getKeyName(Hydrogen.getClient().moduleManager.getModule(ClickGUI.class).getKeybind()) + "]§7 to open the ClickGUI!");
 
             ChatComponentText String3 = new ChatComponentText(EnumChatFormatting.GRAY + Hydrogen.prefix + " Be sure to report any bugs at our §f§nGitHub§7!");
             String3.setChatStyle((new ChatStyle()).setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Hydrogen.github)));

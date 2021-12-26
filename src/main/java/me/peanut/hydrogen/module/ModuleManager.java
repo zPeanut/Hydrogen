@@ -28,7 +28,7 @@ public class ModuleManager {
         // 1.0
 
         add(new Eagle());
-        add(new ClickGui());
+        add(new ClickGUI());
         add(new FastPlace());
         add(new Sprint());
         add(new Chams());
@@ -73,7 +73,7 @@ public class ModuleManager {
 
         // 1.5
 
-        add(new MainMenu());
+        add(new MainMenuModule());
         add(new NoHurtCam());
         add(new BedESP());
         add(new BedAura());

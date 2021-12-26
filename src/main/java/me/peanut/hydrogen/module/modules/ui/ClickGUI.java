@@ -18,11 +18,11 @@ import java.util.ArrayList;
  */
 
 @Info(name = "ClickGUI", description = "The click gui", category = Category.Gui, keybind = Keyboard.KEY_LSHIFT)
-public class ClickGui extends Module {
+public class ClickGUI extends Module {
 
     public me.peanut.hydrogen.ui.clickgui.ClickGui clickgui;
 
-    public ClickGui() {
+    public ClickGUI() {
         ArrayList<String> font = new ArrayList<>();
         font.add("TTF");
         font.add("Minecraft");
