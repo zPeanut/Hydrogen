@@ -6,8 +6,10 @@ import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.settings.Setting;
@@ -33,7 +35,7 @@ public class Watermark extends Module {
         watermark.add("Old");
         watermark.add("New");
 
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Watermark", this, "New", watermark));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Watermark", this, "Old", watermark));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Background", this, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Outline", this, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Time", this, true));
