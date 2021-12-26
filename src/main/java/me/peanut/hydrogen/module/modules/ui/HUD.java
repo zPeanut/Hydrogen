@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.ui.ingame;
+package me.peanut.hydrogen.module.modules.ui;
 
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;

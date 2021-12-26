@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.ui.clickgui;
+package me.peanut.hydrogen.module.modules.ui;
 
 import com.darkmagician6.eventapi.EventTarget;
 import me.peanut.hydrogen.events.EventUpdate;
@@ -6,6 +6,7 @@ import me.peanut.hydrogen.file.files.ClickGuiFile;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import org.lwjgl.input.Keyboard;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.settings.Setting;
@@ -17,11 +18,11 @@ import java.util.ArrayList;
  */
 
 @Info(name = "ClickGUI", description = "The click gui", category = Category.Gui, keybind = Keyboard.KEY_LSHIFT)
-public class ClickGuiModule extends Module {
+public class ClickGui extends Module {
 
-    public ClickGui clickgui;
+    public me.peanut.hydrogen.ui.clickgui.ClickGui clickgui;
 
-    public ClickGuiModule() {
+    public ClickGui() {
         ArrayList<String> font = new ArrayList<>();
         font.add("TTF");
         font.add("Minecraft");
@@ -50,7 +51,7 @@ public class ClickGuiModule extends Module {
     @Override
     public void onEnable() {
         if(this.clickgui == null) {
-            this.clickgui = new ClickGui();
+            this.clickgui = new me.peanut.hydrogen.ui.clickgui.ClickGui();
         }
         ClickGuiFile.loadClickGui();
         mc.displayGuiScreen(this.clickgui);

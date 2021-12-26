@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.ui.ingame;
+package me.peanut.hydrogen.module.modules.ui;
 
 import com.darkmagician6.eventapi.EventTarget;
 import me.peanut.hydrogen.events.EventRender2D;

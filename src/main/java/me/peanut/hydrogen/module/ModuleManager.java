@@ -2,17 +2,13 @@ package me.peanut.hydrogen.module;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.modules.combat.*;
 import me.peanut.hydrogen.module.modules.movement.*;
 import me.peanut.hydrogen.module.modules.player.*;
 import me.peanut.hydrogen.module.modules.render.*;
-import me.peanut.hydrogen.ui.ingame.*;
-import me.peanut.hydrogen.ui.clickgui.*;
-import me.peanut.hydrogen.ui.mainmenu.*;
-import me.peanut.hydrogen.ui.ingame.Info;
+import me.peanut.hydrogen.module.modules.ui.*;
+import me.peanut.hydrogen.module.modules.ui.Info;
 import me.peanut.hydrogen.events.EventKey;
-import me.peanut.hydrogen.utils.FontHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +28,7 @@ public class ModuleManager {
         // 1.0
 
         add(new Eagle());
-        add(new ClickGuiModule());
+        add(new ClickGui());
         add(new FastPlace());
         add(new Sprint());
         add(new Chams());
@@ -40,7 +36,7 @@ public class ModuleManager {
         // hud
 
         add(new HUD());
-        add(new me.peanut.hydrogen.ui.ingame.ArrayList());
+        add(new me.peanut.hydrogen.module.modules.ui.ArrayList());
         add(new Hotbar());
         add(new Info());
         add(new Watermark());
@@ -77,7 +73,7 @@ public class ModuleManager {
 
         // 1.5
 
-        add(new MainMenuModule());
+        add(new MainMenu());
         add(new NoHurtCam());
         add(new BedESP());
         add(new BedAura());
