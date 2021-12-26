@@ -3,6 +3,7 @@ package me.peanut.hydrogen.injection.mixins;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.module.modules.player.NameProtect;
+import me.peanut.hydrogen.module.modules.render.NoBowFOV;
 import me.peanut.hydrogen.module.modules.render.NoSpeedFOV;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -57,7 +58,7 @@ public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
             f = 1.0F;
         }
 
-        if (this.isUsingItem() && this.getItemInUse().getItem() == Items.bow) {
+        if (this.isUsingItem() && this.getItemInUse().getItem() == Items.bow && !(Hydrogen.getClient().moduleManager.getModule(NoBowFOV.class).isEnabled())) {
             int i = this.getItemInUseDuration();
             float f1 = (float)i / 20.0F;
             if (f1 > 1.0F) {
