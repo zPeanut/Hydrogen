@@ -54,6 +54,12 @@ inside of your directory. Simply put that file into your mods folder inside .min
 **HeroCode**, for providing the ClickGUI API.  
 **Lemon**, for providing the Settings system, used in the client.  
 **All of my contributors on discord**, who've reported bugs and suggested modules over the past.
+- ProfKambing
+- QianHeJ
+- neyled
+- qaql
+- S4rnth1l
+- perry
 
 [me]: https://github.com/zPeanut
 [UltramoxX]: https://github.com/Morten-Renner
