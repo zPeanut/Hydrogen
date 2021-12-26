@@ -30,7 +30,6 @@ public class HUD extends Module {
         font.add("TTF");
         font.add("Minecraft");
 
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Font", this, "TTF", font));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Drop Shadow", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Font", this, "Minecraft", font));
     }
 }
