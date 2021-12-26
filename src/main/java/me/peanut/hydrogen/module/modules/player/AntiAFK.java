@@ -24,20 +24,24 @@ public class AntiAFK extends Module {
         timeUtils = new TimeUtils();
     }
 
+    // TODO: make this not aids
+
     @EventTarget
-    public void onUpdate(EventUpdate event) {
-        mc.gameSettings.keyBindForward.pressed = true;
-        if (timeUtils.hasDelayRun(500L)) {
-            EntityPlayerSP entityPlayerSP = mc.thePlayer;
-            entityPlayerSP.rotationYaw += 180.0f;
-            TimeUtils.reset();
+    public void onUpdate(EventUpdate e) {
+        if(this.isEnabled()) {
+            mc.gameSettings.keyBindForward.pressed = true;
+            if (timeUtils.hasDelayRun(5000L)) {
+                EntityPlayerSP entityPlayerSP = mc.thePlayer;
+                entityPlayerSP.rotationYaw += 180.0f;
+                TimeUtils.reset();
+            }
         }
     }
 
     @Override
     public void onDisable() {
         if (!GameSettings.isKeyDown(mc.gameSettings.keyBindForward)) {
-            mc.gameSettings.keyBindForward.pressed = true;
+            mc.gameSettings.keyBindForward.pressed = false;
         }
     }
 
