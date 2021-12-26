@@ -74,8 +74,8 @@ public class Hotbar extends Module {
                     FontHelper.sf_l.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
                     FontHelper.sf_l.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 10, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
                 } else {
-                    mc.fontRendererObj.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(date) - 16, Utils.getScaledRes().getScaledHeight() - 10, -1);
-                    mc.fontRendererObj.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 15, Utils.getScaledRes().getScaledHeight() - 21, -1);
+                    mc.fontRendererObj.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(date) - 10, Utils.getScaledRes().getScaledHeight() - 10, -1);
+                    mc.fontRendererObj.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - mc.fontRendererObj.getStringWidth(time) - 11, Utils.getScaledRes().getScaledHeight() - 21, -1);
                 }
             }
 
