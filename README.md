@@ -48,8 +48,13 @@ inside of your directory. Simply put that file into your mods folder inside .min
 
 ## Credits
 
+Dependencies:  
+  
+**[DarkMagician6's EventAPI]**, an open source EventAPI system, made for handling events across java based projects.  
+**[Semver4j]**, semantic versioning for Java applications, used for comparison between versions in the client.  
 
-**[Semver4j]**, semantic versioning for Java applications, used for comparison between versions in the client.
+Credits:  
+  
 **superblaubeere27**, for providing most of the initial client base.  
 **HeroCode**, for providing the ClickGUI API.  
 **Lemon**, for providing the Settings system, used in the client.  
@@ -64,3 +69,4 @@ inside of your directory. Simply put that file into your mods folder inside .min
 [me]: https://github.com/zPeanut
 [UltramoxX]: https://github.com/Morten-Renner
 [SemVer4j]: https://github.com/vdurmont/semver4j
+[DarkMagician6's EventAPI]: https://bitbucket.org/DarkMagician6/eventapi/src/master/
