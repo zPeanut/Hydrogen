@@ -18,6 +18,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -50,7 +51,16 @@ public class Utils {
     }
 
     public static void sendChatMessage(final String message) {
-        Minecraft.getMinecraft().thePlayer.addChatMessage(IChatComponent.Serializer.jsonToComponent("{text:\"" + Hydrogen.prefix + " " + message + "\"}"));
+        ChatComponentText chatcomponenttext = new ChatComponentText(String.format("%s %s", Hydrogen.prefix, message));
+        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(chatcomponenttext);
+    }
+
+    public static void sendChatMessage(final ChatComponentText chatComponentText) {
+        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(chatComponentText);
+    }
+
+    public static void printTest() {
+
     }
 
     public static void startClip(float x1, float y1, float x2, float y2) {

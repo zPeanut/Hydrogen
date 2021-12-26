@@ -2,19 +2,22 @@ package me.peanut.hydrogen;
 
 import com.thealtening.auth.AltService;
 import com.vdurmont.semver4j.Semver;
+import me.peanut.hydrogen.events.EventWorldListener;
 import me.peanut.hydrogen.file.FileManager;
 import me.peanut.hydrogen.module.ModuleManager;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.ui.ingame.ArrayList;
+import me.peanut.hydrogen.ui.ingame.HUD;
+import me.peanut.hydrogen.ui.ingame.Watermark;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.KeybindManager;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import me.peanut.hydrogen.altmanager.account.AccountManager;
 import me.peanut.hydrogen.command.CommandManager;
 import me.peanut.hydrogen.settings.SettingsManager;
-import org.lwjgl.Sys;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -26,7 +29,7 @@ public class Hydrogen {
     public static final String modid = "hydrogen";
     public static final String name = "Hydrogen";
     public static final String devs = "zPeanut & UltramoxX";
-    public static final String prefix = "§7[§b" + name + "§7]";
+    public static final String prefix = "§7[§9" + name + "§7]";
 
     public static final String version = "1.11 Dev";
     public static final String semantic_version = "1.11.0-dev";
@@ -48,8 +51,9 @@ public class Hydrogen {
     public ClickGui clickgui;
     public File directory;
 
-    public boolean outdated = false;
-    public boolean panic = false;
+    public boolean outdated;
+    public boolean panic;
+    public boolean firstStart;
     public String newversion;
 
     public Hydrogen() {
@@ -57,9 +61,11 @@ public class Hydrogen {
     }
 
     public void startClient() {
+        MinecraftForge.EVENT_BUS.register(new EventWorldListener());
         panic = false;
         directory = new File(Minecraft.getMinecraft().mcDataDir, name);
         if (!this.directory.exists()) {
+            this.firstStart = true;
             directory.mkdir();
         }
         moduleManager = new ModuleManager();
@@ -77,6 +83,10 @@ public class Hydrogen {
             Utils.playSound("startup.wav");
         }
         new ArrayList();
+        if(firstStart) {
+            moduleManager.getModule(HUD.class).setEnabled();
+            moduleManager.getModule(Watermark.class).setEnabled();
+        }
     }
 
     public static Hydrogen getClient() {
