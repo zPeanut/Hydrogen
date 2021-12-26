@@ -26,7 +26,7 @@ public class TimeUtils {
 
     public boolean hasDelayRun(double d)
     {
-        return getCurrentTime() >= this.resetMS + d;
+        return System.currentTimeMillis() >= this.resetMS + d;
     }
 
     public static boolean hasTimePassedMS(long LastMS, long MS) {
