@@ -108,6 +108,7 @@ public class ModuleManager {
         // 1.11
 
         add(new AntiBlind());
+        add(new Breadcrumbs());
 
         // alphabetically sort modules in clickgui
 
