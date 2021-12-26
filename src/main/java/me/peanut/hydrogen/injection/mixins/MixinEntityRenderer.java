@@ -11,7 +11,6 @@ import me.peanut.hydrogen.module.modules.player.MurderMystery;
 import me.peanut.hydrogen.module.modules.render.NameTags;
 import me.peanut.hydrogen.module.modules.render.NoHurtCam;
 import me.peanut.hydrogen.module.modules.render.Tracers;
-import me.peanut.hydrogen.utils.Once;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
