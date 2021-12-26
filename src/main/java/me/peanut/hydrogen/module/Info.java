@@ -18,4 +18,6 @@ public @interface Info {
 
     Category category();
 
+    int keybind() default 0;
+
 }

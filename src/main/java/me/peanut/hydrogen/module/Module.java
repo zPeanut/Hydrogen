@@ -11,41 +11,50 @@ import java.awt.*;
 
 public class Module {
 
-    public boolean visible = false;
+    protected String name;
+    protected String description;
+    protected Category category;
+    private int keyBind;
+    public boolean visible;
+
     public static final Minecraft mc = Minecraft.getMinecraft();
     public boolean toggled;
     public String suffix;
     private int slide = 0;
-    private int keyBind;
     private Color color;
 
 
-    public Module(int keyBind) {
-        this.keyBind = keyBind;
-    }
-
-    public Info getModuleInfo() {
-        if(this.getClass().isAnnotationPresent(Info.class)) {
-            return this.getClass().getAnnotation(Info.class);
-        }
-        return null;
+    public Module() {
+        this.name = this.getClass().getAnnotation(Info.class).name();
+        this.description = this.getClass().getAnnotation(Info.class).description();
+        this.category = this.getClass().getAnnotation(Info.class).category();
+        this.keyBind = this.getClass().getAnnotation(Info.class).keybind();
     }
 
     public String getName() {
-        return this.getModuleInfo().name();
+        return this.name;
     }
 
     public String getDescription() {
-        return this.getModuleInfo().description();
+        return this.description;
+    }
+
+    public Category getCategory() {
+        return this.category;
+    }
+
+    public int getKeybind() {
+        return this.keyBind;
+    }
+
+    public void setKeyBind(int keyBind) {
+        this.keyBind = keyBind;
     }
 
     public void addSetting(Setting settingIn) {
         Hydrogen.getClient().settingsManager.rSetting(settingIn);
     }
 
-    public Category getCategory() {
-        return this.getModuleInfo().category();
-    }
 
     public Color getColor() {
         if(this.getCategory().equals(Category.Combat)) {
@@ -58,15 +67,6 @@ public class Module {
             new Color(199, 255, 201);
         }
         return new Color(199, 255, 201);
-    }
-
-
-    public int getKeybind() {
-        return this.keyBind;
-    }
-
-    public void setKeyBind(int keyBind) {
-        this.keyBind = keyBind;
     }
 
     public void unbindKeyBind() {
@@ -120,8 +120,8 @@ public class Module {
     }
     public void onEnable() {
         EventManager.register(this);
-
     }
+
     public void onDisable() {
         EventManager.unregister(this);
     }
