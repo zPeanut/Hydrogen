@@ -109,6 +109,7 @@ public class ModuleManager {
 
         add(new AntiBlind());
         add(new Breadcrumbs());
+        add(new CameraClip());
 
         // alphabetically sort modules in clickgui
 
