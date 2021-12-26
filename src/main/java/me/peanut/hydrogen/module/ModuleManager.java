@@ -111,6 +111,7 @@ public class ModuleManager {
         add(new Breadcrumbs());
         add(new CameraClip());
         add(new NoBowFOV());
+        add(new AutoBow());
 
         // alphabetically sort modules in clickgui
 
