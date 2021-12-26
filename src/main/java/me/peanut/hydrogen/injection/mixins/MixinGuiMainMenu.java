@@ -188,7 +188,14 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             this.mc.displayGuiScreen(new GuiAltManager());
         }
         if(button.id == 36) {
-            this.mc.displayGuiScreen(new GuiCredits());
+            try {
+                URL url = new URL("https://github.com/zpeanut/hydrogen#credits");
+                String link = url.toString();
+                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                Desktop.getDesktop().browse((new URL(link)).toURI());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         if(button.id == 99) {
             try {
