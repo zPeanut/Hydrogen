@@ -17,6 +17,7 @@
     "MixinGuiNewChat",
     "MixinGuiScreen",
     "MixinGuiSpectator",
+    "MixinItemRenderer",
     "MixinMinecraft",
     "MixinNetworkManager",
     "MixinRenderer",
