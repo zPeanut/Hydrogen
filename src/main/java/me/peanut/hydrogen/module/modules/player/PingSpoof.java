@@ -30,8 +30,6 @@ public class PingSpoof extends Module {
     private final List<Packet> packetList = new CopyOnWriteArrayList<>();
 
     public PingSpoof() {
-        super(0x00);
-
         this.packetsMap = new HashMap<Packet<?>, Long>();
         addSetting(new Setting("Max. Delay", this, 1000, 0, 5000, true));
         addSetting(new Setting("Min. Delay", this, 500, 0, 5000, true));

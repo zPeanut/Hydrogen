@@ -11,9 +11,7 @@ import me.peanut.hydrogen.module.Module;
 @Info(name = "NoBob", description = "Removes the bobbing animation", category = Category.Render)
 public class NoBob extends Module {
 
-    public NoBob() {
-        super(Keyboard.KEY_NONE);
-    }
+    public NoBob() {}
 
     @EventTarget
     public void onRender(EventPreMotion e) {

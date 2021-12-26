@@ -14,7 +14,6 @@ import me.peanut.hydrogen.settings.Setting;
 @Info(name = "ESP", description = "Draws an outline on entities through walls", category = Category.Render)
 public class ESP extends Module {
     public ESP() {
-        super(Keyboard.KEY_NONE);
         Hydrogen.getClient().settingsManager.rSetting(new Setting("LineWidth", this, 3, 1, 10, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Entities", this, true));
     }

@@ -20,7 +20,6 @@ public class AntiAFK extends Module {
     private final TimeUtils timeUtils;
 
     public AntiAFK() {
-        super(0x00);
         timeUtils = new TimeUtils();
     }
 

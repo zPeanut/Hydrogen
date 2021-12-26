@@ -21,8 +21,6 @@ import java.awt.*;
 public class Tracers extends Module {
 
     public Tracers() {
-        super(0x00);
-
         addSetting(new Setting("Red", this, 255, 0, 255, true));
         addSetting(new Setting("Blue", this, 255, 0, 255, true));
         addSetting(new Setting("Green", this, 255, 0, 255, true));

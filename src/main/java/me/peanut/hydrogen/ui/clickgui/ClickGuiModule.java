@@ -16,14 +16,12 @@ import java.util.ArrayList;
  * Created by peanut on 03/02/2021
  */
 
-@Info(name = "ClickGUI", description = "The click gui", category = Category.Gui)
+@Info(name = "ClickGUI", description = "The click gui", category = Category.Gui, keybind = Keyboard.KEY_LSHIFT)
 public class ClickGuiModule extends Module {
 
     public ClickGui clickgui;
 
     public ClickGuiModule() {
-        super(Keyboard.KEY_LCONTROL);
-
         ArrayList<String> font = new ArrayList<>();
         font.add("TTF");
         font.add("Minecraft");

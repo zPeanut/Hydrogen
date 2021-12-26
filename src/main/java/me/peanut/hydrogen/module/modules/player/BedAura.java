@@ -35,8 +35,6 @@ public class BedAura extends Module {
     private int y;
 
     public BedAura() {
-        super(0x00);
-
         addSetting(new Setting("Bed", this, true));
         addSetting(new Setting("Cake", this, false));
         addSetting(new Setting("Egg", this, false));

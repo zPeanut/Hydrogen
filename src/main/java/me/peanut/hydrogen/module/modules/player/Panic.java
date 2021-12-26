@@ -10,12 +10,10 @@ import me.peanut.hydrogen.Hydrogen;
  * Created by peanut on 22/12/2021
  */
 
-@Info(name = "Panic", description = "Disables all client functionality. Needs a restart if activated.", category = Category.Player)
+@Info(name = "§cPanic", description = "Disables all client functionality. Needs a restart if activated.", category = Category.Player)
 public class Panic extends Module {
 
-    public Panic() {
-        super(0x00);
-    }
+    public Panic() {}
 
     @Override
     public void onEnable() {

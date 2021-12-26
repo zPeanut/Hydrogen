@@ -20,19 +20,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-@Info(name = "AimAssist", description = "Automatically aims at enemies", category = Category.Combat)
+@Info(name = "AimAssist", description = "Automatically aims at enemies", category = Category.Combat, keybind = Keyboard.KEY_R)
 public class AimBot extends Module {
 
     @SuppressWarnings("unchecked")
-    final
-    HashMap<String, GetCriteriaValue> selectionCriterias = new HashMap();
+    final HashMap<String, GetCriteriaValue> selectionCriterias = new HashMap();
     EntityLivingBase target = null;
 
     boolean offset = false;
     boolean onlyPrimaryTarget = false;
 
     public AimBot() {
-        super(Keyboard.KEY_R);
 
         selectionCriterias.put("Distance", (thePlayer, target) -> (thePlayer.getPositionEyes(0).distanceTo(target.getPositionEyes(0))));
         selectionCriterias.put("Health", ((thePlayer, target) -> target.getHealth()));

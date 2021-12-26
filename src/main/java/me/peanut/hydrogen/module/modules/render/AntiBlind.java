@@ -12,8 +12,6 @@ import me.peanut.hydrogen.settings.Setting;
 public class AntiBlind extends Module {
 
     public AntiBlind() {
-        super(0x00);
-
         addSetting(new Setting("Pumpkin", this, true));
         addSetting(new Setting("Fire", this, true));
         addSetting(new Setting("Potion", this, true));

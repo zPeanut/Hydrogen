@@ -15,8 +15,6 @@ import me.peanut.hydrogen.settings.Setting;
 @Info(name = "Flight", category = Category.Movement, description = "Lets you fly")
 public class Flight extends Module {
     public Flight() {
-        super(0x00);
-
         addSetting(new Setting("Speed", this, 1, 0, 5, false));
     }
 

@@ -17,7 +17,6 @@ import org.apache.commons.lang3.StringUtils;
 public class NameProtect extends Module {
 
     public NameProtect() {
-        super(0x00);
         addSetting(new Setting("All Players", this, false));
         addSetting(new Setting("SkinProtect", this, true));
     }

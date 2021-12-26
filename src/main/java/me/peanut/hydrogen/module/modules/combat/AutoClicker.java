@@ -26,8 +26,6 @@ public class AutoClicker extends Module {
     int delay;
 
     public AutoClicker() {
-        super(Keyboard.KEY_NONE);
-
         ArrayList<String> mode = new ArrayList<>();
         mode.add("Left Click");
         mode.add("Right Click");

@@ -8,9 +8,7 @@ import me.peanut.hydrogen.module.Module;
 
 @Info(name = "Fullbright", description = "Brightens up the world", category = Category.Render)
 public class Fullbright extends Module {
-    public Fullbright() {
-        super(Keyboard.KEY_NONE);
-    }
+    public Fullbright() {}
 
     @Override
     public void onEnable() {

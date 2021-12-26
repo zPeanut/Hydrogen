@@ -12,8 +12,6 @@ import me.peanut.hydrogen.settings.Setting;
 @Info(name = "HitBox", description = "Extends the enemys hitbox", category = Category.Combat)
 public class HitBox extends Module {
     public HitBox() {
-        super(0x00);
-
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Expand", this, 0.15, 0.1, 1, false));
     }
 }

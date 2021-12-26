@@ -15,8 +15,6 @@ import java.util.ArrayList;
 public class TTFChat extends Module {
 
     public TTFChat() {
-        super(0x00);
-
         ArrayList<String> mode = new ArrayList<>();
         mode.add("SF UI Display");
         mode.add("Comfortaa");

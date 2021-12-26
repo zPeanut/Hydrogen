@@ -17,9 +17,7 @@ import me.peanut.hydrogen.module.Module;
 @Info(name = "FastBow", description = "Removes the bow load-up time", category = Category.Combat)
 public class FastBow extends Module {
 
-    public FastBow() {
-        super(0x00);
-    }
+    public FastBow() {}
 
     @EventTarget
     public void onUpdate(EventUpdate event) {

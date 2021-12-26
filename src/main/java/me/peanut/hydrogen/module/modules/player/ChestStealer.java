@@ -20,8 +20,6 @@ import me.peanut.hydrogen.utils.TimeUtils;
 @Info(name = "ChestStealer", description = "Steals items from chests", category = Category.Player)
 public class ChestStealer extends Module {
     public ChestStealer() {
-        super(Keyboard.KEY_NONE);
-
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Delay", this, 100.0, 0.0, 1000.0, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Auto Close", this, false));
     }

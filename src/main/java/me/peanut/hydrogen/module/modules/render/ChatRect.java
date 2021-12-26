@@ -10,8 +10,6 @@ import me.peanut.hydrogen.module.Module;
 @Info(name = "NoChatRect", category = Category.Render, description = "Removes the chat background")
 public class ChatRect extends Module {
 
-    public ChatRect() {
-        super(0x00);
-    }
+    public ChatRect() {}
 
 }

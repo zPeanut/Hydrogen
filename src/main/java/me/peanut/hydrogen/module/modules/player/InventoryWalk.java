@@ -18,9 +18,8 @@ import java.util.Objects;
 @Info(name = "InventoryWalk", description = "Lets you walk while in inventory", category = Category.Player)
 public class InventoryWalk extends Module {
 
-    public InventoryWalk() {
-        super(Keyboard.KEY_NONE);
-    }
+    public InventoryWalk() {}
+
     @EventTarget
     public void onUpdate(EventUpdate e)
     {

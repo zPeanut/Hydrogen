@@ -18,9 +18,7 @@ public class SafeWalk extends Module {
 
     public boolean safewalk;
 
-    public SafeWalk() {
-        super(Keyboard.KEY_NONE);
-    }
+    public SafeWalk() {}
 
     @Override
     public void onDisable() {

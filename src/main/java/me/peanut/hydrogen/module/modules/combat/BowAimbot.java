@@ -24,9 +24,7 @@ public class BowAimbot extends Module {
     boolean isFiring;
     public static EntityLivingBase target;
 
-    public BowAimbot() {
-        super(0x00);
-    }
+    public BowAimbot() {}
 
     @EventTarget
     public void onUpdate(EventUpdate event) {

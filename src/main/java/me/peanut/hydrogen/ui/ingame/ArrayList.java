@@ -25,8 +25,6 @@ import java.util.Comparator;
 public class ArrayList extends Module {
 
     public ArrayList() {
-        super(0x00);
-
         new Thread(() -> {
             while (true) {
                 try {

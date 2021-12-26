@@ -10,7 +10,5 @@ import me.peanut.hydrogen.module.Module;
  */
 @Info(name = "NoSpeedFOV", description = "Removes FOV gained by speed effects", category = Category.Render)
 public class NoSpeedFOV extends Module {
-    public NoSpeedFOV() {
-        super(Keyboard.KEY_NONE);
-    }
+    public NoSpeedFOV() {}
 }

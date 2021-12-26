@@ -12,9 +12,7 @@ import me.peanut.hydrogen.module.Module;
  */
 @Info(name = "AirStrafe", description = "Lets you move in directions while in air", category = Category.Movement)
 public class AirStrafe extends Module {
-    public AirStrafe() {
-        super(0x00);
-    }
+    public AirStrafe() {}
 
     @EventTarget
     public void onUpdate(EventUpdate event) {

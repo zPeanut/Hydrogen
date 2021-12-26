@@ -20,9 +20,7 @@ import java.awt.*;
 @Info(name = "BedESP", category = Category.Render, description = "Draws a box around beds")
 public class BedESP extends Module {
 
-    public BedESP() {
-        super(0x00);
-    }
+    public BedESP() {}
 
     @EventTarget
     public void onRender(EventRender3D e) {

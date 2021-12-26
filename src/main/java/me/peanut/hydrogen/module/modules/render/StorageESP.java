@@ -22,8 +22,6 @@ import me.peanut.hydrogen.utils.Utils;
 @Info(name = "StorageESP", description = "Draws an outline on storage containers", category = Category.Render)
 public class StorageESP extends Module {
     public StorageESP() {
-        super(0x00);
-
         addSetting(new Setting("Filling", this, true));
     }
 

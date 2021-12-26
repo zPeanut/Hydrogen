@@ -29,8 +29,6 @@ public class Watermark extends Module {
     static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
 
     public Watermark() {
-        super(0x00);
-
         java.util.ArrayList<String> watermark = new ArrayList<>();
         watermark.add("Old");
         watermark.add("New");

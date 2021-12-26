@@ -7,7 +7,5 @@ import me.peanut.hydrogen.module.Module;
 
 @Info(name = "Chams", description = "Draws models through walls", category = Category.Render)
 public class Chams extends Module {
-    public Chams() {
-        super(Keyboard.KEY_NONE);
-    }
+    public Chams() {}
 }

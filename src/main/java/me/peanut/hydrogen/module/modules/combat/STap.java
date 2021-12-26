@@ -22,8 +22,6 @@ public class STap extends Module {
     private long lastHold = 2000000000L;
 
     public STap() {
-        super(0x00);
-
         addSetting(new Setting("Delay", this, 500, 100, 2000, false));
         addSetting(new Setting("Held", this, 100, 50, 250, false));
     }

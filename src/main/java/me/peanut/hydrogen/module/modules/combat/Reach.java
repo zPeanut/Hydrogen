@@ -14,7 +14,6 @@ import me.peanut.hydrogen.settings.Setting;
 public class Reach extends Module {
 
     public Reach() {
-        super(0x00);
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Min Distance", this, 3.2, 3, 6, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Max Distance", this, 3.5, 3, 6, false));
     }

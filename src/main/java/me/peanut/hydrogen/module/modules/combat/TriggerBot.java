@@ -29,8 +29,6 @@ public class TriggerBot extends Module {
     final TimeUtils time = new TimeUtils();
 
     public TriggerBot() {
-        super(Keyboard.KEY_NONE);
-
         Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Random MS", this, 5, 0, 250, true));
     }

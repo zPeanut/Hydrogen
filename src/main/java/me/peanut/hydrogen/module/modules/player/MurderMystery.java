@@ -27,8 +27,6 @@ public class MurderMystery extends Module {
     public static boolean isMurderer = false;
 
     public MurderMystery() {
-        super(0x00);
-
         addSetting(new Setting("Tracers", this, true));
         addSetting(new Setting("Red", this, 255, 0, 255, true));
         addSetting(new Setting("Blue", this, 255, 0, 255, true));

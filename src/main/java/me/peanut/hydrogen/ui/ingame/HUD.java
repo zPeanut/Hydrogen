@@ -14,12 +14,7 @@ public class HUD extends Module {
 
     // this module basically only exists to have general settings, also to disable the hud alltogether
 
-    private static java.util.ArrayList<Module> activemodules;
-
     public HUD() {
-        super(Keyboard.KEY_NONE);
-        activemodules = new java.util.ArrayList<>();
-
         ArrayList<String> time = new ArrayList<>();
         time.add("24H");
         time.add("12H");

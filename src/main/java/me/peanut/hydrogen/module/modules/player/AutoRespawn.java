@@ -12,9 +12,7 @@ import me.peanut.hydrogen.module.Module;
  */
 @Info(name = "AutoRespawn", description = "Automatically respawn when dead", category = Category.Player)
 public class AutoRespawn extends Module {
-    public AutoRespawn() {
-        super(0x00);
-    }
+    public AutoRespawn() {}
 
     @EventTarget
     public void onUpdate(EventUpdate event) {

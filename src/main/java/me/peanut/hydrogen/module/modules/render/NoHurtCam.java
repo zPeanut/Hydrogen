@@ -9,7 +9,5 @@ import me.peanut.hydrogen.module.Module;
  */
 @Info(name = "NoHurtCam", description = "Removes the hurt camera effect", category = Category.Render)
 public class NoHurtCam extends Module {
-    public NoHurtCam() {
-        super(0x00);
-    }
+    public NoHurtCam() {}
 }

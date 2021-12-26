@@ -13,12 +13,10 @@ import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.utils.ReflectionUtil;
 
-@Info(name = "FastBridge", description = "Automatically fastbridges for you", category = Category.Movement)
+@Info(name = "FastBridge", description = "Automatically fastbridges for you", category = Category.Movement, keybind = Keyboard.KEY_Y)
 public class Eagle extends Module {
 
-    public Eagle() {
-        super(Keyboard.KEY_Y);
-    }
+    public Eagle() {}
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
