@@ -43,11 +43,7 @@ public class H2FontRenderer extends FontRenderer {
     }
 
     public int drawStringWithShadow(String s, double x, double y, Color color) {
-        if(Hydrogen.getClient().settingsManager.getSettingByName("Drop Shadow").isEnabled()) {
-            return this.drawString(s, x, y, color.getRGB(), true);
-        } else {
-            return this.drawString(s, x, y, color.getRGB(), false);
-        }
+        return this.drawString(s, x, y, color.getRGB(), true);
     }
 
     public int drawStringWithShadowMainMenu(String s, double x, double y, Color color) {
