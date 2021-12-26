@@ -86,12 +86,12 @@ public class Module {
         return Character.toUpperCase(line.charAt(0)) + line.substring(1);
     }
 
-    public boolean setDisabled() {
-        return toggled = false;
+    public void setDisabled() {
+        toggled = false;
     }
 
-    public boolean setEnabled() {
-        return toggled = true;
+    public void setEnabled() {
+        toggled = true;
     }
 
     public void onUpdate() {}
