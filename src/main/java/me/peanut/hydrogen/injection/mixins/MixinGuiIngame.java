@@ -3,6 +3,8 @@ package me.peanut.hydrogen.injection.mixins;
 import com.darkmagician6.eventapi.EventManager;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventRender2D;
+import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.module.modules.render.AntiBlind;
 import me.peanut.hydrogen.ui.ingame.HUD;
 import me.peanut.hydrogen.utils.BlurUtil;
 import me.peanut.hydrogen.utils.Utils;
@@ -13,6 +15,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.spongepowered.asm.mixin.Final;
@@ -40,11 +43,10 @@ public abstract class MixinGuiIngame extends MixinGui {
         EventRender2D e = new EventRender2D();
         EventManager.call(e);
     }
-    
+
     @SuppressWarnings("OverwriteAuthorRequired")
     @Overwrite
     protected void renderTooltip(ScaledResolution sr, float partialTicks) {
-
         if (!(Hydrogen.getClient().moduleManager.getModulebyName("Hotbar").isEnabled() && Hydrogen.getClient().moduleManager.getModule(HUD.class).isEnabled()) || Hydrogen.getClient().panic) {
             if (Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -115,6 +117,14 @@ public abstract class MixinGuiIngame extends MixinGui {
                 GlStateManager.disableRescaleNormal();
                 GlStateManager.disableBlend();
             }
+        }
+    }
+
+    @Inject(method = "renderPumpkinOverlay", at = @At("HEAD"), cancellable = true)
+    private void renderPumpkinOverlay(CallbackInfo ci) {
+        Module antiBlind = Hydrogen.getClient().moduleManager.getModule(AntiBlind.class);
+        if (antiBlind.isEnabled() && Hydrogen.getClient().settingsManager.getSettingByName(antiBlind, "Pumpkin").isEnabled()) {
+            ci.cancel();
         }
     }
 }

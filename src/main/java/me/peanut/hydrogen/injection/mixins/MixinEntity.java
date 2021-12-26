@@ -14,6 +14,8 @@ import java.util.UUID;
 
 @Mixin(Entity.class)
 public abstract class MixinEntity {
+    @Shadow public abstract boolean hitByEntity(Entity entityIn);
+
     @Shadow public abstract UUID getUniqueID();
 
     @Shadow

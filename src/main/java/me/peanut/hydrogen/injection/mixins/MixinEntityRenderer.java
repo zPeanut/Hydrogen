@@ -11,12 +11,15 @@ import me.peanut.hydrogen.module.modules.player.MurderMystery;
 import me.peanut.hydrogen.module.modules.render.NameTags;
 import me.peanut.hydrogen.module.modules.render.NoHurtCam;
 import me.peanut.hydrogen.module.modules.render.Tracers;
+import me.peanut.hydrogen.utils.Once;
+import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -25,6 +28,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import javax.security.auth.callback.Callback;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,7 +38,7 @@ import java.util.Objects;
 
 @SuppressWarnings("OverwriteAuthorRequired")
 @Mixin(EntityRenderer.class)
-public abstract class MixinEntityRenderer{
+public abstract class MixinEntityRenderer {
 
     @Shadow
     private Entity pointedEntity;
@@ -47,7 +51,7 @@ public abstract class MixinEntityRenderer{
 
     @Inject(method = "updateCameraAndRender", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/EntityRenderer;renderWorld(FJ)V", shift = At.Shift.AFTER))
     public void nameTagsIns(float partialTicks, long nanoTime, CallbackInfo ci) {
-        if(Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
+        if (Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
             this.setupCameraTransform(partialTicks, 2);
             NameTags.instance.render3DPost();
         }
