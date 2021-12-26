@@ -2,6 +2,7 @@ package me.peanut.hydrogen.module;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.modules.combat.*;
 import me.peanut.hydrogen.module.modules.movement.*;
 import me.peanut.hydrogen.module.modules.player.*;
@@ -11,6 +12,7 @@ import me.peanut.hydrogen.ui.clickgui.*;
 import me.peanut.hydrogen.ui.mainmenu.*;
 import me.peanut.hydrogen.ui.ingame.Info;
 import me.peanut.hydrogen.events.EventKey;
+import me.peanut.hydrogen.utils.FontHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,6 +104,10 @@ public class ModuleManager {
         add(new TTFChat());
         add(new Panic());
         add(new NameProtect());
+
+        // 1.11
+
+        add(new AntiBlind());
 
         // alphabetically sort modules in clickgui
 
