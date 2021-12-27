@@ -51,18 +51,20 @@ public class MainMenu extends GuiScreen {
 
         // outdated check
 
-        if(Hydrogen.getClient().outdated) {
-            FontHelper.comfortaa_r.drawStringWithShadow("§cOutdated!", 144, Utils.getScaledRes().getScaledHeight() - 26, Color.WHITE);
-            FontHelper.comfortaa_r.drawStringWithShadow("Newest Version: §a" + Hydrogen.getClient().newversion, 144, Utils.getScaledRes().getScaledHeight() - 14, Color.WHITE);
-        } else {
-            FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§aNo Update available!", 144, Utils.getScaledRes().getScaledHeight() - 14, Color.white);
+        if(Hydrogen.getClient().isStableBuild) {
+            if (Hydrogen.getClient().outdated) {
+                FontHelper.comfortaa_r.drawStringWithShadow("§cOutdated!", 144, Utils.getScaledRes().getScaledHeight() - 26, Color.WHITE);
+                FontHelper.comfortaa_r.drawStringWithShadow("Newest Version: §a" + Hydrogen.getClient().newversion, 144, Utils.getScaledRes().getScaledHeight() - 14, Color.WHITE);
+            } else {
+                FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§aNo Update available!", 144, Utils.getScaledRes().getScaledHeight() - 14, Color.white);
+            }
         }
 
         // prerelease / beta / dev check
 
-        if(Hydrogen.semantic_version.contains("dev") || Hydrogen.semantic_version.contains("beta") || Hydrogen.semantic_version.contains("pre")) {
-            FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§c§lWARNING: §7Early access version!", 144, Hydrogen.getClient().outdated ? Utils.getScaledRes().getScaledHeight() - 50 : Utils.getScaledRes().getScaledHeight() - 26, Color.white);
-            FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§7Please report any issues at our §f§n§lGitHub!", 144, Hydrogen.getClient().outdated ? Utils.getScaledRes().getScaledHeight() - 38 : Utils.getScaledRes().getScaledHeight() - 14, Color.white);
+        if(!Hydrogen.getClient().isStableBuild) {
+            FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§c§lWARNING: §7Non-stable version!", 144, Hydrogen.getClient().outdated ? Utils.getScaledRes().getScaledHeight() - 50 : Utils.getScaledRes().getScaledHeight() - 26, Color.white);
+            FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§7Please report any issues at our §f§n§lGitHub.", 144, Hydrogen.getClient().outdated ? Utils.getScaledRes().getScaledHeight() - 38 : Utils.getScaledRes().getScaledHeight() - 14, Color.white);
         }
 
         // logo

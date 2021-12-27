@@ -54,6 +54,7 @@ public class Hydrogen {
     public boolean outdated;
     public boolean panic;
     public boolean firstStart;
+    public boolean isStableBuild = false;
     public String newversion;
 
     public Hydrogen() {
