@@ -51,7 +51,7 @@ public class Hydrogen {
     public ClickGui clickgui;
     public File directory;
 
-    public boolean outdated = true;
+    public boolean outdated;
     public boolean panic;
     public boolean firstStart;
     public String newversion;
@@ -110,7 +110,7 @@ public class Hydrogen {
                     outdated = true;
                     newversion = line;
                 } else {
-                    outdated = true;
+                    outdated = false;
                 }
             }
         } catch (Exception e) {
