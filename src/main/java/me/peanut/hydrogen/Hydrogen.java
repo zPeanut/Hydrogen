@@ -31,8 +31,8 @@ public class Hydrogen {
     public static final String devs = "zPeanut & UltramoxX";
     public static final String prefix = "§7[§9" + name + "§7]";
 
-    public static final String version = "1.11 Prerelease";
-    public static final String semantic_version = "1.11.0-pre";
+    public static final String version = "1.11 Dev";
+    public static final String semantic_version = "1.11.0-dev";
 
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
@@ -51,7 +51,7 @@ public class Hydrogen {
     public ClickGui clickgui;
     public File directory;
 
-    public boolean outdated;
+    public boolean outdated = true;
     public boolean panic;
     public boolean firstStart;
     public String newversion;
@@ -110,13 +110,9 @@ public class Hydrogen {
                     outdated = true;
                     newversion = line;
                 } else {
-                    outdated = false;
+                    outdated = true;
                 }
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
