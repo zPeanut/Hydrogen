@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.module.modules.player;
 
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.events.EventPreMotion;
 import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
@@ -17,31 +18,10 @@ import java.sql.Time;
 @Info(name = "AntiAFK", description = "Prevents you from getting kicked", category = Category.Player)
 public class AntiAFK extends Module {
 
-    private final TimeUtils timeUtils;
-
-    public AntiAFK() {
-        timeUtils = new TimeUtils();
-    }
-
-    // TODO: make this not aids
-
     @EventTarget
     public void onUpdate(EventUpdate e) {
-        if(this.isEnabled()) {
-            mc.gameSettings.keyBindForward.pressed = true;
-            if (timeUtils.hasDelayRun(5000L)) {
-                EntityPlayerSP entityPlayerSP = mc.thePlayer;
-                entityPlayerSP.rotationYaw += 180.0f;
-                TimeUtils.reset();
-            }
+        if(mc.thePlayer.onGround && this.isEnabled()) {
+            mc.thePlayer.jump();
         }
     }
-
-    @Override
-    public void onDisable() {
-        if (!GameSettings.isKeyDown(mc.gameSettings.keyBindForward)) {
-            mc.gameSettings.keyBindForward.pressed = false;
-        }
-    }
-
 }
