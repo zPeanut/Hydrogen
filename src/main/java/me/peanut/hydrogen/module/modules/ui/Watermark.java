@@ -56,12 +56,18 @@ public class Watermark extends Module {
             boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF");
             LocalDateTime now = LocalDateTime.now();
             String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
+            String s = Hydrogen.version;
+            String[] hversion = s.split(" ");
+            String hversion1 = hversion[0]; // Main Version (1.11)
+            String hversion2 = hversion[1]; // Beta, Dev, Prerelease
+            String hversion3 = hversion[2]; // Build Number (Beta 1, Prerelease 3)
+            String version = String.format("%s §7%s %s", hversion1, hversion2, hversion3);
 
             if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
 
                 if (time) {
 
-                    String watermark = Hydrogen.version + " §7(" + currenttime + ")" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
+                    String watermark = version + " §7(" + currenttime + ")" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
 
                     if(outline) {
                         Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermark) + 24 : mc.fontRendererObj.getStringWidth(watermark) + 28, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 25 : mc.fontRendererObj.getStringWidth(watermark) + 29, 23, 0x99000000);
@@ -87,7 +93,7 @@ public class Watermark extends Module {
 
                 } else {
 
-                    String watermark_no_time = Hydrogen.version + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
+                    String watermark_no_time = version + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
 
                     if(outline) {
                         Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 28 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 28, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 29 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 29, 23, 0x99000000);
@@ -118,7 +124,7 @@ public class Watermark extends Module {
 
                 if (time) {
 
-                    String watermark = String.format("%s %s §7(%s)" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.name, Hydrogen.version, currenttime);
+                    String watermark = String.format("%s %s §7(%s)" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.name, version, currenttime);
 
                     if(outline) {
                         Gui.drawRect(ttf ? FontHelper.sf_l.getStringWidth(watermark) + 4 : mc.fontRendererObj.getStringWidth(watermark) + 4, 0, ttf ? FontHelper.sf_l.getStringWidth(watermark) + 3 : mc.fontRendererObj.getStringWidth(watermark) + 3, 11, 0x99000000);
@@ -137,7 +143,7 @@ public class Watermark extends Module {
 
                 } else {
 
-                    String watermark_no_time = String.format("%s %s" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.name, Hydrogen.version);
+                    String watermark_no_time = String.format("%s %s" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.name, version);
 
                     if(outline) {
                         Gui.drawRect(0, 11, ttf ? FontHelper.sf_l.getStringWidth(watermark_no_time) + 4 : mc.fontRendererObj.getStringWidth(watermark_no_time) + 4, 12, 0x99000000);
