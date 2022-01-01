@@ -169,7 +169,7 @@ public class ModuleManager {
     public List<Module> getEnabledMods() {
         List<Module> modules = new ArrayList<>();
         for (Module mod : this.getModules()) {
-            if (mod.isEnabled() && mod.visible || (mod.getSlide() != 0 && !mod.isEnabled())) {
+            if ((mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled())) && mod.isVisible()) {
                 if (!modules.contains(mod)) {
                     modules.add(mod);
                 }
