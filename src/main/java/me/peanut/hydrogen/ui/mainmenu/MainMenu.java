@@ -29,8 +29,6 @@ public class MainMenu extends GuiScreen {
         drawRect(40, 0, 41, Utils.getScaledRes().getScaledHeight(), 0x60000000);
         drawRect(139, 0, 140, Utils.getScaledRes().getScaledHeight(), 0x60000000);
 
-        mc.fontRendererObj.drawStringWithShadow(String.valueOf(Minecraft.getDebugFPS()), 2, Utils.getScaledRes().getScaledHeight() - 12, -1);
-
         // right hand strings
 
         String mds = String.format("%s mods loaded, %s mods active", Loader.instance().getModList().size(), Loader.instance().getActiveModList().size());
@@ -65,6 +63,10 @@ public class MainMenu extends GuiScreen {
         if(!Hydrogen.getClient().isStableBuild) {
             FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§c§lWARNING: §7Non-stable version!", 144, Hydrogen.getClient().outdated ? Utils.getScaledRes().getScaledHeight() - 50 : Utils.getScaledRes().getScaledHeight() - 26, Color.white);
             FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§7Please report any issues at our §f§n§lGitHub.", 144, Hydrogen.getClient().outdated ? Utils.getScaledRes().getScaledHeight() - 38 : Utils.getScaledRes().getScaledHeight() - 14, Color.white);
+
+            // fps counter
+
+            mc.fontRendererObj.drawStringWithShadow(String.valueOf(Minecraft.getDebugFPS()), 2, Utils.getScaledRes().getScaledHeight() - 12, -1);
         }
 
         // logo
