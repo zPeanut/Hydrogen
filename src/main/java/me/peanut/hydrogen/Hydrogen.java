@@ -31,8 +31,8 @@ public class Hydrogen {
     public static final String devs = "zPeanut & UltramoxX";
     public static final String prefix = "§7[§9" + name + "§7]";
 
-    public static final String version = "1.11.1";
-    public static final String semantic_version = "1.11.1";
+    public static final String version = "1.11.2";
+    public static final String semantic_version = "1.11.2";
 
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
