@@ -1,8 +1,10 @@
 package me.peanut.hydrogen.command;
 
 import me.peanut.hydrogen.command.commands.BindCommand;
+import me.peanut.hydrogen.command.commands.EasterEggCommand;
 import me.peanut.hydrogen.command.commands.HelpCommand;
 import me.peanut.hydrogen.command.commands.ToggleCommand;
+import me.peanut.hydrogen.module.modules.player.NameProtect;
 import net.minecraft.client.network.NetHandlerPlayClient;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class CommandManager {
         add(new BindCommand());
         add(new HelpCommand());
         add(new ToggleCommand());
+        add(new EasterEggCommand());
     }
 
     public void add(Command command) {
