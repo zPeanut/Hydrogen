@@ -5,10 +5,8 @@ import me.peanut.hydrogen.events.EventText;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import org.lwjgl.opengl.GL11;
 
-import javax.xml.soap.Text;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 
 /**
  * Created by peanut on 15/02/2021
