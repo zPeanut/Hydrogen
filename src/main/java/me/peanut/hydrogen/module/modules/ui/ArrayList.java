@@ -26,12 +26,7 @@ public class ArrayList extends Module {
 
     public ArrayList() {
         new Thread(() -> {
-            while (true) {
-                try {
-                    if (!ReflectionUtil.running.getBoolean(mc)) break;
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+            while (Minecraft.getMinecraft().running) {
                 try {
                     Thread.sleep((long) Hydrogen.getClient().settingsManager.getSettingByName("List Speed").getValDouble());
                 } catch (InterruptedException e) {
@@ -41,12 +36,10 @@ public class ArrayList extends Module {
                         if (mod.getSlide() < FontHelper.sf_l.getStringWidth(mod.getName())) {
                             mod.setSlide(mod.getSlide() + 1);
                         }
-
                     } else if (mod.getSlide() != 0 && !mod.isEnabled()) {
                         if (mod.getSlide() > 0) {
                             mod.setSlide(mod.getSlide() - 1);
                         }
-
                     }
                 }
             }
