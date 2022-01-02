@@ -131,8 +131,6 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
         if(Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
 
-            new MainMenu();
-
             this.buttonList.add(new ExpandButton(1, 45, Utils.getScaledRes().getScaledHeight() / 2 - 82, 90, 20, "Singleplayer"));
             this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 60, 90, 20, "Multiplayer"));
             this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 - 38, 90, 20, "Settings"));
@@ -147,7 +145,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
                 this.buttonList.add(new ExpandButton(99, 45, Utils.getScaledRes().getScaledHeight() - 24, 90, 20, "Update"));
             }
 
-            if(Hydrogen.version.contains("dev") || Hydrogen.version.contains("beta") || Hydrogen.version.contains("pre")) {
+            if(!Hydrogen.getClient().isStableBuild) {
                 this.buttonList.add(new ExpandButton(98, 144, Utils.getScaledRes().getScaledHeight() - 14, FontHelper.sf_l.getStringWidth("§7Please report any issues at our §f§n§lGitHub!") + 34, 20, "", false));
             }
 
