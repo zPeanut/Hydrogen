@@ -1,8 +1,13 @@
 package me.peanut.hydrogen.utils;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mojang.authlib.Agent;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
+import com.vdurmont.semver4j.Semver;
+import jdk.nashorn.internal.parser.JSONParser;
 import me.peanut.hydrogen.module.modules.render.NameTags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -20,16 +25,23 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.Sys;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import me.peanut.hydrogen.Hydrogen;
+import scala.util.parsing.json.JSONObject;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.awt.*;
+import java.io.*;
 import java.net.Proxy;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Random;
 
 public class Utils {
@@ -942,5 +954,21 @@ public class Utils {
         final float pitch =  (float) - (Math.atan2(y, d1) * 180.0D / Math.PI) + (float)dist*0.11f;
 
         return new float[]{yaw, -pitch};
+    }
+
+
+    public static String getCurrentCommitHash() {
+        try {
+            URL url = new URL("https://api.github.com/repos/zpeanut/hydrogen/commits");
+            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+            String readLine = br.readLine();
+            String[] splitLine = readLine.split("\"");
+            String fullCommitHash = splitLine[3];
+            String shortCommitHash = fullCommitHash.substring(0, Math.min(fullCommitHash.length(), 7));
+            return shortCommitHash;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

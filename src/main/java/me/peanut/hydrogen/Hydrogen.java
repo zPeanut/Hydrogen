@@ -20,7 +20,6 @@ import me.peanut.hydrogen.command.CommandManager;
 import me.peanut.hydrogen.settings.SettingsManager;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 @Mod(modid = Hydrogen.modid, name = Hydrogen.name, version = Hydrogen.semantic_version, useMetadata = true)
@@ -31,8 +30,8 @@ public class Hydrogen {
     public static final String devs = "zPeanut & UltramoxX";
     public static final String prefix = "§7[§9" + name + "§7]";
 
-    public static final String version = "1.11.2";
-    public static final String semantic_version = "1.11.2";
+    public static String version = "1.12 Dev";
+    public static final String semantic_version = "1.12.0-dev";
 
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
@@ -54,7 +53,7 @@ public class Hydrogen {
     public boolean outdated;
     public boolean panic;
     public boolean firstStart;
-    public boolean isStableBuild = true;
+    public boolean isStableBuild = false;
     public String newversion;
 
     public Hydrogen() {
@@ -68,6 +67,10 @@ public class Hydrogen {
         if (!this.directory.exists()) {
             this.firstStart = true;
             directory.mkdir();
+        }
+        if(!isStableBuild) {
+            // add git commit hash to version
+            version += String.format(" §7| %s", Utils.getCurrentCommitHash());
         }
         moduleManager = new ModuleManager();
         settingsManager = new SettingsManager();
