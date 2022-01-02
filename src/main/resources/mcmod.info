@@ -2,7 +2,7 @@
 {
   "modid":"hydrogen",
   "name":"Hydrogen",
-  "description":"An open source, mixin based utility mod for Minecraft 1.8.9 built on Minecraft Forge.",
+  "description":"An open source, mixin based ghost client for Minecraft 1.8.9 built on Minecraft Forge.",
   "mcversion": "1.8.9",
   "version":"1.11.2",
   "url": "https://github.com/zPeanut/Hydrogen",
