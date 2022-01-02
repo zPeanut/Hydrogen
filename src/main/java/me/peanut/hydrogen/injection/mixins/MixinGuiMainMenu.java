@@ -7,7 +7,6 @@ import me.peanut.hydrogen.altmanager.GuiAltManager;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.ui.mainmenu.MainMenu;
-import me.peanut.hydrogen.ui.mainmenu.screens.GuiCredits;
 import me.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.Utils;
@@ -37,7 +36,6 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
@@ -135,7 +133,6 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 60, 90, 20, "Multiplayer"));
             this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 - 38, 90, 20, "Settings"));
             this.buttonList.add(new ExpandButton(3, 45, Utils.getScaledRes().getScaledHeight() / 2 - 16, 90, 20, "Alt Manager"));
-            this.buttonList.add(new ExpandButton(97, 45, Utils.getScaledRes().getScaledHeight() / 2 + 6, 90, 20, "Changelog"));
             this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 28, 44, 20, "Mods"));
             this.buttonList.add(new ExpandButton(36, 90, Utils.getScaledRes().getScaledHeight() / 2 + 28, 45, 20, "Credits"));
             this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 60, 90, 20, "Quit"));
@@ -145,8 +142,11 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
                 this.buttonList.add(new ExpandButton(99, 45, Utils.getScaledRes().getScaledHeight() - 24, 90, 20, "Update"));
             }
 
-            if(!Hydrogen.getClient().isStableBuild) {
+            if(Hydrogen.getClient().isStableBuild) {
+                this.buttonList.add(new ExpandButton(97, 45, Utils.getScaledRes().getScaledHeight() / 2 + 6, 90, 20, "Changelog"));
+            } else {
                 this.buttonList.add(new ExpandButton(98, 144, Utils.getScaledRes().getScaledHeight() - 14, FontHelper.sf_l.getStringWidth("§7Please report any issues at our §f§n§lGitHub!") + 34, 20, "", false));
+                this.buttonList.add(new ExpandButton(96, 45, Utils.getScaledRes().getScaledHeight() / 2 + 6, 90, 20, "Current Commit"));
             }
 
         } else {
@@ -221,6 +221,16 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         if(button.id == 97) {
             try {
                 URL url = new URL(Hydrogen.tags);
+                String link = url.toString();
+                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                Desktop.getDesktop().browse((new URL(link)).toURI());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if(button.id == 96) {
+            try {
+                URL url = new URL(Hydrogen.currentCommitURL);
                 String link = url.toString();
                 BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                 Desktop.getDesktop().browse((new URL(link)).toURI());

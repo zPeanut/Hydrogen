@@ -36,6 +36,7 @@ public class Hydrogen {
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
     public static final String tags = release + "tag/" + semantic_version + "/";
+    public static final String currentCommitURL = github + "commit/" + Utils.getCurrentCommitHash();
 
     private static Hydrogen instance;
     private static Utils utils;

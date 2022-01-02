@@ -66,7 +66,7 @@ public class MainMenu extends GuiScreen {
 
             // fps counter
 
-            mc.fontRendererObj.drawStringWithShadow(String.valueOf(Minecraft.getDebugFPS()), 2, Utils.getScaledRes().getScaledHeight() - 12, -1);
+            FontHelper.comfortaa_r.drawStringWithShadowMainMenu("FPS: " + Minecraft.getDebugFPS(), 144, 2, Color.WHITE);
         }
 
         // logo
