@@ -63,7 +63,7 @@ inside of your directory. Simply put that file into your mods folder inside .min
 Dependencies:  
   
 **[DarkMagician6's EventAPI]**, an open source EventAPI system, made for handling events across java based projects.  
-**[Semver4j]**, semantic versioning for Java applications, used for comparison between versions in the client.  
+**[Semver4j]**, A Library for semantic versioning in Java applications. Used to compare semantic versions in the client to check if the client is outdated.
 
 Credits:  
   
