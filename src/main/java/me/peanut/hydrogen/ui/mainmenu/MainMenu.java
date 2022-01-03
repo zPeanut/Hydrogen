@@ -1,6 +1,9 @@
 package me.peanut.hydrogen.ui.mainmenu;
 
+import akka.Main;
+import com.vdurmont.semver4j.Semver;
 import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.utils.FontUtil;
 import me.peanut.hydrogen.utils.ParticleGenerator;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -9,6 +12,9 @@ import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.Loader;
 import me.peanut.hydrogen.Hydrogen;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.List;
 import java.awt.*;
 import java.util.ArrayList;
@@ -18,8 +24,23 @@ import java.util.ArrayList;
  */
 public class MainMenu extends GuiScreen {
 
+    static String splashText;
+
     public static final Minecraft mc = Minecraft.getMinecraft();
     public static final ParticleGenerator particleGenerator = new ParticleGenerator(100, mc.displayWidth, mc.displayHeight);
+
+    public MainMenu() {
+        try {
+            URL url = new URL("https://raw.githubusercontent.com/zPeanut/Resources/master/splash-hydrogen");
+            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+            String line;
+            while ((line = br.readLine()) != null) {
+                splashText = line;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void drawMenu(int mouseX, int mouseY) {
 
@@ -75,6 +96,10 @@ public class MainMenu extends GuiScreen {
         FontHelper.sf_l_mm.drawString("hydrogen", Utils.getScaledRes().getScaledWidth() / 2 - 45, Utils.getScaledRes().getScaledHeight() / 2 - 37, new Color(207, 238, 255));
 
         FontHelper.sf_l2.drawStringWithShadow("§7" + Hydrogen.version, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 46, Utils.getScaledRes().getScaledHeight() / 2 - 38, Color.white);
+
+        // splash
+
+        FontUtil.drawTotalCenteredStringWithShadow3(splashText, Utils.getScaledRes().getScaledWidth() / 2 + (FontHelper.sf_l_mm.getStringWidth("hydrogen") / 2) - 46, Utils.getScaledRes().getScaledHeight() / 2 + 33, Color.WHITE);
 
         particleGenerator.drawParticles(mouseX, mouseY);
     }
