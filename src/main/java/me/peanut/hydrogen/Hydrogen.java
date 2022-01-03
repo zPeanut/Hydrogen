@@ -9,6 +9,7 @@ import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.module.modules.ui.ArrayList;
 import me.peanut.hydrogen.module.modules.ui.HUD;
 import me.peanut.hydrogen.module.modules.ui.Watermark;
+import me.peanut.hydrogen.ui.mainmenu.MainMenu;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.KeybindManager;
 import me.peanut.hydrogen.utils.Utils;
@@ -30,8 +31,8 @@ public class Hydrogen {
     public static final String devs = "zPeanut & UltramoxX";
     public static final String prefix = "§7[§9" + name + "§7]";
 
-    public static String version = "1.11.3";
-    public static final String semantic_version = "1.11.3";
+    public static String version = "1.11.4";
+    public static final String semantic_version = "1.11.4";
 
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
@@ -88,6 +89,7 @@ public class Hydrogen {
             Utils.playSound("startup.wav");
         }
         new ArrayList();
+        new MainMenu();
         if(firstStart) {
             moduleManager.getModule(HUD.class).setEnabled();
             moduleManager.getModule(Watermark.class).setEnabled();
