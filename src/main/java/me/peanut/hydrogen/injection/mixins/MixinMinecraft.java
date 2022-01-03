@@ -7,12 +7,14 @@ import me.peanut.hydrogen.events.EventMouseClick;
 import me.peanut.hydrogen.events.EventTick;
 import me.peanut.hydrogen.file.files.*;
 import me.peanut.hydrogen.injection.interfaces.IMixinMinecraft;
+import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.main.GameConfiguration;
 import net.minecraft.util.Session;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -20,6 +22,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import javax.swing.*;
 
 @Mixin(Minecraft.class)
 @SideOnly(Side.CLIENT)
@@ -30,6 +34,16 @@ public class MixinMinecraft implements IMixinMinecraft {
     @Shadow
     @Mutable
     public Session session;
+
+    private long lastFrame;
+
+    public MixinMinecraft() {
+        this.lastFrame = this.getTime();
+    }
+
+    public long getTime() {
+        return Sys.getTime() * 1000L / Sys.getTimerResolution();
+    }
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void minecraftConstructor(GameConfiguration gameConfig, CallbackInfo ci) {
@@ -46,6 +60,14 @@ public class MixinMinecraft implements IMixinMinecraft {
         ClickGuiFile.loadClickGui();
         ModuleFile.loadModules();
         VisibleFile.loadState();
+    }
+
+    @Inject(method = "runGameLoop", at = @At("HEAD"))
+    private void runGameLoopDeltaTime(CallbackInfo ci) {
+        long currentTime = this.getTime();
+        int deltaTime = (int)(currentTime - this.lastFrame);
+        this.lastFrame = currentTime;
+        Utils.deltaTime = deltaTime;
     }
 
     @Inject(method = "runTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;dispatchKeypresses()V", shift = At.Shift.AFTER))
