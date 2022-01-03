@@ -19,6 +19,8 @@ public class Setting {
 	private double min;
 	private double max;
 	private boolean onlyint = false;
+
+	private String textvalue;
 	
 
 	public Setting(String name, Module parent, String sval, ArrayList<String> options){
@@ -34,6 +36,13 @@ public class Setting {
 		this.parent = parent;
 		this.bval = bval;
 		this.mode = "Check";
+	}
+
+	public Setting(String name, Module parent, String text){
+		this.name = name;
+		this.parent = parent;
+		this.textvalue = text;
+		this.mode = "Text";
 	}
 	
 	public Setting(String name, Module parent, double dval, double min, double max, boolean onlyint){
@@ -73,6 +82,14 @@ public class Setting {
 	public void setValBoolean(boolean in){
 		this.bval = in;
 	}
+
+	public String getValText() {
+		return this.textvalue;
+	}
+
+	public void setValText(String in) {
+		this.textvalue = in;
+	}
 	
 	public double getValDouble(){
 		if(this.onlyint){
@@ -93,15 +110,19 @@ public class Setting {
 		return this.max;
 	}
 	
-	public boolean isCombo(){
+	public boolean isModeCombo(){
 		return this.mode.equalsIgnoreCase("Combo");
 	}
 	
-	public boolean isCheck(){
+	public boolean isModeCheck(){
 		return this.mode.equalsIgnoreCase("Check");
 	}
+
+	public boolean isModeText(){
+		return this.mode.equalsIgnoreCase("Text");
+	}
 	
-	public boolean isSlider(){
+	public boolean isModeSlider(){
 		return this.mode.equalsIgnoreCase("Slider");
 	}
 	

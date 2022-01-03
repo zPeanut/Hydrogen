@@ -39,17 +39,20 @@ public class Button extends Component {
 		int opY = offset + 12;
 		if(Hydrogen.getClient().settingsManager.getSettingsByMod(mod) != null) {
 			for(Setting s : Hydrogen.getClient().settingsManager.getSettingsByMod(mod)){
-				if(s.isCombo()){
+				if(s.isModeCombo()){
 					this.subcomponents.add(new ModeButton(s, this, mod, opY));
 					opY += 12;
 				}
-				if(s.isSlider()){
+				if(s.isModeSlider()){
 					this.subcomponents.add(new SliderButton(s, this, opY));
 					opY += 12;
 				}
-				if(s.isCheck()){
+				if(s.isModeCheck()){
 					this.subcomponents.add(new CheckboxButton(s, this, opY));
 					opY += 12;
+				}
+				if(s.isModeText()) {
+					this.subcomponents.add(new TextButton(s, this, mod, opY));
 				}
 			}
 		}
