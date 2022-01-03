@@ -60,12 +60,12 @@ inside of your directory. Simply put that file into your mods folder inside .min
 
 ## Credits
 
-Dependencies:  
+### Dependencies:  
   
 **[DarkMagician6's EventAPI]**, an open source EventAPI system, made for handling events across java based projects.  
 **[Semver4j]**, A Library for semantic versioning in Java applications. Used to compare semantic versions in the client to check if the client is outdated.
 
-Credits:  
+### Credits:  
   
 **superblaubeere27**, for providing most of the initial client base.  
 **HeroCode**, for providing the ClickGUI API.  
