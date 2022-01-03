@@ -1,7 +1,8 @@
 ![alt text](https://raw.githubusercontent.com/zPeanut/Resources/master/hydrogen.png)
 
 An open source, mixin based ghost client for Minecraft 1.8.9 built on Minecraft Forge.  
-Developed by [Me] and [UltramoxX].
+Developed by [Me] and [UltramoxX].  
+Contributions are highly welcome!
 
 Current stable release: **1.11.3**
 
@@ -18,17 +19,20 @@ Go ahead and try them out!
 
 ## USER INSTALLATION
 
-Automatic Installation:
+Before you install Hydrogen, make sure to have installed Minecraft Forge for Minecraft 1.8.9.
+
+### Automatic Installation:
 
 1. Download the [Installer] ([src code])
-2. Select your version
+2. Select your version.
 3. Enjoy the ride.
 
-Manual Installation:
+### Manual Installation:
 
-1. Install Forge for Minecraft 1.8.9
+1. Download the latest [release] of Hydrogen.
 2. Drag and Drop ``hydrogen-x.x.x.jar`` into your directory for Forge mods (Win-Default: ``%appdata%/.minecraft/mods``).
-3. Enjoy the ride.
+3. Select your launcher profile with the respective Forge version.
+4. Enjoy the ride.
 
 ## Setup with Forge MDK
 
@@ -80,3 +84,4 @@ Credits:
 [DarkMagician6's EventAPI]: https://bitbucket.org/DarkMagician6/eventapi/src/master/
 [Installer]: https://github.com/zPeanut/Hydrogen/releases/download/1.11.3/hydrogen-installer.exe
 [src code]: https://github.com/zPeanut/python-stuff/blob/master/hydrogen-installer.pyw
+[release]: https://github.com/zPeanut/Hydrogen/releases
