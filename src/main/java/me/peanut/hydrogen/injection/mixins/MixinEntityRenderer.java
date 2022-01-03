@@ -163,8 +163,6 @@ public abstract class MixinEntityRenderer {
             this.mc.mcProfiler.startSection("pick");
             this.mc.pointedEntity = null;
 
-            final Reach reach = Hydrogen.getClient().moduleManager.getModule(Reach.class);
-
             double d0 = this.mc.playerController.getBlockReachDistance();
             this.mc.objectMouseOver = entity.rayTrace(d0, p_getMouseOver_1_);
             double d1 = d0;
@@ -173,20 +171,12 @@ public abstract class MixinEntityRenderer {
             if(this.mc.playerController.extendedReach()) {
                 d0 = 6.0D;
                 d1 = 6.0D;
-            }else if(d0 > 3.0D) {
+            } else if(d0 > 3.0D && !Hydrogen.getClient().moduleManager.getModule(Reach.class).isEnabled()) {
                 flag = true;
             }
 
             if(this.mc.objectMouseOver != null) {
                 d1 = this.mc.objectMouseOver.hitVec.distanceTo(vec3);
-            }
-
-            if(reach.isEnabled()) {
-                d1 = Hydrogen.getClient().settingsManager.getSettingByName(reach, "Max Distance").getValDouble();
-
-                final MovingObjectPosition movingObjectPosition = entity.rayTrace(d1, p_getMouseOver_1_);
-
-                if(movingObjectPosition != null) d1 = movingObjectPosition.hitVec.distanceTo(vec3);
             }
 
             Vec3 vec31 = entity.getLook(p_getMouseOver_1_);
@@ -226,7 +216,7 @@ public abstract class MixinEntityRenderer {
                 }
             }
 
-            if (this.pointedEntity != null && flag && vec3.distanceTo(vec33) > (reach.isEnabled() ? Hydrogen.getClient().settingsManager.getSettingByName(reach, "Max Distance").getValDouble() : 3.0D)) {
+            if (this.pointedEntity != null && flag && vec3.distanceTo(vec33) > (3.0D)) {
                 this.pointedEntity = null;
                 this.mc.objectMouseOver = new MovingObjectPosition(MovingObjectPosition.MovingObjectType.MISS, Objects.requireNonNull(vec33), null, new BlockPos(vec33));
             }
