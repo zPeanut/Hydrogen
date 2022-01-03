@@ -18,20 +18,4 @@ public abstract class Command {
     public static void msg(String msg) {
         Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(Hydrogen.prefix + "§7 " + msg));
     }
-
-    public void normal(String msg)  {
-        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(msg));
-    }
-
-    public String getCmd() {
-        return getName();
-    }
-
-    public String getName1() {
-        return getName();
-    }
-
-    public String getHelp() {
-        return null;
-    }
 }
