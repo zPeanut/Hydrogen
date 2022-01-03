@@ -57,6 +57,10 @@ public class Watermark extends Module {
             LocalDateTime now = LocalDateTime.now();
             String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
 
+            if(!Hydrogen.getClient().isStableBuild && !(Hydrogen.getClient().moduleManager.getModule(Hotbar.class).isEnabled() || Hydrogen.getClient().settingsManager.getSettingByName("Alignment").getValString().equalsIgnoreCase("Left"))) {
+                mc.fontRendererObj.drawStringWithShadow(String.format("§7Latest Commit: %s | %s", Utils.commitDate, Utils.commitTime), 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
+            }
+
             if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
 
                 if (time) {
