@@ -20,7 +20,7 @@ import java.util.ArrayList;
 @Info(name = "ClickGUI", description = "The click gui", category = Category.Gui, keybind = Keyboard.KEY_LSHIFT)
 public class ClickGUI extends Module {
 
-    public me.peanut.hydrogen.ui.clickgui.ClickGui clickgui;
+    public ClickGui clickgui;
 
     public ClickGUI() {
         ArrayList<String> font = new ArrayList<>();
@@ -51,7 +51,7 @@ public class ClickGUI extends Module {
     @Override
     public void onEnable() {
         if(this.clickgui == null) {
-            this.clickgui = new me.peanut.hydrogen.ui.clickgui.ClickGui();
+            this.clickgui = new ClickGui();
         }
         ClickGuiFile.loadClickGui();
         mc.displayGuiScreen(this.clickgui);

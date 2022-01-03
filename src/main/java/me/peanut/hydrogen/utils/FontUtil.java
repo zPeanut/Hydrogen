@@ -68,7 +68,7 @@ public class FontUtil {
     }
 
     public static void drawTotalCenteredStringWithShadow(String text, double x, double y, int color) {
-        drawStringWithShadow(text, x - Minecraft.getMinecraft().fontRendererObj.getStringWidth(text) / 2, y - Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2F, color);
+        drawStringWithShadow(text, x - Minecraft.getMinecraft().fontRendererObj.getStringWidth(text) / 2, y - (int) (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2F) - 1, color);
     }
 
     public static void drawTotalCenteredStringWithShadow2(String text, double x, double y, Color color) {
