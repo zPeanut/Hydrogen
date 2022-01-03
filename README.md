@@ -10,13 +10,21 @@ https://discord.gg/dmw5N5X9p6
 
 ## Features
 
-There are currently over 40 modules included in Hydrogen,  
+There are currently over 50 modules included in Hydrogen,  
 including a fully customizable Ingame GUI, aswell as various  
 render, combat and utility focused modules.  
   
 Go ahead and try them out!
 
 ## USER INSTALLATION
+
+Automatic Installation:
+
+1. Download the [Installer] ([src code])
+2. Select your version
+3. Enjoy the ride.
+
+Manual Installation:
 
 1. Install Forge for Minecraft 1.8.9
 2. Drag and Drop ``hydrogen-x.x.x.jar`` into your directory for Forge mods (Win-Default: ``%appdata%/.minecraft/mods``).
@@ -70,3 +78,5 @@ Credits:
 [UltramoxX]: https://github.com/Morten-Renner
 [SemVer4j]: https://github.com/vdurmont/semver4j
 [DarkMagician6's EventAPI]: https://bitbucket.org/DarkMagician6/eventapi/src/master/
+[Installer]: https://github.com/zPeanut/Hydrogen/releases/download/1.11.3/hydrogen-installer.exe
+[src code]: https://github.com/zPeanut/python-stuff/blob/master/hydrogen-installer.pyw
