@@ -6,8 +6,12 @@ Contributions are highly welcome!
 
 Current stable release: **1.11.3**
 
-Join our discord!
+Join our discord!  
 https://discord.gg/dmw5N5X9p6
+
+Full Changelog:  
+https://zpeanut.github.io/main/changelog
+
 
 ## Features
 
