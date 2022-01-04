@@ -3,12 +3,10 @@ package me.peanut.hydrogen.ui.clickgui;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import me.peanut.hydrogen.file.files.ClickGuiFile;
+import me.peanut.hydrogen.file.files.deprecated.ClickGuiFile;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.ui.clickgui.component.Component;
-import me.peanut.hydrogen.utils.ParticleGenerator;
 import me.peanut.hydrogen.utils.ReflectionUtil;
-import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 
 import net.minecraft.client.gui.GuiScreen;

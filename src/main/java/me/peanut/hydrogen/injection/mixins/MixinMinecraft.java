@@ -9,6 +9,7 @@ import me.peanut.hydrogen.file.files.*;
 import me.peanut.hydrogen.file.files.KeybindFile;
 import me.peanut.hydrogen.file.files.ModuleFile;
 import me.peanut.hydrogen.file.files.VisibleFile;
+import me.peanut.hydrogen.file.files.deprecated.*;
 import me.peanut.hydrogen.injection.interfaces.IMixinMinecraft;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -25,8 +26,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import javax.swing.*;
 
 @Mixin(Minecraft.class)
 @SideOnly(Side.CLIENT)

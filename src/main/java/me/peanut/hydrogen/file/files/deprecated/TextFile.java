@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.file.files;
+package me.peanut.hydrogen.file.files.deprecated;
 
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.file.FileManager;
@@ -7,6 +7,7 @@ import me.peanut.hydrogen.settings.Setting;
 /**
  * Created by peanut on 04/01/2022
  */
+@Deprecated
 public class TextFile {
 
     private static final FileManager TextList = new FileManager("text", "Hydrogen");

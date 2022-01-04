@@ -1,7 +1,7 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.file.files.TextFile;
+import me.peanut.hydrogen.file.files.deprecated.TextFile;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.settings.Setting;
 import me.peanut.hydrogen.ui.clickgui.component.Component;

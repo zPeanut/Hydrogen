@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.file.files;
+package me.peanut.hydrogen.file.files.deprecated;
 
 import me.peanut.hydrogen.file.FileManager;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
@@ -7,6 +7,7 @@ import me.peanut.hydrogen.ui.clickgui.component.Frame;
 /**
  * Created by peanut on 03/02/2021
  */
+@Deprecated
 public class ClickGuiFile {
 
     private static final FileManager clickGuiCoord = new FileManager("clickgui", "Hydrogen");

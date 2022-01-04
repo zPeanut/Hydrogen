@@ -4,7 +4,7 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import me.peanut.hydrogen.file.files.SettingsSliderFile;
+import me.peanut.hydrogen.file.files.deprecated.SettingsSliderFile;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.Utils;
 import org.lwjgl.opengl.GL11;

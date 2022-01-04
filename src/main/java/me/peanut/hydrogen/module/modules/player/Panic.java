@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.module.modules.player;
 
 import me.peanut.hydrogen.file.files.*;
+import me.peanut.hydrogen.file.files.deprecated.*;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;

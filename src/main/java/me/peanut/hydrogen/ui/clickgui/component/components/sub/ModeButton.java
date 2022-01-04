@@ -1,6 +1,6 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
-import me.peanut.hydrogen.file.files.SettingsComboBoxFile;
+import me.peanut.hydrogen.file.files.deprecated.SettingsComboBoxFile;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.utils.FontHelper;
 import org.lwjgl.opengl.GL11;
