@@ -21,16 +21,19 @@ public class Panic extends Module {
 
         KeybindFile.saveKeybinds();
         SettingsButtonFile.saveState();
-        VisibleFile.saveState();
         SettingsComboBoxFile.saveState();
         SettingsSliderFile.saveState();
         ClickGuiFile.saveClickGui();
         ModuleFile.saveModules();
+        VisibleFile.saveState();
+        TextFile.saveState();
 
-        // disables commands, disables keybinds
+        // disables commands, disables keybinds, disables hud
         // -> mixinminecraft, mixinentityplayers
 
         Hydrogen.getClient().panic = true;
+
+        // disables clickgui, if open
 
         mc.displayGuiScreen(null);
 

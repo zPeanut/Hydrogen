@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
 import me.peanut.hydrogen.Hydrogen;
+import me.peanut.hydrogen.file.files.TextFile;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.settings.Setting;
 import me.peanut.hydrogen.ui.clickgui.component.Component;
@@ -64,9 +65,7 @@ public class TextButton extends Component {
         if(this.isEditing) {
             Utils.rect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, 0x33000000);
         }
-
-
-
+        
         GL11.glPushMatrix();
         GL11.glScalef(0.75f,0.75f, 0.75f);
         if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
@@ -84,15 +83,12 @@ public class TextButton extends Component {
         } else {
             if(this.isEditing) {
                 String displayedStringMC = Utils.abbreviateString(displayString, 21);
-                mc.fontRendererObj.drawStringWithShadow("§6" + displayedStringMC, (parent.parent.getX() + 3) * onethird + 5, (parent.parent.getY() + offset + 2) * onethird + 2, -1);
+                mc.fontRendererObj.drawStringWithShadow(displayedStringMC, (parent.parent.getX() + 3) * onethird + 5, (parent.parent.getY() + offset + 2) * onethird + 2, -1);
             } else {
                 String displayedStringMC = Utils.abbreviateString(displayString, 14);
                 mc.fontRendererObj.drawStringWithShadow(this.set.getName() + ": " + displayedStringMC, (parent.parent.getX() + 3) * onethird + 5, (parent.parent.getY() + offset + 2) * onethird + 2, -1);
             }
         }
-
-
-
 
         GL11.glPopMatrix();
     }
@@ -128,7 +124,8 @@ public class TextButton extends Component {
             if(ChatAllowedCharacters.isAllowedCharacter(typedChar) || typedChar == '§') {
                 this.displayString += typedChar;
             }
-
+            set.setValText(this.displayString);
+            TextFile.saveState();
         }
     }
 

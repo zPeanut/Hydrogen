@@ -60,6 +60,7 @@ public class MixinMinecraft implements IMixinMinecraft {
         ClickGuiFile.loadClickGui();
         ModuleFile.loadModules();
         VisibleFile.loadState();
+        TextFile.loadState();
     }
 
     @Inject(method = "runGameLoop", at = @At("HEAD"))
@@ -96,6 +97,7 @@ public class MixinMinecraft implements IMixinMinecraft {
             ClickGuiFile.saveClickGui();
             ModuleFile.saveModules();
             VisibleFile.saveState();
+            TextFile.saveState();
         }
     }
 
