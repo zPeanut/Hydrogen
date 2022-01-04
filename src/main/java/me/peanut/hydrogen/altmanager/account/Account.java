@@ -50,7 +50,7 @@ public class Account {
 		jsonObject.addProperty("email", this.email);
 		jsonObject.addProperty("password", this.password);
 		jsonObject.addProperty("name", this.name);
-		jsonObject.addProperty("banned", Boolean.valueOf(this.banned));
+		jsonObject.addProperty("banned", this.banned);
 		return jsonObject;
 	}
 
