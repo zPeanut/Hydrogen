@@ -2,6 +2,7 @@ package me.peanut.hydrogen.settings;
 
 import java.util.ArrayList;
 
+import com.google.gson.JsonObject;
 import me.peanut.hydrogen.module.Module;
 
 public class Setting {
@@ -110,11 +111,11 @@ public class Setting {
 		return this.max;
 	}
 	
-	public boolean isModeCombo(){
+	public boolean isModeSelect(){
 		return this.mode.equalsIgnoreCase("Combo");
 	}
 	
-	public boolean isModeCheck(){
+	public boolean isModeButton(){
 		return this.mode.equalsIgnoreCase("Check");
 	}
 
