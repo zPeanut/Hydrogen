@@ -39,7 +39,6 @@ public class TextFile {
                     String name = s.split(":")[0];
                     String modname = s.split(":")[1];
                     String text = String.valueOf(s.split("\"")[1]);
-                    System.out.println(text);
                     if (setting.getName().equalsIgnoreCase(name) && setting.getParentMod().getName().equalsIgnoreCase(modname)) {
                         setting.setText(text);
                     }
