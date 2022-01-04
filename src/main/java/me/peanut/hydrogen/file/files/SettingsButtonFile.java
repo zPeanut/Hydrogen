@@ -22,8 +22,10 @@ public class SettingsButtonFile {
         try {
             ButtonList.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
-                String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + setting.isEnabled());
-                ButtonList.write(line);
+                if(setting.isModeCheck()) {
+                    String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + setting.isEnabled());
+                    ButtonList.write(line);
+                }
             }
         } catch (Exception e) {
         }

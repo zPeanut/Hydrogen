@@ -2,16 +2,18 @@ package me.peanut.hydrogen.file.files;
 
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.file.FileManager;
+import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.settings.Setting;
 
 /**
- * Created by peanut on 03/02/2021
+ * Created by peanut on 04/01/2022
  */
-public class SettingsSliderFile {
+public class TextFile {
 
-    private static final FileManager SliderValue = new FileManager("slider", "Hydrogen");
+    private static final FileManager TextList = new FileManager("text", "Hydrogen");
 
-    public SettingsSliderFile() {
+
+    public TextFile() {
         try {
             loadState();
         } catch (Exception e) {
@@ -20,11 +22,11 @@ public class SettingsSliderFile {
 
     public static void saveState() {
         try {
-            SliderValue.clear();
+            TextList.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
-                if(setting.isModeSlider()) {
-                    String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + setting.getValDouble());
-                    SliderValue.write(line);
+                if(setting.getValText() != null) {
+                    String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":\"" + setting.getValText() + "\"");
+                    TextList.write(line);
                 }
             }
         } catch (Exception e) {
@@ -33,17 +35,21 @@ public class SettingsSliderFile {
 
     public static void loadState() {
         try {
-            for (String s : SliderValue.read()) {
+            for (String s : TextList.read()) {
                 for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
                     String name = s.split(":")[0];
                     String modname = s.split(":")[1];
-                    double value = Double.parseDouble(s.split(":")[2]);
+                    String text = String.valueOf(s.split("\"")[1]);
+                    System.out.println(text);
                     if (setting.getName().equalsIgnoreCase(name) && setting.getParentMod().getName().equalsIgnoreCase(modname)) {
-                        setting.setValDouble(value);
+                        setting.setValText(text);
                     }
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+
 }
