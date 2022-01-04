@@ -65,7 +65,7 @@ public class TextButton extends Component {
         if(this.isEditing) {
             Utils.rect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, 0x33000000);
         }
-        
+
         GL11.glPushMatrix();
         GL11.glScalef(0.75f,0.75f, 0.75f);
         if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
