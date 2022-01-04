@@ -23,7 +23,7 @@ public class SettingsSliderFile {
             SliderValue.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
                 if(setting.isModeSlider()) {
-                    String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + setting.getValDouble());
+                    String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":" + setting.getValue());
                     SliderValue.write(line);
                 }
             }
@@ -39,7 +39,7 @@ public class SettingsSliderFile {
                     String modname = s.split(":")[1];
                     double value = Double.parseDouble(s.split(":")[2]);
                     if (setting.getName().equalsIgnoreCase(name) && setting.getParentMod().getName().equalsIgnoreCase(modname)) {
-                        setting.setValDouble(value);
+                        setting.setValue(value);
                     }
                 }
             }

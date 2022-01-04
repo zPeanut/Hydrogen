@@ -2,7 +2,6 @@ package me.peanut.hydrogen.module.modules.combat;
 
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
-import org.lwjgl.input.Keyboard;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.module.Category;
@@ -38,7 +37,7 @@ public class AutoClicker extends Module {
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
-        boolean type = Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getValString().equalsIgnoreCase("Left Click");
+        boolean type = Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("Left Click");
 
         if (this.time.isDelayComplete(delay)) {
             if (Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
@@ -58,9 +57,9 @@ public class AutoClicker extends Module {
     }
 
     private void click() {
-        boolean type = Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getValString().equalsIgnoreCase("Left Click");
-        delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
-        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random MS").getValDouble());
+        boolean type = Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("Left Click");
+        delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValue());
+        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random MS").getValue());
         delay += random;
         this.time.setLastMS();
         if(type) {

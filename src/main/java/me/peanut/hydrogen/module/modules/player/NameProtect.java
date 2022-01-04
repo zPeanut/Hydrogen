@@ -30,7 +30,7 @@ public class NameProtect extends Module {
         if (!this.isEnabled()) {
             return;
         }
-        event.setText(StringUtils.replace(event.getText(), mc.thePlayer.getName(), "§3Me§f"));
+        event.setText(StringUtils.replace(event.getText(), mc.thePlayer.getName(), Hydrogen.getClient().settingsManager.getSettingByName(this, "Name").getText()));
         if (Hydrogen.getClient().settingsManager.getSettingByName(this, "All Players").isEnabled()) {
             for (NetworkPlayerInfo playerInfo : mc.getNetHandler().getPlayerInfoMap()) {
                 event.setText(StringUtils.replace(event.getText(), playerInfo.getGameProfile().getName(), "User"));

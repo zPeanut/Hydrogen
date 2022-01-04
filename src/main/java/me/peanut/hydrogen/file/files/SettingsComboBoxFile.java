@@ -23,7 +23,7 @@ public class SettingsComboBoxFile {
             ComboSetting.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
                 if(setting.isModeCombo()) {
-                    String line = (setting.getName() + ":" + setting.getParentMod().getName() + (String.valueOf(setting.getValString()) != null ? ":" + setting.getValString() : ""));
+                    String line = (setting.getName() + ":" + setting.getParentMod().getName() + (String.valueOf(setting.getMode()) != null ? ":" + setting.getMode() : ""));
                     ComboSetting.write(line);
                 }
             }
@@ -39,7 +39,7 @@ public class SettingsComboBoxFile {
                     String modname = s.split(":")[1];
                     String Setting = String.valueOf(s.split(":")[2]);
                     if (setting.getName().equalsIgnoreCase(name) && setting.getParentMod().getName().equalsIgnoreCase(modname)) {
-                        setting.setValString(Setting);
+                        setting.setMode(Setting);
                     }
                 }
             }

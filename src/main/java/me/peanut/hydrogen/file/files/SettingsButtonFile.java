@@ -39,7 +39,7 @@ public class SettingsButtonFile {
                     String modname = s.split(":")[1];
                     boolean toggled = Boolean.parseBoolean(s.split(":")[2]);
                     if (setting.getName().equalsIgnoreCase(name) && setting.getParentMod().getName().equalsIgnoreCase(modname)) {
-                        setting.setValBoolean(toggled);
+                        setting.setState(toggled);
                     }
                 }
             }

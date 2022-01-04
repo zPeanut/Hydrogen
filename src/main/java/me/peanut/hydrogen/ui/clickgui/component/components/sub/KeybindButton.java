@@ -45,7 +45,7 @@ public class KeybindButton extends Component {
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 
-		if (Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+		if (Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
 			Color c = new Color(255, 255, 255);
 			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + (binding ? "Binding... | Unbind: RMB" : "Keybind") : binding ? "Binding... | Unbind: RMB" : "Keybind", (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
 			FontHelper.verdana.drawStringWithShadow((binding ? "" : "§l" + (Keyboard.getKeyName(this.parent.mod.getKeybind()))), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.verdana.getStringWidth("§l" + Keyboard.getKeyName(this.parent.mod.getKeybind())), (parent.parent.getY() + offset + 2) * 1.3333333333f, c);

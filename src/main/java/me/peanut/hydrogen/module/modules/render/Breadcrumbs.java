@@ -59,10 +59,10 @@ public class Breadcrumbs extends Module {
 
     @EventTarget
     public void onRender(EventRender3D e) {
-        int r = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValDouble();
-        int g = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValDouble();
-        int b = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValDouble();
-        int a = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValDouble();
+        int r = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValue();
+        int g = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValue();
+        int b = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValue();
+        int a = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValue();
         Color color = new Color(r, g, b, a);
 
         synchronized (this.position) {

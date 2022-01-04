@@ -7,7 +7,6 @@ import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.utils.FontHelper;
-import me.peanut.hydrogen.utils.ReflectionUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -28,7 +27,7 @@ public class ArrayList extends Module {
         new Thread(() -> {
             while (Minecraft.getMinecraft().running) {
                 try {
-                    Thread.sleep((long) Hydrogen.getClient().settingsManager.getSettingByName("List Speed").getValDouble());
+                    Thread.sleep((long) Hydrogen.getClient().settingsManager.getSettingByName("List Speed").getValue());
                 } catch (InterruptedException e) {
                 }
                 for (Module mod : Hydrogen.getClient().moduleManager.getModules()) {
@@ -81,14 +80,14 @@ public class ArrayList extends Module {
             }
 
             int count = 0;
-            float rbdelay = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Delay").getValDouble();
-            float rbsaturation = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Saturation").getValDouble();
+            float rbdelay = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Delay").getValue();
+            float rbsaturation = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Saturation").getValue();
 
             for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
                 ScaledResolution sr = new ScaledResolution(mc);
                 Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
                 Color rainbow = Utils.getRainbowColor(rbdelay, rbsaturation, 1, count * 100);
-                Color color = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("White") ? Color.white : (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? rainbow : mod.getColor());
+                Color color = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getMode().equalsIgnoreCase("White") ? Color.white : (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getMode().equalsIgnoreCase("Rainbow") ? rainbow : mod.getColor());
                 boolean background = Hydrogen.getClient().settingsManager.getSettingByName(this, "Background").isEnabled();
                 boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
                 int mheight = (count * 11 + i) + 1;

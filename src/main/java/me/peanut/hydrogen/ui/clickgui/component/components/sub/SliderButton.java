@@ -44,7 +44,7 @@ public class SliderButton extends Component {
 		int c3 = new Color(34, 34, 34, 140).getRGB(); // 0x88222222
 
 		Utils.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth(), parent.parent.getY() + offset + 12, hovered ? 0x99000000 : 0x88000000);
-		final int drag = (int)(this.set.getValDouble() / this.set.getMax() * this.parent.parent.getWidth());
+		final int drag = (int)(this.set.getValue() / this.set.getMax() * this.parent.parent.getWidth());
 		Utils.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12, 0x88000000);
 		if(this.hovered) {
 			Utils.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12, 0x88000000);
@@ -53,12 +53,12 @@ public class SliderButton extends Component {
 
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
-		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
 			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + " " : this.set.getName() + " ", (parent.parent.getX() * 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f, Color.white);
-			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble()), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.verdana.getStringWidth(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble())), (parent.parent.getY() + offset + 2) * 1.3333333333f, Color.white);
+			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + this.set.getValue() : String.valueOf(this.set.getValue()), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.verdana.getStringWidth(this.hovered ? "§7" + this.set.getValue() : String.valueOf(this.set.getValue())), (parent.parent.getY() + offset + 2) * 1.3333333333f, Color.white);
 		} else {
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getName() + " " : this.set.getName() + " ", (parent.parent.getX() * 1.333333333333f + 9), (parent.parent.getY() + offset + 2) * 1.33333333333333f + 2, -1);
-			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble()), (parent.parent.getX() + 86) * 1.3333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(this.hovered ? "§7" + this.set.getValDouble() : String.valueOf(this.set.getValDouble())), (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.set.getValue() : String.valueOf(this.set.getValue()), (parent.parent.getX() + 86) * 1.3333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(this.hovered ? "§7" + this.set.getValue() : String.valueOf(this.set.getValue())), (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
 		}
 
 		GL11.glPopMatrix();
@@ -80,15 +80,15 @@ public class SliderButton extends Component {
 		double min = set.getMin();
 		double max = set.getMax();
 		
-		renderWidth = (88) * (set.getValDouble() - min) / (max - min);
+		renderWidth = (88) * (set.getValue() - min) / (max - min);
 		
 		if (dragging) {
 			if (diff == 0) {
-				set.setValDouble(set.getMin());
+				set.setValue(set.getMin());
 			}
 			else {
 				double newValue = roundToPlace(((diff / 88) * (max - min) + min), 2);
-				set.setValDouble(newValue);
+				set.setValue(newValue);
 			}
 			SettingsSliderFile.saveState();
 		}

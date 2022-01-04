@@ -2,7 +2,6 @@ package me.peanut.hydrogen.file.files;
 
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.file.FileManager;
-import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.settings.Setting;
 
 /**
@@ -24,8 +23,8 @@ public class TextFile {
         try {
             TextList.clear();
             for (Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
-                if(setting.getValText() != null) {
-                    String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":\"" + setting.getValText() + "\"");
+                if(setting.getText() != null) {
+                    String line = (setting.getName() + ":" + setting.getParentMod().getName() + ":\"" + setting.getText() + "\"");
                     TextList.write(line);
                 }
             }
@@ -42,7 +41,7 @@ public class TextFile {
                     String text = String.valueOf(s.split("\"")[1]);
                     System.out.println(text);
                     if (setting.getName().equalsIgnoreCase(name) && setting.getParentMod().getName().equalsIgnoreCase(modname)) {
-                        setting.setValText(text);
+                        setting.setText(text);
                     }
                 }
             }

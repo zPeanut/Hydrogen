@@ -47,7 +47,7 @@ public class VisibleButton extends Component {
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 
-		if (Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+		if (Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
 			Color c = new Color(255, 255, 255);
 			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7Visible" : "Visible", (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
 			FontHelper.verdana.drawStringWithShadow("§l" + mod.isVisible(), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.verdana.getStringWidth("§l" + mod.visible), (parent.parent.getY() + offset + 2) * 1.3333333333f, c);

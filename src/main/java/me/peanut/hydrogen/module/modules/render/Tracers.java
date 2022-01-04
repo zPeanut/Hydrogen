@@ -29,10 +29,10 @@ public class Tracers extends Module {
 
     @EventTarget
     public void onRender3D(EventRender3D event) {
-        int red = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValDouble();
-        int blue = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValDouble();
-        int green = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValDouble();
-        int alpha = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValDouble();
+        int red = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValue();
+        int blue = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValue();
+        int green = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValue();
+        int alpha = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValue();
         for (final Entity entity : Minecraft.getMinecraft().theWorld.getLoadedEntityList()) {
             if (entity != null && entity != Minecraft.getMinecraft().thePlayer && entity instanceof EntityPlayer) {
                 Utils.drawTracer(entity, new Color(red, green, blue, alpha));

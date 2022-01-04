@@ -32,15 +32,15 @@ public class Flight extends Module {
         mc.thePlayer.motionX = 0.0D;
         mc.thePlayer.motionY = 0.0D;
         mc.thePlayer.motionZ = 0.0D;
-        mc.thePlayer.setAIMoveSpeed(this.modifier * (float) Hydrogen.getClient().settingsManager.getSettingByName(this, "Speed").getValDouble());
-        mc.thePlayer.jumpMovementFactor = (this.modifier * (float) Hydrogen.getClient().settingsManager.getSettingByName(this, "Speed").getValDouble());
+        mc.thePlayer.setAIMoveSpeed(this.modifier * (float) Hydrogen.getClient().settingsManager.getSettingByName(this, "Speed").getValue());
+        mc.thePlayer.jumpMovementFactor = (this.modifier * (float) Hydrogen.getClient().settingsManager.getSettingByName(this, "Speed").getValue());
         if (mc.inGameHasFocus)
         {
             if (Keyboard.isKeyDown(mc.gameSettings.keyBindJump.getKeyCode())) {
-                mc.thePlayer.motionY += this.modifier * Hydrogen.getClient().settingsManager.getSettingByName(this, "Speed").getValDouble() / 2.0F + 0.2F;
+                mc.thePlayer.motionY += this.modifier * Hydrogen.getClient().settingsManager.getSettingByName(this, "Speed").getValue() / 2.0F + 0.2F;
             }
             if (Keyboard.isKeyDown(mc.gameSettings.keyBindSneak.getKeyCode())) {
-                mc.thePlayer.motionY -= this.modifier * (float) Hydrogen.getClient().settingsManager.getSettingByName(this, "Speed").getValDouble() / 2.0F + 0.2F;
+                mc.thePlayer.motionY -= this.modifier * (float) Hydrogen.getClient().settingsManager.getSettingByName(this, "Speed").getValue() / 2.0F + 0.2F;
             }
         }
     }

@@ -37,10 +37,10 @@ public class MurderMystery extends Module {
     @EventTarget
     public void onRender(EventRender3D e) {
         boolean drawTracers = Hydrogen.getClient().settingsManager.getSettingByName(this, "Tracers").isEnabled();
-        int red = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValDouble();
-        int blue = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValDouble();
-        int green = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValDouble();
-        int alpha = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValDouble();
+        int red = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValue();
+        int blue = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValue();
+        int green = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValue();
+        int alpha = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValue();
 
         mc.theWorld.loadedEntityList.forEach(o -> {
             Entity entity = o;

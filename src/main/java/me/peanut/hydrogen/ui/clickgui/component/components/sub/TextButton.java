@@ -9,7 +9,6 @@ import me.peanut.hydrogen.ui.clickgui.component.components.Button;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.util.ChatAllowedCharacters;
 import org.lwjgl.opengl.GL11;
 
@@ -40,7 +39,7 @@ public class TextButton extends Component {
         this.x = button.parent.getX() + button.parent.getWidth();
         this.y = button.parent.getY() + button.offset;
         this.offset = offset;
-        this.displayString = set.getValText();
+        this.displayString = set.getText();
     }
 
     @Override
@@ -68,7 +67,7 @@ public class TextButton extends Component {
 
         GL11.glPushMatrix();
         GL11.glScalef(0.75f,0.75f, 0.75f);
-        if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+        if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
 
             if(this.isEditing) {
                 String displayedStringTTF = Utils.abbreviateString(displayString, 27);
@@ -124,7 +123,7 @@ public class TextButton extends Component {
             if(ChatAllowedCharacters.isAllowedCharacter(typedChar) || typedChar == '§') {
                 this.displayString += typedChar;
             }
-            set.setValText(this.displayString);
+            set.setText(this.displayString);
             TextFile.saveState();
         }
     }

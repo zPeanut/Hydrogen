@@ -5,7 +5,6 @@ import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.item.ItemStack;
-import org.lwjgl.input.Keyboard;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.module.Category;
@@ -47,7 +46,7 @@ public class ChestStealer extends Module {
             for (int i = 0; i < chest.lowerChestInventory.getSizeInventory(); i++) {
                 ItemStack stack = chest.lowerChestInventory.getStackInSlot(i);
                 if (stack != null) {
-                    if ((delay.isDelayComplete((long) Hydrogen.getClient().settingsManager.getSettingByName(this, "Delay").getValDouble() / 2))) {
+                    if ((delay.isDelayComplete((long) Hydrogen.getClient().settingsManager.getSettingByName(this, "Delay").getValue() / 2))) {
                         mc.playerController.windowClick(chest.inventorySlots.windowId, Integer.valueOf(i).intValue(), 0,
                                 1, mc.thePlayer);
                         delay.setLastMS();

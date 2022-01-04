@@ -52,12 +52,12 @@ public class ModeButton extends Component {
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 
-		if(!Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+		if(!Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
-			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
+			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(set.getMode(), (parent.parent.getX() + 86) * 1.33333333333f - Minecraft.getMinecraft().fontRendererObj.getStringWidth(set.getMode()), (parent.parent.getY() + offset + 2) * 1.33333333333f + 2, -1);
 		} else {
 			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + set.getName() + " " : set.getName() + " ", (parent.parent.getX() + 7) * 1.33333333333f, (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
-			FontHelper.verdana.drawStringWithShadow(set.getValString(), (parent.parent.getX() + 86) * 1.33333333333f - FontHelper.verdana.getStringWidth(set.getValString()), (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
+			FontHelper.verdana.drawStringWithShadow(set.getMode(), (parent.parent.getX() + 86) * 1.33333333333f - FontHelper.verdana.getStringWidth(set.getMode()), (parent.parent.getY() + offset + 2) * 1.33333333333f, Color.white);
 		}
 
 		GL11.glPopMatrix();
@@ -80,7 +80,7 @@ public class ModeButton extends Component {
 
 			if(modeIndex + 1 > maxIndex)
 				modeIndex = 0;
-			set.setValString(set.getOptions().get(modeIndex));
+			set.setMode(set.getOptions().get(modeIndex));
 			SettingsComboBoxFile.saveState();
 		}
 	}
