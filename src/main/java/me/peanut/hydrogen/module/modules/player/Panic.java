@@ -19,13 +19,12 @@ public class Panic extends Module {
     public void onEnable() {
         // saves all settings
 
-        KeybindFile.saveKeybinds();
+        ModuleConfig moduleConfig = new ModuleConfig();
+        moduleConfig.loadConfig();
         SettingsButtonFile.saveState();
         SettingsComboBoxFile.saveState();
         SettingsSliderFile.saveState();
         ClickGuiFile.saveClickGui();
-        ModuleFile.saveModules();
-        VisibleFile.saveState();
         TextFile.saveState();
 
         // disables commands, disables keybinds, disables hud

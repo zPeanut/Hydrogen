@@ -53,13 +53,12 @@ public class MixinMinecraft implements IMixinMinecraft {
     @Inject(method = "startGame", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;ingameGUI:Lnet/minecraft/client/gui/GuiIngame;", shift = At.Shift.AFTER))
     private void startGame(CallbackInfo ci) {
         Hydrogen.getClient().startClient();
-        KeybindFile.loadKeybinds();
+        ModuleConfig moduleConfig = new ModuleConfig();
+        moduleConfig.loadConfig();
         SettingsButtonFile.loadState();
         SettingsComboBoxFile.loadState();
         SettingsSliderFile.loadState();
         ClickGuiFile.loadClickGui();
-        ModuleFile.loadModules();
-        VisibleFile.loadState();
         TextFile.loadState();
     }
 
@@ -90,13 +89,12 @@ public class MixinMinecraft implements IMixinMinecraft {
     private void onShutdown(CallbackInfo ci) {
         if(!Hydrogen.getClient().panic) {
             Hydrogen.getClient().stopClient();
-            KeybindFile.saveKeybinds();
+            ModuleConfig moduleConfig = new ModuleConfig();
+            moduleConfig.loadConfig();
             SettingsButtonFile.saveState();
             SettingsComboBoxFile.saveState();
             SettingsSliderFile.saveState();
             ClickGuiFile.saveClickGui();
-            ModuleFile.saveModules();
-            VisibleFile.saveState();
             TextFile.saveState();
         }
     }

@@ -1,6 +1,6 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
-import me.peanut.hydrogen.file.files.KeybindFile;
+import me.peanut.hydrogen.file.files.ModuleConfig;
 import me.peanut.hydrogen.utils.FontHelper;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -70,7 +70,8 @@ public class KeybindButton extends Component {
 			this.binding = !this.binding;
 		} else if(button == 1 && this.binding) {
 			this.parent.mod.unbindKeyBind();
-			KeybindFile.saveKeybinds();
+			ModuleConfig moduleConfig = new ModuleConfig();
+			moduleConfig.saveConfig();
 			this.binding = false;
 		}
 	}
@@ -79,7 +80,8 @@ public class KeybindButton extends Component {
 	public void keyTyped(char typedChar, int key) {
 		if(this.binding) {
 			this.parent.mod.setKeyBind(key);
-			KeybindFile.saveKeybinds();
+			ModuleConfig moduleConfig = new ModuleConfig();
+			moduleConfig.saveConfig();
 			this.binding = false;
 		}
 	}

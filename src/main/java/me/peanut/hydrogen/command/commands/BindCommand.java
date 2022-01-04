@@ -1,7 +1,7 @@
 package me.peanut.hydrogen.command.commands;
 
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.file.files.KeybindFile;
+import me.peanut.hydrogen.file.files.ModuleConfig;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.utils.KeybindManager;
 import me.peanut.hydrogen.command.Command;
@@ -34,7 +34,8 @@ public class BindCommand extends Command {
             } else {
                 mgr.bind(mod, mgr.toInt(value));
                 msg(String.format("§7Bound §b%s §7to §b%s§7!", mod.getName(), value));
-                KeybindFile.saveKeybinds();
+                ModuleConfig moduleConfig = new ModuleConfig();
+                moduleConfig.saveConfig();
             }
         } else {
             msg("§cSyntax Error.");

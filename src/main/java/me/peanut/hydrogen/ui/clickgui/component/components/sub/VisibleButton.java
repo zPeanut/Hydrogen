@@ -1,7 +1,7 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.file.files.VisibleFile;
+import me.peanut.hydrogen.file.files.ModuleConfig;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.utils.FontHelper;
 import org.lwjgl.opengl.GL11;
@@ -70,7 +70,8 @@ public class VisibleButton extends Component {
 	public void mouseClicked(int mouseX, int mouseY, int button) {
 		if(isMouseOnButton(mouseX, mouseY) && button == 0 && this.parent.open) {
 			mod.visible = (!mod.visible);
-			VisibleFile.saveState();
+			ModuleConfig moduleConfig = new ModuleConfig();
+			moduleConfig.saveConfig();
 		}
 	}
 	
