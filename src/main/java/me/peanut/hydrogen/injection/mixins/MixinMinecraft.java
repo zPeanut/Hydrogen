@@ -6,6 +6,9 @@ import me.peanut.hydrogen.events.EventKey;
 import me.peanut.hydrogen.events.EventMouseClick;
 import me.peanut.hydrogen.events.EventTick;
 import me.peanut.hydrogen.file.files.*;
+import me.peanut.hydrogen.file.files.KeybindFile;
+import me.peanut.hydrogen.file.files.ModuleFile;
+import me.peanut.hydrogen.file.files.VisibleFile;
 import me.peanut.hydrogen.injection.interfaces.IMixinMinecraft;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -53,8 +56,14 @@ public class MixinMinecraft implements IMixinMinecraft {
     @Inject(method = "startGame", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;ingameGUI:Lnet/minecraft/client/gui/GuiIngame;", shift = At.Shift.AFTER))
     private void startGame(CallbackInfo ci) {
         Hydrogen.getClient().startClient();
-        ModuleConfig moduleConfig = new ModuleConfig();
-        moduleConfig.loadConfig();
+        if(Hydrogen.getClient().hasNewFiles) {
+            ModuleConfig moduleConfig = new ModuleConfig();
+            moduleConfig.loadConfig();
+        } else {
+            KeybindFile.loadKeybinds();
+            VisibleFile.loadState();
+            ModuleFile.loadModules();
+        }
         SettingsButtonFile.loadState();
         SettingsComboBoxFile.loadState();
         SettingsSliderFile.loadState();
@@ -90,7 +99,7 @@ public class MixinMinecraft implements IMixinMinecraft {
         if(!Hydrogen.getClient().panic) {
             Hydrogen.getClient().stopClient();
             ModuleConfig moduleConfig = new ModuleConfig();
-            moduleConfig.loadConfig();
+            moduleConfig.saveConfig();
             SettingsButtonFile.saveState();
             SettingsComboBoxFile.saveState();
             SettingsSliderFile.saveState();

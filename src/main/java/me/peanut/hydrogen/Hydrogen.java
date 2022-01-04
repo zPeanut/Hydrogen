@@ -57,6 +57,8 @@ public class Hydrogen {
     public boolean isStableBuild = false;
     public String newversion;
 
+    public boolean hasNewFiles;
+
     public Hydrogen() {
         instance = this;
     }
@@ -68,6 +70,11 @@ public class Hydrogen {
         if (!this.directory.exists()) {
             this.firstStart = true;
             directory.mkdir();
+        }
+        if(new File(directory, "modules.json").exists()) {
+            hasNewFiles = true;
+        } else {
+            Utils.log("Old Files detected! Will be deleted after game shutdown.");
         }
         if(!isStableBuild) {
             // get commit dates
@@ -104,7 +111,22 @@ public class Hydrogen {
         return utils;
     }
 
-    public void stopClient() {}
+    public void stopClient() {
+        if(!hasNewFiles) {
+            File oldVisibleFile = new File(directory, "visible.txt");
+            if(oldVisibleFile.delete()) {
+                Utils.log("Deleted Visible File!");
+            }
+            File oldModuleFile = new File(directory, "modules.txt");
+            if(oldModuleFile.delete()) {
+                Utils.log("Deleted Modules File!");
+            }
+            File oldKeybindFile = new File(directory, "binds.txt");
+            if(oldKeybindFile.delete()) {
+                Utils.log("Deleted Binds File!");
+            }
+        }
+    }
 
     public void isOutdated() {
         try {
