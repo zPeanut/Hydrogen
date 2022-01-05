@@ -3,6 +3,7 @@ package me.peanut.hydrogen.ui.clickgui;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import me.peanut.hydrogen.file.files.ClickGuiConfig;
 import me.peanut.hydrogen.file.files.deprecated.ClickGuiFile;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.ui.clickgui.component.Component;
@@ -107,7 +108,8 @@ public class ClickGui extends GuiScreen {
 				e.printStackTrace();
 			}
 		}
-		ClickGuiFile.saveClickGui();
+		ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
+		clickGuiConfig.saveConfig();
 
 		super.onGuiClosed();
 	}

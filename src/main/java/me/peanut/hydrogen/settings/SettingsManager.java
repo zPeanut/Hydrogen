@@ -33,6 +33,15 @@ public class SettingsManager {
 		}
 		return out;
 	}
+
+	public boolean hasSettingMod(Module mod){
+		for(Setting s : getSettings()) {
+			if(s.getParentMod() == mod) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public Setting getSettingByName(Module mod, String name){
 		for(Setting set : getSettings()){

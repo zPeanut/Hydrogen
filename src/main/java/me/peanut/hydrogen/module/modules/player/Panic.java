@@ -24,7 +24,8 @@ public class Panic extends Module {
         moduleConfig.saveConfig();
         SettingsConfig settingsConfig = new SettingsConfig();
         settingsConfig.saveConfig();
-        ClickGuiFile.saveClickGui();
+        ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
+        clickGuiConfig.saveConfig();
 
 
         // disables commands, disables keybinds, disables hud

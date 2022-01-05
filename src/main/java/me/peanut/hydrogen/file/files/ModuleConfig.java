@@ -44,7 +44,7 @@ public class ModuleConfig {
     public void loadConfig() {
         try {
             JsonParser jsonParser = new JsonParser();
-            JsonElement jsonElement = jsonParser.parse((Reader) new BufferedReader(new FileReader(this.moduleFile)));
+            JsonElement jsonElement = jsonParser.parse(new BufferedReader(new FileReader(this.moduleFile)));
             if(jsonElement instanceof JsonNull) {
                 return;
             }

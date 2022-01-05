@@ -2,6 +2,7 @@ package me.peanut.hydrogen.module.modules.ui;
 
 import com.darkmagician6.eventapi.EventTarget;
 import me.peanut.hydrogen.events.EventUpdate;
+import me.peanut.hydrogen.file.files.ClickGuiConfig;
 import me.peanut.hydrogen.file.files.deprecated.ClickGuiFile;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
@@ -53,17 +54,10 @@ public class ClickGUI extends Module {
         if(this.clickgui == null) {
             this.clickgui = new ClickGui();
         }
-        ClickGuiFile.loadClickGui();
+        ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
+        clickGuiConfig.loadConfig();
         mc.displayGuiScreen(this.clickgui);
         toggle();
         super.onEnable();
     }
-
-    @EventTarget
-    public void onUpdate(EventUpdate e) {
-        if(Hydrogen.getClient().panic) {
-            this.setEnabled();
-        }
-    }
-
 }

@@ -28,6 +28,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.awt.*;
+
 @Mixin(Minecraft.class)
 @SideOnly(Side.CLIENT)
 public class MixinMinecraft implements IMixinMinecraft {
@@ -58,16 +60,21 @@ public class MixinMinecraft implements IMixinMinecraft {
         Hydrogen.getClient().startClient();
         ModuleConfig moduleConfig = new ModuleConfig();
         SettingsConfig settingsConfig = new SettingsConfig();
+        ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
         if(Hydrogen.getClient().hasNewFiles) {
             moduleConfig.loadConfig();
             settingsConfig.loadConfig();
+            clickGuiConfig.loadConfig();
         } else {
             KeybindFile.loadKeybinds();
             VisibleFile.loadState();
             ModuleFile.loadModules();
+            ClickGuiFile.loadClickGui();
+            SettingsButtonFile.loadState();
+            SettingsComboBoxFile.loadState();
+            SettingsSliderFile.loadState();
+            TextFile.loadState();
         }
-
-        ClickGuiFile.loadClickGui();
     }
 
     @Inject(method = "runGameLoop", at = @At("HEAD"))
@@ -101,7 +108,8 @@ public class MixinMinecraft implements IMixinMinecraft {
             moduleConfig.saveConfig();
             SettingsConfig settingsConfig = new SettingsConfig();
             settingsConfig.saveConfig();
-            ClickGuiFile.saveClickGui();
+            ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
+            clickGuiConfig.saveConfig();
         }
     }
 

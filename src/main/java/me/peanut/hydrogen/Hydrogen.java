@@ -72,7 +72,7 @@ public class Hydrogen {
             this.firstStart = true;
             directory.mkdir();
         }
-        if(new File(directory, "modules.json").exists()) {
+        if(new File(directory, "modules.json").exists() || new File(directory, "settings.json").exists() || new File(directory, "clickgui.json").exists()) {
             hasNewFiles = true;
         } else {
             Utils.log("Old Files detected! Will be deleted after game shutdown.");
