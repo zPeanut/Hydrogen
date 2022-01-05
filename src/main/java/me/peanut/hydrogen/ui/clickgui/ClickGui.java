@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.util.ResourceLocation;
 import me.peanut.hydrogen.Hydrogen;
+import org.lwjgl.input.Mouse;
 
 public class ClickGui extends GuiScreen {
 
@@ -40,6 +41,15 @@ public class ClickGui extends GuiScreen {
 			frame.updatePosition(mouseX, mouseY);
 			for (me.peanut.hydrogen.ui.clickgui.component.Component comp : frame.getComponents()) {
 				comp.updateComponent(mouseX, mouseY);
+			}
+		}
+		if (Mouse.hasWheel()) {
+			final int wheel = Mouse.getDWheel();
+			for (int i = frames.size() - 1; i >= 0; --i) {
+				System.out.println(wheel);
+				if (frames.get(i).handleScroll(mouseX, mouseY, wheel)) {
+					break;
+				}
 			}
 		}
 		if (Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
