@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
 import me.peanut.hydrogen.Hydrogen;
+import me.peanut.hydrogen.file.files.SettingsConfig;
 import me.peanut.hydrogen.file.files.deprecated.TextFile;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.settings.Setting;
@@ -124,7 +125,8 @@ public class TextButton extends Component {
                 this.displayString += typedChar;
             }
             set.setText(this.displayString);
-            TextFile.saveState();
+            SettingsConfig settingsConfig = new SettingsConfig();
+            settingsConfig.saveConfig();
         }
     }
 

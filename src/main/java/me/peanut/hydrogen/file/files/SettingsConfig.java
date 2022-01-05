@@ -17,13 +17,13 @@ public class SettingsConfig {
 
     private final File settingsFile;
 
+
     public SettingsConfig() {
         this.settingsFile = new File(Hydrogen.getClient().directory + File.separator + "settings.json");
     }
 
     public void saveConfig() {
         try {
-
             final JsonObject jsonMod = new JsonObject();
             Hydrogen.getClient().moduleManager.getModules().forEach(module -> {
                 final JsonObject jsonSetting = new JsonObject();
@@ -33,7 +33,7 @@ public class SettingsConfig {
                     if(setting.isModeButton() && setting.getParentMod() == module) {
                         jsonSetting.addProperty(setting.getName(), setting.isEnabled());
                     }
-                    if(setting.isModeSelect() && setting.getParentMod() == module) {
+                    if(setting.isModeMode() && setting.getParentMod() == module) {
                         jsonSetting.addProperty(setting.getName(), setting.getMode());
                     }
                     if(setting.isModeSlider() && setting.getParentMod() == module) {
@@ -58,23 +58,41 @@ public class SettingsConfig {
     public void loadConfig() {
         try {
             JsonParser jsonParser = new JsonParser();
-            JsonElement jsonElement = jsonParser.parse((Reader) new BufferedReader(new FileReader(this.settingsFile)));
+            JsonElement jsonElement = jsonParser.parse(new BufferedReader(new FileReader(this.settingsFile)));
             if(jsonElement instanceof JsonNull) {
                 return;
             }
-            for (final Map.Entry<String, JsonElement> entry : jsonElement.getAsJsonObject().entrySet()) {
-                final Module module = Hydrogen.getClient().moduleManager.getModulebyName(entry.getKey());
-                if (module != null) {
-                    final JsonObject jsonModule = (JsonObject)entry.getValue();
-                    boolean toggled = jsonModule.get("toggled").getAsBoolean();
-                    if(toggled) {
-                        module.toggle();
+            JsonObject jsonObject = (JsonObject) jsonElement;
+            for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+                Module module = Hydrogen.getClient().moduleManager.getModulebyName(entry.getKey());
+                if(module == null ) {
+                    continue;
+                }
+                JsonObject jsonModule = (JsonObject) entry.getValue();
+                for(Setting setting : Hydrogen.getClient().settingsManager.getSettings()) {
+                    JsonElement element = jsonModule.get(setting.getName());
+                    if(element != null) {
+                        if (setting.getParentMod().getName().equalsIgnoreCase(module.getName()) && setting.isModeButton()) {
+                            setting.setState(element.getAsBoolean());
+                            System.out.println(module.getName() + ":" + setting.getName() + ":" + element.getAsBoolean());
+                        }
+                        if (setting.getParentMod().getName().equalsIgnoreCase(module.getName()) && setting.isModeMode()) {
+                            setting.setMode(element.getAsString());
+                            System.out.println(module.getName() + ":" + setting.getName() + ":" + element.getAsString());
+                        }
+                        if (setting.getParentMod().getName().equalsIgnoreCase(module.getName()) && setting.isModeText()) {
+                            setting.setText(element.getAsString());
+                            System.out.println(module.getName() + ":" + setting.getName() + ":" + element.getAsString());
+                        }
+                        if (setting.getParentMod().getName().equalsIgnoreCase(module.getName()) && setting.isModeSlider()) {
+                            setting.setValue(element.getAsDouble());
+                            System.out.println(module.getName() + ":" + setting.getName() + ":" + element.getAsDouble());
+                        }
+
                     }
-                    module.setVisible(jsonModule.get("visible").getAsBoolean());
-                    module.setKeyBind(jsonModule.get("keybind").getAsInt());
                 }
             }
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }

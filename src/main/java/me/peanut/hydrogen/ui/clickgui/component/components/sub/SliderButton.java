@@ -4,6 +4,7 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import me.peanut.hydrogen.file.files.SettingsConfig;
 import me.peanut.hydrogen.file.files.deprecated.SettingsSliderFile;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.Utils;
@@ -90,7 +91,8 @@ public class SliderButton extends Component {
 				double newValue = roundToPlace(((diff / 88) * (max - min) + min), 2);
 				set.setValue(newValue);
 			}
-			SettingsSliderFile.saveState();
+			SettingsConfig settingsConfig = new SettingsConfig();
+			settingsConfig.saveConfig();
 		}
 	}
 	

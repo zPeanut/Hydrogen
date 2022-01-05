@@ -102,8 +102,6 @@ public class Hydrogen {
             moduleManager.getModule(HUD.class).setEnabled();
             moduleManager.getModule(Watermark.class).setEnabled();
         }
-        SettingsConfig settingsConfig = new SettingsConfig();
-        settingsConfig.saveConfig();
     }
 
     public static Hydrogen getClient() {

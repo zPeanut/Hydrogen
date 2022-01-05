@@ -1,5 +1,6 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
+import me.peanut.hydrogen.file.files.SettingsConfig;
 import me.peanut.hydrogen.file.files.deprecated.SettingsButtonFile;
 import me.peanut.hydrogen.utils.FontHelper;
 import org.lwjgl.opengl.GL11;
@@ -71,7 +72,8 @@ public class CheckboxButton extends Component {
 	public void mouseClicked(int mouseX, int mouseY, int button) {
 		if(isMouseOnButton(mouseX, mouseY) && button == 0 && this.parent.open) {
 			this.op.setState(!op.isEnabled());
-			SettingsButtonFile.saveState();
+			SettingsConfig settingsConfig = new SettingsConfig();
+			settingsConfig.saveConfig();
 		}
 	}
 	

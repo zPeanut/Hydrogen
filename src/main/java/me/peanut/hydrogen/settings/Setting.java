@@ -111,7 +111,7 @@ public class Setting {
 		return this.max;
 	}
 	
-	public boolean isModeSelect(){
+	public boolean isModeMode(){
 		return this.mode.equalsIgnoreCase("Combo");
 	}
 	

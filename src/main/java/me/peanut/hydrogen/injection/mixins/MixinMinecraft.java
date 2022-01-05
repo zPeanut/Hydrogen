@@ -11,6 +11,7 @@ import me.peanut.hydrogen.file.files.ModuleFile;
 import me.peanut.hydrogen.file.files.VisibleFile;
 import me.peanut.hydrogen.file.files.deprecated.*;
 import me.peanut.hydrogen.injection.interfaces.IMixinMinecraft;
+import me.peanut.hydrogen.settings.Setting;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -55,19 +56,18 @@ public class MixinMinecraft implements IMixinMinecraft {
     @Inject(method = "startGame", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;ingameGUI:Lnet/minecraft/client/gui/GuiIngame;", shift = At.Shift.AFTER))
     private void startGame(CallbackInfo ci) {
         Hydrogen.getClient().startClient();
+        ModuleConfig moduleConfig = new ModuleConfig();
+        SettingsConfig settingsConfig = new SettingsConfig();
         if(Hydrogen.getClient().hasNewFiles) {
-            ModuleConfig moduleConfig = new ModuleConfig();
             moduleConfig.loadConfig();
+            settingsConfig.loadConfig();
         } else {
             KeybindFile.loadKeybinds();
             VisibleFile.loadState();
             ModuleFile.loadModules();
         }
-        SettingsButtonFile.loadState();
-        SettingsComboBoxFile.loadState();
-        SettingsSliderFile.loadState();
+
         ClickGuiFile.loadClickGui();
-        TextFile.loadState();
     }
 
     @Inject(method = "runGameLoop", at = @At("HEAD"))
@@ -99,11 +99,9 @@ public class MixinMinecraft implements IMixinMinecraft {
             Hydrogen.getClient().stopClient();
             ModuleConfig moduleConfig = new ModuleConfig();
             moduleConfig.saveConfig();
-            SettingsButtonFile.saveState();
-            SettingsComboBoxFile.saveState();
-            SettingsSliderFile.saveState();
+            SettingsConfig settingsConfig = new SettingsConfig();
+            settingsConfig.saveConfig();
             ClickGuiFile.saveClickGui();
-            TextFile.saveState();
         }
     }
 

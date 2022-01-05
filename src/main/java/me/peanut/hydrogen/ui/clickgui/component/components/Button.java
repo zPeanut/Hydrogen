@@ -39,7 +39,7 @@ public class Button extends Component {
 		int opY = offset + 12;
 		if(Hydrogen.getClient().settingsManager.getSettingsByMod(mod) != null) {
 			for(Setting s : Hydrogen.getClient().settingsManager.getSettingsByMod(mod)){
-				if(s.isModeSelect()){
+				if(s.isModeMode()){
 					this.subcomponents.add(new ModeButton(s, this, mod, opY));
 					opY += 12;
 				}

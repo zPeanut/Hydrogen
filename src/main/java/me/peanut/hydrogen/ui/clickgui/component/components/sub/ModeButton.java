@@ -1,5 +1,6 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
+import me.peanut.hydrogen.file.files.SettingsConfig;
 import me.peanut.hydrogen.file.files.deprecated.SettingsComboBoxFile;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.utils.FontHelper;
@@ -81,7 +82,8 @@ public class ModeButton extends Component {
 			if(modeIndex + 1 > maxIndex)
 				modeIndex = 0;
 			set.setMode(set.getOptions().get(modeIndex));
-			SettingsComboBoxFile.saveState();
+			SettingsConfig settingsConfig = new SettingsConfig();
+			settingsConfig.saveConfig();
 		}
 	}
 	

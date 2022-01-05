@@ -21,12 +21,11 @@ public class Panic extends Module {
         // saves all settings
 
         ModuleConfig moduleConfig = new ModuleConfig();
-        moduleConfig.loadConfig();
-        SettingsButtonFile.saveState();
-        SettingsComboBoxFile.saveState();
-        SettingsSliderFile.saveState();
+        moduleConfig.saveConfig();
+        SettingsConfig settingsConfig = new SettingsConfig();
+        settingsConfig.saveConfig();
         ClickGuiFile.saveClickGui();
-        TextFile.saveState();
+
 
         // disables commands, disables keybinds, disables hud
         // -> mixinminecraft, mixinentityplayers

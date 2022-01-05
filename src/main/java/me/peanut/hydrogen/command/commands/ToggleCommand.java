@@ -22,7 +22,7 @@ public class ToggleCommand extends Command {
                 Hydrogen.getClient().moduleManager.getModulebyName(module).toggle();
                 msg(String.format("§b%s §7has been %s", Hydrogen.getClient().moduleManager.getModulebyName(module).getName(), Hydrogen.getClient().moduleManager.getModulebyName(module).isEnabled() ? "§aenabled" : "§cdisabled."));
                 ModuleConfig moduleConfig = new ModuleConfig();
-                moduleConfig.loadConfig();
+                moduleConfig.saveConfig();
             }
         }
     }
