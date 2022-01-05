@@ -112,19 +112,40 @@ public class Hydrogen {
         return utils;
     }
 
+    // removing in 1.12.1 or 1.13
     public void stopClient() {
         if(!hasNewFiles) {
             File oldVisibleFile = new File(directory, "visible.txt");
             if(oldVisibleFile.delete()) {
-                Utils.log("Deleted Visible File!");
+                Utils.log("Deleted old Visible Settings!");
             }
             File oldModuleFile = new File(directory, "modules.txt");
             if(oldModuleFile.delete()) {
-                Utils.log("Deleted Modules File!");
+                Utils.log("Deleted old Modules Settings!");
             }
             File oldKeybindFile = new File(directory, "binds.txt");
             if(oldKeybindFile.delete()) {
-                Utils.log("Deleted Binds File!");
+                Utils.log("Deleted old Binds Settings!");
+            }
+            File oldSliderFile = new File(directory, "slider.txt");
+            if(oldSliderFile.delete()) {
+                Utils.log("Deleted old Slider Settings!");
+            }
+            File oldButtonFile = new File(directory, "button.txt");
+            if(oldButtonFile.delete()) {
+                Utils.log("Deleted old Button Settings!");
+            }
+            File oldComboBoxFile = new File(directory, "combobox.txt");
+            if(oldComboBoxFile.delete()) {
+                Utils.log("Deleted old Combobox Settings!");
+            }
+            File oldTextFile = new File(directory, "text.txt");
+            if(oldTextFile.delete()) {
+                Utils.log("Deleted old Text Settings!");
+            }
+            File oldClickGuiFile = new File(directory, "clickgui.txt");
+            if(oldClickGuiFile.delete()) {
+                Utils.log("Deleted old ClickGui Settings!");
             }
         }
     }
