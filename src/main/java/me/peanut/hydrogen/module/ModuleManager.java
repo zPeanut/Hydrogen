@@ -109,6 +109,10 @@ public class ModuleManager {
         add(new NoBowFOV());
         add(new AutoBow());
 
+        // 1.12
+
+        add(new AutoType());
+
         // alphabetically sort modules in clickgui
 
         if (modules.size() > 0) {
