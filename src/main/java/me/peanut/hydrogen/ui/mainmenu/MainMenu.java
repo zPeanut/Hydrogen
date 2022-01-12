@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.ui.mainmenu;
 
 import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.utils.FontUtil;
 import me.peanut.hydrogen.utils.ParticleGenerator;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -9,9 +10,7 @@ import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.Loader;
 import me.peanut.hydrogen.Hydrogen;
 
-import java.util.List;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Created by peanut on 26/02/2021
@@ -56,6 +55,12 @@ public class MainMenu extends GuiScreen {
             } else {
                 FontHelper.comfortaa_r.drawStringWithShadowMainMenu("§aNo Update available!", 144, Utils.getScaledRes().getScaledHeight() - 14, Color.white);
             }
+        }
+
+        // first start
+
+        if(!Hydrogen.getClient().firstStart) {
+            FontUtil.drawTotalCenteredStringWithShadowSFL2("Welcome to", Utils.getScaledRes().getScaledWidth() / 2 - 22, Utils.getScaledRes().getScaledHeight() / 2 - (FontHelper.sf_l2.getHeight() / 2) - 35, new Color(207, 238, 255));
         }
 
         // prerelease / beta / dev check
