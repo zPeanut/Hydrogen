@@ -134,7 +134,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 - 26, 90, 20, "Settings"));
             this.buttonList.add(new ExpandButton(3, 45, Utils.getScaledRes().getScaledHeight() / 2 - 4, 90, 20, "Alt Manager"));
             this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 40, 43, 20, "Mods"));
-            this.buttonList.add(new ExpandButton(36, 89, Utils.getScaledRes().getScaledHeight() / 2 + 40, 45, 20, "Credits"));
+            this.buttonList.add(new ExpandButton(36, 91, Utils.getScaledRes().getScaledHeight() / 2 + 40, 44, 20, "Credits"));
             this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 72, 90, 20, "Quit"));
 
             if(Hydrogen.getClient().isStableBuild) {
@@ -150,7 +150,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
             // version button string
 
-            this.buttonList.add(new ExpandButton(97, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 49, Utils.getScaledRes().getScaledHeight() / 2 - 38, FontHelper.sf_l2.getStringWidth(Hydrogen.version) + 6, 20, "", true, Hydrogen.getClient().semantic_version));
+            this.buttonList.add(new ExpandButton(97, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 49, Utils.getScaledRes().getScaledHeight() / 2 - 38, FontHelper.sf_l2.getStringWidth(Hydrogen.version) + 6, 20, "", true, Hydrogen.getClient().semantic_version + " (" + Utils.getCurrentCommitHash() + ")"));
 
         } else {
             if (this.mc.isDemo()) {
