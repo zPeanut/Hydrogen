@@ -26,17 +26,17 @@ public class GuiCredits extends GuiScreen {
         int right = Utils.getScaledRes().getScaledWidth() - Utils.getScaledRes().getScaledWidth() / 3 + 24;
         drawRect(left, 0, right, Utils.getScaledRes().getScaledHeight(), 0x55000000);
 
-        FontUtil.drawTotalCenteredStringWithShadow("Contributors to Hydrogen", (float) Utils.getScaledRes().getScaledWidth() / 2, 50, -1);
+        FontUtil.drawTotalCenteredStringWithShadowMC("Contributors to Hydrogen", (float) Utils.getScaledRes().getScaledWidth() / 2, 50, -1);
 
-        FontUtil.drawTotalCenteredStringWithShadow("zPeanut - Main Developer", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 - 48, -1);
-        FontUtil.drawTotalCenteredStringWithShadow("UltramoxX - Co Developer", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 - 36, -1);
-        FontUtil.drawTotalCenteredStringWithShadow("ProfKambing - Contributor", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 - 24, -1);
-        FontUtil.drawTotalCenteredStringWithShadow("QianHeJ - Contributor", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2  - 12, -1);
+        FontUtil.drawTotalCenteredStringWithShadowMC("zPeanut - Main Developer", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 - 48, -1);
+        FontUtil.drawTotalCenteredStringWithShadowMC("UltramoxX - Co Developer", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 - 36, -1);
+        FontUtil.drawTotalCenteredStringWithShadowMC("ProfKambing - Contributor", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 - 24, -1);
+        FontUtil.drawTotalCenteredStringWithShadowMC("QianHeJ - Contributor", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2  - 12, -1);
 
-        FontUtil.drawTotalCenteredStringWithShadow("superblaubeere27 - Providing the initial ClientBase", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 + 12, -1);
-        FontUtil.drawTotalCenteredStringWithShadow("HeroCode - Providing the settings system", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 + 24, -1);
-        FontUtil.drawTotalCenteredStringWithShadow("Lemon - Providing the ClickGUI", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 + 36, -1);
-        FontUtil.drawTotalCenteredStringWithShadow("Hexeption - Providing the OutlineESP code", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 + 48, -1);
+        FontUtil.drawTotalCenteredStringWithShadowMC("superblaubeere27 - Providing the initial ClientBase", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 + 12, -1);
+        FontUtil.drawTotalCenteredStringWithShadowMC("HeroCode - Providing the settings system", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 + 24, -1);
+        FontUtil.drawTotalCenteredStringWithShadowMC("Lemon - Providing the ClickGUI", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 + 36, -1);
+        FontUtil.drawTotalCenteredStringWithShadowMC("Hexeption - Providing the OutlineESP code", (float) Utils.getScaledRes().getScaledWidth() / 2, (float) this.height / 2 + 48, -1);
 
 
         super.drawScreen(mouseX, mouseY, partialTicks);
