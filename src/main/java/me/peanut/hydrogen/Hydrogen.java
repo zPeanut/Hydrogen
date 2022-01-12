@@ -4,12 +4,10 @@ import com.thealtening.auth.AltService;
 import com.vdurmont.semver4j.Semver;
 import me.peanut.hydrogen.events.EventWorldListener;
 import me.peanut.hydrogen.file.FileManager;
-import me.peanut.hydrogen.file.files.SettingsConfig;
 import me.peanut.hydrogen.module.ModuleManager;
+import me.peanut.hydrogen.module.modules.ui.MainMenuModule;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.module.modules.ui.ArrayList;
-import me.peanut.hydrogen.module.modules.ui.HUD;
-import me.peanut.hydrogen.module.modules.ui.Watermark;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.KeybindManager;
 import me.peanut.hydrogen.utils.Utils;
@@ -99,8 +97,7 @@ public class Hydrogen {
         }
         new ArrayList();
         if(firstStart) {
-            moduleManager.getModule(HUD.class).setEnabled();
-            moduleManager.getModule(Watermark.class).setEnabled();
+            moduleManager.getModule(MainMenuModule.class).setEnabled();
         }
     }
 
