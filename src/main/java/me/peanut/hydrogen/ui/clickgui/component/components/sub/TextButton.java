@@ -73,7 +73,7 @@ public class TextButton extends Component {
             if(this.isEditing) {
                 String displayedStringTTF = Utils.abbreviateString(displayString, 27);
 
-                FontHelper.verdana.drawStringWithShadow("§6" + displayedStringTTF, (parent.parent.getX() + 3) * onethird + 5, (parent.parent.getY() + offset + 2) * onethird, Color.WHITE);
+                FontHelper.verdana.drawStringWithShadow("§7" + displayedStringTTF, (parent.parent.getX() + 3) * onethird + 5, (parent.parent.getY() + offset + 2) * onethird, Color.WHITE);
             } else {
                 String displayedStringTTF = Utils.abbreviateString(displayString, 19);
 
