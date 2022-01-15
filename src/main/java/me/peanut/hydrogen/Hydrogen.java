@@ -95,7 +95,7 @@ public class Hydrogen {
         if(settingsManager.getSettingByName("Startup Sound").isEnabled()) {
             Utils.playSound("startup.wav");
         }
-        new ArrayList();
+        ArrayList.arrayListThread();
         if(firstStart) {
             moduleManager.getModule(MainMenuModule.class).setEnabled();
         }
