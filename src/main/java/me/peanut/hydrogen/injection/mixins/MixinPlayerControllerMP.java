@@ -19,7 +19,7 @@ public class MixinPlayerControllerMP {
     private void getReach(final CallbackInfoReturnable<Float> returnable) {
         final Module reach = Hydrogen.getClient().moduleManager.getModule(Reach.class);
         if (reach.isEnabled()) {
-            returnable.setReturnValue((float) Hydrogen.getClient().settingsManager.getSettingByName(reach, "Distance").getValDouble());
+            returnable.setReturnValue((float) Hydrogen.getClient().settingsManager.getSettingByName(reach, "Distance").getValue());
         }
     }
 

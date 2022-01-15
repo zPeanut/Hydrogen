@@ -129,28 +129,30 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
         if(Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
 
-            this.buttonList.add(new ExpandButton(1, 45, Utils.getScaledRes().getScaledHeight() / 2 - 82, 90, 20, "Singleplayer"));
-            this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 60, 90, 20, "Multiplayer"));
-            this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 - 38, 90, 20, "Settings"));
-            this.buttonList.add(new ExpandButton(3, 45, Utils.getScaledRes().getScaledHeight() / 2 - 16, 90, 20, "Alt Manager"));
-            this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 28, 44, 20, "Mods"));
-            this.buttonList.add(new ExpandButton(36, 90, Utils.getScaledRes().getScaledHeight() / 2 + 28, 45, 20, "Credits"));
-            this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 60, 90, 20, "Quit"));
-            this.buttonList.add(new ExpandButton(97, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 49, Utils.getScaledRes().getScaledHeight() / 2 - 38, FontHelper.sf_l2.getStringWidth(Hydrogen.version) + 6, 20, "", true, Hydrogen.getClient().semantic_version));
+            this.buttonList.add(new ExpandButton(1, 45, Utils.getScaledRes().getScaledHeight() / 2 - 70, 90, 20, "Singleplayer"));
+            this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 48, 90, 20, "Multiplayer"));
+            this.buttonList.add(new ExpandButton(0, 45, Utils.getScaledRes().getScaledHeight() / 2 - 26, 90, 20, "Settings"));
+            this.buttonList.add(new ExpandButton(3, 45, Utils.getScaledRes().getScaledHeight() / 2 - 4, 90, 20, "Alt Manager"));
+            this.buttonList.add(new ExpandButton(6, 45, Utils.getScaledRes().getScaledHeight() / 2 + 40, 43, 20, "Mods"));
+            this.buttonList.add(new ExpandButton(36, 91, Utils.getScaledRes().getScaledHeight() / 2 + 40, 44, 20, "Credits"));
+            this.buttonList.add(new ExpandButton(4, 45, Utils.getScaledRes().getScaledHeight() / 2 + 72, 90, 20, "Quit"));
+
+            if(Hydrogen.getClient().isStableBuild) {
+                this.buttonList.add(new ExpandButton(97, 45, Utils.getScaledRes().getScaledHeight() / 2 + 18, 90, 20, "Changelog"));
+            } else {
+                this.buttonList.add(new ExpandButton(96, 45, Utils.getScaledRes().getScaledHeight() / 2 + 18, 90, 20, "Current Commit"));
+                this.buttonList.add(new ExpandButton(98, 144, Utils.getScaledRes().getScaledHeight() - 14, FontHelper.sf_l.getStringWidth("§7Please report any issues at our §f§n§lGitHub!") + 34, 20, "", false));
+            }
 
             if (Hydrogen.getClient().outdated) {
                 this.buttonList.add(new ExpandButton(99, 45, Utils.getScaledRes().getScaledHeight() - 24, 90, 20, "Update"));
             }
 
-            if(Hydrogen.getClient().isStableBuild) {
-                this.buttonList.add(new ExpandButton(97, 45, Utils.getScaledRes().getScaledHeight() / 2 + 6, 90, 20, "Changelog"));
-            } else {
-                this.buttonList.add(new ExpandButton(98, 144, Utils.getScaledRes().getScaledHeight() - 14, FontHelper.sf_l.getStringWidth("§7Please report any issues at our §f§n§lGitHub!") + 34, 20, "", false));
-                this.buttonList.add(new ExpandButton(96, 45, Utils.getScaledRes().getScaledHeight() / 2 + 6, 90, 20, "Current Commit"));
-            }
+            // version button string
+
+            this.buttonList.add(new ExpandButton(97, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 49, Utils.getScaledRes().getScaledHeight() / 2 - 38, FontHelper.sf_l2.getStringWidth(Hydrogen.version) + 6, 20, "", true, Hydrogen.getClient().semantic_version + " (" + Utils.getCurrentCommitHash() + ")"));
 
         } else {
-
             if (this.mc.isDemo()) {
                 this.addDemoButtons(j, 24);
             } else {

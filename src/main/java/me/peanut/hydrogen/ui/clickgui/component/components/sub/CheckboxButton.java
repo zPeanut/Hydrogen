@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
-import me.peanut.hydrogen.file.files.SettingsButtonFile;
+import me.peanut.hydrogen.file.files.SettingsConfig;
+import me.peanut.hydrogen.file.files.deprecated.SettingsButtonFile;
 import me.peanut.hydrogen.utils.FontHelper;
 import org.lwjgl.opengl.GL11;
 
@@ -42,7 +43,7 @@ public class CheckboxButton extends Component {
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 
 
-		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
 			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + this.op.getName() : this.op.getName(), (parent.parent.getX() + 3) * 1.3333333333f + 5, (parent.parent.getY() + offset + 2) * 1.3333333333f, new Color(255, 255, 255));
 		} else {
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(this.hovered ? "§7" + this.op.getName() : this.op.getName(), (parent.parent.getX() + 3) * 1.3333333333f + 5, (parent.parent.getY() + offset + 2) * 1.3333333333f + 2, -1);
@@ -70,8 +71,9 @@ public class CheckboxButton extends Component {
 	@Override
 	public void mouseClicked(int mouseX, int mouseY, int button) {
 		if(isMouseOnButton(mouseX, mouseY) && button == 0 && this.parent.open) {
-			this.op.setValBoolean(!op.isEnabled());
-			SettingsButtonFile.saveState();
+			this.op.setState(!op.isEnabled());
+			SettingsConfig settingsConfig = new SettingsConfig();
+			settingsConfig.saveConfig();
 		}
 	}
 	

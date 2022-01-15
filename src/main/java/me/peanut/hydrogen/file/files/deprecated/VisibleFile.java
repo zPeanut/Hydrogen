@@ -8,6 +8,7 @@ import me.peanut.hydrogen.settings.Setting;
 /**
  * Created by peanut on 24/12/2021
  */
+@Deprecated
 public class VisibleFile {
 
     private static final FileManager VisibleList = new FileManager("visible", "Hydrogen");

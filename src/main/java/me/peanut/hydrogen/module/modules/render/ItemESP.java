@@ -45,10 +45,10 @@ public class ItemESP extends Module {
                 double x = item.lastTickPosX + (item.posX - item.lastTickPosX) * pTicks - RPX;
                 double y = item.lastTickPosY + (item.posY - item.lastTickPosY) * pTicks - RPY;
                 double z = item.lastTickPosZ + (item.posZ - item.lastTickPosZ) * pTicks - RPZ;
-                int r = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValDouble();
-                int b = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValDouble();
-                int g = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValDouble();
-                int a = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValDouble();
+                int r = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValue();
+                int b = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValue();
+                int g = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValue();
+                int a = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValue();
                 Color c = new Color(r, g, b, a);
                 if(outline) {
                     Hydrogen.getUtils().renderBoxWithOutline(x, y - 0.7D, z, 0.5F, 0.5F, c);

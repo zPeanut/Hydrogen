@@ -7,6 +7,7 @@ import me.peanut.hydrogen.file.FileManager;
 /**
  * Created by peanut on 03/02/2021
  */
+@Deprecated
 public class KeybindFile {
 
     private static final FileManager bindList = new FileManager("binds", "Hydrogen");

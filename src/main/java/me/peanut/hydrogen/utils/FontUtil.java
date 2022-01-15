@@ -42,6 +42,10 @@ public class FontUtil {
         FontHelper.sf_l.drawStringWithShadow(text, (float) x, (float) y, color);
     }
 
+    public static void drawStringSFL2(String text, double x, double y, Color color) {
+        FontHelper.sf_l2.drawStringWithShadow(text, (float) x, (float) y, color);
+    }
+
     public static void drawStringVerdana(String text, double x, double y, Color color) {
         FontHelper.verdana.drawStringWithShadow(text, (float) x, (float) y, color);
     }
@@ -67,19 +71,23 @@ public class FontUtil {
         drawString(text, x - fontRenderer.getStringWidth(text) / 2, y - fontRenderer.FONT_HEIGHT / 2, color);
     }
 
-    public static void drawTotalCenteredStringWithShadow(String text, double x, double y, int color) {
-        drawStringWithShadow(text, x - Minecraft.getMinecraft().fontRendererObj.getStringWidth(text) / 2, y - Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2F, color);
+    public static void drawTotalCenteredStringWithShadowMC(String text, double x, double y, int color) {
+        drawStringWithShadow(text, x - Minecraft.getMinecraft().fontRendererObj.getStringWidth(text) / 2, y - (int) (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT / 2F) - 1, color);
     }
 
-    public static void drawTotalCenteredStringWithShadow2(String text, double x, double y, Color color) {
+    public static void drawTotalCenteredStringWithShadowSFL(String text, double x, double y, Color color) {
         drawStringSFL(text, x - FontHelper.sf_l.getStringWidth(text) / 2, y - FontHelper.sf_l.FONT_HEIGHT / 2F, color);
     }
 
-    public static void drawTotalCenteredStringWithShadow3(String text, double x, double y, Color color) {
+    public static void drawTotalCenteredStringWithShadowSFL2(String text, double x, double y, Color color) {
+        drawStringSFL2(text, x - FontHelper.sf_l.getStringWidth(text) / 2, y - FontHelper.sf_l.FONT_HEIGHT / 2F, color);
+    }
+
+    public static void drawTotalCenteredStringWithShadowComfortaa(String text, double x, double y, Color color) {
         drawStringComfortaa(text, x - FontHelper.comfortaa_r.getStringWidth(text) / 2, y - FontHelper.comfortaa_r.FONT_HEIGHT / 2F, color);
     }
 
-    public static void drawTotalCenteredStringWithShadow4(String text, double x, double y, Color color) {
+    public static void drawTotalCenteredStringWithShadowVerdana(String text, double x, double y, Color color) {
         drawStringVerdana(text, x - FontHelper.verdana.getStringWidth(text) / 2, y - FontHelper.verdana.FONT_HEIGHT / 2F, color);
     }
 

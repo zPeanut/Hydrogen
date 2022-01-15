@@ -11,13 +11,11 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.Loader;
 import me.peanut.hydrogen.Hydrogen;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Created by peanut on 26/02/2021
@@ -79,6 +77,12 @@ public class MainMenu extends GuiScreen {
             }
         }
 
+        // first start
+
+        if(Hydrogen.getClient().firstStart) {
+            FontUtil.drawTotalCenteredStringWithShadowSFL2("Welcome to", Utils.getScaledRes().getScaledWidth() / 2 - 22, Utils.getScaledRes().getScaledHeight() / 2 - (FontHelper.sf_l2.getHeight() / 2) - 35, new Color(207, 238, 255));
+        }
+
         // prerelease / beta / dev check
 
         if(!Hydrogen.getClient().isStableBuild) {
@@ -99,7 +103,7 @@ public class MainMenu extends GuiScreen {
 
         // splash
 
-        FontUtil.drawTotalCenteredStringWithShadow3(splashText, Utils.getScaledRes().getScaledWidth() / 2 + (FontHelper.sf_l_mm.getStringWidth("hydrogen") / 2) - 46, Utils.getScaledRes().getScaledHeight() / 2 + 33, Color.WHITE);
+        FontUtil.drawTotalCenteredStringWithShadowComfortaa(splashText, Utils.getScaledRes().getScaledWidth() / 2 + (FontHelper.sf_l_mm.getStringWidth("hydrogen") / 2) - 46, Utils.getScaledRes().getScaledHeight() / 2 + 33, Color.WHITE);
 
         particleGenerator.drawParticles(mouseX, mouseY);
     }

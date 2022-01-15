@@ -52,6 +52,11 @@ public class Utils {
     private static final Minecraft mc = Minecraft.getMinecraft();
     private static final ResourceLocation shader = new ResourceLocation("shaders/post/blur.json");
 
+    public static int deltaTime;
+
+    public static String commitDate;
+    public static String commitTime;
+
     public Utils() {
         instance = this;
     }
@@ -71,8 +76,12 @@ public class Utils {
         Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(chatComponentText);
     }
 
-    public static void printTest() {
-
+    public static String abbreviateString(String input, int maxLength) {
+        if (input.length() <= maxLength) {
+            return input;
+        } else {
+            return input.substring(0, maxLength - 2) + "...";
+        }
     }
 
     public static void startClip(float x1, float y1, float x2, float y2) {
@@ -959,7 +968,7 @@ public class Utils {
 
     public static String getCurrentCommitHash() {
         try {
-            URL url = new URL("https://api.github.com/repos/zpeanut/hydrogen/commits");
+            URL url = new URL("https://api.github.com/repos/zpeanut/hydrogen/commits/1.12");
             BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
             String readLine = br.readLine();
             String[] splitLine = readLine.split("\"");
@@ -971,4 +980,38 @@ public class Utils {
         }
         return null;
     }
+
+    public static void getCurrentCommitDate() {
+        try {
+
+            // read github api line
+
+            URL url = new URL("https://api.github.com/repos/zpeanut/hydrogen/commits/1.12");
+            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+            String readLine = br.readLine();
+
+            // get date
+
+            String[] splitLine = readLine.split("\"");
+            String fullDate = splitLine[23];
+
+            // split date string into 2 -> date, time
+
+            String[] splitDate = fullDate.split("T");
+            String localDate = splitDate[0];
+            String localTimeFull = splitDate[1];
+
+            // remove the "Z" at end of time string
+
+            String localTimeShort = localTimeFull.substring(0, Math.min(fullDate.length(), 8));
+
+            // put values into class defined variables
+
+            commitTime = localTimeShort;
+            commitDate = localDate;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

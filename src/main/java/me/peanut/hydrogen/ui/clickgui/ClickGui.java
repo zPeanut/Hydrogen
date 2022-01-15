@@ -2,13 +2,15 @@ package me.peanut.hydrogen.ui.clickgui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
-import me.peanut.hydrogen.file.files.ClickGuiFile;
+import me.peanut.hydrogen.file.files.ClickGuiConfig;
+import me.peanut.hydrogen.file.files.deprecated.ClickGuiFile;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.ui.clickgui.component.Component;
-import me.peanut.hydrogen.utils.ParticleGenerator;
+import me.peanut.hydrogen.ui.clickgui.component.Frame;
+import me.peanut.hydrogen.ui.clickgui.component.components.Button;
 import me.peanut.hydrogen.utils.ReflectionUtil;
-import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 
 import net.minecraft.client.gui.GuiScreen;
@@ -16,17 +18,18 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.util.ResourceLocation;
 import me.peanut.hydrogen.Hydrogen;
+import org.lwjgl.input.Mouse;
 
 public class ClickGui extends GuiScreen {
 
-	public static ArrayList<me.peanut.hydrogen.ui.clickgui.component.Frame> frames;
+	public static ArrayList<Frame> frames;
 	public static final int color = 0x99cfdcff;
 
 	public ClickGui() {
-		frames = new ArrayList<me.peanut.hydrogen.ui.clickgui.component.Frame>();
+		frames = new ArrayList<>();
 		int frameX = 5;
 		for(Category category : Category.values()) {
-			me.peanut.hydrogen.ui.clickgui.component.Frame frame = new me.peanut.hydrogen.ui.clickgui.component.Frame(category);
+			Frame frame = new Frame(category);
 			frame.setX(frameX);
 			frames.add(frame);
 			frameX += frame.getWidth() + 1;
@@ -36,10 +39,10 @@ public class ClickGui extends GuiScreen {
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		drawRect(0, 0, this.width, this.height, 0x66101010);
-		for (me.peanut.hydrogen.ui.clickgui.component.Frame frame : frames) {
+		for (Frame frame : frames) {
 			frame.renderFrame(this.fontRendererObj);
 			frame.updatePosition(mouseX, mouseY);
-			for (me.peanut.hydrogen.ui.clickgui.component.Component comp : frame.getComponents()) {
+			for (Component comp : frame.getComponents()) {
 				comp.updateComponent(mouseX, mouseY);
 			}
 		}
@@ -64,7 +67,7 @@ public class ClickGui extends GuiScreen {
 
 	@Override
     protected void mouseClicked(final int mouseX, final int mouseY, final int mouseButton) throws IOException {
-		for(me.peanut.hydrogen.ui.clickgui.component.Frame frame : frames) {
+		for(Frame frame : frames) {
 			if(frame.isWithinHeader(mouseX, mouseY) && mouseButton == 0) {
 				frame.setDrag(true);
 				frame.dragX = mouseX - frame.getX();
@@ -75,7 +78,7 @@ public class ClickGui extends GuiScreen {
 			}
 			if(frame.isOpen()) {
 				if(!frame.getComponents().isEmpty()) {
-					for(me.peanut.hydrogen.ui.clickgui.component.Component component : frame.getComponents()) {
+					for(Component component : frame.getComponents()) {
 						component.mouseClicked(mouseX, mouseY, mouseButton);
 					}
 				}
@@ -109,7 +112,8 @@ public class ClickGui extends GuiScreen {
 				e.printStackTrace();
 			}
 		}
-		ClickGuiFile.saveClickGui();
+		ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
+		clickGuiConfig.saveConfig();
 
 		super.onGuiClosed();
 	}

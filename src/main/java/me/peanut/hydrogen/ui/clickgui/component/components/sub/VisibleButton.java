@@ -1,7 +1,7 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.file.files.VisibleFile;
+import me.peanut.hydrogen.file.files.ModuleConfig;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.utils.FontHelper;
 import org.lwjgl.opengl.GL11;
@@ -47,7 +47,7 @@ public class VisibleButton extends Component {
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 
-		if (Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+		if (Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
 			Color c = new Color(255, 255, 255);
 			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7Visible" : "Visible", (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
 			FontHelper.verdana.drawStringWithShadow("§l" + mod.isVisible(), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.verdana.getStringWidth("§l" + mod.visible), (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
@@ -70,7 +70,8 @@ public class VisibleButton extends Component {
 	public void mouseClicked(int mouseX, int mouseY, int button) {
 		if(isMouseOnButton(mouseX, mouseY) && button == 0 && this.parent.open) {
 			mod.visible = (!mod.visible);
-			VisibleFile.saveState();
+			ModuleConfig moduleConfig = new ModuleConfig();
+			moduleConfig.saveConfig();
 		}
 	}
 	

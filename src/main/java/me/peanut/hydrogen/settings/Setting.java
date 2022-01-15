@@ -2,6 +2,7 @@ package me.peanut.hydrogen.settings;
 
 import java.util.ArrayList;
 
+import com.google.gson.JsonObject;
 import me.peanut.hydrogen.module.Module;
 
 public class Setting {
@@ -63,11 +64,11 @@ public class Setting {
 		return parent;
 	}
 	
-	public String getValString(){
+	public String getMode(){
 		return this.sval;
 	}
 	
-	public void setValString(String in){
+	public void setMode(String in){
 		this.sval = in;
 	}
 	
@@ -79,26 +80,26 @@ public class Setting {
 		return this.bval;
 	}
 	
-	public void setValBoolean(boolean in){
+	public void setState(boolean in){
 		this.bval = in;
 	}
 
-	public String getValText() {
+	public String getText() {
 		return this.textvalue;
 	}
 
-	public void setValText(String in) {
+	public void setText(String in) {
 		this.textvalue = in;
 	}
 	
-	public double getValDouble(){
+	public double getValue(){
 		if(this.onlyint){
 			this.dval = (int)dval;
 		}
 		return this.dval;
 	}
 
-	public void setValDouble(double in){
+	public void setValue(double in){
 		this.dval = in;
 	}
 	
@@ -110,11 +111,11 @@ public class Setting {
 		return this.max;
 	}
 	
-	public boolean isModeCombo(){
+	public boolean isModeMode(){
 		return this.mode.equalsIgnoreCase("Combo");
 	}
 	
-	public boolean isModeCheck(){
+	public boolean isModeButton(){
 		return this.mode.equalsIgnoreCase("Check");
 	}
 

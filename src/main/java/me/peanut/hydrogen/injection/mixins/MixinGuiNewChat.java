@@ -77,7 +77,7 @@ public abstract class MixinGuiNewChat extends MixinGui {
                 GlStateManager.scale(f1, f1, 1.0F);
 
                 Module ttfchat = Hydrogen.getClient().moduleManager.getModulebyName("TTFChat");
-                boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName(ttfchat, "Type").getValString().equalsIgnoreCase("sf ui display");
+                boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName(ttfchat, "Type").getMode().equalsIgnoreCase("sf ui display");
 
                 int i1;
                 int j1;

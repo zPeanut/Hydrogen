@@ -2,7 +2,8 @@ package me.peanut.hydrogen.module.modules.ui;
 
 import com.darkmagician6.eventapi.EventTarget;
 import me.peanut.hydrogen.events.EventUpdate;
-import me.peanut.hydrogen.file.files.ClickGuiFile;
+import me.peanut.hydrogen.file.files.ClickGuiConfig;
+import me.peanut.hydrogen.file.files.deprecated.ClickGuiFile;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 @Info(name = "ClickGUI", description = "The click gui", category = Category.Gui, keybind = Keyboard.KEY_LSHIFT)
 public class ClickGUI extends Module {
 
-    public me.peanut.hydrogen.ui.clickgui.ClickGui clickgui;
+    public ClickGui clickgui;
 
     public ClickGUI() {
         ArrayList<String> font = new ArrayList<>();
@@ -51,19 +52,12 @@ public class ClickGUI extends Module {
     @Override
     public void onEnable() {
         if(this.clickgui == null) {
-            this.clickgui = new me.peanut.hydrogen.ui.clickgui.ClickGui();
+            this.clickgui = new ClickGui();
         }
-        ClickGuiFile.loadClickGui();
+        ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
+        clickGuiConfig.loadConfig();
         mc.displayGuiScreen(this.clickgui);
         toggle();
         super.onEnable();
     }
-
-    @EventTarget
-    public void onUpdate(EventUpdate e) {
-        if(Hydrogen.getClient().panic) {
-            this.setEnabled();
-        }
-    }
-
 }

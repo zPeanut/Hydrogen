@@ -73,9 +73,9 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                 if (entitylivingbaseIn instanceof EntityPlayer && entitylivingbaseIn != Minecraft.getMinecraft().thePlayer) {
                     Color n = Color.WHITE;
                     OutlineUtils.setColor(n);
-                    GL11.glLineWidth((float) Hydrogen.getClient().settingsManager.getSettingByName("LineWidth").getValDouble());
+                    GL11.glLineWidth((float) Hydrogen.getClient().settingsManager.getSettingByName("LineWidth").getValue());
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
-                    OutlineUtils.renderOne((float) Hydrogen.getClient().settingsManager.getSettingByName("LineWidth").getValDouble());
+                    OutlineUtils.renderOne((float) Hydrogen.getClient().settingsManager.getSettingByName("LineWidth").getValue());
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderTwo();
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
@@ -86,9 +86,9 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                     OutlineUtils.renderFive();
                     OutlineUtils.setColor(Color.WHITE);
                 } else if (Hydrogen.getClient().settingsManager.getSettingByName("Entities").isEnabled()) {
-                    GL11.glLineWidth((float) Hydrogen.getClient().settingsManager.getSettingByName("LineWidth").getValDouble());
+                    GL11.glLineWidth((float) Hydrogen.getClient().settingsManager.getSettingByName("LineWidth").getValue());
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
-                    OutlineUtils.renderOne((float) Hydrogen.getClient().settingsManager.getSettingByName("LineWidth").getValDouble());
+                    OutlineUtils.renderOne((float) Hydrogen.getClient().settingsManager.getSettingByName("LineWidth").getValue());
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
                     OutlineUtils.renderTwo();
                     mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);

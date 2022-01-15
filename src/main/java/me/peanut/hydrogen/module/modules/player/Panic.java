@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.module.modules.player;
 
 import me.peanut.hydrogen.file.files.*;
+import me.peanut.hydrogen.file.files.deprecated.*;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
@@ -19,18 +20,20 @@ public class Panic extends Module {
     public void onEnable() {
         // saves all settings
 
-        KeybindFile.saveKeybinds();
-        SettingsButtonFile.saveState();
-        VisibleFile.saveState();
-        SettingsComboBoxFile.saveState();
-        SettingsSliderFile.saveState();
-        ClickGuiFile.saveClickGui();
-        ModuleFile.saveModules();
+        ModuleConfig moduleConfig = new ModuleConfig();
+        moduleConfig.saveConfig();
+        SettingsConfig settingsConfig = new SettingsConfig();
+        settingsConfig.saveConfig();
+        ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
+        clickGuiConfig.saveConfig();
 
-        // disables commands, disables keybinds
+
+        // disables commands, disables keybinds, disables hud
         // -> mixinminecraft, mixinentityplayers
 
         Hydrogen.getClient().panic = true;
+
+        // disables clickgui, if open
 
         mc.displayGuiScreen(null);
 

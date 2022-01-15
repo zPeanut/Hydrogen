@@ -7,7 +7,6 @@ import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.utils.FontHelper;
-import me.peanut.hydrogen.utils.ReflectionUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -25,22 +24,37 @@ import java.util.Comparator;
 public class ArrayList extends Module {
 
     public ArrayList() {
+        java.util.ArrayList<String> array = new java.util.ArrayList<>();
+        array.add("Rainbow");
+        array.add("White");
+        array.add("Category");
+
+        addSetting(new Setting("Outline", this, true));
+        addSetting(new Setting("Background", this, true));
+        addSetting(new Setting("List Color",this, "Rainbow", array));
+        addSetting(new Setting("Color Count", this, 100, 50, 1000, true));
+        addSetting(new Setting("Rb. Saturation", this, 0.4, 0, 1, false));
+        addSetting(new Setting("Rb. Delay", this, 4, 1, 10, true));
+    }
+
+    public static void arrayListThread() {
         new Thread(() -> {
             while (Minecraft.getMinecraft().running) {
                 try {
-                    Thread.sleep((long) Hydrogen.getClient().settingsManager.getSettingByName("List Speed").getValDouble());
-                } catch (InterruptedException e) {
-                }
-                for (Module mod : Hydrogen.getClient().moduleManager.getModules()) {
-                    if (mod.isEnabled()) {
-                        if (mod.getSlide() < FontHelper.sf_l.getStringWidth(mod.getName())) {
-                            mod.setSlide(mod.getSlide() + 1);
-                        }
-                    } else if (mod.getSlide() != 0 && !mod.isEnabled()) {
-                        if (mod.getSlide() > 0) {
-                            mod.setSlide(mod.getSlide() - 1);
+                    Thread.sleep(5);
+                    for (Module mod : Hydrogen.getClient().moduleManager.getModules()) {
+                        if (mod.isEnabled()) {
+                            if (mod.getSlide() < FontHelper.sf_l.getStringWidth(mod.getName())) {
+                                mod.setSlide(mod.getSlide() + 1);
+                            }
+                        } else if (mod.getSlide() != 0 && !mod.isEnabled()) {
+                            if (mod.getSlide() > 0) {
+                                mod.setSlide(mod.getSlide() - 1);
+                            }
                         }
                     }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }, "smooth array").start();
@@ -54,19 +68,6 @@ public class ArrayList extends Module {
                 return 0;
             }
         });
-
-
-        java.util.ArrayList<String> array = new java.util.ArrayList<>();
-        array.add("Rainbow");
-        array.add("White");
-        array.add("Category");
-
-        addSetting(new Setting("Outline", this, true));
-        addSetting(new Setting("Background", this, true));
-        addSetting(new Setting("List Color",this, "Rainbow", array));
-        addSetting(new Setting("List Speed", this, 3, 0, 20, false));
-        addSetting(new Setting("Rb. Saturation", this, 0.4, 0, 1, false));
-        addSetting(new Setting("Rb. Delay", this, 4, 1, 10, true));
     }
 
 
@@ -81,14 +82,15 @@ public class ArrayList extends Module {
             }
 
             int count = 0;
-            float rbdelay = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Delay").getValDouble();
-            float rbsaturation = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Saturation").getValDouble();
+            float rbdelay = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Delay").getValue();
+            float rbsaturation = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Saturation").getValue();
+            float rbcolorcount = (float) Hydrogen.getClient().settingsManager.getSettingByName("Color Count").getValue();
 
             for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
                 ScaledResolution sr = new ScaledResolution(mc);
                 Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
-                Color rainbow = Utils.getRainbowColor(rbdelay, rbsaturation, 1, count * 100);
-                Color color = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("White") ? Color.white : (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getValString().equalsIgnoreCase("Rainbow") ? rainbow : mod.getColor());
+                Color rainbow = Utils.getRainbowColor(rbdelay, rbsaturation, 1, (long) (count * rbcolorcount));
+                Color color = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getMode().equalsIgnoreCase("White") ? Color.white : (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getMode().equalsIgnoreCase("Rainbow") ? rainbow : mod.getColor());
                 boolean background = Hydrogen.getClient().settingsManager.getSettingByName(this, "Background").isEnabled();
                 boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
                 int mheight = (count * 11 + i) + 1;

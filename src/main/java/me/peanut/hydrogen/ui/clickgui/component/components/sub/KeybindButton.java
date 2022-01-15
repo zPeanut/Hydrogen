@@ -1,6 +1,6 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
-import me.peanut.hydrogen.file.files.KeybindFile;
+import me.peanut.hydrogen.file.files.ModuleConfig;
 import me.peanut.hydrogen.utils.FontHelper;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -45,7 +45,7 @@ public class KeybindButton extends Component {
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);
 
-		if (Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
+		if (Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
 			Color c = new Color(255, 255, 255);
 			FontHelper.verdana.drawStringWithShadow(this.hovered ? "§7" + (binding ? "Binding... | Unbind: RMB" : "Keybind") : binding ? "Binding... | Unbind: RMB" : "Keybind", (parent.parent.getX() + 7) * 1.3333333333f, (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
 			FontHelper.verdana.drawStringWithShadow((binding ? "" : "§l" + (Keyboard.getKeyName(this.parent.mod.getKeybind()))), (parent.parent.getX() + 86) * 1.3333333333f - FontHelper.verdana.getStringWidth("§l" + Keyboard.getKeyName(this.parent.mod.getKeybind())), (parent.parent.getY() + offset + 2) * 1.3333333333f, c);
@@ -70,7 +70,8 @@ public class KeybindButton extends Component {
 			this.binding = !this.binding;
 		} else if(button == 1 && this.binding) {
 			this.parent.mod.unbindKeyBind();
-			KeybindFile.saveKeybinds();
+			ModuleConfig moduleConfig = new ModuleConfig();
+			moduleConfig.saveConfig();
 			this.binding = false;
 		}
 	}
@@ -79,7 +80,8 @@ public class KeybindButton extends Component {
 	public void keyTyped(char typedChar, int key) {
 		if(this.binding) {
 			this.parent.mod.setKeyBind(key);
-			KeybindFile.saveKeybinds();
+			ModuleConfig moduleConfig = new ModuleConfig();
+			moduleConfig.saveConfig();
 			this.binding = false;
 		}
 	}

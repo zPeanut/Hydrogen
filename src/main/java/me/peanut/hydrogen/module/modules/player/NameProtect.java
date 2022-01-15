@@ -17,6 +17,8 @@ import org.apache.commons.lang3.StringUtils;
 public class NameProtect extends Module {
 
     public NameProtect() {
+        addSetting(new Setting("Your Name", this, "§cMe"));
+        addSetting(new Setting("Other Names", this, "User"));
         addSetting(new Setting("All Players", this, false));
         addSetting(new Setting("SkinProtect", this, true));
     }
@@ -29,10 +31,10 @@ public class NameProtect extends Module {
         if (!this.isEnabled()) {
             return;
         }
-        event.setText(StringUtils.replace(event.getText(), mc.thePlayer.getName(), "§3Me§f"));
+        event.setText(StringUtils.replace(event.getText(), mc.thePlayer.getName(), Hydrogen.getClient().settingsManager.getSettingByName(this, "Your Name").getText()));
         if (Hydrogen.getClient().settingsManager.getSettingByName(this, "All Players").isEnabled()) {
             for (NetworkPlayerInfo playerInfo : mc.getNetHandler().getPlayerInfoMap()) {
-                event.setText(StringUtils.replace(event.getText(), playerInfo.getGameProfile().getName(), "User"));
+                event.setText(StringUtils.replace(event.getText(), playerInfo.getGameProfile().getName(), Hydrogen.getClient().settingsManager.getSettingByName(this, "Other Names").getText()));
             }
         }
     }

@@ -39,7 +39,7 @@ public class Button extends Component {
 		int opY = offset + 12;
 		if(Hydrogen.getClient().settingsManager.getSettingsByMod(mod) != null) {
 			for(Setting s : Hydrogen.getClient().settingsManager.getSettingsByMod(mod)){
-				if(s.isModeCombo()){
+				if(s.isModeMode()){
 					this.subcomponents.add(new ModeButton(s, this, mod, opY));
 					opY += 12;
 				}
@@ -47,7 +47,7 @@ public class Button extends Component {
 					this.subcomponents.add(new SliderButton(s, this, opY));
 					opY += 12;
 				}
-				if(s.isModeCheck()){
+				if(s.isModeButton()){
 					this.subcomponents.add(new CheckboxButton(s, this, opY));
 					opY += 12;
 				}
@@ -66,7 +66,7 @@ public class Button extends Component {
 	}
 
 	public void renderTooltip(String name) {
-		boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF");
+		boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF");
 		if(ttf) {
 			Utils.drawBorderedCorneredRect(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + FontHelper.sf_l.getStringWidth(name) - 47, this.parent.barHeight + tooltipY + 12, 2, 0x95000000, 0x80000000);
 			FontHelper.sf_l.drawStringWithShadow(name, parent.getWidth() / 2 + tooltipX - 50, (this.parent.barHeight + tooltipY) - 2, Color.white);
@@ -108,10 +108,10 @@ public class Button extends Component {
 			Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x30000000);
 		}
 
-		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
-			FontUtil.drawTotalCenteredStringWithShadow2(this.mod.toggled ? this.mod.getName() : this.isHovered ? "§7" + this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7) - 2, new Color(255, 233, 181));
+		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
+			FontUtil.drawTotalCenteredStringWithShadowSFL(this.mod.toggled ? this.mod.getName() : this.isHovered ? "§7" + this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7) - 2, new Color(255, 233, 181));
 		} else {
-			FontUtil.drawTotalCenteredStringWithShadow(this.mod.toggled ? this.mod.getName() : this.isHovered ? "§7" + this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7), 0xffffe9b5);
+			FontUtil.drawTotalCenteredStringWithShadowMC(this.mod.toggled ? this.mod.getName() : this.isHovered ? "§7" + this.mod.getName() : "§f" + this.mod.getName(), parent.getX() + parent.getWidth() / 2, (parent.getY() + offset + 7), 0xffffe9b5);
 		}
 
 		if(this.subcomponents.size() > 2)

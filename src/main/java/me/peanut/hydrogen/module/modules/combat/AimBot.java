@@ -58,13 +58,13 @@ public class AimBot extends Module {
         boolean selectSmaller = Hydrogen.getClient().settingsManager.getSettingByName(this, "Select smaller").isEnabled();
         boolean visibleOnly = Hydrogen.getClient().settingsManager.getSettingByName(this, "Visible Only").isEnabled();
         boolean aliveOnly = Hydrogen.getClient().settingsManager.getSettingByName(this, "Alive Only").isEnabled();
-        double maxDistance = Hydrogen.getClient().settingsManager.getSettingByName("Max Distance").getValDouble();
+        double maxDistance = Hydrogen.getClient().settingsManager.getSettingByName("Max Distance").getValue();
         offset = Hydrogen.getClient().settingsManager.getSettingByName(this, "Offset").isEnabled();
         onlyPrimaryTarget = Hydrogen.getClient().settingsManager.getSettingByName(this, "Target Only").isEnabled();
-        GetCriteriaValue getCriteriaValue = selectionCriterias.get(Hydrogen.getClient().settingsManager.getSettingByName("Select").getValString());
+        GetCriteriaValue getCriteriaValue = selectionCriterias.get(Hydrogen.getClient().settingsManager.getSettingByName("Select").getMode());
 
         if (getCriteriaValue == null) {
-            System.err.println("getCriteriaValue is null for: " + Hydrogen.getClient().settingsManager.getSettingByName("Select").getValString());
+            System.err.println("getCriteriaValue is null for: " + Hydrogen.getClient().settingsManager.getSettingByName("Select").getMode());
             return;
         }
 

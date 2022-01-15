@@ -3,7 +3,6 @@ package me.peanut.hydrogen.ui.clickgui.component;
 public class Component {
 
 	public void renderComponent() {
-		
 	}
 	
 	public void updateComponent(int mouseX, int mouseY) {

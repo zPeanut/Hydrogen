@@ -5,10 +5,9 @@ import com.vdurmont.semver4j.Semver;
 import me.peanut.hydrogen.events.EventWorldListener;
 import me.peanut.hydrogen.file.FileManager;
 import me.peanut.hydrogen.module.ModuleManager;
+import me.peanut.hydrogen.module.modules.ui.MainMenuModule;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.module.modules.ui.ArrayList;
-import me.peanut.hydrogen.module.modules.ui.HUD;
-import me.peanut.hydrogen.module.modules.ui.Watermark;
 import me.peanut.hydrogen.ui.mainmenu.MainMenu;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.KeybindManager;
@@ -31,8 +30,9 @@ public class Hydrogen {
     public static final String devs = "zPeanut & UltramoxX";
     public static final String prefix = "§7[§9" + name + "§7]";
 
-    public static String version = "1.11.4";
-    public static final String semantic_version = "1.11.4";
+    public static String version = "1.12 Dev";
+    public static final String semantic_version = "1.12.0-dev";
+
 
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
@@ -55,8 +55,10 @@ public class Hydrogen {
     public boolean outdated;
     public boolean panic;
     public boolean firstStart;
-    public boolean isStableBuild = true;
+    public boolean isStableBuild = false;
     public String newversion;
+
+    public boolean hasNewFiles;
 
     public Hydrogen() {
         instance = this;
@@ -70,7 +72,14 @@ public class Hydrogen {
             this.firstStart = true;
             directory.mkdir();
         }
+        if(new File(directory, "modules.json").exists() || new File(directory, "settings.json").exists() || new File(directory, "clickgui.json").exists()) {
+            hasNewFiles = true;
+        } else {
+            Utils.log("Old Files detected! Will be deleted after game shutdown.");
+        }
         if(!isStableBuild) {
+            // get commit dates
+            Utils.getCurrentCommitDate();
             // add git commit hash to version
             version += String.format(" §7| %s", Utils.getCurrentCommitHash());
         }
@@ -88,11 +97,9 @@ public class Hydrogen {
         if(settingsManager.getSettingByName("Startup Sound").isEnabled()) {
             Utils.playSound("startup.wav");
         }
-        new ArrayList();
-        new MainMenu();
+        ArrayList.arrayListThread();
         if(firstStart) {
-            moduleManager.getModule(HUD.class).setEnabled();
-            moduleManager.getModule(Watermark.class).setEnabled();
+            moduleManager.getModule(MainMenuModule.class).setEnabled();
         }
     }
 
@@ -104,7 +111,43 @@ public class Hydrogen {
         return utils;
     }
 
-    public void stopClient() {}
+    // removing in 1.12.1 or 1.13
+    public void stopClient() {
+        if(!hasNewFiles) {
+            File oldVisibleFile = new File(directory, "visible.txt");
+            if(oldVisibleFile.delete()) {
+                Utils.log("Deleted old Visible Settings!");
+            }
+            File oldModuleFile = new File(directory, "modules.txt");
+            if(oldModuleFile.delete()) {
+                Utils.log("Deleted old Modules Settings!");
+            }
+            File oldKeybindFile = new File(directory, "binds.txt");
+            if(oldKeybindFile.delete()) {
+                Utils.log("Deleted old Binds Settings!");
+            }
+            File oldSliderFile = new File(directory, "slider.txt");
+            if(oldSliderFile.delete()) {
+                Utils.log("Deleted old Slider Settings!");
+            }
+            File oldButtonFile = new File(directory, "button.txt");
+            if(oldButtonFile.delete()) {
+                Utils.log("Deleted old Button Settings!");
+            }
+            File oldComboBoxFile = new File(directory, "combobox.txt");
+            if(oldComboBoxFile.delete()) {
+                Utils.log("Deleted old Combobox Settings!");
+            }
+            File oldTextFile = new File(directory, "text.txt");
+            if(oldTextFile.delete()) {
+                Utils.log("Deleted old Text Settings!");
+            }
+            File oldClickGuiFile = new File(directory, "clickgui.txt");
+            if(oldClickGuiFile.delete()) {
+                Utils.log("Deleted old ClickGui Settings!");
+            }
+        }
+    }
 
     public void isOutdated() {
         try {

@@ -40,6 +40,7 @@ public class ModuleManager {
         add(new Hotbar());
         add(new Info());
         add(new Watermark());
+        add(new PotionEffects());
 
         // 1.1
 
@@ -108,6 +109,10 @@ public class ModuleManager {
         add(new CameraClip());
         add(new NoBowFOV());
         add(new AutoBow());
+
+        // 1.12
+
+        add(new AutoType());
 
         // alphabetically sort modules in clickgui
 

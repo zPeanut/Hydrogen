@@ -12,7 +12,6 @@ import me.peanut.hydrogen.module.modules.render.CameraClip;
 import me.peanut.hydrogen.module.modules.render.NameTags;
 import me.peanut.hydrogen.module.modules.render.NoHurtCam;
 import me.peanut.hydrogen.module.modules.render.Tracers;
-import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -24,7 +23,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.*;
-import net.minecraft.world.World;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,7 +34,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import javax.security.auth.callback.Callback;
 import java.util.List;
 import java.util.Objects;
 
@@ -190,7 +187,7 @@ public abstract class MixinEntityRenderer {
             for (Entity entity1 : list) {
                 float f1 = entity1.getCollisionBorderSize();
                 Module hitbox = Hydrogen.getClient().moduleManager.getModule(HitBox.class);
-                float hitboxExpand = hitbox.isEnabled() ? (float) Hydrogen.getClient().settingsManager.getSettingByName(hitbox, "Expand").getValDouble() : .1F;
+                float hitboxExpand = hitbox.isEnabled() ? (float) Hydrogen.getClient().settingsManager.getSettingByName(hitbox, "Expand").getValue() : .1F;
                 AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(hitboxExpand, hitboxExpand, hitboxExpand);
                 MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
                 if (axisalignedbb.isVecInside(vec3)) {

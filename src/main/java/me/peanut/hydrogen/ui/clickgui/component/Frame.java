@@ -1,32 +1,33 @@
 package me.peanut.hydrogen.ui.clickgui.component;
 
 import java.awt.*;
+import java.security.cert.CollectionCertStoreParameters;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
 import me.peanut.hydrogen.utils.FontUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.gui.FontRenderer;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.modules.ui.ClickGUI;
+import org.lwjgl.input.Mouse;
 
 public class Frame {
 
-	public final ArrayList<me.peanut.hydrogen.ui.clickgui.component.Component> components;
+	public final ArrayList<Component> components;
 	public final Category category;
 	public boolean open;
 	public final int width;
 	public int y;
-
 	public int x;
 	public final int barHeight;
 	private boolean isDragging;
 	public int dragX;
 	public int dragY;
-
-	private int padding;
 
 	public Frame(Category cat) {
 		this.components = new ArrayList<>();
@@ -42,13 +43,13 @@ public class Frame {
 
 
 		for (Module mod : Hydrogen.getClient().moduleManager.getModulesInCategory(category)) {
-			me.peanut.hydrogen.ui.clickgui.component.components.Button modButton = new Button(mod, this, tY);
+			Button modButton = new Button(mod, this, tY);
 			this.components.add(modButton);
 			tY += 12;
 		}
 	}
 
-	public ArrayList<me.peanut.hydrogen.ui.clickgui.component.Component> getComponents() {
+	public ArrayList<Component> getComponents() {
 		return components;
 	}
 
@@ -74,17 +75,18 @@ public class Frame {
 
 	public void renderFrame(FontRenderer fontRenderer) {
 		Module cgui = Hydrogen.getClient().moduleManager.getModule(ClickGUI.class);
-		int color = new Color((int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Red").getValDouble(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Green").getValDouble(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Blue").getValDouble(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Alpha").getValDouble()).getRGB();
+		int color = new Color((int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Red").getValue(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Green").getValue(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Blue").getValue(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Alpha").getValue()).getRGB();
 		Utils.rect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, color);
 
-		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getValString().equalsIgnoreCase("TTF")) {
-			FontUtil.drawTotalCenteredStringWithShadow4(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 3, Color.white);
+		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
+			FontUtil.drawTotalCenteredStringWithShadowVerdana(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 3, Color.white);
 		} else {
-			FontUtil.drawTotalCenteredStringWithShadow(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 1, -1);
+			FontUtil.drawTotalCenteredStringWithShadowMC(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 1, -1);
 		}
-		if (this.open) {
-			if (!this.components.isEmpty()) {
-				for (me.peanut.hydrogen.ui.clickgui.component.Component component : components) {
+
+		for (Component component : this.components) {
+			if (this.open) {
+				if (!this.components.isEmpty()) {
 					component.renderComponent();
 				}
 			}
@@ -98,6 +100,7 @@ public class Frame {
 			off += comp.getHeight();
 		}
 	}
+
 
 	public int getX() {
 		return x;

@@ -53,8 +53,8 @@ public class BedAura extends Module {
     public void onUpdate(EventUpdate e) {
         if(this.isEnabled()) {
             boolean bypassWall = Hydrogen.getClient().settingsManager.getSettingByName(this, "ThroughWalls").isEnabled();
-            int radius = (int) Hydrogen.getClient().settingsManager.getSettingByName("Radius").getValDouble();
-            int delay = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Delay").getValDouble();
+            int radius = (int) Hydrogen.getClient().settingsManager.getSettingByName("Radius").getValue();
+            int delay = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Delay").getValue();
             int startX = mc.thePlayer.getPosition().getX() - radius;
             int startY = mc.thePlayer.getPosition().getY() - radius;
             int startZ = mc.thePlayer.getPosition().getZ() - radius;

@@ -68,14 +68,14 @@ public class WTap extends Module {
             }
         }
 
-        if (ens != null && mc.thePlayer.isSprinting() && TimeUtils.hasTimePassedMS((long) Hydrogen.getClient().settingsManager.getSettingByName("Delay").getValDouble())) {
+        if (ens != null && mc.thePlayer.isSprinting() && TimeUtils.hasTimePassedMS((long) Hydrogen.getClient().settingsManager.getSettingByName("Delay").getValue())) {
             mc.gameSettings.keyBindForward.pressed = false;
             this.lastHold = getCurrentMS();
             TimeUtils.reset();
         }
 
 
-        if (this.lastHold != -1L && TimeUtils.hasTimePassedMS(this.lastHold, (long) Hydrogen.getClient().settingsManager.getSettingByName("Held").getValDouble())) {
+        if (this.lastHold != -1L && TimeUtils.hasTimePassedMS(this.lastHold, (long) Hydrogen.getClient().settingsManager.getSettingByName("Held").getValue())) {
             mc.gameSettings.keyBindForward.pressed = true;
             this.lastHold = -1L;
         }

@@ -1,7 +1,7 @@
 package me.peanut.hydrogen.command.commands;
 
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.file.files.ModuleFile;
+import me.peanut.hydrogen.file.files.ModuleConfig;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.command.Command;
 
@@ -21,7 +21,8 @@ public class ToggleCommand extends Command {
             } else {
                 Hydrogen.getClient().moduleManager.getModulebyName(module).toggle();
                 msg(String.format("§b%s §7has been %s", Hydrogen.getClient().moduleManager.getModulebyName(module).getName(), Hydrogen.getClient().moduleManager.getModulebyName(module).isEnabled() ? "§aenabled" : "§cdisabled."));
-                ModuleFile.saveModules();
+                ModuleConfig moduleConfig = new ModuleConfig();
+                moduleConfig.saveConfig();
             }
         }
     }

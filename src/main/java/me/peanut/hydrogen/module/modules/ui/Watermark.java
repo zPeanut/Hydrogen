@@ -9,7 +9,6 @@ import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.settings.Setting;
@@ -52,12 +51,16 @@ public class Watermark extends Module {
             boolean background = Hydrogen.getClient().settingsManager.getSettingByName(this, "Background").isEnabled();
             boolean time = Hydrogen.getClient().settingsManager.getSettingByName("Time").isEnabled();
             boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
-            boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getValString().equals("24H");
-            boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF");
+            boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getMode().equals("24H");
+            boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getMode().equalsIgnoreCase("TTF");
             LocalDateTime now = LocalDateTime.now();
             String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
 
-            if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("New")) {
+            if(!Hydrogen.getClient().isStableBuild && !(Hydrogen.getClient().moduleManager.getModule(Hotbar.class).isEnabled() || Hydrogen.getClient().settingsManager.getSettingByName("Alignment").getMode().equalsIgnoreCase("Left"))) {
+                mc.fontRendererObj.drawStringWithShadow(String.format("§7Latest Commit: %s | %s", Utils.commitDate, Utils.commitTime), 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
+            }
+
+            if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getMode().equalsIgnoreCase("New")) {
 
                 if (time) {
 
@@ -114,7 +117,7 @@ public class Watermark extends Module {
 
             }
 
-            if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getValString().equalsIgnoreCase("Old")) {
+            if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getMode().equalsIgnoreCase("Old")) {
 
                 if (time) {
 

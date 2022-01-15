@@ -8,7 +8,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemSword;
-import org.lwjgl.input.Keyboard;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.module.Category;
@@ -37,8 +36,8 @@ public class TriggerBot extends Module {
     @EventTarget
     public void onUpdate(EventUpdate e)
     {
-        delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValDouble());
-        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random MS").getValDouble());
+        delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValue());
+        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random MS").getValue());
         delay += random;
         this.time.setLastMS();
         try {

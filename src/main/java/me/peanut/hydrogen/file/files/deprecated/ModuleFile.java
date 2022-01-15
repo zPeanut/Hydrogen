@@ -7,6 +7,7 @@ import me.peanut.hydrogen.file.FileManager;
 /**
  * Created by peanut on 08/02/2021
  */
+@Deprecated
 public class ModuleFile {
 
     private static final FileManager ModuleList = new FileManager("modules", "Hydrogen");

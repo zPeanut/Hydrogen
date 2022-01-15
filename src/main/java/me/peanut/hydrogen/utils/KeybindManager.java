@@ -3,25 +3,24 @@ package me.peanut.hydrogen.utils;
 /**
  * Created by peanut on 03/02/2021
  */
+import me.peanut.hydrogen.file.files.ModuleConfig;
 import me.peanut.hydrogen.module.Module;
-import me.peanut.hydrogen.file.files.KeybindFile;
 
 public class KeybindManager
 {
-    public void bind(Module mod, int bind)
-    {
+    public void bind(Module mod, int bind) {
         mod.setKeyBind(bind);
-        KeybindFile.saveKeybinds();
+        ModuleConfig moduleConfig = new ModuleConfig();
+        moduleConfig.saveConfig();
     }
 
-    public void unbind(Module mod)
-    {
+    public void unbind(Module mod) {
         mod.setKeyBind(0);
-        KeybindFile.saveKeybinds();
+        ModuleConfig moduleConfig = new ModuleConfig();
+        moduleConfig.saveConfig();
     }
 
-    public int toInt(String keyCode)
-    {
+    public int toInt(String keyCode) {
         if (keyCode.equalsIgnoreCase("a")) {
             return 30;
         }
@@ -225,6 +224,9 @@ public class KeybindManager
         }
         if (keyCode.equalsIgnoreCase("lshift")) {
             return 42;
+        }
+        if(keyCode.equalsIgnoreCase("lcontrol")) {
+            return 29;
         }
         if (keyCode.equalsIgnoreCase("tab")) {
             return 15;

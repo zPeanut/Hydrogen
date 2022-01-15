@@ -49,10 +49,10 @@ public class Info extends Module {
                 String coordinates_z = String.format("Z §7%s", z);
 
                 String fps = String.format("FPS §7%s", Minecraft.getDebugFPS());
-                boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getValString().equalsIgnoreCase("TTF");
-                boolean lines = Hydrogen.getClient().settingsManager.getSettingByName(this, "XYZ Style").getValString().equalsIgnoreCase("1-Line");
+                boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getMode().equalsIgnoreCase("TTF");
+                boolean lines = Hydrogen.getClient().settingsManager.getSettingByName(this, "XYZ Style").getMode().equalsIgnoreCase("1-Line");
 
-                if(Hydrogen.getClient().settingsManager.getSettingByName(this, "Alignment").getValString().equalsIgnoreCase("right")) {
+                if(Hydrogen.getClient().settingsManager.getSettingByName(this, "Alignment").getMode().equalsIgnoreCase("right")) {
                     if (mc.ingameGUI.getChatGUI().getChatOpen()) {
 
                         if(ttf) {
