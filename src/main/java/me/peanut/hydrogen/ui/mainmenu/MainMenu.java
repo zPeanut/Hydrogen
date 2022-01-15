@@ -59,7 +59,7 @@ public class MainMenu extends GuiScreen {
 
         // first start
 
-        if(!Hydrogen.getClient().firstStart) {
+        if(Hydrogen.getClient().firstStart) {
             FontUtil.drawTotalCenteredStringWithShadowSFL2("Welcome to", Utils.getScaledRes().getScaledWidth() / 2 - 22, Utils.getScaledRes().getScaledHeight() / 2 - (FontHelper.sf_l2.getHeight() / 2) - 35, new Color(207, 238, 255));
         }
 
