@@ -24,6 +24,9 @@ public class PotionEffects extends Module {
 
     @EventTarget
     public void drawPotionEffects(EventRender2D e) {
+        if(Hydrogen.getClient().panic) {
+            return;
+        }
         int offset = 0;
         for (Object var4 : Minecraft.getMinecraft().thePlayer.getActivePotionEffects()) {
             int posY = 11 * offset;
