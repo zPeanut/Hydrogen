@@ -40,6 +40,7 @@ public class ModuleManager {
         add(new Hotbar());
         add(new Info());
         add(new Watermark());
+        add(new PotionEffects());
 
         // 1.1
 
