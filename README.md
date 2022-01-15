@@ -1,16 +1,21 @@
 ![alt text](https://raw.githubusercontent.com/zPeanut/Resources/master/hydrogen.png)
 
 An open source, mixin based ghost client for Minecraft 1.8.9 built on Minecraft Forge.  
-Developed by [Me] and [UltramoxX].
+Developed by [Me] and [UltramoxX].  
+Contributions are highly welcome!
 
-Current stable release: **1.11.2**
+Current stable release: **1.11.4**
 
-Join our discord!
+Join our discord!  
 https://discord.gg/dmw5N5X9p6
+
+Full Changelog:  
+https://zpeanut.github.io/main/changelog
+
 
 ## Features
 
-There are currently over 40 modules included in Hydrogen,  
+There are currently over 50 modules included in Hydrogen,  
 including a fully customizable Ingame GUI, aswell as various  
 render, combat and utility focused modules.  
   
@@ -18,9 +23,20 @@ Go ahead and try them out!
 
 ## USER INSTALLATION
 
-1. Install Forge for Minecraft 1.8.9
-2. Drag and Drop ``hydrogen-x.x.x.jar`` into your directory for Forge mods (Win-Default: ``%appdata%/.minecraft/mods``).
+Before you install Hydrogen, make sure to have installed Minecraft Forge for Minecraft 1.8.9.
+
+### Automatic Installation:
+
+1. Download the [Installer] ([src code])
+2. Select your version.
 3. Enjoy the ride.
+
+### Manual Installation:
+
+1. Download the latest [release] of Hydrogen.
+2. Drag and Drop ``hydrogen-x.x.x.jar`` into your directory for Forge mods (Win-Default: ``%appdata%/.minecraft/mods``).
+3. Select your launcher profile with the respective Forge version.
+4. Enjoy the ride.
 
 ## Setup with Forge MDK
 
@@ -48,12 +64,12 @@ inside of your directory. Simply put that file into your mods folder inside .min
 
 ## Credits
 
-Dependencies:  
+### Dependencies:  
   
 **[DarkMagician6's EventAPI]**, an open source EventAPI system, made for handling events across java based projects.  
-**[Semver4j]**, semantic versioning for Java applications, used for comparison between versions in the client.  
+**[Semver4j]**, A Library for semantic versioning in Java applications. Used to compare semantic versions in the client to check if the client is outdated.
 
-Credits:  
+### Credits:  
   
 **superblaubeere27**, for providing most of the initial client base.  
 **HeroCode**, for providing the ClickGUI API.  
@@ -70,3 +86,6 @@ Credits:
 [UltramoxX]: https://github.com/Morten-Renner
 [SemVer4j]: https://github.com/vdurmont/semver4j
 [DarkMagician6's EventAPI]: https://bitbucket.org/DarkMagician6/eventapi/src/master/
+[Installer]: https://github.com/zPeanut/Hydrogen/releases/download/1.11.3/hydrogen-installer.exe
+[src code]: https://github.com/zPeanut/python-stuff/blob/master/hydrogen-installer.pyw
+[release]: https://github.com/zPeanut/Hydrogen/releases

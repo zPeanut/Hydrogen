@@ -8,6 +8,7 @@ import me.peanut.hydrogen.module.ModuleManager;
 import me.peanut.hydrogen.module.modules.ui.MainMenuModule;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.module.modules.ui.ArrayList;
+import me.peanut.hydrogen.ui.mainmenu.MainMenu;
 import me.peanut.hydrogen.utils.FontHelper;
 import me.peanut.hydrogen.utils.KeybindManager;
 import me.peanut.hydrogen.utils.Utils;
@@ -31,6 +32,7 @@ public class Hydrogen {
 
     public static String version = "1.12 Dev";
     public static final String semantic_version = "1.12.0-dev";
+
 
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
