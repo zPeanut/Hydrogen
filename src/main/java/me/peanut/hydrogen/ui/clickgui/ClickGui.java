@@ -13,6 +13,7 @@ import me.peanut.hydrogen.settings.Setting;
 import me.peanut.hydrogen.ui.clickgui.component.Component;
 import me.peanut.hydrogen.ui.clickgui.component.Frame;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
+import me.peanut.hydrogen.utils.ParticleGenerator;
 import me.peanut.hydrogen.utils.ReflectionUtil;
 import net.minecraft.client.Minecraft;
 
@@ -27,6 +28,8 @@ public class ClickGui extends GuiScreen {
 
 	public static ArrayList<Frame> frames;
 	public static final int color = 0x99cfdcff;
+	ParticleGenerator particleGenerator = new ParticleGenerator(100, Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+
 
 	public ClickGui() {
 		frames = new ArrayList<>();
@@ -40,15 +43,7 @@ public class ClickGui extends GuiScreen {
 	}
 
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		drawRect(0, 0, this.width, this.height, 0x66101010);
-		for (Frame frame : frames) {
-			frame.renderFrame(this.fontRendererObj);
-			frame.updatePosition(mouseX, mouseY);
-			for (Component comp : frame.getComponents()) {
-				comp.updateComponent(mouseX, mouseY);
-			}
-		}
+	public void initGui() {
 		if (Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
 			if (OpenGlHelper.shadersSupported) {
 				if (mc.entityRenderer.getShaderGroup() != null) {
@@ -64,6 +59,19 @@ public class ClickGui extends GuiScreen {
 				} catch (IllegalAccessException e) {
 					e.printStackTrace();
 				}
+			}
+		}
+
+	}
+
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		drawRect(0, 0, this.width, this.height, 0x66101010);
+		for (Frame frame : frames) {
+			frame.renderFrame(this.fontRendererObj);
+			frame.updatePosition(mouseX, mouseY);
+			for (Component comp : frame.getComponents()) {
+				comp.updateComponent(mouseX, mouseY);
 			}
 		}
 	}
@@ -87,14 +95,18 @@ public class ClickGui extends GuiScreen {
 				}
 			}
 		}
+		boolean particles = Hydrogen.getClient().settingsManager.getSettingByName("Particles").isEnabled();
+		if(particles) {
+			particleGenerator.drawParticles(mouseX, mouseY);
+		}
 	}
 	
 	@Override
 	protected void keyTyped(char typedChar, int keyCode) {
-		for(me.peanut.hydrogen.ui.clickgui.component.Frame frame : frames) {
+		for(Frame frame : frames) {
 			if(frame.isOpen() && keyCode != 1) {
 				if(!frame.getComponents().isEmpty()) {
-					for(me.peanut.hydrogen.ui.clickgui.component.Component component : frame.getComponents()) {
+					for(Component component : frame.getComponents()) {
 						component.keyTyped(typedChar, keyCode);
 					}
 				}
@@ -126,10 +138,10 @@ public class ClickGui extends GuiScreen {
 	
 	@Override
     protected void mouseReleased(int mouseX, int mouseY, int state) {
-		for(me.peanut.hydrogen.ui.clickgui.component.Frame frame : frames) {
+		for(Frame frame : frames) {
 			frame.setDrag(false);
 		}
-		for(me.peanut.hydrogen.ui.clickgui.component.Frame frame : frames) {
+		for(Frame frame : frames) {
 			if(frame.isOpen()) {
 				if(!frame.getComponents().isEmpty()) {
 					for(Component component : frame.getComponents()) {

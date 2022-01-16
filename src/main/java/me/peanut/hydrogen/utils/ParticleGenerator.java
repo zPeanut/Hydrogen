@@ -16,14 +16,7 @@ public class ParticleGenerator {
     private final int height;
     private final ArrayList<Particle> particles = new ArrayList();
     private final Random random = new Random();
-    int state = 0;
-    int a = 255;
-    int r = 255;
-    int g = 0;
-    int b = 0;
-
-    public ParticleGenerator(int count, int width, int height)
-    {
+    public ParticleGenerator(int count, int width, int height) {
         this.count = count;
         this.width = width;
         this.height = height;
@@ -32,22 +25,17 @@ public class ParticleGenerator {
         }
     }
 
-    public void drawParticles(int mouseX, int mouseY)
-    {
-        for (Particle p : this.particles)
-        {
-            if (p.reset)
-            {
+    public void drawParticles(int mouseX, int mouseY) {
+        for (Particle p : this.particles) {
+            if (p.reset) {
                 p.resetPosSize();
                 p.reset = false;
             }
             p.draw(mouseX, mouseY);
-
         }
     }
 
-    public class Particle
-    {
+    public class Particle {
         private int x;
         private int y;
         private int k;
@@ -55,18 +43,17 @@ public class ParticleGenerator {
         private boolean reset;
         private final Random random = new Random();
 
-        public Particle(int x, int y)
-        {
+        public Particle(int x, int y) {
             this.x = x;
             this.y = y;
             this.size = genRandom(1.0F, 3.0F);
         }
 
-        public void draw(int mouseX, int mouseY)
-        {
+        public void draw(int mouseX, int mouseY) {
             if (this.size <= 0.0F) {
                 this.reset = true;
             }
+
             this.size -= 0.05F;
             this.k += 1;
             int xx = (int)(MathHelper.cos(0.1F * (this.x + this.k)) * 10.0F);
@@ -77,8 +64,6 @@ public class ParticleGenerator {
             float distance = (float) Utils.distance(this.x + xx, this.y + yy, mouseX, mouseY);
 
             if (distance < 50) {
-                float alpha1 = Math.min(1.0f, Math.min(1.0f, 1.0f - distance / 50));
-
                 GL11.glEnable(GL11.GL_LINE_SMOOTH);
                 GL11.glDisable(GL11.GL_DEPTH_TEST);
                 GL11.glColor4f(255F, 255F, 255F, 255F);
@@ -95,15 +80,13 @@ public class ParticleGenerator {
             }
         }
 
-        public void resetPosSize()
-        {
+        public void resetPosSize() {
             this.x = this.random.nextInt(ParticleGenerator.this.width);
             this.y = this.random.nextInt(ParticleGenerator.this.height);
             this.size = genRandom(1.0F, 3.0F);
         }
 
-        public float genRandom(float min, float max)
-        {
+        public float genRandom(float min, float max) {
             return (float)(min + Math.random() * (max - min + 1.0F));
         }
     }

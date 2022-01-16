@@ -31,6 +31,7 @@ public class ClickGUI extends Module {
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Font Type", this, "TTF", font));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Blur", this, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Tooltip", this, true));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Particles", this, true));
 
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Red", this, 163, 0, 255, true));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Blue", this, 223, 0, 255, true));
