@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import me.peanut.hydrogen.file.files.ClickGuiConfig;
+import me.peanut.hydrogen.file.files.ModuleConfig;
+import me.peanut.hydrogen.file.files.SettingsConfig;
 import me.peanut.hydrogen.file.files.deprecated.ClickGuiFile;
 import me.peanut.hydrogen.module.Category;
+import me.peanut.hydrogen.settings.Setting;
 import me.peanut.hydrogen.ui.clickgui.component.Component;
 import me.peanut.hydrogen.ui.clickgui.component.Frame;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
@@ -112,8 +115,10 @@ public class ClickGui extends GuiScreen {
 				e.printStackTrace();
 			}
 		}
-		ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
-		clickGuiConfig.saveConfig();
+		ModuleConfig moduleConfig = new ModuleConfig();
+		SettingsConfig settingsConfig = new SettingsConfig();
+		moduleConfig.saveConfig();
+		settingsConfig.saveConfig();
 
 		super.onGuiClosed();
 	}

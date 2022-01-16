@@ -70,8 +70,6 @@ public class VisibleButton extends Component {
 	public void mouseClicked(int mouseX, int mouseY, int button) {
 		if(isMouseOnButton(mouseX, mouseY) && button == 0 && this.parent.open) {
 			mod.visible = (!mod.visible);
-			ModuleConfig moduleConfig = new ModuleConfig();
-			moduleConfig.saveConfig();
 		}
 	}
 	

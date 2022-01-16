@@ -70,8 +70,6 @@ public class KeybindButton extends Component {
 			this.binding = !this.binding;
 		} else if(button == 1 && this.binding) {
 			this.parent.mod.unbindKeyBind();
-			ModuleConfig moduleConfig = new ModuleConfig();
-			moduleConfig.saveConfig();
 			this.binding = false;
 		}
 	}
@@ -80,8 +78,6 @@ public class KeybindButton extends Component {
 	public void keyTyped(char typedChar, int key) {
 		if(this.binding) {
 			this.parent.mod.setKeyBind(key);
-			ModuleConfig moduleConfig = new ModuleConfig();
-			moduleConfig.saveConfig();
 			this.binding = false;
 		}
 	}

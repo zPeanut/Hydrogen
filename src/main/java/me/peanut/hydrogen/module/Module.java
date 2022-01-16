@@ -115,8 +115,6 @@ public class Module {
         }else{
             onDisable();
         }
-        ModuleConfig moduleConfig = new ModuleConfig();
-        moduleConfig.saveConfig();
     }
     public void onEnable() {
         EventManager.register(this);

@@ -125,8 +125,6 @@ public class TextButton extends Component {
                 this.displayString += typedChar;
             }
             set.setText(this.displayString);
-            SettingsConfig settingsConfig = new SettingsConfig();
-            settingsConfig.saveConfig();
         }
     }
 

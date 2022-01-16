@@ -91,8 +91,6 @@ public class SliderButton extends Component {
 				double newValue = roundToPlace(((diff / 88) * (max - min) + min), 2);
 				set.setValue(newValue);
 			}
-			SettingsConfig settingsConfig = new SettingsConfig();
-			settingsConfig.saveConfig();
 		}
 	}
 	
