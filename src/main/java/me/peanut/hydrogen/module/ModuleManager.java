@@ -113,6 +113,7 @@ public class ModuleManager {
         // 1.12
 
         add(new AutoType());
+        add(new Freecam());
 
         // alphabetically sort modules in clickgui
 

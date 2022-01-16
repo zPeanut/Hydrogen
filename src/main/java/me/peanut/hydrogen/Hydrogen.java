@@ -5,6 +5,7 @@ import com.vdurmont.semver4j.Semver;
 import me.peanut.hydrogen.events.EventWorldListener;
 import me.peanut.hydrogen.file.FileManager;
 import me.peanut.hydrogen.module.ModuleManager;
+import me.peanut.hydrogen.module.modules.player.Freecam;
 import me.peanut.hydrogen.module.modules.ui.MainMenuModule;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.module.modules.ui.ArrayList;
@@ -147,6 +148,7 @@ public class Hydrogen {
                 Utils.log("Deleted old ClickGui Settings!");
             }
         }
+        moduleManager.getModule(Freecam.class).setDisabled();
     }
 
     public void isOutdated() {
