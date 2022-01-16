@@ -7,6 +7,8 @@ import me.peanut.hydrogen.events.EventMotionUpdate;
 import me.peanut.hydrogen.events.EventPreMotion;
 import me.peanut.hydrogen.events.EventSafeWalk;
 import me.peanut.hydrogen.events.EventUpdate;
+import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.module.modules.player.NoSwing;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
@@ -21,6 +23,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.C01PacketChatMessage;
+import net.minecraft.network.play.client.C0APacketAnimation;
 import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -133,6 +136,17 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
             }
         }
         this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
+    }
+
+    @Inject(method = "swingItem", at = @At("HEAD"), cancellable = true)
+    private void swingItem(CallbackInfo callbackInfo) {
+        Module noSwing = Hydrogen.getClient().moduleManager.getModule(NoSwing.class);
+        if (noSwing.isEnabled()) {
+            callbackInfo.cancel();
+            if(!Hydrogen.getClient().settingsManager.getSettingByName(noSwing, "Server-side").isEnabled()) {
+                this.sendQueue.addToSendQueue(new C0APacketAnimation());
+            }
+        }
     }
 
     @Inject(method = "onUpdateWalkingPlayer", at = @At("HEAD"))

@@ -114,6 +114,7 @@ public class ModuleManager {
 
         add(new AutoType());
         add(new Freecam());
+        add(new NoSwing());
 
         // alphabetically sort modules in clickgui
 
