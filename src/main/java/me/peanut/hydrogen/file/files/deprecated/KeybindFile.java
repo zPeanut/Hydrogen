@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.file.files;
+package me.peanut.hydrogen.file.files.deprecated;
 
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.Hydrogen;
