@@ -145,10 +145,11 @@ public class PotionEffects extends Module {
             boolean infoIsRight = Hydrogen.getClient().settingsManager.getSettingByName("Alignment").getMode().equalsIgnoreCase("Right");
             boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getMode().equalsIgnoreCase("TTF");
             boolean infoEnabled = Hydrogen.getClient().moduleManager.getModule(me.peanut.hydrogen.module.modules.ui.Info.class).isEnabled();
+            boolean chatOpen = mc.ingameGUI.getChatGUI().getChatOpen();
             if (ttf) {
-                FontHelper.sf_l.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(name) - 1, Utils.getScaledRes().getScaledHeight() - posY - 12 - (infoIsRight && infoEnabled ? 24 : 0), new Color(color, true));
+                FontHelper.sf_l.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(name) - 1, Utils.getScaledRes().getScaledHeight() - posY - 12 - (infoIsRight && infoEnabled ? 22 : 0) - (chatOpen ? 14 : 0), new Color(color, true));
             } else {
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 1, Utils.getScaledRes().getScaledHeight() - posY - 12 - (infoIsRight && infoEnabled ? 24 : 0), color);
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 1, Utils.getScaledRes().getScaledHeight() - posY - 12 - (infoIsRight && infoEnabled ? 22 : 0) - (chatOpen ? 14 : 0), color);
             }
             ++offset;
         }

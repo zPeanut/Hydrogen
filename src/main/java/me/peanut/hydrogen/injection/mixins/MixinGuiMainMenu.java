@@ -150,7 +150,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
             // version button string
 
-            this.buttonList.add(new ExpandButton(97, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 49, Utils.getScaledRes().getScaledHeight() / 2 - 38, FontHelper.sf_l2.getStringWidth(Hydrogen.version) + 6, 20, "", true, Hydrogen.getClient().semantic_version + " (" + Utils.getCurrentCommitHash() + ")"));
+            this.buttonList.add(new ExpandButton(97, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 49, Utils.getScaledRes().getScaledHeight() / 2 - 38, FontHelper.sf_l2.getStringWidth(Hydrogen.version) + 6, 20, "", true, Hydrogen.getClient().semantic_version));
 
         } else {
             if (this.mc.isDemo()) {
@@ -222,7 +222,12 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
         }
         if(button.id == 97) {
             try {
-                URL url = new URL(Hydrogen.tags);
+                URL url;
+                if(Hydrogen.getClient().isStableBuild) {
+                    url = new URL(Hydrogen.tags);
+                } else {
+                    url = new URL(Hydrogen.currentCommitURL);
+                }
                 String link = url.toString();
                 BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                 Desktop.getDesktop().browse((new URL(link)).toURI());
