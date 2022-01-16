@@ -35,6 +35,9 @@ public class MainMenu extends GuiScreen {
             while ((line = br.readLine()) != null) {
                 splashText = line;
             }
+            if(splashText == null) {
+                splashText = "Splash could not be loaded!";
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,6 +59,7 @@ public class MainMenu extends GuiScreen {
         String mcv = "Minecraft 1.8.9";
         String name = String.format("%s %s", Hydrogen.name, Hydrogen.version);
         String mname = String.format("Logged in as §7%s", Minecraft.getMinecraft().getSession().getUsername());
+        String devs = String.format("Developed by §7%s §fand §7%s", Hydrogen.devs[0], Hydrogen.devs[1]);
 
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mds, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mds) - 4, Utils.getScaledRes().getScaledHeight() - 14, Color.WHITE);
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(fml, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(fml) - 4, Utils.getScaledRes().getScaledHeight() - 26, Color.WHITE);
@@ -63,7 +67,7 @@ public class MainMenu extends GuiScreen {
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mcv, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mcv) - 4, Utils.getScaledRes().getScaledHeight() - 50, Color.WHITE);
 
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(name, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(name) - 4, 4, Color.WHITE);
-        FontHelper.comfortaa_r.drawStringWithShadowMainMenu("Developed by §7" + Hydrogen.devs, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth("Developed by §7" + Hydrogen.devs) - 4, 16, Color.WHITE);
+        FontHelper.comfortaa_r.drawStringWithShadowMainMenu(devs, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(devs) - 4, 16, Color.WHITE);
         FontHelper.comfortaa_r.drawStringWithShadowMainMenu(mname, Utils.getScaledRes().getScaledWidth() - FontHelper.comfortaa_r.getStringWidth(mname) - 4, 28, Color.WHITE);
 
         // outdated check

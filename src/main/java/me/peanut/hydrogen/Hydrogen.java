@@ -97,6 +97,7 @@ public class Hydrogen {
             Utils.playSound("startup.wav");
         }
         ArrayList.arrayListThread();
+        new MainMenu();
         if(firstStart) {
             moduleManager.getModule(MainMenuModule.class).setEnabled();
         }
