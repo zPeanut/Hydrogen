@@ -27,12 +27,11 @@ public class Hydrogen {
 
     public static final String modid = "hydrogen";
     public static final String name = "Hydrogen";
-    public static final String devs = "zPeanut & UltramoxX";
+    public static final String devs[] = {"zPeanut", "UltramoxX"};
     public static final String prefix = "§7[§9" + name + "§7]";
 
     public static String version = "1.12 Dev";
     public static final String semantic_version = "1.12.0-dev";
-
 
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
@@ -165,26 +164,6 @@ public class Hydrogen {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    public void switchToMojang() {
-        try {
-            this.altService.switchService(AltService.EnumAltService.MOJANG);
-        } catch (NoSuchFieldException e) {
-            Utils.errorLog("Couldn't switch to Mojang AltService");
-        } catch (IllegalAccessException e) {
-            Utils.errorLog("Couldn't switch to Mojang AltService");
-        }
-    }
-
-    public void switchToAltening() {
-        try {
-            this.altService.switchService(AltService.EnumAltService.THEALTENING);
-        } catch (NoSuchFieldException e) {
-            Utils.errorLog("Couldn't switch to TheAltening AltService");
-        } catch (IllegalAccessException e) {
-            Utils.errorLog("Couldn't switch to TheAltening AltService");
         }
     }
 }

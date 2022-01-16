@@ -11,6 +11,7 @@ import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.thealtening.auth.AltService;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.altmanager.account.Account;
+import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.util.Session;
@@ -34,15 +35,17 @@ public class AccountLoginThread extends Thread {
 
 	public void run() {
 		if ((Minecraft.getMinecraft()).currentScreen instanceof GuiAlteningLogin) {
-			Hydrogen.getClient().switchToAltening();
+			try {
+				Hydrogen.getClient().altService.switchService(AltService.EnumAltService.THEALTENING);
+			} catch (NoSuchFieldException | IllegalAccessException e) {
+				Utils.errorLog("Couldn't switch to TheAltening AltService");
+			}
 			unknownBoolean1 = false;
 		} else if (unknownBoolean1) {
 			try {
 				Hydrogen.getClient().altService.switchService(AltService.EnumAltService.MOJANG);
-			} catch (NoSuchFieldException e) {
-				System.out.println("Couldnt switch to modank altservice");
-			} catch (IllegalAccessException e) {
-				System.out.println("Couldnt switch to modank altservice -2");
+			} catch (NoSuchFieldException | IllegalAccessException e) {
+				Utils.errorLog("Couldn't switch to Mojang AltService");
 			}
 		}
 
