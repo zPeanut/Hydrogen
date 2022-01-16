@@ -968,7 +968,7 @@ public class Utils {
 
     public static String getCurrentCommitHash() {
         try {
-            URL url = new URL("https://api.github.com/repos/zpeanut/hydrogen/commits/1.12");
+            URL url = new URL("https://api.github.com/repos/zpeanut/hydrogen/commits/master");
             BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
             String readLine = br.readLine();
             String[] splitLine = readLine.split("\"");
@@ -986,7 +986,7 @@ public class Utils {
 
             // read github api line
 
-            URL url = new URL("https://api.github.com/repos/zpeanut/hydrogen/commits/1.12");
+            URL url = new URL("https://api.github.com/repos/zpeanut/hydrogen/commits/master");
             BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
             String readLine = br.readLine();
 
