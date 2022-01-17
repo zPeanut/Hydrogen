@@ -109,7 +109,7 @@ public class MainMenu extends GuiScreen {
 
         FontUtil.drawTotalCenteredStringWithShadowComfortaa(splashText, Utils.getScaledRes().getScaledWidth() / 2 + (FontHelper.sf_l_mm.getStringWidth("hydrogen") / 2) - 46, Utils.getScaledRes().getScaledHeight() / 2 + 33, Color.WHITE);
 
-        particleGenerator.drawParticles(mouseX, mouseY);
+        particleGenerator.drawParticles(mouseX, mouseY, true);
     }
 
 }

@@ -25,13 +25,13 @@ public class ParticleGenerator {
         }
     }
 
-    public void drawParticles(int mouseX, int mouseY) {
+    public void drawParticles(int mouseX, int mouseY, boolean drawLine) {
         for (Particle p : this.particles) {
             if (p.reset) {
                 p.resetPosSize();
                 p.reset = false;
             }
-            p.draw(mouseX, mouseY);
+            p.draw(mouseX, mouseY, drawLine);
         }
     }
 
@@ -49,7 +49,7 @@ public class ParticleGenerator {
             this.size = genRandom(1.0F, 3.0F);
         }
 
-        public void draw(int mouseX, int mouseY) {
+        public void draw(int mouseX, int mouseY, boolean drawLine) {
             if (this.size <= 0.0F) {
                 this.reset = true;
             }
@@ -61,22 +61,24 @@ public class ParticleGenerator {
             Utils.drawBorderedCircle(this.x + xx, this.y + yy, this.size, 0, 553648127);
 
 
-            float distance = (float) Utils.distance(this.x + xx, this.y + yy, mouseX, mouseY);
+            if(drawLine) {
+                float distance = (float) Utils.distance(this.x + xx, this.y + yy, mouseX, mouseY);
 
-            if (distance < 50) {
-                GL11.glEnable(GL11.GL_LINE_SMOOTH);
-                GL11.glDisable(GL11.GL_DEPTH_TEST);
-                GL11.glColor4f(255F, 255F, 255F, 255F);
-                GL11.glDisable(GL11.GL_TEXTURE_2D);
-                GL11.glDepthMask(false);
-                GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-                GL11.glEnable(GL11.GL_BLEND);
-                GL11.glLineWidth(0.1F);
-                GL11.glBegin(GL11.GL_LINES);
+                if (distance < 50) {
+                    GL11.glEnable(GL11.GL_LINE_SMOOTH);
+                    GL11.glDisable(GL11.GL_DEPTH_TEST);
+                    GL11.glColor4f(255F, 255F, 255F, 255F);
+                    GL11.glDisable(GL11.GL_TEXTURE_2D);
+                    GL11.glDepthMask(false);
+                    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                    GL11.glEnable(GL11.GL_BLEND);
+                    GL11.glLineWidth(0.1F);
+                    GL11.glBegin(GL11.GL_LINES);
 
-                GL11.glVertex2f(this.x + xx, this.y + yy);
-                GL11.glVertex2f(mouseX, mouseY);
-                GL11.glEnd();
+                    GL11.glVertex2f(this.x + xx, this.y + yy);
+                    GL11.glVertex2f(mouseX, mouseY);
+                    GL11.glEnd();
+                }
             }
         }
 

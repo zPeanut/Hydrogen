@@ -1,5 +1,6 @@
 package me.peanut.hydrogen.ui.clickgui;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,7 +62,6 @@ public class ClickGui extends GuiScreen {
 				}
 			}
 		}
-
 	}
 
 	@Override
@@ -73,6 +73,10 @@ public class ClickGui extends GuiScreen {
 			for (Component comp : frame.getComponents()) {
 				comp.updateComponent(mouseX, mouseY);
 			}
+		}
+		boolean particles = Hydrogen.getClient().settingsManager.getSettingByName("Particles").isEnabled();
+		if(particles) {
+			particleGenerator.drawParticles(0, 0, false);
 		}
 	}
 
@@ -94,10 +98,6 @@ public class ClickGui extends GuiScreen {
 					}
 				}
 			}
-		}
-		boolean particles = Hydrogen.getClient().settingsManager.getSettingByName("Particles").isEnabled();
-		if(particles) {
-			particleGenerator.drawParticles(mouseX, mouseY);
 		}
 	}
 	
