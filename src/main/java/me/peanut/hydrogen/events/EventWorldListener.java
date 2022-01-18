@@ -1,7 +1,7 @@
 package me.peanut.hydrogen.events;
 
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.module.modules.ui.ClickGUI;
+import me.peanut.hydrogen.module.modules.gui.ClickGUI;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;

@@ -8,10 +8,9 @@ import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
 import me.peanut.hydrogen.font.FontUtil;
 import me.peanut.hydrogen.utils.RenderUtil;
-import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.gui.FontRenderer;
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.module.modules.ui.ClickGUI;
+import me.peanut.hydrogen.module.modules.gui.ClickGUI;
 
 public class Frame {
 

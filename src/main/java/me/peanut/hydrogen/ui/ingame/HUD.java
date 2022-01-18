@@ -1,20 +1,24 @@
-package me.peanut.hydrogen.module.modules.ui;
+package me.peanut.hydrogen.ui.ingame;
 
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.Hydrogen;
-import org.lwjgl.input.Keyboard;
 import me.peanut.hydrogen.settings.Setting;
+import me.peanut.hydrogen.ui.ingame.style.Style;
+import me.peanut.hydrogen.ui.ingame.style.styles.Classic;
 
 import java.util.ArrayList;
 
 @Info(name = "HUD", description = "The overlay", category = Category.Gui)
 public class HUD extends Module {
 
+    public Style style;
+
     // this module basically only exists to have general settings, also to disable the hud alltogether
 
     public HUD() {
+        this.style = new Classic();
         ArrayList<String> time = new ArrayList<>();
         time.add("24H");
         time.add("12H");

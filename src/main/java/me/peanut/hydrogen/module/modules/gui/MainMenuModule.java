@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.module.modules.ui;
+package me.peanut.hydrogen.module.modules.gui;
 
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;

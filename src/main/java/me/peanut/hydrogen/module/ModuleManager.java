@@ -2,17 +2,22 @@ package me.peanut.hydrogen.module;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.Hydrogen;
+import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.module.modules.combat.*;
+import me.peanut.hydrogen.module.modules.gui.ClickGUI;
+import me.peanut.hydrogen.module.modules.gui.Hotbar;
+import me.peanut.hydrogen.module.modules.gui.MainMenuModule;
 import me.peanut.hydrogen.module.modules.movement.*;
 import me.peanut.hydrogen.module.modules.player.*;
 import me.peanut.hydrogen.module.modules.render.*;
-import me.peanut.hydrogen.module.modules.ui.*;
-import me.peanut.hydrogen.module.modules.ui.Info;
+import me.peanut.hydrogen.ui.ingame.*;
+import me.peanut.hydrogen.ui.ingame.components.Info;
 import me.peanut.hydrogen.events.EventKey;
-import net.minecraftforge.fml.common.Mod;
+import me.peanut.hydrogen.ui.ingame.components.PotionEffects;
+import me.peanut.hydrogen.ui.ingame.components.Watermark;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -37,7 +42,7 @@ public class ModuleManager {
         // hud
 
         add(new HUD());
-        add(new me.peanut.hydrogen.module.modules.ui.ArrayList());
+        add(new me.peanut.hydrogen.ui.ingame.components.ArrayList());
         add(new Hotbar());
         add(new Info());
         add(new Watermark());
@@ -174,6 +179,13 @@ public class ModuleManager {
                 }
             }
         }
+        Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> {
+            if (FontHelper.sf_l.getStringWidth(m1.getName()) > FontHelper.sf_l.getStringWidth(m2.getName()))
+                return -1;
+            if (FontHelper.sf_l.getStringWidth(m1.getName()) < FontHelper.sf_l.getStringWidth(m2.getName()))
+                return 1;
+            return 0;
+        });
         return modules;
     }
 

@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.module.modules.ui;
+package me.peanut.hydrogen.module.modules.gui;
 
 import com.darkmagician6.eventapi.EventTarget;
 import me.peanut.hydrogen.events.EventRender2D;

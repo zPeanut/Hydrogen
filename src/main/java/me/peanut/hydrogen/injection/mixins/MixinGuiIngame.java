@@ -5,7 +5,7 @@ import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventRender2D;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.module.modules.render.AntiBlind;
-import me.peanut.hydrogen.module.modules.ui.HUD;
+import me.peanut.hydrogen.ui.ingame.HUD;
 import me.peanut.hydrogen.utils.BlurUtil;
 import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;

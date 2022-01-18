@@ -1,9 +1,6 @@
-package me.peanut.hydrogen.module.modules.ui;
+package me.peanut.hydrogen.module.modules.gui;
 
-import com.darkmagician6.eventapi.EventTarget;
-import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.file.files.ClickGuiConfig;
-import me.peanut.hydrogen.file.files.deprecated.ClickGuiFile;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;

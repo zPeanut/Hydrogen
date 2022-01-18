@@ -3,12 +3,12 @@ package me.peanut.hydrogen;
 import com.thealtening.auth.AltService;
 import com.vdurmont.semver4j.Semver;
 import me.peanut.hydrogen.events.EventWorldListener;
-import me.peanut.hydrogen.file.FileManager;
 import me.peanut.hydrogen.module.ModuleManager;
 import me.peanut.hydrogen.module.modules.player.Freecam;
-import me.peanut.hydrogen.module.modules.ui.MainMenuModule;
+import me.peanut.hydrogen.ui.ingame.HUD;
+import me.peanut.hydrogen.module.modules.gui.MainMenuModule;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
-import me.peanut.hydrogen.module.modules.ui.ArrayList;
+import me.peanut.hydrogen.ui.ingame.components.ArrayList;
 import me.peanut.hydrogen.ui.mainmenu.MainMenu;
 import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.utils.HTTPUtil;
@@ -22,7 +22,6 @@ import me.peanut.hydrogen.command.CommandManager;
 import me.peanut.hydrogen.settings.SettingsManager;
 
 import java.io.*;
-import java.net.URL;
 
 @Mod(modid = Hydrogen.modid, name = Hydrogen.name, version = Hydrogen.semantic_version, useMetadata = true)
 public class Hydrogen {
@@ -41,17 +40,16 @@ public class Hydrogen {
     public static final String currentCommitURL = github + "commit/" + HTTPUtil.getCurrentCommitHash();
 
     private static Hydrogen instance;
-    private static Utils utils;
 
     public ModuleManager moduleManager;
     public SettingsManager settingsManager;
     public KeybindUtil keybindManager;
     public CommandManager commandManager;
-    public FileManager fileManager;
     public AccountManager accountManager;
     public AltService altService;
     public ClickGui clickgui;
     public File directory;
+    public HUD hud;
 
     public boolean outdated;
     public boolean panic;
@@ -90,16 +88,18 @@ public class Hydrogen {
         commandManager = new CommandManager();
         accountManager = new AccountManager(new File(this.directory.toString()));
         altService = new AltService();
-        utils = new Utils();
         clickgui = new ClickGui();
         FontHelper.loadFonts();
         moduleManager.addModules();
+        hud = new HUD();
         this.isOutdated();
+        new MainMenu();
+        ArrayList.arrayListThread();
+
         if(settingsManager.getSettingByName("Startup Sound").isEnabled()) {
             Utils.playSound("startup.wav");
         }
-        ArrayList.arrayListThread();
-        new MainMenu();
+
         if(firstStart) {
             moduleManager.getModule(MainMenuModule.class).setEnabled();
         }
@@ -107,10 +107,6 @@ public class Hydrogen {
 
     public static Hydrogen getClient() {
         return instance;
-    }
-
-    public static Utils getUtils() {
-        return utils;
     }
 
     // removing in 1.12.1 or 1.13
