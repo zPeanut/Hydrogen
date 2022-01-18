@@ -9,6 +9,7 @@ import me.peanut.hydrogen.module.modules.render.*;
 import me.peanut.hydrogen.module.modules.ui.*;
 import me.peanut.hydrogen.module.modules.ui.Info;
 import me.peanut.hydrogen.events.EventKey;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -116,16 +117,6 @@ public class ModuleManager {
         add(new Freecam());
         add(new NoSwing());
 
-        // alphabetically sort modules in clickgui
-
-        if (modules.size() > 0) {
-            Collections.sort(modules, new Comparator<Module>() {
-                @Override
-                public int compare(final Module mod1, final Module mod2) {
-                    return mod1.getName().compareTo(mod2.getName());
-                }
-            });
-        }
         for(Module m : this.getModules()) {
             if(!m.getCategory().equals(Category.Gui)) {
                 m.visible = true;
@@ -154,12 +145,13 @@ public class ModuleManager {
         for (Module module : modules) if (module.getKeybind() == event.getKey()) module.toggle();
     }
 
-    public ArrayList<Module> getModulesInCategory(Category categoryIn){
+    public ArrayList<Module> getModulesInCategory(Category categoryIn) {
         ArrayList<Module> mods = new ArrayList<Module>();
         for(Module m : this.modules){
             if(m.getCategory() == categoryIn)
                 mods.add(m);
         }
+        mods.sort(Comparator.comparing(Module::getName));
         return mods;
     }
 
