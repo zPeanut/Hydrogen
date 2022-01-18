@@ -7,6 +7,7 @@ import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.module.modules.render.AntiBlind;
 import me.peanut.hydrogen.module.modules.ui.HUD;
 import me.peanut.hydrogen.utils.BlurUtil;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
@@ -92,15 +93,15 @@ public abstract class MixinGuiIngame extends MixinGui {
 
                 // actual hotbar rect
 
-                Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 0x77000000);
+                RenderUtil.rect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 0x77000000);
 
                 // right side white rect
 
-                Utils.drawRect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+                RenderUtil.rect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
 
                 // selected hotbar item
 
-                Utils.drawRect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 23, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+                RenderUtil.rect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 23, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
 
                 this.zLevel = f;
                 GlStateManager.enableRescaleNormal();

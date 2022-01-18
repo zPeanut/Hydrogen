@@ -1,6 +1,4 @@
-package me.peanut.hydrogen.utils;
-
-import me.peanut.hydrogen.font.H2FontRenderer;
+package me.peanut.hydrogen.font;
 
 import java.awt.*;
 import java.io.InputStream;

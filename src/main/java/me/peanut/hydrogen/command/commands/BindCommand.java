@@ -3,7 +3,7 @@ package me.peanut.hydrogen.command.commands;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.file.files.ModuleConfig;
 import me.peanut.hydrogen.module.Module;
-import me.peanut.hydrogen.utils.KeybindManager;
+import me.peanut.hydrogen.utils.KeybindUtil;
 import me.peanut.hydrogen.command.Command;
 
 /**
@@ -17,7 +17,7 @@ public class BindCommand extends Command {
         } else if (args.length == 2) {
             String key = args[0];
             String value = args[1];
-            KeybindManager mgr = Hydrogen.getClient().keybindManager;
+            KeybindUtil mgr = Hydrogen.getClient().keybindManager;
             if (key.equalsIgnoreCase("reset")) {
                 Module mod = Hydrogen.getClient().moduleManager.getModulebyName(value);
                 if (mod == null) {

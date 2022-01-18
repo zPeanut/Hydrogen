@@ -1,8 +1,10 @@
 package me.peanut.hydrogen.module.modules.render;
 
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.utils.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.*;
@@ -148,15 +150,15 @@ public class Trajectories extends Module {
                 }
                 GL11.glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
                 GL11.glScalef(0.05f, 0.05f, 0.05f);
-                Utils.rectBorder(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
-                Utils.rect(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
+                RenderUtil.rectBorder(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
+                RenderUtil.rect(-8.25f, -8.25f, 8.25f, 8.25f, 0x99ffffff);
             }
             GL11.glPopMatrix();
             if (landingPosition != null && landingPosition.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
                 final double n11 = -Minecraft.getMinecraft().getRenderManager().renderPosX;
                 final double n12 = -Minecraft.getMinecraft().getRenderManager().renderPosY;
                 GL11.glTranslated(n11, n12, -Minecraft.getMinecraft().getRenderManager().renderPosZ);
-                Utils.drawOutlineForEntity(null, landingPosition.entityHit.getEntityBoundingBox().expand(0.035, 0.0, 0.035).offset(0.0, 0.1, 0.0), 1.0f, 1f, 1.0f, 1.0f, 255);
+                RenderUtil.drawOutlineForEntity(null, landingPosition.entityHit.getEntityBoundingBox().expand(0.035, 0.0, 0.035).offset(0.0, 0.1, 0.0), 1.0f, 1f, 1.0f, 1.0f, 255);
                 final double renderPosX = Minecraft.getMinecraft().getRenderManager().renderPosX;
                 final double renderPosY = Minecraft.getMinecraft().getRenderManager().renderPosY;
                 GL11.glTranslated(renderPosX, renderPosY, Minecraft.getMinecraft().getRenderManager().renderPosZ);

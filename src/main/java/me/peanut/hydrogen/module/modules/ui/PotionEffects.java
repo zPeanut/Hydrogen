@@ -6,7 +6,7 @@ import me.peanut.hydrogen.events.EventRender2D;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.module.Info;
-import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;

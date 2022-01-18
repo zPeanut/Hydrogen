@@ -4,9 +4,8 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import me.peanut.hydrogen.file.files.SettingsConfig;
-import me.peanut.hydrogen.file.files.deprecated.SettingsSliderFile;
-import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.font.FontHelper;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import org.lwjgl.opengl.GL11;
 
@@ -44,13 +43,13 @@ public class SliderButton extends Component {
 		int c2 = new Color(0, 0, 0, 115).getRGB(); // 0x77000000
 		int c3 = new Color(34, 34, 34, 140).getRGB(); // 0x88222222
 
-		Utils.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth(), parent.parent.getY() + offset + 12, hovered ? 0x99000000 : 0x88000000);
+		RenderUtil.rect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth(), parent.parent.getY() + offset + 12, hovered ? 0x99000000 : 0x88000000);
 		final int drag = (int)(this.set.getValue() / this.set.getMax() * this.parent.parent.getWidth());
-		Utils.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12, 0x88000000);
+		RenderUtil.rect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12, 0x88000000);
 		if(this.hovered) {
-			Utils.drawRect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12, 0x88000000);
+			RenderUtil.rect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12, 0x88000000);
 		}
-		Utils.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
+		RenderUtil.rect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, 0x88111111);
 
 		GL11.glPushMatrix();
 		GL11.glScalef(0.75f,0.75f, 0.75f);

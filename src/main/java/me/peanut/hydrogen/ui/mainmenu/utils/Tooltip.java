@@ -4,6 +4,7 @@ import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.ui.clickgui.component.Frame;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
 import me.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -32,9 +33,9 @@ public class Tooltip extends ExpandButton {
         GlStateManager.color(0, 0, 0, 0);
         GL11.glColor4f(0, 0, 0, 0);
 
-        Utils.drawBorderedCorneredRect((int) (x - padding), (int) (y - padding) + 2, (int) (x + width + padding) + Minecraft.getMinecraft().fontRendererObj.getStringWidth(name), (int) (y + height + padding), 2, 0x90000000, 0x80000000);
+        RenderUtil.drawBorderedCorneredRect((int) (x - padding), (int) (y - padding) + 2, (int) (x + width + padding) + Minecraft.getMinecraft().fontRendererObj.getStringWidth(name), (int) (y + height + padding), 2, 0x90000000, 0x80000000);
         Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, (float) x, (float)y + (float)height - 4, -1);
-        Utils.startClip((int)(x - padding), y, (int)(x + width + padding), (int)(y + height + padding));
-        Utils.endClip();
+        RenderUtil.startClip((int)(x - padding), y, (int)(x + width + padding), (int)(y + height + padding));
+        RenderUtil.endClip();
     }
 }

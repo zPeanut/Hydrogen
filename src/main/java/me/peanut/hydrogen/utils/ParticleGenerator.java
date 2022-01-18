@@ -58,7 +58,7 @@ public class ParticleGenerator {
             this.k += 1;
             int xx = (int)(MathHelper.cos(0.1F * (this.x + this.k)) * 10.0F);
             int yy = (int)(MathHelper.cos(0.1F * (this.y + this.k)) * 10.0F);
-            Utils.drawBorderedCircle(this.x + xx, this.y + yy, this.size, 0, 553648127);
+            RenderUtil.drawBorderedCircle(this.x + xx, this.y + yy, this.size, 0, 553648127);
 
 
             if(drawLine) {

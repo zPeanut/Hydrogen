@@ -1,6 +1,6 @@
 package me.peanut.hydrogen.ui.mainmenu.screens;
 
-import me.peanut.hydrogen.utils.FontUtil;
+import me.peanut.hydrogen.font.FontUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;

@@ -5,7 +5,8 @@ import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.module.modules.render.ChatRect;
 import me.peanut.hydrogen.module.modules.render.TTFChat;
-import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.font.FontHelper;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ChatLine;
@@ -104,7 +105,7 @@ public abstract class MixinGuiNewChat extends MixinGui {
                                 int j2 = -i1 * 9;
 
                                 if(!Hydrogen.getClient().moduleManager.getModule(ChatRect.class).isEnabled()) {
-                                    Utils.rect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
+                                    RenderUtil.rect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
                                 }
                                 String s = chatline.getChatComponent().getFormattedText();
                                 GlStateManager.enableBlend();
@@ -136,8 +137,8 @@ public abstract class MixinGuiNewChat extends MixinGui {
                     if (l2 != j1) {
                         l1 = j3 > 0 ? 170 : 96;
                         int l3 = this.isScrolled ? 13382451 : 3355562;
-                        Utils.rect(0, -j3, 2, -j3 - k1, l3 + (l1 << 24));
-                        Utils.rect(2, -j3, 1, -j3 - k1, 13421772 + (l1 << 24));
+                        RenderUtil.rect(0, -j3, 2, -j3 - k1, l3 + (l1 << 24));
+                        RenderUtil.rect(2, -j3, 1, -j3 - k1, 13421772 + (l1 << 24));
                     }
                 }
 

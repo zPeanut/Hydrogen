@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.ui.mainmenu.utils;
 
-import me.peanut.hydrogen.utils.FontUtil;
+import me.peanut.hydrogen.font.FontUtil;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -86,7 +87,7 @@ public class ExpandButton extends GuiButton {
                 tooltip.update(mouseX, mouseY);
                 tooltip.render(tooltipText);
             } else {
-                Utils.rect(this.x - this.size, this.y - this.size, this.x + this.x1 + this.size, this.y + this.y1 + this.size, this.alpha);
+                RenderUtil.rect(this.x - this.size, this.y - this.size, this.x + this.x1 + this.size, this.y + this.y1 + this.size, this.alpha);
                 if (!this.tooltipEnabled) {
                     FontUtil.drawTotalCenteredStringWithShadowComfortaa(isOverButton && this.enabled ? "§7" + this.text : this.text, this.x + this.x1 / 2, this.y + this.y1 / 2, Color.white);
                 }

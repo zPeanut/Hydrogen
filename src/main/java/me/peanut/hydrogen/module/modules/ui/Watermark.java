@@ -5,7 +5,8 @@ import me.peanut.hydrogen.events.EventRender2D;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
-import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.font.FontHelper;
+import me.peanut.hydrogen.utils.HTTPUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -57,7 +58,7 @@ public class Watermark extends Module {
             String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
 
             if(!Hydrogen.getClient().isStableBuild && !(Hydrogen.getClient().moduleManager.getModule(Hotbar.class).isEnabled() || Hydrogen.getClient().settingsManager.getSettingByName("Alignment").getMode().equalsIgnoreCase("Left"))) {
-                mc.fontRendererObj.drawStringWithShadow(String.format("§7Latest Commit: %s | %s", Utils.commitDate, Utils.commitTime), 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
+                mc.fontRendererObj.drawStringWithShadow(String.format("§7Latest Commit: %s | %s", HTTPUtil.commitDate, HTTPUtil.commitTime), 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
             }
 
             if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getMode().equalsIgnoreCase("New")) {

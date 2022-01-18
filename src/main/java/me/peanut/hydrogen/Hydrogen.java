@@ -10,8 +10,9 @@ import me.peanut.hydrogen.module.modules.ui.MainMenuModule;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.module.modules.ui.ArrayList;
 import me.peanut.hydrogen.ui.mainmenu.MainMenu;
-import me.peanut.hydrogen.utils.FontHelper;
-import me.peanut.hydrogen.utils.KeybindManager;
+import me.peanut.hydrogen.font.FontHelper;
+import me.peanut.hydrogen.utils.HTTPUtil;
+import me.peanut.hydrogen.utils.KeybindUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,14 +38,14 @@ public class Hydrogen {
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
     public static final String tags = release + "tag/" + semantic_version + "/";
-    public static final String currentCommitURL = github + "commit/" + Utils.getCurrentCommitHash();
+    public static final String currentCommitURL = github + "commit/" + HTTPUtil.getCurrentCommitHash();
 
     private static Hydrogen instance;
     private static Utils utils;
 
     public ModuleManager moduleManager;
     public SettingsManager settingsManager;
-    public KeybindManager keybindManager;
+    public KeybindUtil keybindManager;
     public CommandManager commandManager;
     public FileManager fileManager;
     public AccountManager accountManager;
@@ -79,13 +80,13 @@ public class Hydrogen {
         }
         if(!isStableBuild) {
             // get commit dates
-            Utils.getCurrentCommitDate();
+            HTTPUtil.getCurrentCommitDate();
             // add git commit hash to version
-            version += String.format(" §7| %s", Utils.getCurrentCommitHash());
+            version += String.format(" §7| %s", HTTPUtil.getCurrentCommitHash());
         }
         moduleManager = new ModuleManager();
         settingsManager = new SettingsManager();
-        keybindManager = new KeybindManager();
+        keybindManager = new KeybindUtil();
         commandManager = new CommandManager();
         accountManager = new AccountManager(new File(this.directory.toString()));
         altService = new AltService();
@@ -152,21 +153,11 @@ public class Hydrogen {
     }
 
     public void isOutdated() {
-        try {
-            URL url = new URL("https://raw.githubusercontent.com/zPeanut/Resources/master/semversion-hydrogen");
-            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-            String line;
-            while ((line = br.readLine()) != null) {
-                Semver semver = new Semver(line);
-                if (semver.isGreaterThan(semantic_version)) {
-                    outdated = true;
-                    newversion = line;
-                } else {
-                    outdated = false;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        String version = HTTPUtil.getWebsiteLine("https://raw.githubusercontent.com/zPeanut/Resources/master/semversion-hydrogen");
+        Semver semver = new Semver(version);
+        if (semver.isGreaterThan(semantic_version)) {
+            outdated = true;
+            newversion = version;
         }
     }
 }

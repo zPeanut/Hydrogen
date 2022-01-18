@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.module.modules.render;
 
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -31,7 +32,7 @@ public class BedESP extends Module {
         int id = Block.getIdFromBlock(mc.theWorld.getBlockState(blockPos).getBlock());
         if (id == 26) {
             Color c = new Color(Color.red.getRed(), Color.red.getGreen(), Color.red.getBlue(), 30);
-            Utils.renderBox(x + 0.5D, y - 0.5D, z + 0.5D, 1.0F, 0.6F, c);
+            RenderUtil.renderBox(x + 0.5D, y - 0.5D, z + 0.5D, 1.0F, 0.6F, c);
         }
 
     }

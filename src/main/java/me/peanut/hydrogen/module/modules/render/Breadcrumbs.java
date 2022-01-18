@@ -8,6 +8,7 @@ import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.settings.Setting;
+import me.peanut.hydrogen.utils.ColorUtil;
 import me.peanut.hydrogen.utils.Utils;
 import org.lwjgl.opengl.GL11;
 
@@ -74,7 +75,7 @@ public class Breadcrumbs extends Module {
             GL11.glDisable(2929);
             mc.entityRenderer.disableLightmap();
             GL11.glBegin(3);
-            Utils.glColor(color);
+            ColorUtil.glColor(color);
             double renderPosX = mc.getRenderManager().renderPosX;
             double renderPosY = mc.getRenderManager().renderPosY;
             double renderPosZ = mc.getRenderManager().renderPosZ;

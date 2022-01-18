@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.ui.clickgui.component.components.sub.*;
 import me.peanut.hydrogen.ui.clickgui.component.components.sub.CheckboxButton;
-import me.peanut.hydrogen.utils.FontHelper;
-import me.peanut.hydrogen.utils.FontUtil;
+import me.peanut.hydrogen.font.FontHelper;
+import me.peanut.hydrogen.font.FontUtil;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import me.peanut.hydrogen.Hydrogen;
@@ -68,17 +69,17 @@ public class Button extends Component {
 	public void renderTooltip(String name) {
 		boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF");
 		if(ttf) {
-			Utils.drawBorderedCorneredRect(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + FontHelper.sf_l.getStringWidth(name) - 47, this.parent.barHeight + tooltipY + 12, 2, 0x95000000, 0x80000000);
+			RenderUtil.drawBorderedCorneredRect(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + FontHelper.sf_l.getStringWidth(name) - 47, this.parent.barHeight + tooltipY + 12, 2, 0x95000000, 0x80000000);
 			FontHelper.sf_l.drawStringWithShadow(name, parent.getWidth() / 2 + tooltipX - 50, (this.parent.barHeight + tooltipY) - 2, Color.white);
 
-			Utils.startClip(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + FontHelper.sf_l.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12);
+			RenderUtil.startClip(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + FontHelper.sf_l.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12);
 		} else {
-			Utils.drawBorderedCorneredRect(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12, 2, 0x95000000, 0x80000000);
+			RenderUtil.drawBorderedCorneredRect(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12, 2, 0x95000000, 0x80000000);
 			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, parent.getWidth() / 2 + tooltipX - 50, (this.parent.barHeight + tooltipY), -1);
 
-			Utils.startClip(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12);
+			RenderUtil.startClip(parent.getWidth() / 2 + tooltipX - 54, this.parent.barHeight + tooltipY - 3, parent.getWidth() / 2 + tooltipX + Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 45, this.parent.barHeight + tooltipY + 12);
 		}
-		Utils.endClip();
+		RenderUtil.endClip();
 	}
 	
 	@Override
@@ -93,19 +94,19 @@ public class Button extends Component {
 	
 	@Override
 	public void renderComponent() {
-		Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
-		Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
+		RenderUtil.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
+		RenderUtil.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x33000000);
 
 		if(this.mod.isEnabled() && this.isHovered) {
-			Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x20000000);
+			RenderUtil.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x20000000);
 		}
 
 		if(this.mod.isEnabled()) {
-			Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x40000000);
+			RenderUtil.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x40000000);
 		}
 
 		if(this.isHovered) {
-			Utils.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x30000000);
+			RenderUtil.rect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, 0x30000000);
 		}
 
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
@@ -122,7 +123,7 @@ public class Button extends Component {
 				for (Component comp : this.subcomponents) {
 					comp.renderComponent();
 				}
-				Utils.rect(parent.getX() + 2, parent.getY() + this.offset + 12, parent.getX() + 3, parent.getY() + this.offset + ((this.subcomponents.size() + 1) * 12), ClickGui.color);
+				RenderUtil.rect(parent.getX() + 2, parent.getY() + this.offset + 12, parent.getX() + 3, parent.getY() + this.offset + ((this.subcomponents.size() + 1) * 12), ClickGui.color);
 			}
 		}
 

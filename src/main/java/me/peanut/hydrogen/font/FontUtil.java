@@ -1,5 +1,6 @@
-package me.peanut.hydrogen.utils;
+package me.peanut.hydrogen.font;
 
+import me.peanut.hydrogen.font.FontHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.StringUtils;

@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.module.modules.player;
 
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.utils.RenderUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSword;
@@ -75,7 +76,7 @@ public class MurderMystery extends Module {
 
                 mc.entityRenderer.setupCameraTransform(mc.timer.renderPartialTicks, 2);
                 if(drawTracers) {
-                    Utils.drawTracer(entity, new Color(red, green, blue, alpha));
+                    RenderUtil.drawTracer(entity, new Color(red, green, blue, alpha));
                 }
             }
         });

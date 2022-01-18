@@ -3,6 +3,8 @@ package me.peanut.hydrogen.injection.mixins;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.modules.player.MurderMystery;
 import me.peanut.hydrogen.module.modules.render.NameTags;
+import me.peanut.hydrogen.utils.PlayerUtil;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -51,8 +53,8 @@ abstract class MixinRenderer<T extends Entity> {
                 if (Hydrogen.getClient().moduleManager.getModule(NameTags.class).isEnabled()) {
                     String p_147906_2_ = entity.getDisplayName().getFormattedText();
 
-                    double[] pos = Utils.entityWorldPos(entity);
-                    double[] pos2 = Utils.entityWorldPos(Minecraft.getMinecraft().thePlayer);
+                    double[] pos = PlayerUtil.entityWorldPos(entity);
+                    double[] pos2 = PlayerUtil.entityWorldPos(Minecraft.getMinecraft().thePlayer);
                     float xd = (float)(pos2[0]-pos[0]);
                     float yd = (float)(pos2[1]-pos[1]);
                     float zd = (float)(pos2[2]-pos[2]);
@@ -122,8 +124,8 @@ abstract class MixinRenderer<T extends Entity> {
                     float h = var12.FONT_HEIGHT;
                     float offY = 0;
 
-                    Utils.rectBorder(-w-4, -4+offY, w+4, h+3+offY, 0x99111111);
-                    Utils.rect(-w-3, -3+offY, w+3, h+2+offY, 0x44111111);
+                    RenderUtil.rectBorder(-w-4, -4+offY, w+4, h+3+offY, 0x99111111);
+                    RenderUtil.rect(-w-3, -3+offY, w+3, h+2+offY, 0x44111111);
 
                     GlStateManager.enableTexture2D();
                     int co = -1;

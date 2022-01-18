@@ -8,7 +8,9 @@ import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.ui.mainmenu.MainMenu;
 import me.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
-import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.font.FontHelper;
+import me.peanut.hydrogen.utils.ColorUtil;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
@@ -254,7 +256,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             renderSkybox(mouseX, mouseY, partialTicks);
             GlStateManager.disableAlpha();
             GlStateManager.enableAlpha();
-            drawGradientRect(0, 0, this.width, this.height, 0, Hydrogen.getClient().settingsManager.getSettingByName(m, "Rainbow").isEnabled() ? Utils.getRainbowInt(10, 0.5f, 1, 1) : -1610612736);
+            drawGradientRect(0, 0, this.width, this.height, 0, Hydrogen.getClient().settingsManager.getSettingByName(m, "Rainbow").isEnabled() ? ColorUtil.getRainbowInt(10, 0.5f, 1, 1) : -1610612736);
             drawGradientRect(0, 0, this.width, this.height, 0x804DB3FF, 0x80000000);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glPushMatrix();
@@ -314,7 +316,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
             String s1 = "Copyright Mojang AB. Do not distribute!";
             this.drawString(this.fontRendererObj, s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);
             if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0) {
-                Utils.rect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
+                RenderUtil.rect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
                 this.drawString(this.fontRendererObj, this.openGLWarning1, this.field_92022_t, this.field_92021_u, -1);
                 this.drawString(this.fontRendererObj, this.openGLWarning2, (this.width - this.field_92024_r) / 2, (this.buttonList.get(0)).yPosition - 12, -1);
             }

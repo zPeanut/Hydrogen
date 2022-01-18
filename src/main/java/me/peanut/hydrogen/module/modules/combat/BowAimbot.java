@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.module.modules.combat;
 
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.utils.PlayerUtil;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBow;
@@ -26,13 +27,15 @@ public class BowAimbot extends Module {
 
     public BowAimbot() {}
 
+    // TODO: redo this
+
     @EventTarget
     public void onUpdate(EventUpdate event) {
         target = getTarget();
         if(shouldAim()) {
             if (target != null) {
 
-                float[] rotations = Utils.getBowAngles(target);
+                float[] rotations = PlayerUtil.getBowAngles(target);
                 boolean silent = Hydrogen.getClient().settingsManager.getSettingByName(this, "Silent").isEnabled();
 
                 mc.thePlayer.rotationYaw = rotations[0];
@@ -66,12 +69,12 @@ public class BowAimbot extends Module {
             return null;
         }
         loaded.sort((o1, o2) -> {
-            float[] rot1 = Utils.getRotations(o1);
-            float[] rot2 = Utils.getRotations(o2);
-            return (int) ((Utils.getDistanceBetweenAngles(mc.thePlayer.rotationYaw, rot1[0])
-                    + Utils.getDistanceBetweenAngles(mc.thePlayer.rotationPitch, rot1[1]))
-                    - (Utils.getDistanceBetweenAngles(mc.thePlayer.rotationYaw, rot2[0])
-                    + Utils.getDistanceBetweenAngles(mc.thePlayer.rotationPitch, rot2[1])));
+            float[] rot1 = PlayerUtil.getRotations(o1);
+            float[] rot2 = PlayerUtil.getRotations(o2);
+            return (int) ((PlayerUtil.getDistanceBetweenAngles(mc.thePlayer.rotationYaw, rot1[0])
+                    + PlayerUtil.getDistanceBetweenAngles(mc.thePlayer.rotationPitch, rot1[1]))
+                    - (PlayerUtil.getDistanceBetweenAngles(mc.thePlayer.rotationYaw, rot2[0])
+                    + PlayerUtil.getDistanceBetweenAngles(mc.thePlayer.rotationPitch, rot2[1])));
         });
         EntityLivingBase target = loaded.get(0);
         return target;

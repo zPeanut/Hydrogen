@@ -1,9 +1,8 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.file.files.ModuleConfig;
 import me.peanut.hydrogen.module.Module;
-import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.font.FontHelper;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;

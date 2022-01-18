@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.module.modules.render;
 
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -51,9 +52,9 @@ public class ItemESP extends Module {
                 int a = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValue();
                 Color c = new Color(r, g, b, a);
                 if(outline) {
-                    Hydrogen.getUtils().renderBoxWithOutline(x, y - 0.7D, z, 0.5F, 0.5F, c);
+                    RenderUtil.renderBoxWithOutline(x, y - 0.7D, z, 0.5F, 0.5F, c);
                 } else {
-                    Utils.renderBox(x, y - 0.7D, z, 0.5F, 0.5F, c);
+                    RenderUtil.renderBox(x, y - 0.7D, z, 0.5F, 0.5F, c);
                 }
             }
         }

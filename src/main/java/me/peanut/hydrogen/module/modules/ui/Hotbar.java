@@ -5,7 +5,8 @@ import me.peanut.hydrogen.events.EventRender2D;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
-import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.font.FontHelper;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,7 +41,7 @@ public class Hotbar extends Module {
         }
         if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
 
-            Utils.drawRect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 0x44000000);
+            RenderUtil.rect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 0x44000000);
 
             EntityPlayer entityplayer = (EntityPlayer) Minecraft.getMinecraft().getRenderViewEntity();
 
@@ -93,25 +94,6 @@ public class Hotbar extends Module {
                 }
             }
 
-        }
-    }
-
-    public static double x = 400.0D;
-
-    public static void addUntil(double needX, double steps) {
-        if (x != needX) {
-            if (x < needX)
-                if (x <= needX - steps) {
-                    x += steps;
-                } else if (x > needX - steps) {
-                    x = needX;
-                }
-            if (x > needX)
-                if (x >= needX + steps) {
-                    x -= steps;
-                } else if (x < needX + steps) {
-                    x = needX;
-                }
         }
     }
 

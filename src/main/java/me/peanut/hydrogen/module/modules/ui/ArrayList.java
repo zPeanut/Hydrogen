@@ -6,7 +6,9 @@ import me.peanut.hydrogen.events.EventRender2D;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
-import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.font.FontHelper;
+import me.peanut.hydrogen.utils.ColorUtil;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -14,8 +16,6 @@ import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.settings.Setting;
 
 import java.awt.*;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Created by peanut on 18/02/2021
@@ -87,7 +87,7 @@ public class ArrayList extends Module {
             for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
                 ScaledResolution sr = new ScaledResolution(mc);
                 Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
-                Color rainbow = Utils.getRainbowColor(rbdelay, rbsaturation, 1, (long) (count * rbcolorcount));
+                Color rainbow = ColorUtil.getRainbowColor(rbdelay, rbsaturation, 1, (long) (count * rbcolorcount));
                 Color color = Hydrogen.getClient().settingsManager.getSettingByName("List Color").getMode().equalsIgnoreCase("White") ? Color.white : (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getMode().equalsIgnoreCase("Rainbow") ? rainbow : mod.getColor());
                 boolean background = Hydrogen.getClient().settingsManager.getSettingByName(this, "Background").isEnabled();
                 boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
@@ -103,23 +103,23 @@ public class ArrayList extends Module {
 
                         // if first module, then draw side line 1px higher, so it connects with the top line
 
-                        Utils.rect(rectX - 1.0D, rectY - 1.0D, rectX2 + 10, rectY, outlinecolor);
+                        RenderUtil.rect(rectX - 1.0D, rectY - 1.0D, rectX2 + 10, rectY, outlinecolor);
 
                         // top line
 
-                        Utils.rect(rectX - 2.0D, rectY - 2, rectX - 1, rectY2 - 5, outlinecolor);
+                        RenderUtil.rect(rectX - 2.0D, rectY - 2, rectX - 1, rectY2 - 5, outlinecolor);
                     } else {
 
                         // side line
 
-                        Utils.rect(rectX - 2.0D, rectY, rectX - 1, rectY2 - 5, outlinecolor);
+                        RenderUtil.rect(rectX - 2.0D, rectY, rectX - 1, rectY2 - 5, outlinecolor);
                     }
 
                     if (i == Hydrogen.getClient().moduleManager.getEnabledMods().size() - 1) {
 
                         // bottom arraylist line
 
-                        Utils.rect(rectX - 2.0D, rectY2 - 5, rectX2 + 10, rectY2 - 4, outlinecolor);
+                        RenderUtil.rect(rectX - 2.0D, rectY2 - 5, rectX2 + 10, rectY2 - 4, outlinecolor);
                     }
 
                     if (i != Hydrogen.getClient().moduleManager.getEnabledMods().size() - 1) {
@@ -133,12 +133,12 @@ public class ArrayList extends Module {
                                 }
                             }
                         }
-                        Utils.rect(rectX - 2, rectY2 - 5, rectX + 3.0D + difference - 5, rectY2 - 4, outlinecolor);
+                        RenderUtil.rect(rectX - 2, rectY2 - 5, rectX + 3.0D + difference - 5, rectY2 - 4, outlinecolor);
                     }
                 }
 
                 if (background) {
-                    Utils.rect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
+                    RenderUtil.rect(sr.getScaledWidth() - mod.getSlide() - 6, 1 + i * 12, sr.getScaledWidth(), i * 12 + 13, 0x66000000);
                 }
 
                 FontHelper.sf_l.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, color);

@@ -1,13 +1,12 @@
 package me.peanut.hydrogen.ui.clickgui.component.components.sub;
 
 import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.file.files.SettingsConfig;
-import me.peanut.hydrogen.file.files.deprecated.TextFile;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.settings.Setting;
 import me.peanut.hydrogen.ui.clickgui.component.Component;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
-import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.font.FontHelper;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatAllowedCharacters;
@@ -59,11 +58,11 @@ public class TextButton extends Component {
         int c1 = new Color(17, 17, 17, 140).getRGB(); // 0x88111111
         int c3 = new Color(34, 34, 34, 140).getRGB(); // 0x88222222
 
-        Utils.rect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, hovered ? 0x99000000 : 0x88000000);
-        Utils.rect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, c1);
+        RenderUtil.rect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, hovered ? 0x99000000 : 0x88000000);
+        RenderUtil.rect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + 2, parent.parent.getY() + offset + 12, c1);
 
         if(this.isEditing) {
-            Utils.rect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, 0x33000000);
+            RenderUtil.rect(parent.parent.getX() + 2, parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, 0x33000000);
         }
 
         GL11.glPushMatrix();

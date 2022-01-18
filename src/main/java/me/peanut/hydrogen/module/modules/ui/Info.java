@@ -4,7 +4,7 @@ import com.darkmagician6.eventapi.EventTarget;
 import me.peanut.hydrogen.events.EventRender2D;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Module;
-import me.peanut.hydrogen.utils.FontHelper;
+import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import me.peanut.hydrogen.Hydrogen;

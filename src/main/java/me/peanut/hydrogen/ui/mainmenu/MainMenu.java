@@ -1,9 +1,7 @@
 package me.peanut.hydrogen.ui.mainmenu;
 
-import akka.Main;
-import com.vdurmont.semver4j.Semver;
-import me.peanut.hydrogen.utils.FontHelper;
-import me.peanut.hydrogen.utils.FontUtil;
+import me.peanut.hydrogen.font.FontHelper;
+import me.peanut.hydrogen.font.FontUtil;
 import me.peanut.hydrogen.utils.ParticleGenerator;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -14,7 +12,6 @@ import me.peanut.hydrogen.Hydrogen;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.List;
 import java.awt.*;
 
 /**

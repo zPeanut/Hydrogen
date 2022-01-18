@@ -1,5 +1,6 @@
 package me.peanut.hydrogen.module.modules.render;
 
+import me.peanut.hydrogen.utils.RenderUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
@@ -134,7 +135,7 @@ public class NameTags extends Module {
             if (e instanceof EntityLivingBase) {
                 if (mc.getRenderManager().getEntityRenderObject(e) instanceof RendererLivingEntity) {
                     double[] p = entityRenderPos(e);
-                    Utils.passSpecialRenderNameTags((EntityLivingBase)e, p[0], p[1], p[2]);
+                    RenderUtil.passSpecialRenderNameTags((EntityLivingBase)e, p[0], p[1], p[2]);
                 }
             }
         }

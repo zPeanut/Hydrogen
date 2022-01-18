@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.module.modules.player;
 
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.utils.PlayerUtil;
 import net.minecraft.block.Block;
 import net.minecraft.network.play.client.C07PacketPlayerDigging;
 import net.minecraft.network.play.client.C0APacketAnimation;
@@ -78,7 +79,7 @@ public class BedAura extends Module {
                                     if(bypassWall) {
                                         smashBlock(blockPos);
                                     } else {
-                                        if(Hydrogen.getUtils().canBlockBeSeen(blockPos)) {
+                                        if(PlayerUtil.canBlockBeSeen(blockPos)) {
                                             smashBlock(blockPos);
                                         }
                                     }

@@ -6,7 +6,7 @@ package me.peanut.hydrogen.utils;
 import me.peanut.hydrogen.file.files.ModuleConfig;
 import me.peanut.hydrogen.module.Module;
 
-public class KeybindManager
+public class KeybindUtil
 {
     public void bind(Module mod, int bind) {
         mod.setKeyBind(bind);

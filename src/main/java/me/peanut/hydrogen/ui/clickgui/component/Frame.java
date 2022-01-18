@@ -1,20 +1,17 @@
 package me.peanut.hydrogen.ui.clickgui.component;
 
 import java.awt.*;
-import java.security.cert.CollectionCertStoreParameters;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Module;
-import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
-import me.peanut.hydrogen.utils.FontUtil;
+import me.peanut.hydrogen.font.FontUtil;
+import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.gui.FontRenderer;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.modules.ui.ClickGUI;
-import org.lwjgl.input.Mouse;
 
 public class Frame {
 
@@ -76,7 +73,7 @@ public class Frame {
 	public void renderFrame(FontRenderer fontRenderer) {
 		Module cgui = Hydrogen.getClient().moduleManager.getModule(ClickGUI.class);
 		int color = new Color((int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Red").getValue(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Green").getValue(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Blue").getValue(), (int)Hydrogen.getClient().settingsManager.getSettingByName(cgui, "Alpha").getValue()).getRGB();
-		Utils.rect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, color);
+		RenderUtil.rect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.barHeight, color);
 
 		if(Hydrogen.getClient().settingsManager.getSettingByName("Font Type").getMode().equalsIgnoreCase("TTF")) {
 			FontUtil.drawTotalCenteredStringWithShadowVerdana(this.category.name(), (this.x + this.width / 2), (this.y + 7) - 3, Color.white);
