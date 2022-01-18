@@ -18,6 +18,7 @@ import java.util.ArrayList;
  */
 @me.peanut.hydrogen.module.Info(name = "Info", description = "Shows FPS and Coordinates", category = Category.Hud)
 public class Info extends Module {
+
     public Info() {
         java.util.ArrayList<String> alignment = new ArrayList<>();
         alignment.add("Left");

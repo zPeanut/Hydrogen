@@ -32,7 +32,7 @@ public class ItemESP extends Module {
 
     @EventTarget
     public void onRender(EventRender3D event) {
-        boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(this, "Outline").isEnabled();
+        boolean outline = h2.settingsManager.getSettingByName(this, "Outline").isEnabled();
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
@@ -46,10 +46,10 @@ public class ItemESP extends Module {
                 double x = item.lastTickPosX + (item.posX - item.lastTickPosX) * pTicks - RPX;
                 double y = item.lastTickPosY + (item.posY - item.lastTickPosY) * pTicks - RPY;
                 double z = item.lastTickPosZ + (item.posZ - item.lastTickPosZ) * pTicks - RPZ;
-                int r = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Red").getValue();
-                int b = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Blue").getValue();
-                int g = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Green").getValue();
-                int a = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Alpha").getValue();
+                int r = (int) h2.settingsManager.getSettingByName(this, "Red").getValue();
+                int b = (int) h2.settingsManager.getSettingByName(this, "Blue").getValue();
+                int g = (int) h2.settingsManager.getSettingByName(this, "Green").getValue();
+                int a = (int) h2.settingsManager.getSettingByName(this, "Alpha").getValue();
                 Color c = new Color(r, g, b, a);
                 if(outline) {
                     RenderUtil.renderBoxWithOutline(x, y - 0.7D, z, 0.5F, 0.5F, c);

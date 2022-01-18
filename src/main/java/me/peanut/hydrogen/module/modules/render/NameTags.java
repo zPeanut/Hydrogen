@@ -30,10 +30,10 @@ public class NameTags extends Module {
 
     public NameTags() {
         instance = this;
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Health", this, true));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("State", this, false));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Items", this, true));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("MurderMystery", this, true));
+        h2.settingsManager.rSetting(new Setting("Health", this, true));
+        h2.settingsManager.rSetting(new Setting("State", this, false));
+        h2.settingsManager.rSetting(new Setting("Items", this, true));
+        h2.settingsManager.rSetting(new Setting("MurderMystery", this, true));
     }
 
 
@@ -109,7 +109,7 @@ public class NameTags extends Module {
     }
 
     public void renderItem(ItemStack stack, int x, int y) {
-        if (Hydrogen.getClient().settingsManager.getSettingByName("Items").isEnabled()) {
+        if (h2.settingsManager.getSettingByName("Items").isEnabled()) {
             GlStateManager.pushMatrix();
             GlStateManager.scale(0.5f, 0.5f, 0.5f);
             List<String> eList = getEnchantList(stack);

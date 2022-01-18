@@ -26,15 +26,12 @@ import java.util.ArrayList;
 @Info(name = "Watermark", description = "Shows the client name", category = Category.Hud)
 public class Watermark extends Module {
 
-    static final DateTimeFormatter timeFormat12 = DateTimeFormatter.ofPattern("h:mm a");
-    static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
-
     public Watermark() {
-        java.util.ArrayList<String> watermark = new ArrayList<>();
-        watermark.add("Old");
-        watermark.add("New");
+        ArrayList<String> time = new ArrayList<>();
+        time.add("24H");
+        time.add("12H");
 
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Watermark", this, "Old", watermark));
+        Hydrogen.getClient().settingsManager.rSetting(new Setting("Time Format", this, "24H", time));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Background", this, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Outline", this, false));
         Hydrogen.getClient().settingsManager.rSetting(new Setting("Time", this, true));

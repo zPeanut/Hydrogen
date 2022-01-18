@@ -19,8 +19,8 @@ import me.peanut.hydrogen.utils.TimeUtils;
 @Info(name = "ChestStealer", description = "Steals items from chests", category = Category.Player)
 public class ChestStealer extends Module {
     public ChestStealer() {
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Delay", this, 100.0, 0.0, 1000.0, false));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Auto Close", this, false));
+        h2.settingsManager.rSetting(new Setting("Delay", this, 100.0, 0.0, 1000.0, false));
+        h2.settingsManager.rSetting(new Setting("Auto Close", this, false));
     }
 
     final TimeUtils delay = new TimeUtils();
@@ -39,14 +39,14 @@ public class ChestStealer extends Module {
                     break;
                 }
             }
-            if (empty && Hydrogen.getClient().settingsManager.getSettingByName("Auto Close").isEnabled()) {
+            if (empty && h2.settingsManager.getSettingByName("Auto Close").isEnabled()) {
                 mc.thePlayer.closeScreen();
                 return;
             }
             for (int i = 0; i < chest.lowerChestInventory.getSizeInventory(); i++) {
                 ItemStack stack = chest.lowerChestInventory.getStackInSlot(i);
                 if (stack != null) {
-                    if ((delay.isDelayComplete((long) Hydrogen.getClient().settingsManager.getSettingByName(this, "Delay").getValue() / 2))) {
+                    if ((delay.isDelayComplete((long) h2.settingsManager.getSettingByName(this, "Delay").getValue() / 2))) {
                         mc.playerController.windowClick(chest.inventorySlots.windowId, Integer.valueOf(i).intValue(), 0,
                                 1, mc.thePlayer);
                         delay.setLastMS();

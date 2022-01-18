@@ -22,9 +22,9 @@ public class AutoType extends Module {
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
-        boolean lowHealth = Hydrogen.getClient().settingsManager.getSettingByName(this, "Health").isEnabled();
-        String text = Hydrogen.getClient().settingsManager.getSettingByName(this, "Text").getText();
-        float health_value = (float) Hydrogen.getClient().settingsManager.getSettingByName(this, "Health Value").getValue();
+        boolean lowHealth = h2.settingsManager.getSettingByName(this, "Health").isEnabled();
+        String text = h2.settingsManager.getSettingByName(this, "Text").getText();
+        float health_value = (float) h2.settingsManager.getSettingByName(this, "Health Value").getValue();
         if(lowHealth) {
             if(mc.thePlayer.getHealth() < health_value) {
                 mc.thePlayer.sendChatMessage(text);
@@ -34,8 +34,8 @@ public class AutoType extends Module {
 
     @Override
     public void onEnable() {
-        boolean lowHealth = Hydrogen.getClient().settingsManager.getSettingByName(this, "Health").isEnabled();
-        String text = Hydrogen.getClient().settingsManager.getSettingByName(this, "Text").getText();
+        boolean lowHealth = h2.settingsManager.getSettingByName(this, "Health").isEnabled();
+        String text = h2.settingsManager.getSettingByName(this, "Text").getText();
         if(!lowHealth) {
             mc.thePlayer.sendChatMessage(text);
             toggle();

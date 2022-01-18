@@ -17,7 +17,6 @@ import java.awt.*;
 @Info(name = "PotionEffects", description = "Shows active potion effects", category = Category.Hud)
 public class PotionEffects extends Module {
 
-
     @EventTarget
     public void drawPotionEffects(EventRender2D e) {
         if (Hydrogen.getClient().panic) {

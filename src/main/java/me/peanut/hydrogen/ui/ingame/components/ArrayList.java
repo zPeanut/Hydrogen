@@ -37,26 +37,7 @@ public class ArrayList extends Module {
     }
 
     public static void arrayListThread() {
-        /*new Thread(() -> {
-            while (Minecraft.getMinecraft().running) {
-                try {
-                    Thread.sleep(5);
-                    for (Module mod : Hydrogen.getClient().moduleManager.getModules()) {
-                        if (mod.isEnabled()) {
-                            if (mod.getSlide() < FontHelper.sf_l.getStringWidth(mod.getName())) {
-                                mod.setSlide(mod.getSlide() + 1);
-                            }
-                        } else if (mod.getSlide() != 0 && !mod.isEnabled()) {
-                            if (mod.getSlide() > 0) {
-                                mod.setSlide(mod.getSlide() - 1);
-                            }
-                        }
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, "smooth array").start();*/
+
     }
 
 

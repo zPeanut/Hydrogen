@@ -123,7 +123,7 @@ public class ModuleManager {
         add(new NoSwing());
 
         for(Module m : this.getModules()) {
-            if(!m.getCategory().equals(Category.Gui)) {
+            if(!(m.getCategory().equals(Category.Gui) && m.getCategory().equals(Category.Hud))) {
                 m.visible = true;
             }
         }
@@ -173,19 +173,12 @@ public class ModuleManager {
     public List<Module> getEnabledMods() {
         List<Module> modules = new ArrayList<>();
         for (Module mod : this.getModules()) {
-            if ((mod.isEnabled() || (mod.getSlide() != 0 && !mod.isEnabled())) && mod.isVisible()) {
+            if ((mod.isEnabled() || ((mod.getSlideMC() != 0 || mod.getSlideTTF() != 0) && !mod.isEnabled())) && mod.isVisible()) {
                 if (!modules.contains(mod)) {
                     modules.add(mod);
                 }
             }
         }
-        Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> {
-            if (FontHelper.sf_l.getStringWidth(m1.getName()) > FontHelper.sf_l.getStringWidth(m2.getName()))
-                return -1;
-            if (FontHelper.sf_l.getStringWidth(m1.getName()) < FontHelper.sf_l.getStringWidth(m2.getName()))
-                return 1;
-            return 0;
-        });
         return modules;
     }
 

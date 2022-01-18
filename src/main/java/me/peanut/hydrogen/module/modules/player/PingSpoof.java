@@ -37,8 +37,8 @@ public class PingSpoof extends Module {
 
     @EventTarget
     public void onPacket(EventPacket event) {
-        int minDelay = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Min. Delay").getValue();
-        int maxDelay = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Max. Delay").getValue();
+        int minDelay = (int) h2.settingsManager.getSettingByName(this, "Min. Delay").getValue();
+        int maxDelay = (int) h2.settingsManager.getSettingByName(this, "Max. Delay").getValue();
         final Packet packet = event.getPacket();
         if ((packet instanceof C00PacketKeepAlive || packet instanceof C16PacketClientStatus) && !this.packetsMap.containsKey(packet)) {
             event.setCancelled(true);

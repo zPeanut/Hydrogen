@@ -18,6 +18,6 @@ public class TTFChat extends Module {
         ArrayList<String> mode = new ArrayList<>();
         mode.add("SF UI Display");
         mode.add("Comfortaa");
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Type", this, "SF UI Display", mode));
+        h2.settingsManager.rSetting(new Setting("Type", this, "SF UI Display", mode));
     }
 }

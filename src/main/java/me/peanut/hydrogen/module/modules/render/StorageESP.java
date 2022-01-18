@@ -38,32 +38,32 @@ public class StorageESP extends Module {
                 final double z = n3 - Minecraft.getMinecraft().getRenderManager().renderPosZ;
                 if (tileEntity instanceof TileEntityFurnace) {
                     RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, 1717987071);
-                    if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                    if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                     RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1717986848);
                 }
                 if (tileEntity instanceof TileEntityHopper) {
                     RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, -2004317953);
-                    if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                    if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                     RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), -2004318176);
                 }
                 if (tileEntity instanceof TileEntityDropper) {
                     RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, -2004317953);
-                    if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                    if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                     RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), -2004318176);
                 }
                 if (tileEntity instanceof TileEntityDispenser) {
                     RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, -2004317953);
-                    if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                    if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                     RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), -2004318176);
                 }
                 if (tileEntity instanceof TileEntityEnderChest) {
                     RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, 294134527);
-                    if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                    if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                     RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 294134304);
                 }
                 if (tileEntity instanceof TileEntityBrewingStand) {
                     RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, 288585727);
-                    if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                    if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                     RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 288585504);
                 }
                 if (tileEntity instanceof TileEntityChest) {
@@ -76,22 +76,22 @@ public class StorageESP extends Module {
                     if (chest == Blocks.chest && border != Blocks.chest) {
                         if (border2 == Blocks.chest) {
                             RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 2.0), 1.5f, -2006576743);
-                            if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                            if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                             RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 2.0), -2006576864);
                         }
                         else if (border4 == Blocks.chest) {
                             RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 2.0, y + 1.0, z + 1.0), 1.5f, -2006576743);
-                            if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                            if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                             RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 2.0, y + 1.0, z + 1.0), -2006576864);
                         }
                         else if (border4 == Blocks.chest) {
                             RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, -2006576743);
-                            if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                            if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                             RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), -2006576864);
                         }
                         else if (border != Blocks.chest && border2 != Blocks.chest && border3 != Blocks.chest && border4 != Blocks.chest) {
                             RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, -2006576743);
-                            if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                            if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                             RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), -2006576864);
                         }
                     }
@@ -99,18 +99,18 @@ public class StorageESP extends Module {
                         continue;
                     }
                     if (border2 == Blocks.trapped_chest) {
-                        if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                        if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                         RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 2.0), 1.5f, 1997603071);
                         RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 2.0), 1997602848);
                     }
                     else if (border4 == Blocks.trapped_chest) {
                         RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 2.0, y + 1.0, z + 1.0), 1.5f, 1997603071);
-                        if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                        if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                         RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 2.0, y + 1.0, z + 1.0), 1997602848);
                     }
                     else if (border4 == Blocks.trapped_chest) {
                         RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, 1997603071);
-                        if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                        if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                         RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1997602848);
                     }
                     else {
@@ -118,7 +118,7 @@ public class StorageESP extends Module {
                             continue;
                         }
                         RenderUtil.drawBoundingBoxESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1.5f, 1997603071);
-                        if(Hydrogen.getClient().settingsManager.getSettingByName("Filling").isEnabled())
+                        if(h2.settingsManager.getSettingByName("Filling").isEnabled())
                         RenderUtil.drawFilledBBESP(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), 1997602848);
                     }
                 }

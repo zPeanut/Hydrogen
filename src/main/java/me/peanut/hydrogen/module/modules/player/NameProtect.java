@@ -31,10 +31,10 @@ public class NameProtect extends Module {
         if (!this.isEnabled()) {
             return;
         }
-        event.setText(StringUtils.replace(event.getText(), mc.thePlayer.getName(), Hydrogen.getClient().settingsManager.getSettingByName(this, "Your Name").getText()));
-        if (Hydrogen.getClient().settingsManager.getSettingByName(this, "All Players").isEnabled()) {
+        event.setText(StringUtils.replace(event.getText(), mc.thePlayer.getName(), h2.settingsManager.getSettingByName(this, "Your Name").getText()));
+        if (h2.settingsManager.getSettingByName(this, "All Players").isEnabled()) {
             for (NetworkPlayerInfo playerInfo : mc.getNetHandler().getPlayerInfoMap()) {
-                event.setText(StringUtils.replace(event.getText(), playerInfo.getGameProfile().getName(), Hydrogen.getClient().settingsManager.getSettingByName(this, "Other Names").getText()));
+                event.setText(StringUtils.replace(event.getText(), playerInfo.getGameProfile().getName(), h2.settingsManager.getSettingByName(this, "Other Names").getText()));
             }
         }
     }

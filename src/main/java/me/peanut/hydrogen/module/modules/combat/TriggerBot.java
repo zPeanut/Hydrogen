@@ -28,16 +28,16 @@ public class TriggerBot extends Module {
     final TimeUtils time = new TimeUtils();
 
     public TriggerBot() {
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Random MS", this, 5, 0, 250, true));
+        h2.settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
+        h2.settingsManager.rSetting(new Setting("Random MS", this, 5, 0, 250, true));
     }
 
 
     @EventTarget
     public void onUpdate(EventUpdate e)
     {
-        delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValue());
-        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random MS").getValue());
+        delay = (int) Math.round(1000 / h2.settingsManager.getSettingByName(this, "CPS").getValue());
+        int random = (int) (Math.random() * h2.settingsManager.getSettingByName(this, "Random MS").getValue());
         delay += random;
         this.time.setLastMS();
         try {

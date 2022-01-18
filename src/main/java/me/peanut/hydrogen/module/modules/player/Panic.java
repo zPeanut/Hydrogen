@@ -31,7 +31,7 @@ public class Panic extends Module {
         // disables commands, disables keybinds, disables hud
         // -> mixinminecraft, mixinentityplayers
 
-        Hydrogen.getClient().panic = true;
+        h2.panic = true;
 
         // disables clickgui, if open
 
@@ -39,7 +39,7 @@ public class Panic extends Module {
 
         // disables all modules
 
-        for (Module m : Hydrogen.getClient().moduleManager.getEnabledMods()) {
+        for (Module m : h2.moduleManager.getEnabledMods()) {
             m.setDisabled();
         }
     }

@@ -104,12 +104,6 @@ public class MixinMinecraft implements IMixinMinecraft {
     private void onShutdown(CallbackInfo ci) {
         if(!Hydrogen.getClient().panic) {
             Hydrogen.getClient().stopClient();
-            ModuleConfig moduleConfig = new ModuleConfig();
-            moduleConfig.saveConfig();
-            SettingsConfig settingsConfig = new SettingsConfig();
-            settingsConfig.saveConfig();
-            ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
-            clickGuiConfig.saveConfig();
         }
     }
 

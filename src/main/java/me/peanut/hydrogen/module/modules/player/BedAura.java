@@ -53,9 +53,9 @@ public class BedAura extends Module {
     @EventTarget
     public void onUpdate(EventUpdate e) {
         if(this.isEnabled()) {
-            boolean bypassWall = Hydrogen.getClient().settingsManager.getSettingByName(this, "ThroughWalls").isEnabled();
-            int radius = (int) Hydrogen.getClient().settingsManager.getSettingByName("Radius").getValue();
-            int delay = (int) Hydrogen.getClient().settingsManager.getSettingByName(this, "Delay").getValue();
+            boolean bypassWall = h2.settingsManager.getSettingByName(this, "ThroughWalls").isEnabled();
+            int radius = (int) h2.settingsManager.getSettingByName("Radius").getValue();
+            int delay = (int) h2.settingsManager.getSettingByName(this, "Delay").getValue();
             int startX = mc.thePlayer.getPosition().getX() - radius;
             int startY = mc.thePlayer.getPosition().getY() - radius;
             int startZ = mc.thePlayer.getPosition().getZ() - radius;
@@ -98,9 +98,9 @@ public class BedAura extends Module {
     }
 
     private void checkIds() {
-        boolean bed = Hydrogen.getClient().settingsManager.getSettingByName(this, "Bed").isEnabled();
-        boolean cake = Hydrogen.getClient().settingsManager.getSettingByName(this, "Cake").isEnabled();
-        boolean egg = Hydrogen.getClient().settingsManager.getSettingByName(this, "Egg").isEnabled();
+        boolean bed = h2.settingsManager.getSettingByName(this, "Bed").isEnabled();
+        boolean cake = h2.settingsManager.getSettingByName(this, "Cake").isEnabled();
+        boolean egg = h2.settingsManager.getSettingByName(this, "Egg").isEnabled();
         Integer i = new Integer(26);
         if (ids.contains(i) && !bed)
             ids.remove(i);

@@ -3,12 +3,18 @@ package me.peanut.hydrogen;
 import com.thealtening.auth.AltService;
 import com.vdurmont.semver4j.Semver;
 import me.peanut.hydrogen.events.EventWorldListener;
+import me.peanut.hydrogen.file.files.ClickGuiConfig;
+import me.peanut.hydrogen.file.files.ModuleConfig;
+import me.peanut.hydrogen.file.files.SettingsConfig;
 import me.peanut.hydrogen.module.ModuleManager;
 import me.peanut.hydrogen.module.modules.player.Freecam;
+import me.peanut.hydrogen.module.modules.player.Panic;
 import me.peanut.hydrogen.ui.ingame.HUD;
 import me.peanut.hydrogen.module.modules.gui.MainMenuModule;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.ui.ingame.components.ArrayList;
+import me.peanut.hydrogen.ui.ingame.style.styles.Classic;
+import me.peanut.hydrogen.ui.ingame.style.styles.New;
 import me.peanut.hydrogen.ui.mainmenu.MainMenu;
 import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.utils.HTTPUtil;
@@ -52,7 +58,7 @@ public class Hydrogen {
     public HUD hud;
 
     public boolean outdated;
-    public boolean panic;
+    public boolean panic = false;
     public boolean firstStart;
     public boolean isStableBuild = false;
     public String newversion;
@@ -65,7 +71,6 @@ public class Hydrogen {
 
     public void startClient() {
         MinecraftForge.EVENT_BUS.register(new EventWorldListener());
-        panic = false;
         directory = new File(Minecraft.getMinecraft().mcDataDir, name);
         if (!this.directory.exists()) {
             this.firstStart = true;
@@ -94,7 +99,8 @@ public class Hydrogen {
         hud = new HUD();
         this.isOutdated();
         new MainMenu();
-        ArrayList.arrayListThread();
+        Classic.classicArrayThread();
+        New.newArrayThread();
 
         if(settingsManager.getSettingByName("Startup Sound").isEnabled()) {
             Utils.playSound("startup.wav");
@@ -111,6 +117,12 @@ public class Hydrogen {
 
     // removing in 1.12.1 or 1.13
     public void stopClient() {
+        ModuleConfig moduleConfig = new ModuleConfig();
+        moduleConfig.saveConfig();
+        SettingsConfig settingsConfig = new SettingsConfig();
+        settingsConfig.saveConfig();
+        ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
+        clickGuiConfig.saveConfig();
         if(!hasNewFiles) {
             File oldVisibleFile = new File(directory, "visible.txt");
             if(oldVisibleFile.delete()) {
@@ -146,6 +158,7 @@ public class Hydrogen {
             }
         }
         moduleManager.getModule(Freecam.class).setDisabled();
+        panic = false;
     }
 
     public void isOutdated() {

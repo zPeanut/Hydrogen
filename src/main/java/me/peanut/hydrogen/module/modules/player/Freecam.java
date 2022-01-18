@@ -73,7 +73,7 @@ public class Freecam extends Module {
 
     @EventTarget
     public void onPacket(EventPacket e) {
-        if (Hydrogen.getClient().settingsManager.getSettingByName(this, "Packet Suspend").isEnabled() && e.getPacket() instanceof C03PacketPlayer || e.getPacket() instanceof C0BPacketEntityAction)
+        if (h2.settingsManager.getSettingByName(this, "Packet Suspend").isEnabled() && e.getPacket() instanceof C03PacketPlayer || e.getPacket() instanceof C0BPacketEntityAction)
             e.setCancelled(true);
     }
 
@@ -92,7 +92,7 @@ public class Freecam extends Module {
             mc.thePlayer.motionX = 0.0D;
             mc.thePlayer.motionY = 0.0D;
             mc.thePlayer.motionZ = 0.0D;
-            float speed = (float) Hydrogen.getClient().settingsManager.getSettingByName(this, "Speed").getValue() * sprintModifier;
+            float speed = (float) h2.settingsManager.getSettingByName(this, "Speed").getValue() * sprintModifier;
             mc.thePlayer.jumpMovementFactor = speed;
             if (mc.gameSettings.keyBindJump.pressed) {
                 mc.thePlayer.motionY += speed;

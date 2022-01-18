@@ -28,19 +28,19 @@ public class AutoClicker extends Module {
         ArrayList<String> mode = new ArrayList<>();
         mode.add("Left Click");
         mode.add("Right Click");
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Type", this, "Left Click", mode));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("on Click", this, false));
-        Hydrogen.getClient().settingsManager.rSetting(new Setting("Random MS", this, 5, 0, 250, true));
+        h2.settingsManager.rSetting(new Setting("Type", this, "Left Click", mode));
+        h2.settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
+        h2.settingsManager.rSetting(new Setting("on Click", this, false));
+        h2.settingsManager.rSetting(new Setting("Random MS", this, 5, 0, 250, true));
     }
 
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
-        boolean type = Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("Left Click");
+        boolean type = h2.settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("Left Click");
 
         if (this.time.isDelayComplete(delay)) {
-            if (Hydrogen.getClient().settingsManager.getSettingByName("on Click").isEnabled()) {
+            if (h2.settingsManager.getSettingByName("on Click").isEnabled()) {
                 if(type) {
                     if (Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
                         this.click();
@@ -57,9 +57,9 @@ public class AutoClicker extends Module {
     }
 
     private void click() {
-        boolean type = Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("Left Click");
-        delay = (int) Math.round(1000 / Hydrogen.getClient().settingsManager.getSettingByName(this, "CPS").getValue());
-        int random = (int) (Math.random() * Hydrogen.getClient().settingsManager.getSettingByName(this, "Random MS").getValue());
+        boolean type = h2.settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("Left Click");
+        delay = (int) Math.round(1000 / h2.settingsManager.getSettingByName(this, "CPS").getValue());
+        int random = (int) (Math.random() * h2.settingsManager.getSettingByName(this, "Random MS").getValue());
         delay += random;
         this.time.setLastMS();
         if(type) {

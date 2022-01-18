@@ -18,9 +18,11 @@ public class Module {
     public boolean visible;
 
     public static final Minecraft mc = Minecraft.getMinecraft();
+    public static final Hydrogen h2 = Hydrogen.getClient();
     public boolean toggled;
     public String suffix;
-    private int slide = 0;
+    private int slideMC = 0;
+    private int slideTTF = 0;
     private Color color;
 
 
@@ -52,7 +54,7 @@ public class Module {
     }
 
     public void addSetting(Setting settingIn) {
-        Hydrogen.getClient().settingsManager.rSetting(settingIn);
+        h2.settingsManager.rSetting(settingIn);
     }
 
 
@@ -73,12 +75,20 @@ public class Module {
         this.keyBind = Keyboard.KEY_NONE;
     }
 
-    public int getSlide() {
-        return slide;
+    public int getSlideMC() {
+        return slideMC;
     }
 
-    public void setSlide(int slide) {
-        this.slide = slide;
+    public void setSlideMC(int slide) {
+        this.slideMC = slide;
+    }
+
+    public int getSlideTTF() {
+        return slideTTF;
+    }
+
+    public void setSlideTTF(int slide) {
+        this.slideTTF = slide;
     }
 
     public static String capitalize(String line)

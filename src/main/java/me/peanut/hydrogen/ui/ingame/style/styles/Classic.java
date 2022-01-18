@@ -3,9 +3,13 @@ package me.peanut.hydrogen.ui.ingame.style.styles;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.module.modules.gui.Hotbar;
 import me.peanut.hydrogen.ui.ingame.components.ArrayList;
 import me.peanut.hydrogen.ui.ingame.components.Info;
 import me.peanut.hydrogen.ui.ingame.style.Style;
+import me.peanut.hydrogen.utils.ColorUtil;
+import me.peanut.hydrogen.utils.HTTPUtil;
+import me.peanut.hydrogen.utils.ReflectionUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -17,6 +21,7 @@ import net.minecraft.potion.PotionEffect;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 
 /**
  * Created by peanut on 18/01/2022
@@ -28,44 +33,78 @@ public class Classic implements Style {
     static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
 
     public Classic() {
-        new Thread(() -> {
-            while (Minecraft.getMinecraft().running) {
-                try {
-                    Thread.sleep(3L);
 
-                    for (Module mod : Hydrogen.getClient().moduleManager.getModules()) {
+        Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> {
+            if (mc.fontRendererObj.getStringWidth(m1.getName()) > mc.fontRendererObj.getStringWidth(m2.getName()))
+                return -1;
+            if (mc.fontRendererObj.getStringWidth(m1.getName()) < mc.fontRendererObj.getStringWidth(m2.getName()))
+                return 1;
+            return 0;
+        });
+    }
+
+    public static void classicArrayThread() {
+        new Thread(() -> {
+            while (true) {
+                try {
+                    if (!ReflectionUtil.running.getBoolean(mc)) {
+                        break;
+                    }
+
+                    Thread.sleep(5L);
+
+                    Iterator<Module> iterator = Hydrogen.getClient().moduleManager.getModules().iterator();
+
+                    while (iterator.hasNext()) {
+                        Module mod = iterator.next();
                         if (mod.isEnabled()) {
-                            if (mod.getSlide() < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod.getName())) {
-                                mod.setSlide(mod.getSlide() + 1);
+                            if (mod.getSlideMC() < Minecraft.getMinecraft().fontRendererObj.getStringWidth(mod.getName())) {
+                                mod.setSlideMC(mod.getSlideMC() + 1);
                             }
 
-                        } else if (mod.getSlide() != 0 && !mod.isEnabled()) {
-                            if (mod.getSlide() > 0) {
-                                mod.setSlide(mod.getSlide() - 1);
+                        } else if (mod.getSlideMC() != 0 && !mod.isEnabled()) {
+                            if (mod.getSlideMC() > 0) {
+                                mod.setSlideMC(mod.getSlideMC() - 1);
                             }
 
                         }
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                } catch (Exception ignored) {
                 }
             }
-        },"smooth array").start();
+        },"smooth array minecraft font").start();
     }
 
     @Override
     public void drawArrayList() {
         int count = 0;
+        float rbdelay = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Delay").getValue();
+        float rbsaturation = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Saturation").getValue();
+        float rbcolorcount = (float) Hydrogen.getClient().settingsManager.getSettingByName("Color Count").getValue();
+
         for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
             ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
             Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
-            int mheight = count * 11 + i + 13;
-
-            if(Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
-                Gui.drawRect(sr.getScaledWidth() - mod.getSlide() - 6, 11 + i * 12, sr.getScaledWidth(), i * 12 + 23, Integer.MIN_VALUE);
+            int mheight = count * 11 + i + 2;
+            Color rainbow = ColorUtil.getRainbowColor(rbdelay, rbsaturation, 1, (long) (count * rbcolorcount));
+            Color color = Color.WHITE;
+            switch (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getMode()) {
+                case "White":
+                    color = Color.WHITE;
+                    break;
+                case "Category":
+                    color = mod.getColor();
+                    break;
+                case "Rainbow":
+                    color = rainbow;
+                    break;
             }
 
-            Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlide() - 3, mheight, -1);
+            if(Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
+                Gui.drawRect(sr.getScaledWidth() - mod.getSlideMC() - 6, 11 + i * 12, sr.getScaledWidth(), i * 12 - 1, Integer.MIN_VALUE);
+            }
+
+            Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlideMC() - 3, mheight, color.getRGB());
             count++;
         }
     }
@@ -81,7 +120,6 @@ public class Classic implements Style {
         String coordinates_z = String.format("Z §7%s", z);
 
         String fps = String.format("FPS §7%s", Minecraft.getDebugFPS());
-        boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getMode().equalsIgnoreCase("TTF");
         boolean lines = Hydrogen.getClient().settingsManager.getSettingByName(Hydrogen.getClient().moduleManager.getModule(Info.class), "XYZ Style").getMode().equalsIgnoreCase("1-Line");
 
 
@@ -260,9 +298,8 @@ public class Classic implements Style {
                     break;
             }
             Info info = new Info();
-            boolean infoIsRight = Hydrogen.getClient().settingsManager.getSettingByName("Alignment").getMode().equalsIgnoreCase("Right");
-            boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getMode().equalsIgnoreCase("TTF");
-            boolean infoEnabled = Hydrogen.getClient().moduleManager.getModule(me.peanut.hydrogen.ui.ingame.components.Info.class).isEnabled();
+            boolean infoIsRight = Hydrogen.getClient().settingsManager.getSettingByName(info, "Alignment").getMode().equalsIgnoreCase("Right");
+            boolean infoEnabled = Hydrogen.getClient().moduleManager.getModule(Info.class).isEnabled();
             boolean chatOpen = mc.ingameGUI.getChatGUI().getChatOpen();
             Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 1, Utils.getScaledRes().getScaledHeight() - posY - 12 - (infoIsRight && infoEnabled ? 22 : 0) - (chatOpen ? 14 : 0), color);
             ++offset;
@@ -279,19 +316,23 @@ public class Classic implements Style {
         LocalDateTime now = LocalDateTime.now();
         String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
 
+        if(!Hydrogen.getClient().isStableBuild && !(Hydrogen.getClient().moduleManager.getModule(Hotbar.class).isEnabled() || Hydrogen.getClient().settingsManager.getSettingByName("Alignment").getMode().equalsIgnoreCase("Left"))) {
+            mc.fontRendererObj.drawStringWithShadow(String.format("§7Latest Commit: %s | %s", HTTPUtil.commitDate, HTTPUtil.commitTime), 2, Utils.getScaledRes().getScaledHeight() - 10, -1);
+        }
 
         if (time) {
 
             String watermark = String.format("%s %s §7(%s)" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : ""), Hydrogen.name, Hydrogen.version, currenttime);
+
+            if (background) {
+                Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
+            }
 
             if(outline) {
                 Gui.drawRect(mc.fontRendererObj.getStringWidth(watermark) + 4, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, 0x99000000);
                 Gui.drawRect(0, 11, mc.fontRendererObj.getStringWidth(watermark) + 4, 12, 0x99000000);
             }
 
-            if (background) {
-                Gui.drawRect(0, 0, mc.fontRendererObj.getStringWidth(watermark) + 3, 11, Integer.MIN_VALUE);
-            }
 
             mc.fontRendererObj.drawStringWithShadow(watermark, 2, 2, -1);
 

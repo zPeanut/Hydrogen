@@ -36,7 +36,7 @@ public class BowAimbot extends Module {
             if (target != null) {
 
                 float[] rotations = PlayerUtil.getBowAngles(target);
-                boolean silent = Hydrogen.getClient().settingsManager.getSettingByName(this, "Silent").isEnabled();
+                boolean silent = h2.settingsManager.getSettingByName(this, "Silent").isEnabled();
 
                 mc.thePlayer.rotationYaw = rotations[0];
                 mc.thePlayer.rotationPitch = rotations[1];
@@ -49,7 +49,7 @@ public class BowAimbot extends Module {
         if(mc.thePlayer.inventory.getCurrentItem() == null || !(mc.thePlayer.inventory.getCurrentItem().getItem() instanceof ItemBow)) {
             return false;
         }
-        if(Hydrogen.getClient().moduleManager.getModule(FastBow.class).isEnabled() && mc.gameSettings.keyBindUseItem.pressed) {
+        if(h2.moduleManager.getModule(FastBow.class).isEnabled() && mc.gameSettings.keyBindUseItem.pressed) {
             return true;
         }
         return mc.thePlayer.isUsingItem();

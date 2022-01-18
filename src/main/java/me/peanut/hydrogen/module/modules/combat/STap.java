@@ -67,12 +67,12 @@ public class STap extends Module {
                 }
             }
         }
-        if (ens != null && mc.thePlayer.isSprinting() && TimeUtils.hasTimePassedMS((long) Hydrogen.getClient().settingsManager.getSettingByName(this, "Delay").getValue())) {
+        if (ens != null && mc.thePlayer.isSprinting() && TimeUtils.hasTimePassedMS((long) h2.settingsManager.getSettingByName(this, "Delay").getValue())) {
             mc.gameSettings.keyBindBack.pressed = true;
             this.lastHold = getCurrentMS();
             TimeUtils.reset();
         }
-        if (this.lastHold != -1L && TimeUtils.hasTimePassedMS(this.lastHold, (long) Hydrogen.getClient().settingsManager.getSettingByName(this, "Held").getValue())) {
+        if (this.lastHold != -1L && TimeUtils.hasTimePassedMS(this.lastHold, (long) h2.settingsManager.getSettingByName(this, "Held").getValue())) {
             mc.gameSettings.keyBindBack.pressed = false;
             this.lastHold = -1L;
         }
