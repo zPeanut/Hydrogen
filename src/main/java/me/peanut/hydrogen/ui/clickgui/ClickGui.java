@@ -122,7 +122,7 @@ public class ClickGui extends GuiScreen {
 		if(this.mc.entityRenderer.getShaderGroup() != null) {
 			this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
 			try {
-				ReflectionUtil.theShaderGroup.set(Minecraft.getMinecraft().entityRenderer, (ShaderGroup)null);
+				ReflectionUtil.theShaderGroup.set(Minecraft.getMinecraft().entityRenderer, null);
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}

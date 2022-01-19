@@ -344,7 +344,7 @@ public class New implements Style {
             boolean infoIsRight = Hydrogen.getClient().settingsManager.getSettingByName(info, "Alignment").getMode().equalsIgnoreCase("Right");
             boolean infoEnabled = Hydrogen.getClient().moduleManager.getModule(Info.class).isEnabled();
             boolean chatOpen = mc.ingameGUI.getChatGUI().getChatOpen();
-            FontHelper.sf_l.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 1, Utils.getScaledRes().getScaledHeight() - posY - 12 - (infoIsRight && infoEnabled ? 22 : 0) - (chatOpen ? 14 : 0), new Color(color, true));
+            FontHelper.sf_l.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(name) - 1, Utils.getScaledRes().getScaledHeight() - posY - 12 - (infoIsRight && infoEnabled ? 22 : 0) - (chatOpen ? 14 : 0), new Color(color, true));
             ++offset;
         }
     }
