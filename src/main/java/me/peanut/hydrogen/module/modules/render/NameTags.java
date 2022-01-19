@@ -9,13 +9,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.input.Keyboard;
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.settings.Setting;
-import me.peanut.hydrogen.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +27,10 @@ public class NameTags extends Module {
 
     public NameTags() {
         instance = this;
-        h2.settingsManager.rSetting(new Setting("Health", this, true));
-        h2.settingsManager.rSetting(new Setting("State", this, false));
-        h2.settingsManager.rSetting(new Setting("Items", this, true));
-        h2.settingsManager.rSetting(new Setting("MurderMystery", this, true));
+        addSetting(new Setting("Health", this, true));
+        addSetting(new Setting("State", this, false));
+        addSetting(new Setting("Items", this, true));
+        addSetting(new Setting("MurderMystery", this, true));
     }
 
 

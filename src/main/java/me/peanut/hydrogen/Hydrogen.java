@@ -97,6 +97,7 @@ public class Hydrogen {
         FontHelper.loadFonts();
         moduleManager.addModules();
         hud = new HUD();
+
         this.isOutdated();
         new MainMenu();
         Classic.classicArrayThread();
@@ -157,7 +158,6 @@ public class Hydrogen {
                 Utils.log("Deleted old ClickGui Settings!");
             }
         }
-        moduleManager.getModule(Freecam.class).setDisabled();
         panic = false;
     }
 

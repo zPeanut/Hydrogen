@@ -6,6 +6,7 @@ import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.module.modules.gui.Hotbar;
 import me.peanut.hydrogen.ui.ingame.components.ArrayList;
 import me.peanut.hydrogen.ui.ingame.components.Info;
+import me.peanut.hydrogen.ui.ingame.components.Watermark;
 import me.peanut.hydrogen.ui.ingame.style.Style;
 import me.peanut.hydrogen.utils.ColorUtil;
 import me.peanut.hydrogen.utils.HTTPUtil;
@@ -32,26 +33,16 @@ public class Classic implements Style {
     static final DateTimeFormatter timeFormat12 = DateTimeFormatter.ofPattern("h:mm a");
     static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
 
-    public Classic() {
-
-        Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> {
-            if (mc.fontRendererObj.getStringWidth(m1.getName()) > mc.fontRendererObj.getStringWidth(m2.getName()))
-                return -1;
-            if (mc.fontRendererObj.getStringWidth(m1.getName()) < mc.fontRendererObj.getStringWidth(m2.getName()))
-                return 1;
-            return 0;
-        });
-    }
-
     public static void classicArrayThread() {
+
         new Thread(() -> {
             while (true) {
                 try {
                     if (!ReflectionUtil.running.getBoolean(mc)) {
                         break;
                     }
-
-                    Thread.sleep(5L);
+                    long listDelay = (long) Hydrogen.getClient().settingsManager.getSettingByName("List Delay").getValue();
+                    Thread.sleep(listDelay);
 
                     Iterator<Module> iterator = Hydrogen.getClient().moduleManager.getModules().iterator();
 
@@ -85,7 +76,7 @@ public class Classic implements Style {
         for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
             ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
             Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
-            int mheight = count * 11 + i + 2;
+            int mheight = count * 11 + i + 3;
             Color rainbow = ColorUtil.getRainbowColor(rbdelay, rbsaturation, 1, (long) (count * rbcolorcount));
             Color color = Color.WHITE;
             switch (Hydrogen.getClient().settingsManager.getSettingByName("List Color").getMode()) {
@@ -101,7 +92,7 @@ public class Classic implements Style {
             }
 
             if(Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled()) {
-                Gui.drawRect(sr.getScaledWidth() - mod.getSlideMC() - 6, 11 + i * 12, sr.getScaledWidth(), i * 12 - 1, Integer.MIN_VALUE);
+                Gui.drawRect(sr.getScaledWidth() - mod.getSlideMC() - 6, 13 + i * 12, sr.getScaledWidth(), i * 12 + 1, Integer.MIN_VALUE);
             }
 
             Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), sr.getScaledWidth() - mod.getSlideMC() - 3, mheight, color.getRGB());
@@ -180,9 +171,6 @@ public class Classic implements Style {
 
     @Override
     public void drawPotionEffects() {
-        if(Hydrogen.getClient().panic) {
-            return;
-        }
         int offset = 0;
         for (Object var4 : Minecraft.getMinecraft().thePlayer.getActivePotionEffects()) {
             int posY = 11 * offset;
@@ -308,10 +296,10 @@ public class Classic implements Style {
 
     @Override
     public void drawWatermark() {
-        ArrayList arrayList = new ArrayList();
-        boolean background = Hydrogen.getClient().settingsManager.getSettingByName(arrayList, "Background").isEnabled();
+        Watermark watermarkModule = new Watermark();
+        boolean background = Hydrogen.getClient().settingsManager.getSettingByName(watermarkModule, "Background").isEnabled();
         boolean time = Hydrogen.getClient().settingsManager.getSettingByName("Time").isEnabled();
-        boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(arrayList, "Outline").isEnabled();
+        boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(watermarkModule, "Outline").isEnabled();
         boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getMode().equals("24H");
         LocalDateTime now = LocalDateTime.now();
         String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);

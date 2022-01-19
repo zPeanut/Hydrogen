@@ -18,15 +18,6 @@ public class Panic extends Module {
 
     @Override
     public void onEnable() {
-        // saves all settings
-
-        ModuleConfig moduleConfig = new ModuleConfig();
-        moduleConfig.saveConfig();
-        SettingsConfig settingsConfig = new SettingsConfig();
-        settingsConfig.saveConfig();
-        ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
-        clickGuiConfig.saveConfig();
-
 
         // disables commands, disables keybinds, disables hud
         // -> mixinminecraft, mixinentityplayers

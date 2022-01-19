@@ -8,7 +8,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemSword;
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
@@ -28,8 +27,8 @@ public class TriggerBot extends Module {
     final TimeUtils time = new TimeUtils();
 
     public TriggerBot() {
-        h2.settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
-        h2.settingsManager.rSetting(new Setting("Random MS", this, 5, 0, 250, true));
+        addSetting(new Setting("CPS", this, 9, 1, 20, true));
+        addSetting(new Setting("Random MS", this, 5, 0, 250, true));
     }
 
 

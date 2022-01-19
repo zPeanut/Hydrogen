@@ -42,8 +42,8 @@ public class New implements Style {
                     if (!ReflectionUtil.running.getBoolean(mc)) {
                         break;
                     }
-
-                    Thread.sleep(5L);
+                    long listDelay = (long) Hydrogen.getClient().settingsManager.getSettingByName("List Delay").getValue();
+                    Thread.sleep(listDelay);
 
                     Iterator<Module> iterator = Hydrogen.getClient().moduleManager.getModules().iterator();
 
@@ -344,54 +344,51 @@ public class New implements Style {
 
     @Override
     public void drawWatermark() {
-        boolean background = Hydrogen.getClient().settingsManager.getSettingByName(Hydrogen.getClient().moduleManager.getModule(Watermark.class), "Background").isEnabled();
-        boolean time = Hydrogen.getClient().settingsManager.getSettingByName("Time").isEnabled();
-        boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(Hydrogen.getClient().moduleManager.getModule(Watermark.class), "Outline").isEnabled();
+        Watermark watermarkModule = new Watermark();
+        boolean background = Hydrogen.getClient().settingsManager.getSettingByName(watermarkModule, "Background").isEnabled();
+        boolean time = Hydrogen.getClient().settingsManager.getSettingByName(watermarkModule, "Time").isEnabled();
+        boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(watermarkModule, "Outline").isEnabled();
         boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getMode().equals("24H");
-        boolean ttf = Hydrogen.getClient().settingsManager.getSettingByName("Font").getMode().equalsIgnoreCase("TTF");
         LocalDateTime now = LocalDateTime.now();
         String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
 
-        if(!Hydrogen.getClient().isStableBuild && !(Hydrogen.getClient().moduleManager.getModule(Hotbar.class).isEnabled() || Hydrogen.getClient().settingsManager.getSettingByName("Alignment").getMode().equalsIgnoreCase("Left"))) {
-            FontHelper.sf_l.drawStringWithShadow(String.format("§7Latest Commit: %s | %s", HTTPUtil.commitDate, HTTPUtil.commitTime), 2, Utils.getScaledRes().getScaledHeight() - 10, Color.WHITE);
+        if (!Hydrogen.getClient().isStableBuild && !(Hydrogen.getClient().moduleManager.getModule(Hotbar.class).isEnabled() || Hydrogen.getClient().settingsManager.getSettingByName("Alignment").getMode().equalsIgnoreCase("Left"))) {
+            FontHelper.sf_l.drawStringWithShadow(String.format("§7Latest Commit: %s | %s", HTTPUtil.commitDate, HTTPUtil.commitTime), 2, Utils.getScaledRes().getScaledHeight() - 12, Color.WHITE);
         }
 
-        if (Hydrogen.getClient().settingsManager.getSettingByName("Watermark").getMode().equalsIgnoreCase("New")) {
+        if (time) {
 
-            if (time) {
+            String watermark = Hydrogen.version + " §7(" + currenttime + ")" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
 
-                String watermark = Hydrogen.version + " §7(" + currenttime + ")" + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
-
-                if(outline) {
-                    Gui.drawRect(FontHelper.sf_l.getStringWidth(watermark) + 24, 0, FontHelper.sf_l.getStringWidth(watermark) + 25, 23, 0x99000000);
-                    Gui.drawRect(0, 23,  FontHelper.sf_l.getStringWidth(watermark) + 25, 24, 0x99000000);
-                }
-
-                if (background) {
-                    Gui.drawRect(0, 0, FontHelper.sf_l.getStringWidth(watermark) + 24, 23, Integer.MIN_VALUE);
-                }
-
-                FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
-                FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
-                FontHelper.sf_l.drawStringWithShadow(watermark, 22, 5, Color.white);
-
-            } else {
-
-                String watermark_no_time = Hydrogen.version + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
-
-                if(outline) {
-                    Gui.drawRect(FontHelper.sf_l.getStringWidth(watermark_no_time) + 28, 0,FontHelper.sf_l.getStringWidth(watermark_no_time) + 29, 23, 0x99000000);
-                    Gui.drawRect(0, 23, FontHelper.sf_l.getStringWidth(watermark_no_time) + 29, 24, 0x99000000);
-                }
-
-                if (background) {
-                    Gui.drawRect(0, 0, FontHelper.sf_l.getStringWidth(watermark_no_time) + 28, 23, Integer.MIN_VALUE);
-                }
-
-                FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
-                FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
-                FontHelper.sf_l.drawStringWithShadow(watermark_no_time, 22, 5, Color.white);
+            if (outline) {
+                Gui.drawRect(FontHelper.sf_l.getStringWidth(watermark) + 24, 0, FontHelper.sf_l.getStringWidth(watermark) + 25, 23, 0x99000000);
+                Gui.drawRect(0, 23, FontHelper.sf_l.getStringWidth(watermark) + 25, 24, 0x99000000);
             }
+
+            if (background) {
+                Gui.drawRect(0, 0, FontHelper.sf_l.getStringWidth(watermark) + 24, 23, Integer.MIN_VALUE);
+            }
+
+            FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
+            FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
+            FontHelper.sf_l.drawStringWithShadow(watermark, 22, 5, Color.white);
+
+        } else {
+
+            String watermark_no_time = Hydrogen.version + (Hydrogen.getClient().outdated ? " §7(Outdated)" : "");
+
+            if (outline) {
+                Gui.drawRect(FontHelper.sf_l.getStringWidth(watermark_no_time) + 28, 0, FontHelper.sf_l.getStringWidth(watermark_no_time) + 29, 23, 0x99000000);
+                Gui.drawRect(0, 23, FontHelper.sf_l.getStringWidth(watermark_no_time) + 29, 24, 0x99000000);
+            }
+
+            if (background) {
+                Gui.drawRect(0, 0, FontHelper.sf_l.getStringWidth(watermark_no_time) + 28, 23, Integer.MIN_VALUE);
+            }
+
+            FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
+            FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
+            FontHelper.sf_l.drawStringWithShadow(watermark_no_time, 22, 5, Color.white);
         }
     }
 }

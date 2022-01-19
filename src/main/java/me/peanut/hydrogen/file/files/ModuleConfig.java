@@ -53,7 +53,7 @@ public class ModuleConfig {
                 if (module != null) {
                     final JsonObject jsonModule = (JsonObject)entry.getValue();
                     boolean toggled = jsonModule.get("toggled").getAsBoolean();
-                    if(toggled) {
+                    if(toggled && !(module.getName().equalsIgnoreCase("freecam") || module.getName().equalsIgnoreCase("§cpanic"))) {
                         module.toggle();
                     }
                     module.setVisible(jsonModule.get("visible").getAsBoolean());

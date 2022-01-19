@@ -2,6 +2,7 @@ package me.peanut.hydrogen.ui.ingame;
 
 import com.darkmagician6.eventapi.EventTarget;
 import me.peanut.hydrogen.events.EventUpdate;
+import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
@@ -24,8 +25,12 @@ public class HUD extends Module {
         ArrayList<String> style = new ArrayList<>();
         style.add("Classic");
         style.add("New");
+        ArrayList<String> time = new ArrayList<>();
+        time.add("24H");
+        time.add("12H");
 
-        h2.settingsManager.rSetting(new Setting("Style", this, "New", style));
+        addSetting(new Setting("Time Format", this, "24H", time));
+        addSetting(new Setting("Style", this, "New", style));
         this.style = new New();
     }
 
@@ -37,9 +42,11 @@ public class HUD extends Module {
     public void updateStyles() {
         switch(h2.settingsManager.getSettingByName(this, "Style").getMode()) {
             case "Classic":
+                Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> Integer.compare(mc.fontRendererObj.getStringWidth(m2.getName()), mc.fontRendererObj.getStringWidth(m1.getName())));
                 h2.hud.style = new Classic();
                 break;
             case "New":
+                Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> Integer.compare(FontHelper.sf_l.getStringWidth(m2.getName()), FontHelper.sf_l.getStringWidth(m1.getName())));
                 h2.hud.style = new New();
                 break;
         }

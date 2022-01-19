@@ -2,7 +2,6 @@ package me.peanut.hydrogen.module.modules.combat;
 
 import com.darkmagician6.eventapi.EventTarget;
 import net.minecraft.client.Minecraft;
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
@@ -28,10 +27,10 @@ public class AutoClicker extends Module {
         ArrayList<String> mode = new ArrayList<>();
         mode.add("Left Click");
         mode.add("Right Click");
-        h2.settingsManager.rSetting(new Setting("Type", this, "Left Click", mode));
-        h2.settingsManager.rSetting(new Setting("CPS", this, 9, 1, 20, true));
-        h2.settingsManager.rSetting(new Setting("on Click", this, false));
-        h2.settingsManager.rSetting(new Setting("Random MS", this, 5, 0, 250, true));
+        addSetting(new Setting("Type", this, "Left Click", mode));
+        addSetting(new Setting("CPS", this, 9, 1, 20, true));
+        addSetting(new Setting("on Click", this, false));
+        addSetting(new Setting("Random MS", this, 5, 0, 250, true));
     }
 
 

@@ -5,15 +5,12 @@ import me.peanut.hydrogen.events.EventRender2D;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
-import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.settings.Setting;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -28,9 +25,9 @@ public class Hotbar extends Module {
     static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
 
     public Hotbar() {
-        h2.settingsManager.rSetting(new Setting("FPS", this, true));
-        h2.settingsManager.rSetting(new Setting("Coordinates", this, true));
-        h2.settingsManager.rSetting(new Setting("Time / Date", this, true));
+        addSetting(new Setting("FPS", this, true));
+        addSetting(new Setting("Coordinates", this, true));
+        addSetting(new Setting("Time / Date", this, true));
 
     }
 

@@ -1,7 +1,5 @@
 package me.peanut.hydrogen.module.modules.render;
 
-import org.lwjgl.input.Keyboard;
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
@@ -14,7 +12,7 @@ import me.peanut.hydrogen.settings.Setting;
 @Info(name = "ESP", description = "Draws an outline on entities through walls", category = Category.Render)
 public class ESP extends Module {
     public ESP() {
-        h2.settingsManager.rSetting(new Setting("LineWidth", this, 3, 1, 10, false));
-        h2.settingsManager.rSetting(new Setting("Entities", this, true));
+        addSetting(new Setting("LineWidth", this, 3, 1, 10, false));
+        addSetting(new Setting("Entities", this, true));
     }
 }

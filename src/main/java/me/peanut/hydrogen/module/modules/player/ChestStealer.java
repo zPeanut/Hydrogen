@@ -5,7 +5,6 @@ import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.item.ItemStack;
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
@@ -19,8 +18,8 @@ import me.peanut.hydrogen.utils.TimeUtils;
 @Info(name = "ChestStealer", description = "Steals items from chests", category = Category.Player)
 public class ChestStealer extends Module {
     public ChestStealer() {
-        h2.settingsManager.rSetting(new Setting("Delay", this, 100.0, 0.0, 1000.0, false));
-        h2.settingsManager.rSetting(new Setting("Auto Close", this, false));
+        addSetting(new Setting("Delay", this, 100.0, 0.0, 1000.0, false));
+        addSetting(new Setting("Auto Close", this, false));
     }
 
     final TimeUtils delay = new TimeUtils();

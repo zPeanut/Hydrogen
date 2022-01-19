@@ -1,7 +1,6 @@
 package me.peanut.hydrogen.module;
 
 import com.darkmagician6.eventapi.EventManager;
-import me.peanut.hydrogen.file.files.ModuleConfig;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import me.peanut.hydrogen.Hydrogen;
@@ -54,7 +53,7 @@ public class Module {
     }
 
     public void addSetting(Setting settingIn) {
-        h2.settingsManager.rSetting(settingIn);
+        h2.settingsManager.addSetting(settingIn);
     }
 
 

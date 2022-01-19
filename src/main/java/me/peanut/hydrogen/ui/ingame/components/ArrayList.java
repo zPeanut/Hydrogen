@@ -31,25 +31,18 @@ public class ArrayList extends Module {
         addSetting(new Setting("Outline", this, true));
         addSetting(new Setting("Background", this, true));
         addSetting(new Setting("List Color",this, "Rainbow", array));
+        addSetting(new Setting("List Delay", this, 5, 0, 20, true));
         addSetting(new Setting("Color Count", this, 100, 50, 1000, true));
         addSetting(new Setting("Rb. Saturation", this, 0.4, 0, 1, false));
         addSetting(new Setting("Rb. Delay", this, 4, 1, 10, true));
     }
 
-    public static void arrayListThread() {
-
-    }
-
-
     @EventTarget
-    public void drawArray(EventRender2D e) {
-        if(Hydrogen.getClient().panic) {
+    public void onRender(EventRender2D e) {
+        if(Hydrogen.getClient().panic || Minecraft.getMinecraft().gameSettings.showDebugInfo) {
             return;
         }
         if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
-            if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
-                return;
-            }
             Hydrogen.getClient().hud.style.drawArrayList();
         }
     }

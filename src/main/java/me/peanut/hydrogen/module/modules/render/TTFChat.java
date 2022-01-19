@@ -1,6 +1,5 @@
 package me.peanut.hydrogen.module.modules.render;
 
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
@@ -18,6 +17,6 @@ public class TTFChat extends Module {
         ArrayList<String> mode = new ArrayList<>();
         mode.add("SF UI Display");
         mode.add("Comfortaa");
-        h2.settingsManager.rSetting(new Setting("Type", this, "SF UI Display", mode));
+        addSetting(new Setting("Type", this, "SF UI Display", mode));
     }
 }

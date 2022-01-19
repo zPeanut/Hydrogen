@@ -18,14 +18,11 @@ import java.awt.*;
 public class PotionEffects extends Module {
 
     @EventTarget
-    public void drawPotionEffects(EventRender2D e) {
-        if (Hydrogen.getClient().panic) {
+    public void onRender(EventRender2D e) {
+        if(Hydrogen.getClient().panic || Minecraft.getMinecraft().gameSettings.showDebugInfo) {
             return;
         }
         if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
-            if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
-                return;
-            }
             Hydrogen.getClient().hud.style.drawPotionEffects();
         }
     }

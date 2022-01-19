@@ -1,6 +1,5 @@
 package me.peanut.hydrogen.module.modules.combat;
 
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
@@ -14,7 +13,7 @@ import me.peanut.hydrogen.settings.Setting;
 public class Reach extends Module {
 
     public Reach() {
-        h2.settingsManager.rSetting(new Setting("Distance", this, 4.5, 3, 7, false));
+        addSetting(new Setting("Distance", this, 4.5, 3, 7, false));
     }
 
 }

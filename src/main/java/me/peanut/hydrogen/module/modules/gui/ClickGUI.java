@@ -6,7 +6,6 @@ import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import org.lwjgl.input.Keyboard;
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.settings.Setting;
 
 import java.util.ArrayList;
@@ -25,15 +24,15 @@ public class ClickGUI extends Module {
         font.add("TTF");
         font.add("Minecraft");
 
-        h2.settingsManager.rSetting(new Setting("Font Type", this, "TTF", font));
-        h2.settingsManager.rSetting(new Setting("Blur", this, true));
-        h2.settingsManager.rSetting(new Setting("Tooltip", this, true));
-        h2.settingsManager.rSetting(new Setting("Particles", this, false));
+        addSetting(new Setting("Font Type", this, "TTF", font));
+        addSetting(new Setting("Blur", this, true));
+        addSetting(new Setting("Tooltip", this, true));
+        addSetting(new Setting("Particles", this, false));
 
-        h2.settingsManager.rSetting(new Setting("Red", this, 163, 0, 255, true));
-        h2.settingsManager.rSetting(new Setting("Blue", this, 223, 0, 255, true));
-        h2.settingsManager.rSetting(new Setting("Green", this, 255, 0, 255, true));
-        h2.settingsManager.rSetting(new Setting("Alpha", this, 220, 0, 255, true));
+        addSetting(new Setting("Red", this, 163, 0, 255, true));
+        addSetting(new Setting("Blue", this, 223, 0, 255, true));
+        addSetting(new Setting("Green", this, 255, 0, 255, true));
+        addSetting(new Setting("Alpha", this, 220, 0, 255, true));
 
    /*
         this exists to i dont have to remember how to add options lol.

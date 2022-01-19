@@ -8,7 +8,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.Vec3;
 import org.lwjgl.input.Keyboard;
-import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventRender3D;
 import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.module.Category;
@@ -37,18 +36,18 @@ public class AimBot extends Module {
 
         ArrayList<String> selectionOrders = new ArrayList<String>(selectionCriterias.keySet());
 
-        h2.settingsManager.rSetting(new Setting("Select", this, "Health", selectionOrders));
-        h2.settingsManager.rSetting(new Setting("Select smaller", this, true));
+        addSetting(new Setting("Select", this, "Health", selectionOrders));
+        addSetting(new Setting("Select smaller", this, true));
 
-        h2.settingsManager.rSetting(new Setting("on Click Only", this, false));
-        h2.settingsManager.rSetting(new Setting("Max Distance", this, 4.2, 1, 6, false));
-        h2.settingsManager.rSetting(new Setting("Visible Only", this, true));
-        h2.settingsManager.rSetting(new Setting("Alive Only", this, true));
-        h2.settingsManager.rSetting(new Setting("Offset", this, true));
-        h2.settingsManager.rSetting(new Setting("Target Only", this, false));
+        addSetting(new Setting("on Click Only", this, false));
+        addSetting(new Setting("Max Distance", this, 4.2, 1, 6, false));
+        addSetting(new Setting("Visible Only", this, true));
+        addSetting(new Setting("Alive Only", this, true));
+        addSetting(new Setting("Offset", this, true));
+        addSetting(new Setting("Target Only", this, false));
 
-        h2.settingsManager.rSetting(new Setting("Target Player", this, false));
-        h2.settingsManager.rSetting(new Setting("Target Mobs", this, false));
+        addSetting(new Setting("Target Player", this, false));
+        addSetting(new Setting("Target Mobs", this, false));
     }
 
     @EventTarget

@@ -129,8 +129,10 @@ public class ClickGui extends GuiScreen {
 		}
 		ModuleConfig moduleConfig = new ModuleConfig();
 		SettingsConfig settingsConfig = new SettingsConfig();
+		ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
 		moduleConfig.saveConfig();
 		settingsConfig.saveConfig();
+		clickGuiConfig.saveConfig();
 
 		super.onGuiClosed();
 	}
