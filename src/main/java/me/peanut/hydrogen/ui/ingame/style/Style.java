@@ -9,4 +9,8 @@ public interface Style {
     void drawPotionEffects();
 
     void drawWatermark();
+
+    void drawHotbar();
+
+
 }

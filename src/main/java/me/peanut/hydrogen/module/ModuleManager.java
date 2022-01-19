@@ -2,11 +2,9 @@ package me.peanut.hydrogen.module;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.EventTarget;
-import me.peanut.hydrogen.Hydrogen;
-import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.module.modules.combat.*;
 import me.peanut.hydrogen.module.modules.gui.ClickGUI;
-import me.peanut.hydrogen.module.modules.gui.Hotbar;
+import me.peanut.hydrogen.ui.ingame.components.Hotbar;
 import me.peanut.hydrogen.module.modules.gui.MainMenuModule;
 import me.peanut.hydrogen.module.modules.movement.*;
 import me.peanut.hydrogen.module.modules.player.*;

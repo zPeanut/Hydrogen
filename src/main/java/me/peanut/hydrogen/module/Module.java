@@ -56,7 +56,6 @@ public class Module {
         h2.settingsManager.addSetting(settingIn);
     }
 
-
     public Color getColor() {
         if(this.getCategory().equals(Category.Combat)) {
             return new Color(255, 219, 171);

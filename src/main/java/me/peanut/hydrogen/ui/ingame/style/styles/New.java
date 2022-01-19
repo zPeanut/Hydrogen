@@ -3,8 +3,7 @@ package me.peanut.hydrogen.ui.ingame.style.styles;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.module.Module;
-import me.peanut.hydrogen.module.modules.gui.Hotbar;
-import me.peanut.hydrogen.ui.ingame.HUD;
+import me.peanut.hydrogen.ui.ingame.components.Hotbar;
 import me.peanut.hydrogen.ui.ingame.components.ArrayList;
 import me.peanut.hydrogen.ui.ingame.components.Info;
 import me.peanut.hydrogen.ui.ingame.components.Watermark;
@@ -14,13 +13,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -28,11 +28,18 @@ import java.util.Iterator;
  */
 public class New implements Style {
 
-    public static Minecraft mc = Minecraft.getMinecraft();
+    static final Minecraft mc = Minecraft.getMinecraft();
     static final DateTimeFormatter timeFormat12 = DateTimeFormatter.ofPattern("h:mm a");
     static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
+    static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-    public New() {
+    public static void sortMethod() {
+        boolean lengthSort = Hydrogen.getClient().settingsManager.getSettingByName("Sorting").getMode().equalsIgnoreCase("Length");
+        if (lengthSort) {
+            Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> Integer.compare(FontHelper.sf_l.getStringWidth(m2.getName()), FontHelper.sf_l.getStringWidth(m1.getName())));
+        } else {
+            Hydrogen.getClient().moduleManager.getModules().sort(Comparator.comparing(Module::getName));
+        }
     }
 
     public static void newArrayThread() {
@@ -389,6 +396,46 @@ public class New implements Style {
             FontHelper.sf_l2.drawStringWithShadow("h", 2, -1, Color.white);
             FontHelper.sf_l.drawStringWithShadow("2", 13, 12, Color.white);
             FontHelper.sf_l.drawStringWithShadow(watermark_no_time, 22, 5, Color.white);
+        }
+    }
+
+    @Override
+    public void drawHotbar() {
+        EntityPlayer entityplayer = (EntityPlayer) Minecraft.getMinecraft().getRenderViewEntity();
+
+        float needX = ((float) Utils.getScaledRes().getScaledWidth() / 2 - 91 + entityplayer.inventory.currentItem * 20);
+        float steps = 10f;
+
+        Module mod = Hydrogen.getClient().moduleManager.getModulebyName("Hotbar");
+        boolean fps = Hydrogen.getClient().settingsManager.getSettingByName(mod, "FPS").isEnabled();
+        boolean coord = Hydrogen.getClient().settingsManager.getSettingByName(mod, "Coordinates").isEnabled();
+        boolean tdate = Hydrogen.getClient().settingsManager.getSettingByName(mod, "Time / Date").isEnabled();
+
+        Utils.addSlide(needX, steps);
+
+        boolean timeformat = Hydrogen.getClient().settingsManager.getSettingByName("Time Format").getMode().equals("24H");
+        LocalDateTime now = LocalDateTime.now();
+        String date = dateFormat.format(now);
+        String time = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
+        String fps1 = String.format("FPS §7%s", Minecraft.getDebugFPS());
+
+        String x = String.valueOf((int) mc.thePlayer.posX);
+        String y = String.valueOf((int) mc.thePlayer.posY);
+        String z = String.valueOf((int) mc.thePlayer.posZ);
+
+        String coordinates = String.format("X: §7%s §fY: §7%s §fZ: §7%s", x, y, z);
+
+        if (tdate) {
+            FontHelper.sf_l.drawStringWithShadow(date, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(date) - 9, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+            FontHelper.sf_l.drawStringWithShadow(time, Utils.getScaledRes().getScaledWidth() - FontHelper.sf_l.getStringWidth(time) - 10, Utils.getScaledRes().getScaledHeight() - 23, Color.white);
+        }
+
+        if (coord) {
+            FontHelper.sf_l.drawStringWithShadow(coordinates, 2, Utils.getScaledRes().getScaledHeight() - 12, Color.white);
+        }
+
+        if (fps) {
+            FontHelper.sf_l.drawStringWithShadow(fps1, 2, coord ? Utils.getScaledRes().getScaledHeight() - 23 : Utils.getScaledRes().getScaledHeight() - 12, Color.white);
         }
     }
 }

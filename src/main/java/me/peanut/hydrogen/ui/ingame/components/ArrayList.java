@@ -3,6 +3,7 @@ package me.peanut.hydrogen.ui.ingame.components;
 import com.darkmagician6.eventapi.EventTarget;
 import com.darkmagician6.eventapi.types.Priority;
 import me.peanut.hydrogen.events.EventRender2D;
+import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
@@ -27,10 +28,14 @@ public class ArrayList extends Module {
         array.add("Rainbow");
         array.add("White");
         array.add("Category");
+        java.util.ArrayList<String> sort = new java.util.ArrayList<>();
+        sort.add("Length");
+        sort.add("Alphabetical");
 
         addSetting(new Setting("Outline", this, true));
         addSetting(new Setting("Background", this, true));
         addSetting(new Setting("List Color",this, "Rainbow", array));
+        addSetting(new Setting("Sorting", this, "Length", sort));
         addSetting(new Setting("List Delay", this, 5, 0, 20, true));
         addSetting(new Setting("Color Count", this, 100, 50, 1000, true));
         addSetting(new Setting("Rb. Saturation", this, 0.4, 0, 1, false));

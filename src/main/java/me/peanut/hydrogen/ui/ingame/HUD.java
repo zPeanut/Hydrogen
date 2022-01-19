@@ -42,11 +42,11 @@ public class HUD extends Module {
     public void updateStyles() {
         switch(h2.settingsManager.getSettingByName(this, "Style").getMode()) {
             case "Classic":
-                Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> Integer.compare(mc.fontRendererObj.getStringWidth(m2.getName()), mc.fontRendererObj.getStringWidth(m1.getName())));
+                Classic.sortMethod();
                 h2.hud.style = new Classic();
                 break;
             case "New":
-                Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> Integer.compare(FontHelper.sf_l.getStringWidth(m2.getName()), FontHelper.sf_l.getStringWidth(m1.getName())));
+                New.sortMethod();
                 h2.hud.style = new New();
                 break;
         }

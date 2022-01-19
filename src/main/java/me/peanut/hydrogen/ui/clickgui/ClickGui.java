@@ -127,12 +127,14 @@ public class ClickGui extends GuiScreen {
 				e.printStackTrace();
 			}
 		}
-		ModuleConfig moduleConfig = new ModuleConfig();
-		SettingsConfig settingsConfig = new SettingsConfig();
-		ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
-		moduleConfig.saveConfig();
-		settingsConfig.saveConfig();
-		clickGuiConfig.saveConfig();
+		if(!Hydrogen.getClient().panic) {
+			ModuleConfig moduleConfig = new ModuleConfig();
+			SettingsConfig settingsConfig = new SettingsConfig();
+			ClickGuiConfig clickGuiConfig = new ClickGuiConfig();
+			moduleConfig.saveConfig();
+			settingsConfig.saveConfig();
+			clickGuiConfig.saveConfig();
+		}
 
 		super.onGuiClosed();
 	}
