@@ -41,6 +41,9 @@ public class MainMenu extends GuiScreen {
     }
 
     public static void drawMenu(int mouseX, int mouseY) {
+        if(Hydrogen.getClient().panic) {
+            return;
+        }
 
         // side menu rects (buttons)
 
