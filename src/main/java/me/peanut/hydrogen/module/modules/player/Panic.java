@@ -19,6 +19,10 @@ public class Panic extends Module {
     @Override
     public void onEnable() {
 
+        for (Module m : h2.moduleManager.getEnabledMods()) {
+            m.toggle();
+        }
+
         // disables commands, disables keybinds, disables hud
         // -> mixinminecraft, mixinentityplayers
 
@@ -27,11 +31,5 @@ public class Panic extends Module {
         // disables clickgui, if open
 
         mc.displayGuiScreen(null);
-
-        // disables all modules
-
-        for (Module m : h2.moduleManager.getEnabledMods()) {
-            m.setDisabled();
-        }
     }
 }

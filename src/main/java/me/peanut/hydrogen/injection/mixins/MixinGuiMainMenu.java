@@ -129,7 +129,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
         int j = this.height / 4 + 48;
 
-        if(Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
+        if(Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled() && !Hydrogen.getClient().panic) {
 
             this.buttonList.add(new ExpandButton(1, 45, Utils.getScaledRes().getScaledHeight() / 2 - 70, 90, 20, "Singleplayer"));
             this.buttonList.add(new ExpandButton(2, 45, Utils.getScaledRes().getScaledHeight() / 2 - 48, 90, 20, "Multiplayer"));
@@ -251,7 +251,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
     @Overwrite
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        if (Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled()) {
+        if (Hydrogen.getClient().moduleManager.getModulebyName("MainMenu").isEnabled() && !(Hydrogen.getClient().panic)) {
             Module m = Hydrogen.getClient().moduleManager.getModulebyName("MainMenu");
             renderSkybox(mouseX, mouseY, partialTicks);
             GlStateManager.disableAlpha();

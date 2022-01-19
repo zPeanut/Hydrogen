@@ -55,7 +55,6 @@ public class Freecam extends Module {
     }
 
     public void onDisable() {
-        EventManager.unregister(this);
         mc.thePlayer.capabilities.isCreativeMode = false;
         mc.thePlayer.noClip = false;
         mc.thePlayer.capabilities.isFlying = false;
