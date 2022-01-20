@@ -1,21 +1,29 @@
-package me.peanut.hydrogen.injection.mixins;
+package me.peanut.hydrogen.injection.mixins.gui;
 
 import com.darkmagician6.eventapi.EventManager;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventRender2D;
 import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.module.modules.render.Animations;
 import me.peanut.hydrogen.module.modules.render.AntiBlind;
 import me.peanut.hydrogen.ui.ingame.HUD;
-import me.peanut.hydrogen.ui.ingame.style.styles.New;
 import me.peanut.hydrogen.utils.BlurUtil;
 import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.FoodStats;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -26,6 +34,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 @Mixin(GuiIngame.class)
@@ -38,6 +48,20 @@ public abstract class MixinGuiIngame extends MixinGui {
     @Final
     protected static final ResourceLocation widgetsTexPath = new ResourceLocation("textures/gui/widgets.png");
 
+
+    @Shadow @Final protected Minecraft mc;
+
+    @Shadow protected long healthUpdateCounter;
+
+    @Shadow protected int updateCounter;
+
+    @Shadow protected int playerHealth;
+
+    @Shadow protected long lastSystemTime;
+
+    @Shadow protected int lastPlayerHealth;
+
+    @Shadow @Final protected Random rand;
 
     @Inject(method = "renderTooltip", at = @At("RETURN"))
     private void renderTooltip(ScaledResolution sr, float partialTicks, CallbackInfo ci) {
@@ -64,6 +88,7 @@ public abstract class MixinGuiIngame extends MixinGui {
 
                 HUD hud = new HUD();
                 boolean newStyle = Hydrogen.getClient().settingsManager.getSettingByName("Style").getMode().equalsIgnoreCase("new");
+
                 if(newStyle) {
                     // blur drawn behind the rect
 
@@ -73,6 +98,7 @@ public abstract class MixinGuiIngame extends MixinGui {
 
                     RenderUtil.rect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
                 }
+
                 // actual hotbar rect
 
                 RenderUtil.rect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - (newStyle ? 7 : 0), Utils.getScaledRes().getScaledHeight(), 0x77000000);

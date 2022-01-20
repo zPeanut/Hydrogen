@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.injection.mixins;
+package me.peanut.hydrogen.injection.mixins.entity;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.darkmagician6.eventapi.types.EventType;
@@ -7,6 +7,7 @@ import me.peanut.hydrogen.events.EventMotionUpdate;
 import me.peanut.hydrogen.events.EventPreMotion;
 import me.peanut.hydrogen.events.EventSafeWalk;
 import me.peanut.hydrogen.events.EventUpdate;
+import me.peanut.hydrogen.injection.mixins.gui.MixinAbstractClientPlayer;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.module.modules.player.NoSwing;
 import net.minecraft.block.Block;

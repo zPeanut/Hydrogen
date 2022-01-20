@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.injection.mixins;
+package me.peanut.hydrogen.injection.mixins.gui;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;

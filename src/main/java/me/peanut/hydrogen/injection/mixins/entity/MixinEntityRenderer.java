@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.injection.mixins;
+package me.peanut.hydrogen.injection.mixins.entity;
 
 import com.darkmagician6.eventapi.EventManager;
 import com.google.common.base.Predicates;

@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.injection.mixins;
+package me.peanut.hydrogen.injection.mixins.gui;
 
 import com.google.common.collect.Lists;
 import me.peanut.hydrogen.Hydrogen;
@@ -7,7 +7,6 @@ import me.peanut.hydrogen.module.modules.render.ChatRect;
 import me.peanut.hydrogen.module.modules.render.TTFChat;
 import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.utils.RenderUtil;
-import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ChatLine;
 import net.minecraft.client.gui.GuiNewChat;

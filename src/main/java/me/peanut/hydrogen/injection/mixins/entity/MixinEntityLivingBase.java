@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.injection.mixins;
+package me.peanut.hydrogen.injection.mixins.entity;
 
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.Module;

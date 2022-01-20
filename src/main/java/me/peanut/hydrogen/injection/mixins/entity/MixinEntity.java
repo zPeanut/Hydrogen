@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.injection.mixins;
+package me.peanut.hydrogen.injection.mixins.entity;
 
 import net.minecraft.block.Block;
 import net.minecraft.crash.CrashReportCategory;

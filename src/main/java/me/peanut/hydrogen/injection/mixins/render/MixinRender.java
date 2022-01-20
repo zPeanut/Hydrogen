@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.injection.mixins;
+package me.peanut.hydrogen.injection.mixins.render;
 
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.modules.player.MurderMystery;
@@ -12,18 +12,20 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(Render.class)
-abstract class MixinRenderer<T extends Entity> {
+public abstract class MixinRender<T extends Entity> {
 
     @Shadow
     protected abstract boolean bindEntityTexture(T entity);
@@ -41,6 +43,8 @@ abstract class MixinRenderer<T extends Entity> {
 
     @Shadow
     protected abstract void renderOffsetLivingLabel(T entityIn, double x, double y, double z, String str, float p_177069_9_, double p_177069_10_);
+
+    @Shadow @Final protected RenderManager renderManager;
 
     /**
      * @author

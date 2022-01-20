@@ -1,4 +1,4 @@
-package me.peanut.hydrogen.injection.mixins;
+package me.peanut.hydrogen.injection.mixins.gui;
 
 import me.peanut.hydrogen.Hydrogen;
 import net.minecraft.client.Minecraft;
@@ -17,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinGuiScreen {
     @Shadow
     public Minecraft mc;
+
+    @Shadow public int width;
 
     @Inject(method = "sendChatMessage(Ljava/lang/String;Z)V", at = @At("HEAD"), cancellable = true)
     private void onChat(String msg, boolean addToChat, @NotNull CallbackInfo ci) {

@@ -1,6 +1,7 @@
-package me.peanut.hydrogen.injection.mixins;
+package me.peanut.hydrogen.injection.mixins.gui;
 
 import me.peanut.hydrogen.Hydrogen;
+import me.peanut.hydrogen.injection.mixins.entity.MixinEntityPlayer;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.module.modules.player.NameProtect;
 import me.peanut.hydrogen.module.modules.render.NoBowFOV;
