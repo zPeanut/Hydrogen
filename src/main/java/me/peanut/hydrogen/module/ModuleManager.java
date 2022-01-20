@@ -67,13 +67,11 @@ public class ModuleManager {
         add(new Trajectories());
         add(new AutoRespawn());
         add(new StorageESP());
-        add(new AirStrafe());
 
         // 1.4
 
         add(new AntiAFK());
         add(new WTap());
-        add(new Flight());
         add(new ItemESP());
 
         // 1.5
@@ -119,6 +117,8 @@ public class ModuleManager {
         add(new AutoType());
         add(new Freecam());
         add(new NoSwing());
+        add(new Animations());
+        add(new HitAnimation());
 
         for(Module m : this.getModules()) {
             if(!(m.getCategory().equals(Category.Gui) && m.getCategory().equals(Category.Hud))) {
