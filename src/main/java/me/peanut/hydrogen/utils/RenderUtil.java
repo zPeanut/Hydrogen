@@ -2,6 +2,7 @@ package me.peanut.hydrogen.utils;
 
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.modules.render.NameTags;
+import me.peanut.hydrogen.ui.ingame.components.Hotbar;
 import me.peanut.hydrogen.ui.ingame.components.Info;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -216,7 +217,13 @@ public class RenderUtil {
             boolean infoIsRight = Hydrogen.getClient().settingsManager.getSettingByName(info, "Alignment").getMode().equalsIgnoreCase("Right");
             boolean infoEnabled = Hydrogen.getClient().moduleManager.getModule(Info.class).isEnabled();
             boolean chatOpen = mc.ingameGUI.getChatGUI().getChatOpen();
-            Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 1, Utils.getScaledRes().getScaledHeight() - posY - 12 - (infoIsRight && infoEnabled ? 22 : 0) - (chatOpen ? 14 : 0), color);
+            boolean hotbar = Hydrogen.getClient().moduleManager.getModule(Hotbar.class).isEnabled();
+            boolean tephra = Hydrogen.getClient().settingsManager.getSettingByName("Style").getMode().equalsIgnoreCase("Tephra");
+            if(hotbar) {
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 2, Utils.getScaledRes().getScaledHeight() - posY - 34, color);
+            } else {
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, Utils.getScaledRes().getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) - 2, Utils.getScaledRes().getScaledHeight() - posY - 12 - (tephra ? 12 : (infoIsRight && infoEnabled ? 22 : 0)) - (chatOpen ? 14 : 0), color);
+            }
             ++offset;
         }
     }
