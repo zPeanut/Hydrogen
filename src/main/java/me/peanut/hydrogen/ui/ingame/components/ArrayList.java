@@ -37,7 +37,7 @@ public class ArrayList extends Module {
         addSetting(new Setting("List Color",this, "Rainbow", array));
         addSetting(new Setting("Sorting", this, "Length", sort));
         addSetting(new Setting("List Delay", this, 5, 0, 20, true));
-        addSetting(new Setting("Color Count", this, 100, 50, 1000, true));
+        addSetting(new Setting("Rb. Color Count", this, 100, 50, 1000, true));
         addSetting(new Setting("Rb. Saturation", this, 0.4, 0, 1, false));
         addSetting(new Setting("Rb. Delay", this, 4, 1, 10, true));
     }

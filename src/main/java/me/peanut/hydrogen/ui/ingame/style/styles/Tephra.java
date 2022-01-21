@@ -52,7 +52,7 @@ public class Tephra implements Style {
         int count = 0;
         float rbdelay = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Delay").getValue();
         float rbsaturation = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Saturation").getValue();
-        float rbcolorcount = (float) Hydrogen.getClient().settingsManager.getSettingByName("Color Count").getValue();
+        float rbcolorcount = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Color Count").getValue();
         boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
 
         for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
