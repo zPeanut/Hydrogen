@@ -77,8 +77,9 @@ public class ModeButton extends Component {
 			int maxIndex = set.getOptions().size();
 			modeIndex++;
 
-			if(modeIndex + 1 > maxIndex)
+			if(modeIndex + 1 > maxIndex) {
 				modeIndex = 0;
+			}
 			set.setMode(set.getOptions().get(modeIndex));
 		}
 	}
