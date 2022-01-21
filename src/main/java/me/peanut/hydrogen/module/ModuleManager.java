@@ -121,7 +121,7 @@ public class ModuleManager {
         add(new HitAnimation());
 
         for(Module m : this.getModules()) {
-            if(!(m.getCategory().equals(Category.Gui) && m.getCategory().equals(Category.Hud))) {
+            if(!(m.getCategory().equals(Category.Gui) || m.getCategory().equals(Category.Hud))) {
                 m.visible = true;
             }
         }
@@ -157,7 +157,6 @@ public class ModuleManager {
         mods.sort(Comparator.comparing(Module::getName));
         return mods;
     }
-
 
     public Module getModulebyName(String moduleName) {
         for(Module mod : modules) {
