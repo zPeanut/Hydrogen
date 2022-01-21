@@ -2,6 +2,9 @@ package me.peanut.hydrogen.events;
 
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.module.modules.gui.ClickGUI;
+import me.peanut.hydrogen.ui.ingame.HUD;
+import me.peanut.hydrogen.ui.ingame.components.ArrayList;
+import me.peanut.hydrogen.ui.ingame.components.Watermark;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;
@@ -21,13 +24,19 @@ public class EventWorldListener {
     public void onWorld(WorldEvent.Load e) {
         World world = e.world;
         if (world != null && Hydrogen.getClient().firstStart) {
-            Utils.sendChatMessage(EnumChatFormatting.GRAY + "Welcome to §fHydrogen " + Hydrogen.version + "§7!");
-            Utils.sendChatMessage(EnumChatFormatting.GRAY + "To get started, press §f[" + Keyboard.getKeyName(Hydrogen.getClient().moduleManager.getModule(ClickGUI.class).getKeybind()) + "]§7 to open the ClickGUI!");
 
-            ChatComponentText String3 = new ChatComponentText(EnumChatFormatting.GRAY + Hydrogen.prefix + " Be sure to report any bugs at our §f§nGitHub§7!");
+            String text1 = String.format("%s Welcome to §fHydrogen %s§7!", Hydrogen.prefix, Hydrogen.version);
+            String text2 = String.format("%s To get started, press §f[%s]§7 to open the ClickGUI!", Hydrogen.prefix, Keyboard.getKeyName(Hydrogen.getClient().moduleManager.getModule(ClickGUI.class).getKeybind()));
+            String text3 = String.format("%s Be sure to report any bugs at our §f§nGitHub§7!", Hydrogen.prefix);
+            ChatComponentText String1 = new ChatComponentText(EnumChatFormatting.GRAY + text1);
+            ChatComponentText String2 = new ChatComponentText(EnumChatFormatting.GRAY + text2);
+            ChatComponentText String3 = new ChatComponentText(EnumChatFormatting.GRAY + text3);
+
             String3.setChatStyle((new ChatStyle()).setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, Hydrogen.github)));
-
+            Utils.sendChatMessage(String1);
+            Utils.sendChatMessage(String2);
             Utils.sendChatMessage(String3);
+
         }
     }
 }
