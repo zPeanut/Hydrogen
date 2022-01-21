@@ -13,6 +13,7 @@ import me.peanut.hydrogen.ui.ingame.HUD;
 import me.peanut.hydrogen.module.modules.gui.MainMenuModule;
 import me.peanut.hydrogen.ui.clickgui.ClickGui;
 import me.peanut.hydrogen.ui.ingame.components.ArrayList;
+import me.peanut.hydrogen.ui.ingame.components.Watermark;
 import me.peanut.hydrogen.ui.ingame.style.styles.Classic;
 import me.peanut.hydrogen.ui.ingame.style.styles.New;
 import me.peanut.hydrogen.ui.mainmenu.MainMenu;
@@ -29,7 +30,6 @@ import me.peanut.hydrogen.settings.SettingsManager;
 
 import java.io.*;
 
-@Mod(modid = Hydrogen.modid, name = Hydrogen.name, version = Hydrogen.semantic_version, useMetadata = true)
 public class Hydrogen {
 
     public static final String modid = "hydrogen";
@@ -109,6 +109,9 @@ public class Hydrogen {
 
         if(firstStart) {
             moduleManager.getModule(MainMenuModule.class).setEnabled();
+            moduleManager.getModule(HUD.class).toggle();
+            moduleManager.getModule(ArrayList.class).toggle();
+            moduleManager.getModule(Watermark.class).toggle();
         }
     }
 
