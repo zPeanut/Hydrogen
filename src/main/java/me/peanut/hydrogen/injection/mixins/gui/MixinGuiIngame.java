@@ -86,18 +86,16 @@ public abstract class MixinGuiIngame extends MixinGui {
 
                 this.zLevel = -90.0F;
 
-                HUD hud = new HUD();
                 boolean newStyle = Hydrogen.getClient().settingsManager.getSettingByName("Style").getMode().equalsIgnoreCase("new");
 
-                if(newStyle) {
-                    // blur drawn behind the rect
+                // blur drawn behind the rect
 
-                    BlurUtil.blurAreaBorder(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 2, 0, 1);
+                BlurUtil.blurAreaBorder(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 2, 0, 1);
 
-                    // right side white rect
+                // right side white rect
 
-                    RenderUtil.rect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
-                }
+                RenderUtil.rect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+
 
                 // actual hotbar rect
 
