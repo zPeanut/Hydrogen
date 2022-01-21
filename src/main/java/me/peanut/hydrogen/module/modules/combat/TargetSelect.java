@@ -24,11 +24,6 @@ public class TargetSelect extends Module {
 
     public static EntityLivingBase primaryTarget = null;
     private Entity pointedEntity;
-    private MovingObjectPosition objectMouseOver;
-
-    public TargetSelect() {
-        this.setEnabled();
-    }
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
@@ -45,7 +40,7 @@ public class TargetSelect extends Module {
 
     @EventTarget
     public void onPrimaryTargetSelected(EventPrimaryTargetSelected e) {
-        Command.msg("new target selected: " + e.getTarget().getName());
+        Command.msg("New target selected: " + e.getTarget().getName());
         System.out.println(e.getTarget());
     }
 
@@ -54,7 +49,7 @@ public class TargetSelect extends Module {
         if (entity != null && mc.theWorld != null) {
             this.pointedEntity = null;
             double d0 = 6f; // Distance
-            this.objectMouseOver = entity.rayTrace(d0, partialTicks);
+            MovingObjectPosition objectMouseOver = entity.rayTrace(d0, partialTicks);
             double d1 = d0;
             Vec3 vec3 = entity.getPositionEyes(partialTicks);
             boolean flag = false;

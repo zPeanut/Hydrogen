@@ -94,14 +94,6 @@ public class Module {
         return Character.toUpperCase(line.charAt(0)) + line.substring(1);
     }
 
-    public void setDisabled() {
-        toggled = false;
-    }
-
-    public void setEnabled() {
-        toggled = true;
-    }
-
     public void onUpdate() {}
 
     public boolean isEnabled() {
@@ -117,13 +109,22 @@ public class Module {
     }
 
     public void toggle() {
-        this.toggled = (!this.toggled);
+        this.toggled = !this.toggled;
         if(this.toggled) {
             onEnable();
         }else{
             onDisable();
         }
     }
+
+    public void setEnabled() {
+        this.toggled = true;
+    }
+
+    public void setDisabled() {
+        this.toggled = false;
+    }
+
     public void onEnable() {
         EventManager.register(this);
     }
