@@ -52,10 +52,9 @@ public abstract class MixinGuiPlayerTabOverlay extends MixinGui {
      */
     @Overwrite
     public void renderPlayerlist(int width, Scoreboard scoreboardIn, ScoreObjective scoreObjectiveIn) {
-        boolean tabList = Hydrogen.getClient().settingsManager.getSettingByName("Tab List").isEnabled();
-        boolean animationsEnabled = Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled();
+        boolean tabList = Hydrogen.getClient().settingsManager.getSettingByName("Tab List").isEnabled() && Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled();
 
-        if(tabList && animationsEnabled) {
+        if(tabList) {
             try {
                 NetHandlerPlayClient nethandlerplayclient = this.mc.thePlayer.sendQueue;
                 List list = field_175252_a.sortedCopy(nethandlerplayclient.getPlayerInfoMap());

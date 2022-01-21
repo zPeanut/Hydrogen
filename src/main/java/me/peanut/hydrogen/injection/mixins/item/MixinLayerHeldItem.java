@@ -2,6 +2,7 @@ package me.peanut.hydrogen.injection.mixins.item;
 
 import gnu.trove.impl.hash.TFloatFloatHash;
 import me.peanut.hydrogen.Hydrogen;
+import me.peanut.hydrogen.module.modules.render.Animations;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
@@ -46,7 +47,7 @@ public class MixinLayerHeldItem {
                 GlStateManager.scale(f, f, f);
             }
 
-            if (Hydrogen.getClient().settingsManager.getSettingByName("Third-person Block").isEnabled()) {
+            if (Hydrogen.getClient().settingsManager.getSettingByName("Third-person Block").isEnabled() && Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled()) {
                 final UUID uuid = entitylivingbaseIn.getUniqueID();
                 final EntityPlayer entityplayer = Minecraft.getMinecraft().theWorld.getPlayerEntityByUUID(uuid);
                 if (entityplayer != null && entityplayer.isBlocking()) {

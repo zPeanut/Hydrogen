@@ -166,7 +166,7 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
             this.brightnessBuffer.position(0);
             if (flag1) {
                 Animations oldAnimations = Hydrogen.getClient().moduleManager.getModule(Animations.class);
-                if(Hydrogen.getClient().settingsManager.getSettingByName("Armor Damage").isEnabled()) {
+                if(Hydrogen.getClient().settingsManager.getSettingByName("Armor Damage").isEnabled() && Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled()) {
                     this.brightnessBuffer.put(f);
                     this.brightnessBuffer.put(0.0F);
                     this.brightnessBuffer.put(0.0F);
@@ -213,7 +213,7 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
             boolean flag = layerrenderer.shouldCombineTextures();
 
             Animations oldAnimations = Hydrogen.getClient().moduleManager.getModule(Animations.class);
-            if(Hydrogen.getClient().settingsManager.getSettingByName(oldAnimations, "Armor Damage").isEnabled() && layerrenderer instanceof LayerBipedArmor) {
+            if(Hydrogen.getClient().settingsManager.getSettingByName(oldAnimations, "Armor Damage").isEnabled() && Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled() && layerrenderer instanceof LayerBipedArmor) {
                 flag = true;
             }
 

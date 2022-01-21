@@ -101,6 +101,8 @@ public abstract class MixinItemRenderer {
                 this.renderItemMap(abstractclientplayer, f4, f, f4);
             } else if (abstractclientplayer.getItemInUseCount() > 0) {
                 EnumAction enumaction = this.itemToRender.getItemUseAction();
+                boolean blockhit = Hydrogen.getClient().settingsManager.getSettingByName("BlockHit").isEnabled() && Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled();
+                boolean bow = Hydrogen.getClient().settingsManager.getSettingByName("Bow").isEnabled() && Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled();
                 switch (enumaction) {
                     case NONE:
                         this.transformFirstPersonItem(f, 0.0F);
@@ -116,11 +118,11 @@ public abstract class MixinItemRenderer {
                         }
                         break;
                     case BLOCK:
-                        this.transformFirstPersonItem(f, (Hydrogen.getClient().settingsManager.getSettingByName("BlockHit").isEnabled() ? f2 : 0));
+                        this.transformFirstPersonItem(f, (blockhit ? f2 : 0));
                         this.doBlockTransformations();
                         break;
                     case BOW:
-                        this.transformFirstPersonItem(f, (Hydrogen.getClient().settingsManager.getSettingByName("Bow").isEnabled() ? f2 : 0));
+                        this.transformFirstPersonItem(f, (bow ? f2 : 0));
                         this.doBowTransformations(partialTicks, abstractclientplayer);
                 }
             } else {
@@ -140,12 +142,13 @@ public abstract class MixinItemRenderer {
 
     @Inject(method = "transformFirstPersonItem", at = @At("HEAD"))
     public void oldRodBowAnimations(float equipProgress, float swingProgress, CallbackInfo ci) {
-        Animations oldAnimations = Hydrogen.getClient().moduleManager.getModule(Animations.class);
-        if (Hydrogen.getClient().settingsManager.getSettingByName(oldAnimations, "Bow").isEnabled() && Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.getItemInUse() != null && Minecraft.getMinecraft().thePlayer.getItemInUse().getItem() != null && Item.getIdFromItem(Minecraft.getMinecraft().thePlayer.getItemInUse().getItem()) == 261) {
+        boolean bow = Hydrogen.getClient().settingsManager.getSettingByName("Bow").isEnabled() && Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled();
+        boolean rod = Hydrogen.getClient().settingsManager.getSettingByName("Rod").isEnabled() && Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled();
+        if (bow && Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.getItemInUse() != null && Minecraft.getMinecraft().thePlayer.getItemInUse().getItem() != null && Item.getIdFromItem(Minecraft.getMinecraft().thePlayer.getItemInUse().getItem()) == 261) {
             GlStateManager.translate(0.0F, 0.0F, -0.08F);
         }
 
-        if (Hydrogen.getClient().settingsManager.getSettingByName(oldAnimations, "Rod").isEnabled() && Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem() != null && Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem().getItem() != null && Item.getIdFromItem(Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem().getItem()) == 346) {
+        if (rod && Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem() != null && Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem().getItem() != null && Item.getIdFromItem(Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem().getItem()) == 346) {
             GlStateManager.translate(0.1F, -0.02F, -0.335F);
         }
     }

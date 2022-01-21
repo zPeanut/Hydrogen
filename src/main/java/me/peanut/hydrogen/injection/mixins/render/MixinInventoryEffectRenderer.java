@@ -2,6 +2,7 @@ package me.peanut.hydrogen.injection.mixins.render;
 
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.injection.mixins.gui.MixinGuiContainer;
+import me.peanut.hydrogen.module.modules.render.Animations;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.InventoryEffectRenderer;
 import net.minecraft.potion.Potion;
@@ -38,7 +39,7 @@ public class MixinInventoryEffectRenderer extends MixinGuiContainer {
         }
 
        if (!Minecraft.getMinecraft().thePlayer.getActivePotionEffects().isEmpty() && hasVisibleEffect) {
-            if(!(Hydrogen.getClient().settingsManager.getSettingByName("Inventory Offset").isEnabled())) {
+            if(!(Hydrogen.getClient().settingsManager.getSettingByName("Inventory Offset").isEnabled() && Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled())) {
                 this.guiLeft = 160 + (this.width - this.xSize - 200) / 2;
             }
             this.hasActivePotionEffects = true;
