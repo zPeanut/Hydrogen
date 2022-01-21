@@ -1,5 +1,6 @@
 package me.peanut.hydrogen.file;
 
+import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import me.peanut.hydrogen.Hydrogen;
 
@@ -43,7 +44,7 @@ public class FileManager {
             }
             br.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            Utils.errorLog("Files not found!");
         }
         return list;
     }
