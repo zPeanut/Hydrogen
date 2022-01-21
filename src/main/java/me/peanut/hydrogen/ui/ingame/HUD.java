@@ -8,9 +8,11 @@ import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.settings.Setting;
+import me.peanut.hydrogen.ui.ingame.components.Watermark;
 import me.peanut.hydrogen.ui.ingame.style.Style;
 import me.peanut.hydrogen.ui.ingame.style.styles.Classic;
 import me.peanut.hydrogen.ui.ingame.style.styles.New;
+import me.peanut.hydrogen.ui.ingame.style.styles.Tephra;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,7 @@ public class HUD extends Module {
         ArrayList<String> style = new ArrayList<>();
         style.add("Classic");
         style.add("New");
+        style.add("Tephra");
         ArrayList<String> time = new ArrayList<>();
         time.add("24H");
         time.add("12H");
@@ -42,14 +45,32 @@ public class HUD extends Module {
     public void updateStyles() {
         switch(h2.settingsManager.getSettingByName(this, "Style").getMode()) {
             case "Classic":
-                Classic.sortMethod();
+
+                // background = false
+                // color = white
+                Classic.sortModules();
+                Classic.loadSettings();
                 h2.hud.style = new Classic();
                 break;
+            case "Tephra":
+
+                // background = true
+                // color = rainbow
+
+                Classic.sortModules();
+                Tephra.loadSettings();
+                h2.hud.style = new Tephra();
+                break;
             case "New":
-                New.sortMethod();
+
+                // background = true
+                // outline = true
+                // color = rainbow
+
+                New.sortModules();
+                New.loadSettings();
                 h2.hud.style = new New();
                 break;
         }
     }
-
 }

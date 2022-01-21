@@ -28,17 +28,23 @@ import java.util.Iterator;
  */
 public class New implements Style {
 
+    public static boolean lmao;
+
     static final Minecraft mc = Minecraft.getMinecraft();
     static final DateTimeFormatter timeFormat12 = DateTimeFormatter.ofPattern("h:mm a");
     static final DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
     static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-    public static void sortMethod() {
-        boolean lengthSort = Hydrogen.getClient().settingsManager.getSettingByName("Sorting").getMode().equalsIgnoreCase("Length");
-        if (lengthSort) {
-            Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> Integer.compare(FontHelper.sf_l.getStringWidth(m2.getName()), FontHelper.sf_l.getStringWidth(m1.getName())));
-        } else {
-            Hydrogen.getClient().moduleManager.getModules().sort(Comparator.comparing(Module::getName));
+    public static void loadSettings() {
+        if(!lmao) {
+            me.peanut.hydrogen.ui.ingame.components.ArrayList arrayListModule = Hydrogen.getClient().moduleManager.getModule(me.peanut.hydrogen.ui.ingame.components.ArrayList.class);
+            Watermark watermark = Hydrogen.getClient().moduleManager.getModule(Watermark.class);
+
+            Hydrogen.getClient().settingsManager.getSettingByName("List Color").setMode("Rainbow");
+            Hydrogen.getClient().settingsManager.getSettingByName(arrayListModule, "Background").setState(true);
+            Hydrogen.getClient().settingsManager.getSettingByName(watermark, "Background").setState(true);
+            Hydrogen.getClient().settingsManager.getSettingByName("Outline").setState(true);
+            lmao = true;
         }
     }
 
@@ -72,6 +78,15 @@ public class New implements Style {
                 }
             }
         }, "smooth array ttf font").start();
+    }
+
+    public static void sortModules() {
+        boolean lengthSort = Hydrogen.getClient().settingsManager.getSettingByName("Sorting").getMode().equalsIgnoreCase("Length");
+        if (lengthSort) {
+            Hydrogen.getClient().moduleManager.getModules().sort((m1, m2) -> Integer.compare(FontHelper.sf_l.getStringWidth(m2.getName()), FontHelper.sf_l.getStringWidth(m1.getName())));
+        } else {
+            Hydrogen.getClient().moduleManager.getModules().sort(Comparator.comparing(Module::getName));
+        }
     }
 
     @Override
@@ -110,8 +125,6 @@ public class New implements Style {
                     color = rainbow;
                     break;
             }
-
-
 
             if (outline && background) {
                 if (i == 0) {
@@ -360,7 +373,8 @@ public class New implements Style {
         String currenttime = timeformat ? timeFormat24.format(now) : timeFormat12.format(now);
 
         if (!Hydrogen.getClient().isStableBuild && !(Hydrogen.getClient().moduleManager.getModule(Hotbar.class).isEnabled() || Hydrogen.getClient().settingsManager.getSettingByName("Alignment").getMode().equalsIgnoreCase("Left"))) {
-            FontHelper.sf_l.drawStringWithShadow(String.format("§7Latest Commit: %s | %s", HTTPUtil.commitDate, HTTPUtil.commitTime), 2, Utils.getScaledRes().getScaledHeight() - 12, Color.WHITE);
+            FontHelper.sf_l.drawStringWithShadow("§7Indev Build", 2, Utils.getScaledRes().getScaledHeight() - (mc.ingameGUI.getChatGUI().getChatOpen() ? 36 : 22), Color.WHITE);
+            FontHelper.sf_l.drawStringWithShadow(String.format("§7Latest Commit: %s | %s", HTTPUtil.commitDate, HTTPUtil.commitTime), 2, Utils.getScaledRes().getScaledHeight() - (mc.ingameGUI.getChatGUI().getChatOpen() ? 26 : 12), Color.WHITE);
         }
 
         if (time) {
