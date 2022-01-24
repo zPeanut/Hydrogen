@@ -4,13 +4,16 @@ An open source, mixin based ghost client for Minecraft 1.8.9 built on Minecraft 
 Developed by [Me] and [UltramoxX].  
 Contributions are highly welcome!
 
-Current stable release: **1.11.4**
-
+Current stable release: **1.11.4**  
+  
 Join our discord!  
 https://discord.gg/dmw5N5X9p6
 
 Full Changelog:  
 https://zpeanut.github.io/main/changelog
+  
+Please remember that: **We are not responsible for any repercussions you face using this client.  
+We are merely providing you with it. Use at your own risk.** 
 
 
 ## Features
