@@ -42,14 +42,12 @@ public class BlurUtil {
     }
 
 
-    public static void blurArea(int x, int y, int width, int height, float intensity, float blurWidth,
-                                float blurHeight) {
+    public static void blurArea(int x, int y, int width, int height, float intensity, float blurWidth, float blurHeight) {
         ScaledResolution scale = new ScaledResolution(mc);
         int factor = scale.getScaleFactor();
         int factor2 = scale.getScaledWidth();
         int factor3 = scale.getScaledHeight();
-        if (lastScale != factor || lastScaleWidth != factor2 || lastScaleHeight != factor3 || buffer == null
-                || blurShader == null) {
+        if (lastScale != factor || lastScaleWidth != factor2 || lastScaleHeight != factor3 || buffer == null || blurShader == null) {
             initFboAndShader();
         }
         lastScale = factor;
@@ -86,8 +84,7 @@ public class BlurUtil {
         int factor = scale.getScaleFactor();
         int factor2 = scale.getScaledWidth();
         int factor3 = scale.getScaledHeight();
-        if (lastScale != factor || lastScaleWidth != factor2 || lastScaleHeight != factor3 || buffer == null
-                || blurShader == null) {
+        if (lastScale != factor || lastScaleWidth != factor2 || lastScaleHeight != factor3 || buffer == null || blurShader == null) {
             initFboAndShader();
         }
         lastScale = factor;
@@ -97,8 +94,7 @@ public class BlurUtil {
 
         buffer.framebufferClear();
 
-        GL11.glScissor(x * factor, (mc.displayHeight - (y * factor) - height * factor), width * factor,
-                (height) * factor);
+        GL11.glScissor(x * factor, (mc.displayHeight - (y * factor) - height * factor), width * factor, (height) * factor);
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
 
         setShaderConfigs(intensity, 1, 0, 1);
@@ -117,22 +113,19 @@ public class BlurUtil {
         RenderHelper.enableGUIStandardItemLighting();
     }
 
-    public static void blurAreaBorder(float x, float y, float width, float height, float intensity, float blurWidth,
-                                      float blurHeight) {
+    public static void blurAreaBorder(float x, float y, float width, float height, float intensity, float blurWidth, float blurHeight) {
         ScaledResolution scale = new ScaledResolution(mc);
         int factor = scale.getScaleFactor();
         int factor2 = scale.getScaledWidth();
         int factor3 = scale.getScaledHeight();
-        if (lastScale != factor || lastScaleWidth != factor2 || lastScaleHeight != factor3 || buffer == null
-                || blurShader == null) {
+        if (lastScale != factor || lastScaleWidth != factor2 || lastScaleHeight != factor3 || buffer == null || blurShader == null) {
             initFboAndShader();
         }
         lastScale = factor;
         lastScaleWidth = factor2;
         lastScaleHeight = factor3;
 
-        GL11.glScissor((int)(x * factor), (int)((mc.displayHeight - (y * factor) - height * factor)) +1, (int)(width * factor),
-                (int)(height * factor));
+        GL11.glScissor((int)(x * factor), (int)((mc.displayHeight - (y * factor) - height * factor)) +1, (int)(width * factor), (int)(height * factor));
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
 
         setShaderConfigs(intensity, blurWidth, blurHeight, 1);
@@ -147,8 +140,7 @@ public class BlurUtil {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
-    public static void blurShape(float g, float f, float h, float height, float intensity, float blurWidth,
-                                 float blurHeight) {
+    public static void blurShape(float g, float f, float h, float height, float intensity, float blurWidth, float blurHeight) {
         ScaledResolution scale = new ScaledResolution(mc);
         int factor = scale.getScaleFactor();
         int factor2 = scale.getScaledWidth();
@@ -205,8 +197,7 @@ public class BlurUtil {
         int factor = scale.getScaleFactor();
         int factor2 = scale.getScaledWidth();
         int factor3 = scale.getScaledHeight();
-        if (lastScale != factor || lastScaleWidth != factor2 || lastScaleHeight != factor3 || buffer == null
-                || blurShader == null) {
+        if (lastScale != factor || lastScaleWidth != factor2 || lastScaleHeight != factor3 || buffer == null || blurShader == null) {
             initFboAndShader();
         }
         lastScale = factor;
@@ -214,7 +205,6 @@ public class BlurUtil {
         lastScaleHeight = factor3;
 
         setShaderConfigs(intensity, 1, 0, 1);
-        //buffer.bindFramebuffer(true);
         blurShader.loadShaderGroup(mc.timer.renderPartialTicks);
 
         mc.getFramebuffer().bindFramebuffer(true);

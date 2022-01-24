@@ -6,6 +6,7 @@ import me.peanut.hydrogen.events.EventRender2D;
 import me.peanut.hydrogen.module.Category;
 import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.utils.BlurUtil;
 import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -25,7 +26,6 @@ public class Hotbar extends Module {
         addSetting(new Setting("FPS", this, true));
         addSetting(new Setting("Coordinates", this, true));
         addSetting(new Setting("Time / Date", this, true));
-
     }
 
     @EventTarget
@@ -33,6 +33,8 @@ public class Hotbar extends Module {
         if(Hydrogen.getClient().panic || Minecraft.getMinecraft().gameSettings.showDebugInfo) {
             return;
         }
+        boolean blurEnabled = Hydrogen.getClient().settingsManager.getSettingByName(this, "Blur").isEnabled();
+
         if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
             Hydrogen.getClient().hud.style.drawHotbar();
         }

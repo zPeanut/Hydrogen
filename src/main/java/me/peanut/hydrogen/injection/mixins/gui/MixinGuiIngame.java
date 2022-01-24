@@ -88,23 +88,6 @@ public abstract class MixinGuiIngame extends MixinGui {
 
                 boolean newStyle = Hydrogen.getClient().settingsManager.getSettingByName("Style").getMode().equalsIgnoreCase("new");
 
-                // blur drawn behind the rect
-
-                BlurUtil.blurAreaBorder(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 2, 0, 1);
-
-                // right side white rect
-
-                RenderUtil.rect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
-
-
-                // actual hotbar rect
-
-                RenderUtil.rect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - (newStyle ? 7 : 0), Utils.getScaledRes().getScaledHeight(), 0x77000000);
-
-                // selected hotbar item
-
-                RenderUtil.rect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 23, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
-
                 this.zLevel = f;
                 GlStateManager.enableRescaleNormal();
                 GlStateManager.enableBlend();
@@ -115,6 +98,19 @@ public abstract class MixinGuiIngame extends MixinGui {
                     int l = sr.getScaledHeight() - 16 - 3;
                     renderHotbarItem(j, k, l - 1, partialTicks, entityplayer);
                 }
+
+                // right side white rect
+
+                RenderUtil.rect(Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth(), Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+
+                // actual hotbar rect
+
+                RenderUtil.rect(0, Utils.getScaledRes().getScaledHeight() - 23, Utils.getScaledRes().getScaledWidth() - 7, Utils.getScaledRes().getScaledHeight(), 0x77000000);
+
+                // selected hotbar item
+
+                RenderUtil.rect(Utils.slide, Utils.getScaledRes().getScaledHeight() - 23, Utils.slide + 22, Utils.getScaledRes().getScaledHeight(), Integer.MAX_VALUE);
+
                 RenderHelper.disableStandardItemLighting();
                 GlStateManager.disableRescaleNormal();
                 GlStateManager.disableBlend();
