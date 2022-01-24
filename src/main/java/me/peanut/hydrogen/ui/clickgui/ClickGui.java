@@ -14,6 +14,7 @@ import me.peanut.hydrogen.settings.Setting;
 import me.peanut.hydrogen.ui.clickgui.component.Component;
 import me.peanut.hydrogen.ui.clickgui.component.Frame;
 import me.peanut.hydrogen.ui.clickgui.component.components.Button;
+import me.peanut.hydrogen.utils.BlurUtil;
 import me.peanut.hydrogen.utils.ParticleGenerator;
 import me.peanut.hydrogen.utils.ReflectionUtil;
 import net.minecraft.client.Minecraft;
@@ -45,28 +46,17 @@ public class ClickGui extends GuiScreen {
 
 	@Override
 	public void initGui() {
-		if (Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled()) {
-			if (OpenGlHelper.shadersSupported) {
-				if (mc.entityRenderer.getShaderGroup() != null) {
-					mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-				}
-				mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
-			}
-		} else {
-			if (this.mc.entityRenderer.getShaderGroup() != null) {
-				this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-				try {
-					ReflectionUtil.theShaderGroup.set(Minecraft.getMinecraft().entityRenderer, null);
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+
 	}
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		boolean particles = Hydrogen.getClient().settingsManager.getSettingByName("Particles").isEnabled();
+		boolean blur = Hydrogen.getClient().settingsManager.getSettingByName("Blur").isEnabled();
 		drawRect(0, 0, this.width, this.height, 0x66101010);
+		if (blur) {
+			BlurUtil.blurAll(0.1f);
+		}
 		for (Frame frame : frames) {
 			frame.renderFrame(this.fontRendererObj);
 			frame.updatePosition(mouseX, mouseY);
@@ -74,7 +64,6 @@ public class ClickGui extends GuiScreen {
 				comp.updateComponent(mouseX, mouseY);
 			}
 		}
-		boolean particles = Hydrogen.getClient().settingsManager.getSettingByName("Particles").isEnabled();
 		if(particles) {
 			particleGenerator.drawParticles(0, 0, false);
 		}
