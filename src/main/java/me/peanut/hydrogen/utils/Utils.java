@@ -53,22 +53,23 @@ public class Utils {
             }
         }, "sound play").start();
     }
-
-    public static double slide = 1D;
-    public static void addSlide(double needX, double steps) {
+    public static float slide = 1f;
+    public static void addSlide(float needX, float steps) {
         if (slide != needX) {
-            if (slide < needX)
+            if (slide < needX) {
                 if (slide <= needX - steps) {
                     slide += steps;
                 } else if (slide > needX - steps) {
                     slide = needX;
                 }
-            if (slide > needX)
+            }
+            if (slide > needX) {
                 if (slide >= needX + steps) {
                     slide -= steps;
                 } else if (slide < needX + steps) {
                     slide = needX;
                 }
+            }
         }
     }
 
