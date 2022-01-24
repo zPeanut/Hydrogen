@@ -10,6 +10,7 @@ import me.peanut.hydrogen.ui.mainmenu.MainMenu;
 import me.peanut.hydrogen.ui.mainmenu.utils.ExpandButton;
 import me.peanut.hydrogen.font.FontHelper;
 import me.peanut.hydrogen.utils.ColorUtil;
+import me.peanut.hydrogen.utils.HTTPUtil;
 import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -152,7 +153,7 @@ public abstract class MixinGuiMainMenu extends GuiScreen {
 
             // version button string
 
-            this.buttonList.add(new ExpandButton(97, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 49, Utils.getScaledRes().getScaledHeight() / 2 - 38, FontHelper.sf_l2.getStringWidth(Hydrogen.version) + 6, 20, "", true, Hydrogen.getClient().semantic_version));
+            this.buttonList.add(new ExpandButton(97, Utils.getScaledRes().getScaledWidth() / 2 + FontHelper.sf_l_mm.getStringWidth("hydrogen") - 49, Utils.getScaledRes().getScaledHeight() / 2 - 38, FontHelper.sf_l2.getStringWidth(Hydrogen.version) + 6, 20, "", true, Hydrogen.getClient().semantic_version + " (" + HTTPUtil.getCurrentCommitHash() + ")"));
 
         } else {
             if (this.mc.isDemo()) {
