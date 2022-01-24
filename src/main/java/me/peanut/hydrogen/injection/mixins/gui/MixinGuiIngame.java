@@ -86,8 +86,6 @@ public abstract class MixinGuiIngame extends MixinGui {
 
                 this.zLevel = -90.0F;
 
-                boolean newStyle = Hydrogen.getClient().settingsManager.getSettingByName("Style").getMode().equalsIgnoreCase("new");
-
                 this.zLevel = f;
                 GlStateManager.enableRescaleNormal();
                 GlStateManager.enableBlend();

@@ -33,7 +33,6 @@ public class Hotbar extends Module {
         if(Hydrogen.getClient().panic || Minecraft.getMinecraft().gameSettings.showDebugInfo) {
             return;
         }
-        boolean blurEnabled = Hydrogen.getClient().settingsManager.getSettingByName(this, "Blur").isEnabled();
 
         if (Hydrogen.getClient().moduleManager.getModulebyName("HUD").isEnabled()) {
             Hydrogen.getClient().hud.style.drawHotbar();
