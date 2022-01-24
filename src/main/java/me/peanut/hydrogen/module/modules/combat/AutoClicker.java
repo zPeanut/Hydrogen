@@ -1,6 +1,7 @@
 package me.peanut.hydrogen.module.modules.combat;
 
 import com.darkmagician6.eventapi.EventTarget;
+import me.peanut.hydrogen.Hydrogen;
 import net.minecraft.client.Minecraft;
 import me.peanut.hydrogen.events.EventUpdate;
 import me.peanut.hydrogen.module.Category;
@@ -19,53 +20,39 @@ import java.util.Random;
 @Info(name = "AutoClicker", description = "Automatically clicks for you", category = Category.Combat)
 public class AutoClicker extends Module {
 
-    Random random = new Random();
-    final TimeUtils time = new TimeUtils();
-    int delay;
+    long leftLastSwing;
+    long leftDelay;
+    long rightLastSwing;
+    long rightDelay;
 
     public AutoClicker() {
         ArrayList<String> mode = new ArrayList<>();
         mode.add("Left Click");
         mode.add("Right Click");
         addSetting(new Setting("Type", this, "Left Click", mode));
-        addSetting(new Setting("CPS", this, 9, 1, 20, true));
-        addSetting(new Setting("on Click", this, false));
-        addSetting(new Setting("Random MS", this, 5, 0, 250, true));
+        addSetting(new Setting("Min. CPS", this, 4, 1, 20, true));
+        addSetting(new Setting("Max. CPS", this, 8, 1, 20, true));
     }
 
 
     @EventTarget
     public void onUpdate(EventUpdate e) {
-        boolean type = h2.settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("Left Click");
+        int minCPS = (int) h2.settingsManager.getSettingByName(this, "Min. CPS").getValue();
+        int maxCPS = (int) h2.settingsManager.getSettingByName(this, "Min. CPS").getValue();
+        boolean leftClick = h2.settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("Left Click");
+        boolean rightClick = h2.settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("Right Click");
 
-        if (this.time.isDelayComplete(delay)) {
-            if (h2.settingsManager.getSettingByName("on Click").isEnabled()) {
-                if(type) {
-                    if (Minecraft.getMinecraft().gameSettings.keyBindAttack.pressed) {
-                        this.click();
-                    }
-                } else {
-                    if (Minecraft.getMinecraft().gameSettings.keyBindUseItem.pressed) {
-                        this.click();
-                    }
-                }
-            } else {
-                this.click();
+        if (System.currentTimeMillis() - this.leftLastSwing >= this.leftDelay) {
+            if (mc.gameSettings.keyBindAttack.isKeyDown() && leftClick && System.currentTimeMillis() - this.leftLastSwing >= this.leftDelay) {
+                mc.clickMouse();
+                this.leftLastSwing = System.currentTimeMillis();
+                this.leftDelay = TimeUtils.randomDelay(minCPS, maxCPS);
+            }
+            if (mc.gameSettings.keyBindUseItem.isKeyDown() && !mc.thePlayer.isUsingItem() && rightClick && System.currentTimeMillis() - this.rightLastSwing >= this.rightDelay) {
+                mc.rightClickMouse();
+                this.rightLastSwing = System.currentTimeMillis();
+                this.rightDelay = TimeUtils.randomDelay(minCPS, maxCPS);
             }
         }
-    }
-
-    private void click() {
-        boolean type = h2.settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("Left Click");
-        delay = (int) Math.round(1000 / h2.settingsManager.getSettingByName(this, "CPS").getValue());
-        int random = (int) (Math.random() * h2.settingsManager.getSettingByName(this, "Random MS").getValue());
-        delay += random;
-        this.time.setLastMS();
-        if(type) {
-            mc.clickMouse();
-        } else {
-            mc.rightClickMouse();
-        }
-        mc.playerController.attackEntity(mc.thePlayer, mc.objectMouseOver.entityHit);
     }
 }
