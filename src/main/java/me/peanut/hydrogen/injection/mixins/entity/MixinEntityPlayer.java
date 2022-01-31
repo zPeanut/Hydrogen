@@ -1,6 +1,8 @@
 package me.peanut.hydrogen.injection.mixins.entity;
 
 import com.mojang.authlib.GameProfile;
+import me.peanut.hydrogen.Hydrogen;
+import me.peanut.hydrogen.module.modules.render.Animations;
 import me.peanut.hydrogen.utils.PlayerUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.PlayerCapabilities;
@@ -58,7 +60,9 @@ public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
             f -= 0.08F;
         }
 
-        f = PlayerUtil.getCustomEyeHeight((EntityPlayer) (Object) this);
+        if(Hydrogen.getClient().moduleManager.getModule(Animations.class).isEnabled()) {
+            f = PlayerUtil.getCustomEyeHeight((EntityPlayer) (Object) this);
+        }
 
         return f;
     }
