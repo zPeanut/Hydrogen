@@ -13,8 +13,6 @@ import me.peanut.hydrogen.utils.RenderUtil;
 import me.peanut.hydrogen.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.awt.*;
@@ -36,7 +34,7 @@ public class Tephra implements Style {
 
     public static void loadSettings() {
         if(!lmao) {
-            me.peanut.hydrogen.ui.ingame.components.ArrayList arrayListModule = Hydrogen.getClient().moduleManager.getModule(me.peanut.hydrogen.ui.ingame.components.ArrayList.class);
+            ArrayList arrayListModule = Hydrogen.getClient().moduleManager.getModule(ArrayList.class);
             Watermark watermark = Hydrogen.getClient().moduleManager.getModule(Watermark.class);
 
             Hydrogen.getClient().settingsManager.getSettingByName("List Color").setMode("Rainbow");
@@ -50,10 +48,11 @@ public class Tephra implements Style {
     @Override
     public void drawArrayList() {
         int count = 0;
+        Module arrayList = Hydrogen.getClient().moduleManager.getModule(ArrayList.class);
         float rbdelay = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Delay").getValue();
         float rbsaturation = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Saturation").getValue();
         float rbcolorcount = (float) Hydrogen.getClient().settingsManager.getSettingByName("Rb. Color Count").getValue();
-        boolean background = Hydrogen.getClient().settingsManager.getSettingByName("Background").isEnabled();
+        boolean background = Hydrogen.getClient().settingsManager.getSettingByName(arrayList, "Background").isEnabled();
 
         for (int i = 0; i < Hydrogen.getClient().moduleManager.getEnabledMods().size(); i++) {
             Module mod = Hydrogen.getClient().moduleManager.getEnabledMods().get(i);
@@ -73,16 +72,14 @@ public class Tephra implements Style {
                     break;
             }
 
-            ArrayList arrayList = Hydrogen.getClient().moduleManager.getModule(ArrayList.class);
-
             if(Hydrogen.getClient().moduleManager.getModule(Watermark.class).isEnabled()) {
-                if(Hydrogen.getClient().settingsManager.getSettingByName(arrayList, "Background").isEnabled()) {
+                if(background) {
                     RenderUtil.rect(mod.getSlideMC() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, 11 + i * 12, mod.getSlideMC() + 8, i * 12 + 23, Integer.MIN_VALUE);
                     Gui.drawRect(mod.getSlideMC() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, 11 + i * 12, 0, i * 12 + 23, (color.getRGB() & 0x00FFFFFF) | 0x99000000);
                 }
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), mwidth, mheight + 10, color.getRGB());
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(mod.getName(), background ? mwidth : mwidth - 4, mheight + 10, color.getRGB());
             } else {
-                if(Hydrogen.getClient().settingsManager.getSettingByName(arrayList, "Background").isEnabled()) {
+                if(background) {
                     RenderUtil.rect(mod.getSlideMC() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, i * 12, mod.getSlideMC() + 8, i * 12 + 12, Integer.MIN_VALUE);
                     RenderUtil.rect(mod.getSlideMC() - (Minecraft.getMinecraft()).fontRendererObj.getStringWidth(mod.getName()) + 3, i * 12, 0, i * 12 + 12, (color.getRGB() & 0x00FFFFFF) | 0x99000000);
                 }
