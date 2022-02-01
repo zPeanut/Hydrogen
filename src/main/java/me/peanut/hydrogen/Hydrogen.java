@@ -28,6 +28,7 @@ import me.peanut.hydrogen.altmanager.account.AccountManager;
 import me.peanut.hydrogen.command.CommandManager;
 import me.peanut.hydrogen.settings.SettingsManager;
 
+import java.awt.*;
 import java.io.*;
 
 public class Hydrogen {
@@ -37,8 +38,8 @@ public class Hydrogen {
     public static final String devs[] = {"zPeanut", "UltramoxX"};
     public static final String prefix = "§7[§9" + name + "§7]";
 
-    public static String version = "1.12";
-    public static final String semantic_version = "1.12.0";
+    public static String version = "1.12.1";
+    public static final String semantic_version = "1.12.1";
 
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";
@@ -60,7 +61,7 @@ public class Hydrogen {
     public boolean outdated;
     public boolean panic = false;
     public boolean firstStart;
-    public boolean isStableBuild = true;
+    public boolean isStableBuild = false;
     public String newversion;
 
     public boolean hasNewFiles;
@@ -71,22 +72,26 @@ public class Hydrogen {
 
     public void startClient() {
         MinecraftForge.EVENT_BUS.register(new EventWorldListener());
+
         directory = new File(Minecraft.getMinecraft().mcDataDir, name);
         if (!this.directory.exists()) {
             this.firstStart = true;
             directory.mkdir();
         }
+
         if(new File(directory, "modules.json").exists() || new File(directory, "settings.json").exists() || new File(directory, "clickgui.json").exists()) {
             hasNewFiles = true;
         } else {
             Utils.log("Old Files detected! Will be deleted after game shutdown.");
         }
+
         if(!isStableBuild) {
             // get commit dates
             HTTPUtil.getCurrentCommitDate();
             // add git commit hash to version
             version += String.format(" §7| %s", HTTPUtil.getCurrentCommitHash());
         }
+
         moduleManager = new ModuleManager();
         settingsManager = new SettingsManager();
         keybindManager = new KeybindUtil();
@@ -166,6 +171,7 @@ public class Hydrogen {
 
     public void isOutdated() {
         String version = HTTPUtil.getWebsiteLine("https://raw.githubusercontent.com/zPeanut/Resources/master/semversion-hydrogen");
+        Utils.log(version);
         Semver semver = new Semver(version);
         if (semver.isGreaterThan(semantic_version)) {
             outdated = true;
