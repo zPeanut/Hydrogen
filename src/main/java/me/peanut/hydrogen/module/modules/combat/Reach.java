@@ -13,7 +13,7 @@ import me.peanut.hydrogen.settings.Setting;
 public class Reach extends Module {
 
     public Reach() {
-        addSetting(new Setting("Distance", this, 4.5, 3, 7, false));
+        addSetting(new Setting("Distance", this, 4, 3, 7, true));
     }
 
 }
