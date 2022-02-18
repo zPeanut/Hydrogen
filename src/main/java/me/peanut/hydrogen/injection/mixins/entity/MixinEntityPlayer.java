@@ -66,6 +66,4 @@ public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
 
         return f;
     }
-
-
 }

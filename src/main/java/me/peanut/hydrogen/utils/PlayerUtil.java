@@ -155,7 +155,7 @@ public class PlayerUtil {
     }
 
     public static boolean canBlockBeSeen(BlockPos pos) {
-        return (Minecraft.getMinecraft().theWorld.rayTraceBlocks(new Vec3(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY + Minecraft.getMinecraft().thePlayer.getEyeHeight(), Minecraft.getMinecraft().thePlayer.posZ), new Vec3(pos.getX(), pos.getY(), pos.getZ())) == null);
+        return Minecraft.getMinecraft().theWorld.rayTraceBlocks(new Vec3(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY + Minecraft.getMinecraft().thePlayer.getEyeHeight(), Minecraft.getMinecraft().thePlayer.posZ), new Vec3(pos.getX(), pos.getY(), pos.getZ())) == null;
     }
 
     /*

@@ -36,6 +36,10 @@ public class BedAura extends Module {
     private int y;
 
     public BedAura() {
+
+        // TODO: fix inconsistent breaking of beds and eggs
+        // TODO: fix cakes not being destroyed
+
         addSetting(new Setting("Bed", this, true));
         addSetting(new Setting("Cake", this, false));
         addSetting(new Setting("Egg", this, false));
