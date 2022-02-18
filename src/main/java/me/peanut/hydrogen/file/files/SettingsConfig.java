@@ -74,21 +74,16 @@ public class SettingsConfig {
                     if(element != null) {
                         if (setting.getParentMod().getName().equalsIgnoreCase(module.getName()) && setting.isModeButton()) {
                             setting.setState(element.getAsBoolean());
-                            System.out.println(module.getName() + ":" + setting.getName() + ":" + element.getAsBoolean());
                         }
                         if (setting.getParentMod().getName().equalsIgnoreCase(module.getName()) && setting.isModeMode()) {
                             setting.setMode(element.getAsString());
-                            System.out.println(module.getName() + ":" + setting.getName() + ":" + element.getAsString());
                         }
                         if (setting.getParentMod().getName().equalsIgnoreCase(module.getName()) && setting.isModeText()) {
                             setting.setText(element.getAsString());
-                            System.out.println(module.getName() + ":" + setting.getName() + ":" + element.getAsString());
                         }
                         if (setting.getParentMod().getName().equalsIgnoreCase(module.getName()) && setting.isModeSlider()) {
                             setting.setValue(element.getAsDouble());
-                            System.out.println(module.getName() + ":" + setting.getName() + ":" + element.getAsDouble());
                         }
-
                     }
                 }
             }
