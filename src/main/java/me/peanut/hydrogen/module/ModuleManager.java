@@ -83,15 +83,15 @@ public class ModuleManager {
 
         // 1.8
 
-        add(new AimBot());
-        add(new TargetSelect());
+        //add(new AimBot()); // TODO: recode
+        //add(new TargetSelect());
         add(new FastBow());
         add(new Reach());
         add(new HitBox());
 
         // 1.9
 
-        add(new BowAimbot());
+        //add(new BowAimbot()); TODO: recode
         add(new STap());
         add(new ChatRect());
 
