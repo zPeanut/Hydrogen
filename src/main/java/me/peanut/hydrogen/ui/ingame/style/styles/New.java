@@ -364,7 +364,7 @@ public class New implements Style {
 
     @Override
     public void drawWatermark() {
-        Watermark watermarkModule = new Watermark();
+        Module watermarkModule = Hydrogen.getClient().moduleManager.getModule(Watermark.class);
         boolean background = Hydrogen.getClient().settingsManager.getSettingByName(watermarkModule, "Background").isEnabled();
         boolean time = Hydrogen.getClient().settingsManager.getSettingByName(watermarkModule, "Time").isEnabled();
         boolean outline = Hydrogen.getClient().settingsManager.getSettingByName(watermarkModule, "Outline").isEnabled();
