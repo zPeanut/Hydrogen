@@ -33,13 +33,12 @@ import java.io.*;
 
 public class Hydrogen {
 
-    public static final String modid = "hydrogen";
     public static final String name = "Hydrogen";
     public static final String devs[] = {"zPeanut", "UltramoxX"};
     public static final String prefix = "§7[§9" + name + "§7]";
 
-    public static String version = "1.12.1";
-    public static final String semantic_version = "1.12.1";
+    public static String version = "1.12.2";
+    public static final String semantic_version = "1.12.2";
 
     public static final String github = "https://github.com/zpeanut/hydrogen/";
     public static final String release = github + "releases/";

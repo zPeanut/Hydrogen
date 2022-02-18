@@ -22,7 +22,7 @@ apply plugin: 'org.spongepowered.mixin'
 // Only edit below this line, the above code adds & enables the necessary things for Forge to be setup.
 
 // The jar version number that will be output when building.
-version = '1.12.1'
+version = '1.12.2'
 // https://maven.apache.org/guides/mini/guide-naming-conventions.html
 group = 'me.peanut.hydrogen'
 // The jar name that will be output when building.
