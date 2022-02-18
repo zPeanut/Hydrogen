@@ -111,7 +111,7 @@ public abstract class MixinItemRenderer {
                     case DRINK:
                         this.performDrinking(abstractclientplayer, partialTicks);
                         this.transformFirstPersonItem(f, 0);
-                        if (Hydrogen.getClient().settingsManager.getSettingByName("BlockHit").isEnabled() && Hydrogen.getClient().moduleManager.getModulebyName("OldAnimations").isEnabled()) {
+                        if (Hydrogen.getClient().settingsManager.getSettingByName("BlockHit").isEnabled() && Hydrogen.getClient().moduleManager.getModulebyName("Animations").isEnabled()) {
                             GlStateManager.translate(-0.5f, 0.2f, 0.0f);
                             GlStateManager.scale(0.83F, 0.88F, 0.85F);
                             GlStateManager.rotate(-0.3F, 0.1F, 0.0F, 0.0F);
