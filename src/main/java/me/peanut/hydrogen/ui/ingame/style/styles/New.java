@@ -48,7 +48,7 @@ public class New implements Style {
         }
     }
 
-    public static void newArrayThread() {
+    public static synchronized void newArrayThread() {
         new Thread(() -> {
             while (true) {
                 try {

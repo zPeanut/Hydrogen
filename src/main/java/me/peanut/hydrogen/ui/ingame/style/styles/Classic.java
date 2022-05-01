@@ -42,8 +42,7 @@ public class Classic implements Style {
         }
     }
 
-    public static void classicArrayThread() {
-
+    public static synchronized void classicArrayThread() {
         new Thread(() -> {
             while (true) {
                 try {
