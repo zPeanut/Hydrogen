@@ -4,7 +4,7 @@ An open source, mixin based ghost client for Minecraft 1.8.9 built on Minecraft 
 Developed by [Me] and [UltramoxX].  
 Contributions are highly welcome!
 
-Current stable release: **1.12.3**  
+Current stable release: **1.12.4**  
   
 Join our discord!  
 https://discord.gg/dmw5N5X9p6
