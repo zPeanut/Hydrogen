@@ -7,8 +7,6 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(Gui.class)
 public abstract class MixinGui {
 
-    @Shadow public abstract void drawRect(int left, int top, int right, int bottom, int color);
-
     @Shadow
     protected float zLevel;
 
