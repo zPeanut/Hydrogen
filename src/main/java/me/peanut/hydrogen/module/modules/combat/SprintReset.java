@@ -1,9 +1,6 @@
 package me.peanut.hydrogen.module.modules.combat;
 
 import com.darkmagician6.eventapi.EventTarget;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import me.peanut.hydrogen.Hydrogen;
 import me.peanut.hydrogen.events.EventTick;
 import me.peanut.hydrogen.module.Category;
@@ -11,6 +8,10 @@ import me.peanut.hydrogen.module.Info;
 import me.peanut.hydrogen.module.Module;
 import me.peanut.hydrogen.settings.Setting;
 import me.peanut.hydrogen.utils.TimeUtils;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemSword;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ import static me.peanut.hydrogen.utils.TimeUtils.getCurrentMS;
  * Created by peanut on 20/02/2021
  * Updated by kambing on 10/10/2022
  */
-@Info(name = "SprintReset", category = Category.Combat,  description = "Stops holding the chosen key when sprinting and hitting an enemy thus, comboing them.")
+@Info(name = "SprintReset", category = Category.Combat, description = "Stops holding the chosen key when sprinting and hitting an enemy thus, comboing them.")
 public class SprintReset extends Module {
 
     private long lastHold = 2000000000L;
@@ -30,6 +31,7 @@ public class SprintReset extends Module {
         mode.add("W Key");
         mode.add("S Key");
         mode.add("D Key");
+        addSetting(new Setting("Sword Block", this, true));
         addSetting(new Setting("Type", this, "W Key", mode));
         addSetting(new Setting("Delay", this, 500, 100, 2000, false));
         addSetting(new Setting("Held", this, 100, 50, 250, false));
@@ -78,18 +80,31 @@ public class SprintReset extends Module {
         }
 
         if (ens != null && mc.thePlayer.isSprinting() && TimeUtils.hasTimePassedMS((long) h2.settingsManager.getSettingByName("Delay").getValue())) {
-            getKey().pressed = getKey() == mc.gameSettings.keyBindBack || getKey() == mc.gameSettings.keyBindRight;
+            if (!(Hydrogen.getClient().settingsManager.getSettingByName(this, "Sword Block").isEnabled())) {
+                getKey().pressed = getKey() == mc.gameSettings.keyBindBack || getKey() == mc.gameSettings.keyBindRight;
+            } else {
+                if (mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemSword) {
+                    mc.gameSettings.keyBindUseItem.pressed = true;
+                } else getKey().pressed = getKey() == mc.gameSettings.keyBindBack || getKey() == mc.gameSettings.keyBindRight;
+            }
             this.lastHold = getCurrentMS();
             TimeUtils.reset();
         }
 
 
         if (this.lastHold != -1L && TimeUtils.hasTimePassedMS(this.lastHold, (long) h2.settingsManager.getSettingByName("Held").getValue())) {
-            getKey().pressed = getKey() != mc.gameSettings.keyBindBack && getKey() != mc.gameSettings.keyBindRight;
+            if (!(Hydrogen.getClient().settingsManager.getSettingByName(this, "Sword Block").isEnabled())) {
+                getKey().pressed = getKey() != mc.gameSettings.keyBindBack && getKey() != mc.gameSettings.keyBindRight;
+            } else {
+                if (mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemSword) {
+                    mc.gameSettings.keyBindUseItem.pressed = false;
+                } else getKey().pressed = getKey() != mc.gameSettings.keyBindBack && getKey() != mc.gameSettings.keyBindRight;
+            }
 
             this.lastHold = -1L;
         }
     }
+
     private KeyBinding getKey() {
         if (Hydrogen.getClient().settingsManager.getSettingByName(this, "Type").getMode().equalsIgnoreCase("W Key")) {
             return mc.gameSettings.keyBindForward;
