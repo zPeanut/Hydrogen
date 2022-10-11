@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.*;
 import org.lwjgl.input.Keyboard;
 
@@ -20,9 +21,10 @@ import org.lwjgl.input.Keyboard;
 @Info(name = "BlockClutch", category = Category.Movement, description = "Block clutches you")
 public class BlockClutch extends Module
 {
-    //TODO: add hold mode, auto switch
+    //TODO: add hold mode
     public BlockClutch() {
         addSetting(new Setting("Range", this, 4, 0, 10, false));
+        addSetting(new Setting("Auto Switch", this, true));
 
     }
 
@@ -68,6 +70,9 @@ public class BlockClutch extends Module
     }
 
     public boolean placeBlockSimple(final BlockPos pos, final boolean place) {
+        if (!this.doesSlotHaveBlocks(mc.thePlayer.inventory.currentItem) && h2.settingsManager.getSettingByName(this,"Auto Switch").isEnabled()) {
+            mc.thePlayer.inventory.currentItem = this.getFirstHotBarSlotWithBlocks();
+        }
         final Minecraft mc = Minecraft.getMinecraft();
         final Entity entity = mc.getRenderViewEntity();
         final double d0 = entity.posX;
@@ -121,4 +126,17 @@ public class BlockClutch extends Module
         }
         return new float[] { yaw, pitch };
     }
+
+    public int getFirstHotBarSlotWithBlocks() {
+        for (int i = 0; i < 9; ++i) {
+            if (mc.thePlayer.inventory.getStackInSlot(i) != null && mc.thePlayer.inventory.getStackInSlot(i).getItem() instanceof ItemBlock) {
+                return i;
+            }
+        }
+        return 0;
+    }
+    public boolean doesSlotHaveBlocks(final int slotToCheck) {
+        return mc.thePlayer.inventory.getStackInSlot(slotToCheck) != null && mc.thePlayer.inventory.getStackInSlot(slotToCheck).getItem() instanceof ItemBlock && mc.thePlayer.inventory.getStackInSlot(slotToCheck).stackSize > 0;
+    }
+
 }
