@@ -71,7 +71,6 @@ public class ModuleManager {
         // 1.4
 
         add(new AntiAFK());
-        add(new WTap());
         add(new ItemESP());
 
         // 1.5
@@ -92,7 +91,6 @@ public class ModuleManager {
         // 1.9
 
         //add(new BowAimbot()); TODO: recode
-        add(new STap());
         add(new ChatRect());
 
         // 1.10
@@ -119,6 +117,8 @@ public class ModuleManager {
         add(new NoSwing());
         add(new Animations());
         add(new HitAnimation());
+        add(new BlockClutch());
+        add(new SprintReset());
 
         for(Module m : this.getModules()) {
             if(!(m.getCategory().equals(Category.Gui) || m.getCategory().equals(Category.Hud))) {

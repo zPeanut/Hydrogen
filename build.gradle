@@ -135,7 +135,7 @@ jar {
             // Directory for the mixin loader for the built jar.
             'FMLCorePlugin': 'me.peanut.hydrogen.injection.MixinLoader',
             // Turn this to false for the client to be able to load in a IDE.
-            'ForceLoadAsMod': 'true'
+            'ForceLoadAsMod': !System.getProperty("java.class.path").contains("idea_rt.jar").booleanValue().toString()
     )
 }
 
