@@ -14,7 +14,11 @@ public class HTTPUtil {
     public static String commitDate;
     public static String commitTime;
 
+    private static CacheValue<String> cacheGetCurrentCommitHash = new CacheValue<String>(120);
     public static String getCurrentCommitHash() {
+        if(!cacheGetCurrentCommitHash.isRefreshNeeded())
+            return cacheGetCurrentCommitHash.getValue();
+
         try {
             URL url = new URL("https://api.github.com/repos/zpeanut/hydrogen/commits/master");
             BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -22,6 +26,7 @@ public class HTTPUtil {
             String[] splitLine = readLine.split("\"");
             String fullCommitHash = splitLine[3];
             String shortCommitHash = fullCommitHash.substring(0, Math.min(fullCommitHash.length(), 7));
+            cacheGetCurrentCommitHash.update(shortCommitHash);
             return shortCommitHash;
         } catch (Exception e) {
             e.printStackTrace();
@@ -29,9 +34,12 @@ public class HTTPUtil {
         return null;
     }
 
+    private static Cache cacheGetCurrentCommitDate = new Cache(120);
     public static void getCurrentCommitDate() {
-        try {
+        if(!cacheGetCurrentCommitDate.isRefreshNeeded())
+            return;
 
+        try {
             // read github api line
 
             URL url = new URL("https://api.github.com/repos/zpeanut/hydrogen/commits/master");
@@ -57,6 +65,7 @@ public class HTTPUtil {
 
             commitTime = localTimeShort;
             commitDate = localDate;
+            cacheGetCurrentCommitDate.update();
         } catch (Exception e) {
             e.printStackTrace();
         }
