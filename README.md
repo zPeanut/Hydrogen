@@ -47,10 +47,10 @@ Hydrogen runs on Gradle. Make sure you have it is installed correctly before set
 
 1. Clone the Repository under `https://github.com/zPeanut/Hydrogen.git`
 2. Open command prompt and CD into the directory.
-3. Depending on which IDEA you use, different commands have to be ran.
+3. Depending on which IDE(Integrated Development Enviroment) you use, different commands have to be ran.
     - IntelliJ: `gradlew setupDecompWorkspace idea genIntellijRuns build`
     - Eclipse: `gradlew setupDecompWorkspace eclipse build`
-4. Open the folder in your preferred IDEA, depending which you chose above.
+4. Open the folder in your preferred IDE, depending which you chose above.
 
 ## Exporting the client using Forge MDK
 
@@ -58,7 +58,7 @@ After you have succesfully made changes to Hydrogen and want to export it, simpl
 
 `.\gradlew clean build`  
 
-into your IDEA Terminal or Windows Command Prompt / Windows Powershell.  
+into your IDE Terminal or Windows Command Prompt / Windows Powershell.  
 You will then get a jar file located at  
 
 `\build\libs`  
