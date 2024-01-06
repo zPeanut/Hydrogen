@@ -1,8 +1,9 @@
 {
   "required": true,
-  "package": "me.peanut.hydrogen.injection.mixins",
+  "package": "me.peanut.hydrogen.mixin",
   "refmap": "mixins.hydrogen.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "client.MixinMinecraft"
   ]
 }
