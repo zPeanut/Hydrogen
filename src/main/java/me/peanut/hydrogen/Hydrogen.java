@@ -1,5 +1,7 @@
 package me.peanut.hydrogen;
 
+import me.peanut.hydrogen.module.Module;
+import me.peanut.hydrogen.module.ModuleManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -18,6 +20,8 @@ public class Hydrogen {
 
     private static Hydrogen instance;
 
+    private ModuleManager moduleManager;
+
     public Hydrogen() {
         instance = this;
     }
@@ -25,10 +29,20 @@ public class Hydrogen {
     public static Hydrogen getInstance() {
         return instance;
     }
+    public ModuleManager getModuleManager() {
+        return moduleManager;
+    }
 
     public void start() {
-        System.out.println("Hello World!");
+        moduleManager = new ModuleManager();
+        moduleManager.addModules();
+
+        for (Module module : moduleManager.getModules()) {
+            System.out.printf("Loaded %s!", module.getName());
+        }
+
     }
+
 
 
 }
