@@ -6,6 +6,8 @@ Contributions are highly welcome!
 
 Current stable release: **1.12.5**  
 
+Check out [our Website]!
+
 Full Changelog:  
 https://mjzpeanut.com/Hydrogen/changelog
   
@@ -82,6 +84,7 @@ inside of your directory. Simply put that file into your mods folder inside .min
 - S4rnth1l
 - perry
 
+[our Website]: https://mjzpeanut.com/Hydrogen
 [me]: https://github.com/zPeanut
 [UltramoxX]: https://github.com/Morten-Renner
 [SemVer4j]: https://github.com/vdurmont/semver4j
