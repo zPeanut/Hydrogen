@@ -7,7 +7,7 @@ Contributions are highly welcome!
 Current stable release: **1.12.5**  
 
 Full Changelog:  
-https://zpeanut.github.io/main/changelog
+https://mjzpeanut.com/Hydrogen/changelog
   
 Please remember that: **We are not responsible for any repercussions you face using this client.  
 We are merely providing you with it. Use at your own risk.** 
