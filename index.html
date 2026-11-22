@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hydrogen | A forge based ghost client for Minecraft 1.8.9</title>
+    <link rel="shortcut icon" type="image/png" href="img/hydrogen_1.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-spy="scroll" data-target="#navbarResponsive">
+
+<!--- navbar -->
+
+<section id="nav-bar">
+    <nav class ="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid logo">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">about</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#download">download</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://zpeanut.github.io/main/changelog" target="_blank">changelog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#socials">socials</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<!--- video -->
+
+<div id="home">
+    <div class="video-background">
+        <div class="video-wrap">
+            <div id="video">
+                <video id="bgvid" autoplay loop muted playsinline>
+                    <source src="https://user-images.githubusercontent.com/25800857/132989930-9dc2ca4c-f981-4c1c-befd-5093b246456c.mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- title -->
+
+<div class="caption text-center">
+    <h1>hydrogen</h1>
+    <h3>A forge based ghost client for Minecraft 1.8.9</h3>
+    <a class="btn btn-lg btn-outline-light rounded-pill" href="#about">Learn more</a>
+</div>
+
+<!--- about -->
+
+<div id="about" class="offset">
+    <div class="p-4 row justify-content-center">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4 überschrift">About</h1>
+            </div>
+            <hr>
+            <div class="col-12">
+                <p class="lead">Hydrogen is an advanced, so called "ghost client" for Minecraft version 1.8.9, based on Minecraft Forge. Hydrogen is made for the pupose of giving yourself various utilites, which all give you an advantage without anyone noticing it, including many render related modules.<br><br><b style="font-weight: bold">WARNING</b>: Use this client at your own risk, ghost clients are not fully undetectable. The Hydrogen development team is not responsible for any damage you cause to your Minecraft accounts. </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--- features -->
+
+<div id="features" class="offset">
+    <div class="p-1 container-fluid">
+        <div class="p-1 row text-center">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <i class="fas fa-thumbs-up"></i>
+                <h2 class="about-title">straight-forward</h2>
+                <p class="about-text">Hydrogen is straight to the point. Each module has a description of what it does and is generally easy to use and understand.</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <i class="fas fa-code"></i>
+                <h2 class="about-title">open-source</h2>
+                <p class="about-text">Hydrogen is completely open-source, hosted on our GitHub. No sneaky bitcoin-miners and IP-Loggers. If you want to contribute to Hydrogen in any way, by suggestions or similar, feel free to do so!</p>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <i class="fas fa-bars"></i>
+                <h2 class="about-title">easy-to-use advanced gui</h2>
+                <p class="about-text">Hydrogen's GUI is easy to use, understand and highly customizable. Want to use a different font instead of the normal Minecraft font? You're free to do so! Don't like the Arraylist or Watermark? Disable them! You have tons of options!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- picture carousel -->
+
+<div id="carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Image 1"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Image 2"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Image 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="img/pic1.png" class="d-block w-100" alt="image 1">
+        </div>
+        <div class="carousel-item">
+            <img src="img/pic2.png" class="d-block w-100" alt="image 2">
+        </div>
+        <div class="carousel-item">
+            <img src="img/pic3.png" class="d-block w-100" alt="image 3">
+        </div>
+    </div>
+</div>
+
+<!--- download -->
+<div id="download" class="offset">
+    <div class="p-4 container-fluid download-section">
+        <div class="p-4 row">
+            <div class="col-lg-6 download-section">
+                <h1 class="display-4 überschrift dl-title">Download</h1>
+                <hr class="my-4">
+                <br>
+                <p class="dl-text">Hydrogen is available to download at either on this site or on our GitHub. If you want an automatic install, download our Installer down below or download the jar in itself for a manual installation.</p>
+                <p class="dl-text"> To install Hydrogen automatically, open the Installer, install the Version you want and then start a version of Minecraft Forge 1.8.9. </p>
+                <p class="dl-text">Don't have Forge installed? <a href="https://files.minecraftforge.net/net/minecraftforge/forge/index_1.8.9.html" target="_blank">Download it here!</a></p>
+                <p class="dl-text">To install Hydrogen into the Minecraft Vanilla Launcher manually, put the jar you download inside the /.minecraft/mods folder, and then run a version of Minecraft Forge 1.8.9.</p>
+                <br>
+                <a class="btn btn-lg button2" href="https://github.com/zPeanut/Hydrogen/releases/" target="_blank">
+                    <i class="fa fa-download"></i> <b>Universal .jar file</b> (Hosted on GitHub)
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <img src="img/pic1.png" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--- dev team -->
+<div id="socials" class="offset">
+    <div class="p-2 row justify-content-center dev-section">
+        <div class="row welcome text-center">
+            <div class="col-12">
+                <h1 class="display-4 überschrift text-center">Developer Team</h1>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="p-3 container-fluid dev-section">
+        <div class="p-2 row">
+            <div class="col-md-5 text-center col-centered">
+                <div class="ml-6 card">
+                    <img class="card-imd-top dev-img" src="img/peanutpfp.png">
+                    <div class="card-body">
+                        <h4 class="card-title">zPeanut</h4>
+                        <p class="card-text">Head Developer</p>
+                        <a href="https://github.com/zPeanut/" target="_blank" class="btn btn-outline-secondary">Visit on Github</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 text-center col-centered">
+                <div class="mr-6 card">
+                    <img class="card-imd-top dev-img" src="img/ultramoxxpfp.png">
+                    <div class="card-body">
+                        <h4 class="card-title">UltramoxX</h4>
+                        <p class="card-text">Developer</p>
+                        <a href="https://github.com/Morten-Renner/" target="_blank" class="btn btn-outline-secondary">Visit on Github</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--- socials -->
+
+<div class="p-1 container-fluid socials-section">
+    <div class="p-2 row text-center">
+        <div class="col-12">
+            <h1 class="display-4 überschrift">Socials</h1>
+        </div>
+        <hr class="my-8">
+        <div class="p-1 col-12 social padding">
+            <a href="https://www.youtube.com/c/zPeanut" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://github.com/zPeanut/Hydrogen" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</div>
+
+
+<!--- footer -->
+
+<footer>
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <p class="footer-text">Copyright © Hydrogen  Client 2017 - 2022 | All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
