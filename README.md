@@ -5,9 +5,6 @@ Developed by [Me] and [UltramoxX].
 Contributions are highly welcome!
 
 Current stable release: **1.12.5**  
-  
-Join our discord!  
-https://discord.gg/dmw5N5X9p6
 
 Full Changelog:  
 https://zpeanut.github.io/main/changelog
