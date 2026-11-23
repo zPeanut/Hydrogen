@@ -12,7 +12,7 @@ html, body {
     font-family: 'SF UI Display Ultralight';
     font-style: normal;
     font-weight: normal;
-    src: local('SF UI Display Ultralight'), url('/font/sf-ui-display-ultralight.woff') format('woff');
+    src: local('SF UI Display Ultralight'), url('../font/sf-ui-display-ultralight.woff') format('woff');
 }
 
 
@@ -20,7 +20,7 @@ html, body {
     font-family: 'SF UI Display Thin';
     font-style: normal;
     font-weight: normal;
-    src: local('SF UI Display Thin'), url('/font/sf-ui-display-thin.woff') format('woff');
+    src: local('SF UI Display Thin'), url('../font/sf-ui-display-thin.woff') format('woff');
 }
 
 
@@ -28,7 +28,7 @@ html, body {
     font-family: 'SF UI Display Light';
     font-style: normal;
     font-weight: normal;
-    src: local('SF UI Display Light'), url('/font/sf-ui-display-light.woff') format('woff');
+    src: local('SF UI Display Light'), url('../font/sf-ui-display-light.woff') format('woff');
 }
 
 
@@ -36,7 +36,7 @@ html, body {
     font-family: 'SF UI Display Medium';
     font-style: normal;
     font-weight: normal;
-    src: local('SF UI Display Medium'), url('/font/sf-ui-display-medium.woff') format('woff');
+    src: local('SF UI Display Medium'), url('../font/sf-ui-display-medium.woff') format('woff');
 }
 
 
@@ -44,7 +44,7 @@ html, body {
     font-family: 'SF UI Display Semibold';
     font-style: normal;
     font-weight: normal;
-    src: local('SF UI Display Semibold'), url('/font/sf-ui-display-semibold.woff') format('woff');
+    src: local('SF UI Display Semibold'), url('../font/sf-ui-display-semibold.woff') format('woff');
 }
 
 
@@ -52,7 +52,7 @@ html, body {
     font-family: 'SF UI Display Bold';
     font-style: normal;
     font-weight: normal;
-    src: local('SF UI Display Bold'), url('/font/sf-ui-display-bold.woff') format('woff');
+    src: local('SF UI Display Bold'), url('../font/sf-ui-display-bold.woff') format('woff');
 }
 
 .navbar {
