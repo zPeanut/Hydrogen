@@ -27,13 +27,7 @@ Go ahead and try them out!
 
 Before you install Hydrogen, make sure to have installed Minecraft Forge for Minecraft 1.8.9.
 
-### Automatic Installation:
-
-1. Download the [Installer] ([src code])
-2. Select your version.
-3. Enjoy the ride.
-
-### Manual Installation:
+### Installation:
 
 1. Download the latest [release] of Hydrogen.
 2. Drag and Drop ``hydrogen-x.x.x.jar`` into your directory for Forge mods (Win-Default: ``%appdata%/.minecraft/mods``).
